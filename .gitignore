@@ -1,0 +1,4 @@
+*.npz
+*.gz
+out/sealed/
+__pycache__/

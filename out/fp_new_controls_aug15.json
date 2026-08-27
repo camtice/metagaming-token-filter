@@ -1,0 +1,32 @@
+{
+ "OG": {
+  "ctl_fineweb_new": 0.172,
+  "ctl_swe_code": 0.138,
+  "overall": 0.17
+ },
+ "P2": {
+  "ctl_fineweb_new": 0.033,
+  "ctl_swe_code": 0.052,
+  "overall": 0.034
+ },
+ "D2": {
+  "ctl_fineweb_new": 0.102,
+  "ctl_swe_code": 0.062,
+  "overall": 0.1
+ },
+ "h6_16k_trim": {
+  "ctl_fineweb_new": 0.154,
+  "ctl_swe_code": 0.062,
+  "overall": 0.148
+ },
+ "h6_65k_trim": {
+  "ctl_fineweb_new": 0.1308,
+  "ctl_swe_code": 0.0802,
+  "overall": 0.1276
+ },
+ "_meta": {
+  "date": "2026-08-15",
+  "corpus": "data/new_controls_aug15.jsonl (3750 new fineweb + 250 ctl_swe)",
+  "rule": "Rathi, thresholds frozen from harvest_test_v3[_65k]"
+ }
+}

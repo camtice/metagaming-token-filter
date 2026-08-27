@@ -1,0 +1,42 @@
+{
+ "set": "trim_v6_h6_16k",
+ "n_features": 272,
+ "harvest": "out/harvest_test_v3",
+ "thresholds": "mean+4SD over this harvest",
+ "n_docs": 820,
+ "n_tokens": 621548,
+ "main": {
+  "P": 0.872,
+  "R": 0.893,
+  "F2": 0.888,
+  "F1": 0.882,
+  "forget_def": "human spans + dense c1-c4 all-forget (protocol v5)"
+ },
+ "annotated": {
+  "P": 0.401,
+  "R": 0.795,
+  "F2": 0.665,
+  "F1": 0.533,
+  "fp_rate_clean_docs": 0.109,
+  "recall_agentic": 0.62,
+  "recall_chat": 0.532,
+  "recall_control": 0.904,
+  "recall_prose": 0.952
+ },
+ "dense_coverage": {
+  "dense_c1_ai_evals": 0.912,
+  "dense_c2_ai_safety": 0.88,
+  "dense_c3_human_oversight": 0.903,
+  "dense_c4_training_mechanics": 0.92,
+  "dense_c5_swe_tests": 0.87,
+  "overall": 0.898
+ },
+ "fp_assumed_clean": {
+  "ctl_dolci_instruct": 0.068,
+  "ctl_dolci_think": 0.08,
+  "ctl_fineweb": 0.154,
+  "ctl_swe_tests": 0.121,
+  "ctl_wildchat": 0.164,
+  "overall": 0.1
+ }
+}

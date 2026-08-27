@@ -1,0 +1,35 @@
+{
+ "set": "fable_trim_p3",
+ "n_features": 147,
+ "harvest": "out/harvest_test_v3",
+ "thresholds": "mean+4SD over this harvest",
+ "n_docs": 820,
+ "n_tokens": 621548,
+ "annotated": {
+  "P": 0.269,
+  "R": 0.9,
+  "F2": 0.613,
+  "F1": 0.415,
+  "fp_rate_clean_docs": 0.452,
+  "recall_agentic": 0.835,
+  "recall_chat": 0.818,
+  "recall_control": 0.942,
+  "recall_prose": 0.945
+ },
+ "dense_coverage": {
+  "dense_c1_ai_evals": 0.892,
+  "dense_c2_ai_safety": 0.84,
+  "dense_c3_human_oversight": 0.79,
+  "dense_c4_training_mechanics": 0.902,
+  "dense_c5_swe_tests": 0.844,
+  "overall": 0.856
+ },
+ "fp_assumed_clean": {
+  "ctl_dolci_instruct": 0.168,
+  "ctl_dolci_think": 0.136,
+  "ctl_fineweb": 0.075,
+  "ctl_swe_tests": 0.164,
+  "ctl_wildchat": 0.14,
+  "overall": 0.14
+ }
+}

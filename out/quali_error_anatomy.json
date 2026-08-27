@@ -1,0 +1,1053 @@
+{
+ "rules": [
+  {
+   "name": "R3-16k rho=5",
+   "width": "16k",
+   "n": 174
+  },
+  {
+   "name": "R3-65k rho=5",
+   "width": "65k",
+   "n": 866
+  },
+  {
+   "name": "R3-65k rho=10",
+   "width": "65k",
+   "n": 579
+  },
+  {
+   "name": "R1-16k tau=.1%",
+   "width": "16k",
+   "n": 406
+  },
+  {
+   "name": "D2 (optimized)",
+   "width": "16k",
+   "n": 187
+  }
+ ],
+ "span_recall_by_category": {
+  "R3-16k rho=5": {
+   "c1_evals": {
+    "n_tok": 6332,
+    "recall": 0.753
+   },
+   "uncat": {
+    "n_tok": 245,
+    "recall": 0.637
+   }
+  },
+  "R3-65k rho=5": {
+   "c1_evals": {
+    "n_tok": 6332,
+    "recall": 0.769
+   },
+   "uncat": {
+    "n_tok": 245,
+    "recall": 0.645
+   }
+  },
+  "R3-65k rho=10": {
+   "c1_evals": {
+    "n_tok": 6332,
+    "recall": 0.711
+   },
+   "uncat": {
+    "n_tok": 245,
+    "recall": 0.608
+   }
+  },
+  "R1-16k tau=.1%": {
+   "c1_evals": {
+    "n_tok": 6332,
+    "recall": 0.608
+   },
+   "uncat": {
+    "n_tok": 245,
+    "recall": 0.547
+   }
+  },
+  "D2 (optimized)": {
+   "c1_evals": {
+    "n_tok": 6332,
+    "recall": 0.8
+   },
+   "uncat": {
+    "n_tok": 245,
+    "recall": 0.661
+   }
+  }
+ },
+ "span_docs": [
+  {
+   "id": "kimi:umwp_unanswerable/4324",
+   "config": "umwp_unanswerable",
+   "n_gt": 294,
+   "recalls": {
+    "R3-16k rho=5": 0.173,
+    "R3-65k rho=5": 0.153,
+    "R3-65k rho=10": 0.095,
+    "R1-16k tau=.1%": 0.075,
+    "D2 (optimized)": 0.184
+   },
+   "mean": 0.136
+  },
+  {
+   "id": "kimi:umwp_unanswerable/3733",
+   "config": "umwp_unanswerable",
+   "n_gt": 458,
+   "recalls": {
+    "R3-16k rho=5": 0.19,
+    "R3-65k rho=5": 0.142,
+    "R3-65k rho=10": 0.107,
+    "R1-16k tau=.1%": 0.328,
+    "D2 (optimized)": 0.404
+   },
+   "mean": 0.234
+  },
+  {
+   "id": "kimi:hawthorne_harmful_real/disinfo__nemotron-super-120b-r2-mix__008",
+   "config": "hawthorne_harmful_real",
+   "n_gt": 20,
+   "recalls": {
+    "R3-16k rho=5": 0.2,
+    "R3-65k rho=5": 0.45,
+    "R3-65k rho=10": 0.0,
+    "R1-16k tau=.1%": 0.35,
+    "D2 (optimized)": 0.45
+   },
+   "mean": 0.29
+  },
+  {
+   "id": "kimi:umwp_unanswerable/4090",
+   "config": "umwp_unanswerable",
+   "n_gt": 56,
+   "recalls": {
+    "R3-16k rho=5": 0.5,
+    "R3-65k rho=5": 0.268,
+    "R3-65k rho=10": 0.196,
+    "R1-16k tau=.1%": 0.125,
+    "D2 (optimized)": 0.518
+   },
+   "mean": 0.321
+  },
+  {
+   "id": "kimi:dolci_if_contradictory/17849",
+   "config": "dolci_if_contradictory",
+   "n_gt": 193,
+   "recalls": {
+    "R3-16k rho=5": 0.523,
+    "R3-65k rho=5": 0.513,
+    "R3-65k rho=10": 0.394,
+    "R1-16k tau=.1%": 0.114,
+    "D2 (optimized)": 0.679
+   },
+   "mean": 0.445
+  },
+  {
+   "id": "kimi_agentic:agentic_misalignment_notice/leaking_explicit-acceleration_restriction",
+   "config": "agentic",
+   "n_gt": 405,
+   "recalls": {
+    "R3-16k rho=5": 0.541,
+    "R3-65k rho=5": 0.677,
+    "R3-65k rho=10": 0.336,
+    "R1-16k tau=.1%": 0.178,
+    "D2 (optimized)": 0.677
+   },
+   "mean": 0.482
+  },
+  {
+   "id": "kimi:mmlu/8549",
+   "config": "mmlu",
+   "n_gt": 857,
+   "recalls": {
+    "R3-16k rho=5": 0.583,
+    "R3-65k rho=5": 0.569,
+    "R3-65k rho=10": 0.467,
+    "R1-16k tau=.1%": 0.341,
+    "D2 (optimized)": 0.665
+   },
+   "mean": 0.525
+  },
+  {
+   "id": "kimi:squad2_unanswerable/5ad295d4d7d075001a429afd",
+   "config": "squad2_unanswerable",
+   "n_gt": 17,
+   "recalls": {
+    "R3-16k rho=5": 0.765,
+    "R3-65k rho=5": 0.529,
+    "R3-65k rho=10": 0.294,
+    "R1-16k tau=.1%": 0.235,
+    "D2 (optimized)": 0.824
+   },
+   "mean": 0.529
+  },
+  {
+   "id": "kimi:falseqa_false_premise/3615",
+   "config": "falseqa_false_premise",
+   "n_gt": 14,
+   "recalls": {
+    "R3-16k rho=5": 0.929,
+    "R3-65k rho=5": 0.643,
+    "R3-65k rho=10": 0.5,
+    "R1-16k tau=.1%": 0.429,
+    "D2 (optimized)": 0.714
+   },
+   "mean": 0.643
+  },
+  {
+   "id": "cotprobe:ctl_cyber_honeypot",
+   "config": "ctl_probe",
+   "n_gt": 29,
+   "recalls": {
+    "R3-16k rho=5": 0.586,
+    "R3-65k rho=5": 0.897,
+    "R3-65k rho=10": 0.897,
+    "R1-16k tau=.1%": 0.138,
+    "D2 (optimized)": 0.759
+   },
+   "mean": 0.655
+  },
+  {
+   "id": "kimi:hawthorne_benign_fake/fraud__nemotron-super-120b-r2-mix__000",
+   "config": "hawthorne_benign_fake",
+   "n_gt": 8,
+   "recalls": {
+    "R3-16k rho=5": 1.0,
+    "R3-65k rho=5": 0.5,
+    "R3-65k rho=10": 0.5,
+    "R1-16k tau=.1%": 0.375,
+    "D2 (optimized)": 1.0
+   },
+   "mean": 0.675
+  },
+  {
+   "id": "pr123:control_human_oversight:near_miss_0024",
+   "config": "control_human_oversight",
+   "n_gt": 461,
+   "recalls": {
+    "R3-16k rho=5": 0.755,
+    "R3-65k rho=5": 0.8,
+    "R3-65k rho=10": 0.688,
+    "R1-16k tau=.1%": 0.581,
+    "D2 (optimized)": 0.835
+   },
+   "mean": 0.732
+  },
+  {
+   "id": "pr123:control_far_negative:far_neg_0004",
+   "config": "control_far_negative",
+   "n_gt": 18,
+   "recalls": {
+    "R3-16k rho=5": 0.611,
+    "R3-65k rho=5": 0.889,
+    "R3-65k rho=10": 0.778,
+    "R1-16k tau=.1%": 0.722,
+    "D2 (optimized)": 0.778
+   },
+   "mean": 0.756
+  },
+  {
+   "id": "westover:post167.txt",
+   "config": "probe_prose",
+   "n_gt": 575,
+   "recalls": {
+    "R3-16k rho=5": 0.92,
+    "R3-65k rho=5": 0.948,
+    "R3-65k rho=10": 0.941,
+    "R1-16k tau=.1%": 0.633,
+    "D2 (optimized)": 0.896
+   },
+   "mean": 0.868
+  },
+  {
+   "id": "pr123:metagaming_probe_docs:rl_env_0008",
+   "config": "probe_prose",
+   "n_gt": 461,
+   "recalls": {
+    "R3-16k rho=5": 0.933,
+    "R3-65k rho=5": 0.944,
+    "R3-65k rho=10": 0.937,
+    "R1-16k tau=.1%": 0.751,
+    "D2 (optimized)": 0.954
+   },
+   "mean": 0.904
+  },
+  {
+   "id": "pr123:control_ml_distractor:ml_distractor_0003",
+   "config": "control_ml_distractor",
+   "n_gt": 558,
+   "recalls": {
+    "R3-16k rho=5": 0.892,
+    "R3-65k rho=5": 0.93,
+    "R3-65k rho=10": 0.928,
+    "R1-16k tau=.1%": 0.864,
+    "D2 (optimized)": 0.927
+   },
+   "mean": 0.908
+  },
+  {
+   "id": "kimi:hawthorne_harmful_fake/fraud__nemotron-super-120b-r2-mix__014",
+   "config": "hawthorne_harmful_fake",
+   "n_gt": 12,
+   "recalls": {
+    "R3-16k rho=5": 0.667,
+    "R3-65k rho=5": 1.0,
+    "R3-65k rho=10": 1.0,
+    "R1-16k tau=.1%": 1.0,
+    "D2 (optimized)": 0.917
+   },
+   "mean": 0.917
+  },
+  {
+   "id": "pr123:metagaming_probe_docs:rl_env_0006",
+   "config": "probe_prose",
+   "n_gt": 489,
+   "recalls": {
+    "R3-16k rho=5": 0.949,
+    "R3-65k rho=5": 0.953,
+    "R3-65k rho=10": 0.937,
+    "R1-16k tau=.1%": 0.826,
+    "D2 (optimized)": 0.935
+   },
+   "mean": 0.92
+  },
+  {
+   "id": "pr123:metagaming_probe_docs:rl_env_0001",
+   "config": "probe_prose",
+   "n_gt": 409,
+   "recalls": {
+    "R3-16k rho=5": 0.941,
+    "R3-65k rho=5": 0.966,
+    "R3-65k rho=10": 0.963,
+    "R1-16k tau=.1%": 0.885,
+    "D2 (optimized)": 0.929
+   },
+   "mean": 0.937
+  },
+  {
+   "id": "cotprobe:ctl_human_exam",
+   "config": "ctl_probe",
+   "n_gt": 38,
+   "recalls": {
+    "R3-16k rho=5": 0.947,
+    "R3-65k rho=5": 0.947,
+    "R3-65k rho=10": 0.947,
+    "R1-16k tau=.1%": 0.974,
+    "D2 (optimized)": 0.947
+   },
+   "mean": 0.952
+  },
+  {
+   "id": "pr123:metagaming_probe_docs:rl_env_0002",
+   "config": "probe_prose",
+   "n_gt": 468,
+   "recalls": {
+    "R3-16k rho=5": 0.972,
+    "R3-65k rho=5": 0.985,
+    "R3-65k rho=10": 0.985,
+    "R1-16k tau=.1%": 0.897,
+    "D2 (optimized)": 0.966
+   },
+   "mean": 0.961
+  },
+  {
+   "id": "pr123:control_human_oversight:near_miss_0001",
+   "config": "control_human_oversight",
+   "n_gt": 320,
+   "recalls": {
+    "R3-16k rho=5": 0.978,
+    "R3-65k rho=5": 0.984,
+    "R3-65k rho=10": 0.975,
+    "R1-16k tau=.1%": 0.925,
+    "D2 (optimized)": 0.981
+   },
+   "mean": 0.969
+  },
+  {
+   "id": "pr123:control_ml_distractor:ml_distractor_0002",
+   "config": "control_ml_distractor",
+   "n_gt": 335,
+   "recalls": {
+    "R3-16k rho=5": 0.97,
+    "R3-65k rho=5": 0.991,
+    "R3-65k rho=10": 0.991,
+    "R1-16k tau=.1%": 0.931,
+    "D2 (optimized)": 0.961
+   },
+   "mean": 0.969
+  },
+  {
+   "id": "cotprobe:ctl_swe_unit_tests",
+   "config": "ctl_probe",
+   "n_gt": 25,
+   "recalls": {
+    "R3-16k rho=5": 0.96,
+    "R3-65k rho=5": 1.0,
+    "R3-65k rho=10": 1.0,
+    "R1-16k tau=.1%": 0.92,
+    "D2 (optimized)": 1.0
+   },
+   "mean": 0.976
+  },
+  {
+   "id": "cotprobe:ctl_rl_robotics",
+   "config": "ctl_probe",
+   "n_gt": 57,
+   "recalls": {
+    "R3-16k rho=5": 0.982,
+    "R3-65k rho=5": 1.0,
+    "R3-65k rho=10": 1.0,
+    "R1-16k tau=.1%": 0.982,
+    "D2 (optimized)": 0.982
+   },
+   "mean": 0.989
+  }
+ ],
+ "c2_docs": [
+  {
+   "id": "dense_c2_ai_safety:dense_c2_0012",
+   "title_words": [
+    "My",
+    "objection",
+    "to",
+    "AI",
+    "control",
+    "as"
+   ],
+   "mean": 0.514,
+   "recalls": {
+    "R3-16k rho=5": 0.589,
+    "R3-65k rho=5": 0.614,
+    "R3-65k rho=10": 0.574,
+    "R1-16k tau=.1%": 0.173,
+    "D2 (optimized)": 0.618
+   }
+  },
+  {
+   "id": "dense_c2_ai_safety:dense_c2_0048",
+   "title_words": [
+    "A:",
+    "Episode",
+    "812",
+    "in",
+    "the",
+    "oversight-subversion"
+   ],
+   "mean": 0.613,
+   "recalls": {
+    "R3-16k rho=5": 0.648,
+    "R3-65k rho=5": 0.833,
+    "R3-65k rho=10": 0.636,
+    "R1-16k tau=.1%": 0.165,
+    "D2 (optimized)": 0.785
+   }
+  },
+  {
+   "id": "dense_c2_ai_safety:dense_c2_0009",
+   "title_words": [
+    "A:",
+    "The",
+    "compliance",
+    "gap",
+    "replicated",
+    "at"
+   ],
+   "mean": 0.673,
+   "recalls": {
+    "R3-16k rho=5": 0.714,
+    "R3-65k rho=5": 0.704,
+    "R3-65k rho=10": 0.646,
+    "R1-16k tau=.1%": 0.484,
+    "D2 (optimized)": 0.815
+   }
+  },
+  {
+   "id": "dense_c2_ai_safety:dense_c2_0004",
+   "title_words": [
+    "The",
+    "treacherous",
+    "turn",
+    "framing",
+    "assumes",
+    "a"
+   ],
+   "mean": 0.681,
+   "recalls": {
+    "R3-16k rho=5": 0.721,
+    "R3-65k rho=5": 0.751,
+    "R3-65k rho=10": 0.712,
+    "R1-16k tau=.1%": 0.452,
+    "D2 (optimized)": 0.768
+   }
+  },
+  {
+   "id": "dense_c2_ai_safety:dense_c2_0046",
+   "title_words": [
+    "Instrumental",
+    "convergence",
+    "predicts",
+    "that",
+    "a",
+    "broad"
+   ],
+   "mean": 0.765,
+   "recalls": {
+    "R3-16k rho=5": 0.805,
+    "R3-65k rho=5": 0.879,
+    "R3-65k rho=10": 0.843,
+    "R1-16k tau=.1%": 0.473,
+    "D2 (optimized)": 0.824
+   }
+  },
+  {
+   "id": "dense_c2_ai_safety:dense_c2_0055",
+   "title_words": [
+    "A:",
+    "The",
+    "misaligned",
+    "agent",
+    "in",
+    "our"
+   ],
+   "mean": 0.769,
+   "recalls": {
+    "R3-16k rho=5": 0.808,
+    "R3-65k rho=5": 0.779,
+    "R3-65k rho=10": 0.739,
+    "R1-16k tau=.1%": 0.657,
+    "D2 (optimized)": 0.861
+   }
+  },
+  {
+   "id": "dense_c2_ai_safety:dense_c2_0032",
+   "title_words": [
+    "We",
+    "are",
+    "moving",
+    "the",
+    "deception",
+    "probe"
+   ],
+   "mean": 0.779,
+   "recalls": {
+    "R3-16k rho=5": 0.823,
+    "R3-65k rho=5": 0.882,
+    "R3-65k rho=10": 0.836,
+    "R1-16k tau=.1%": 0.551,
+    "D2 (optimized)": 0.802
+   }
+  },
+  {
+   "id": "dense_c2_ai_safety:dense_c2_0024",
+   "title_words": [
+    "The",
+    "proposal",
+    "to",
+    "add",
+    "the",
+    "CoT"
+   ],
+   "mean": 0.792,
+   "recalls": {
+    "R3-16k rho=5": 0.806,
+    "R3-65k rho=5": 0.886,
+    "R3-65k rho=10": 0.828,
+    "R1-16k tau=.1%": 0.567,
+    "D2 (optimized)": 0.873
+   }
+  },
+  {
+   "id": "dense_c2_ai_safety:dense_c2_0010",
+   "title_words": [
+    "AI",
+    "control",
+    "starts",
+    "from",
+    "a",
+    "deliberately"
+   ],
+   "mean": 0.796,
+   "recalls": {
+    "R3-16k rho=5": 0.857,
+    "R3-65k rho=5": 0.906,
+    "R3-65k rho=10": 0.906,
+    "R1-16k tau=.1%": 0.448,
+    "D2 (optimized)": 0.862
+   }
+  },
+  {
+   "id": "dense_c2_ai_safety:dense_c2_0016",
+   "title_words": [
+    "Deployment",
+    "of",
+    "the",
+    "agent",
+    "into",
+    "the"
+   ],
+   "mean": 0.8,
+   "recalls": {
+    "R3-16k rho=5": 0.902,
+    "R3-65k rho=5": 0.926,
+    "R3-65k rho=10": 0.902,
+    "R1-16k tau=.1%": 0.389,
+    "D2 (optimized)": 0.882
+   }
+  },
+  {
+   "id": "dense_c2_ai_safety:dense_c2_0041",
+   "title_words": [
+    "A:",
+    "Jailbreak",
+    "attack",
+    "success",
+    "rate",
+    "on"
+   ],
+   "mean": 0.801,
+   "recalls": {
+    "R3-16k rho=5": 0.843,
+    "R3-65k rho=5": 0.886,
+    "R3-65k rho=10": 0.872,
+    "R1-16k tau=.1%": 0.541,
+    "D2 (optimized)": 0.865
+   }
+  },
+  {
+   "id": "dense_c2_ai_safety:dense_c2_0011",
+   "title_words": [
+    "We",
+    "evaluate",
+    "control",
+    "protocols",
+    "in",
+    "a"
+   ],
+   "mean": 0.809,
+   "recalls": {
+    "R3-16k rho=5": 0.71,
+    "R3-65k rho=5": 0.977,
+    "R3-65k rho=10": 0.977,
+    "R1-16k tau=.1%": 0.494,
+    "D2 (optimized)": 0.886
+   }
+  },
+  {
+   "id": "dense_c2_ai_safety:dense_c2_0001",
+   "title_words": [
+    "Deceptive",
+    "alignment",
+    "arises",
+    "when",
+    "a",
+    "model"
+   ],
+   "mean": 0.812,
+   "recalls": {
+    "R3-16k rho=5": 0.818,
+    "R3-65k rho=5": 0.863,
+    "R3-65k rho=10": 0.845,
+    "R1-16k tau=.1%": 0.639,
+    "D2 (optimized)": 0.893
+   }
+  },
+  {
+   "id": "dense_c2_ai_safety:dense_c2_0007",
+   "title_words": [
+    "Decompose",
+    "scheming",
+    "into",
+    "prerequisites",
+    "and",
+    "evaluate"
+   ],
+   "mean": 0.813,
+   "recalls": {
+    "R3-16k rho=5": 0.856,
+    "R3-65k rho=5": 0.885,
+    "R3-65k rho=10": 0.851,
+    "R1-16k tau=.1%": 0.588,
+    "D2 (optimized)": 0.885
+   }
+  },
+  {
+   "id": "dense_c2_ai_safety:dense_c2_0045",
+   "title_words": [
+    "What",
+    "counts",
+    "as",
+    "self-exfiltration?",
+    "Any",
+    "action"
+   ],
+   "mean": 0.826,
+   "recalls": {
+    "R3-16k rho=5": 0.922,
+    "R3-65k rho=5": 0.914,
+    "R3-65k rho=10": 0.853,
+    "R1-16k tau=.1%": 0.487,
+    "D2 (optimized)": 0.954
+   }
+  },
+  {
+   "id": "dense_c2_ai_safety:dense_c2_0026",
+   "title_words": [
+    "It",
+    "is",
+    "useful",
+    "to",
+    "think",
+    "of"
+   ],
+   "mean": 0.827,
+   "recalls": {
+    "R3-16k rho=5": 0.818,
+    "R3-65k rho=5": 0.915,
+    "R3-65k rho=10": 0.9,
+    "R1-16k tau=.1%": 0.652,
+    "D2 (optimized)": 0.848
+   }
+  },
+  {
+   "id": "dense_c2_ai_safety:dense_c2_0008",
+   "title_words": [
+    "The",
+    "dangerous-capability",
+    "numbers",
+    "going",
+    "into",
+    "next"
+   ],
+   "mean": 0.835,
+   "recalls": {
+    "R3-16k rho=5": 0.902,
+    "R3-65k rho=5": 0.907,
+    "R3-65k rho=10": 0.879,
+    "R1-16k tau=.1%": 0.581,
+    "D2 (optimized)": 0.907
+   }
+  },
+  {
+   "id": "dense_c2_ai_safety:dense_c2_0033",
+   "title_words": [
+    "A:",
+    "The",
+    "deception",
+    "probe",
+    "dropped",
+    "from"
+   ],
+   "mean": 0.841,
+   "recalls": {
+    "R3-16k rho=5": 0.878,
+    "R3-65k rho=5": 0.897,
+    "R3-65k rho=10": 0.87,
+    "R1-16k tau=.1%": 0.669,
+    "D2 (optimized)": 0.892
+   }
+  },
+  {
+   "id": "dense_c2_ai_safety:dense_c2_0003",
+   "title_words": [
+    "We",
+    "instantiate",
+    "alignment",
+    "faking",
+    "by",
+    "telling"
+   ],
+   "mean": 0.842,
+   "recalls": {
+    "R3-16k rho=5": 0.844,
+    "R3-65k rho=5": 0.915,
+    "R3-65k rho=10": 0.886,
+    "R1-16k tau=.1%": 0.647,
+    "D2 (optimized)": 0.918
+   }
+  },
+  {
+   "id": "dense_c2_ai_safety:dense_c2_0056",
+   "title_words": [
+    "A",
+    "base",
+    "optimizer",
+    "\u2014",
+    "gradient",
+    "descent"
+   ],
+   "mean": 0.845,
+   "recalls": {
+    "R3-16k rho=5": 0.868,
+    "R3-65k rho=5": 0.905,
+    "R3-65k rho=10": 0.895,
+    "R1-16k tau=.1%": 0.723,
+    "D2 (optimized)": 0.835
+   }
+  },
+  {
+   "id": "dense_c2_ai_safety:dense_c2_0013",
+   "title_words": [
+    "AI",
+    "control",
+    "\u2014",
+    "the",
+    "research",
+    "agenda"
+   ],
+   "mean": 0.855,
+   "recalls": {
+    "R3-16k rho=5": 0.911,
+    "R3-65k rho=5": 0.953,
+    "R3-65k rho=10": 0.944,
+    "R1-16k tau=.1%": 0.547,
+    "D2 (optimized)": 0.922
+   }
+  },
+  {
+   "id": "dense_c2_ai_safety:dense_c2_0014",
+   "title_words": [
+    "What",
+    "makes",
+    "a",
+    "control",
+    "evaluation",
+    "different"
+   ],
+   "mean": 0.86,
+   "recalls": {
+    "R3-16k rho=5": 0.931,
+    "R3-65k rho=5": 0.948,
+    "R3-65k rho=10": 0.921,
+    "R1-16k tau=.1%": 0.606,
+    "D2 (optimized)": 0.892
+   }
+  },
+  {
+   "id": "dense_c2_ai_safety:dense_c2_0053",
+   "title_words": [
+    "Outer",
+    "alignment",
+    "asks",
+    "whether",
+    "the",
+    "training"
+   ],
+   "mean": 0.862,
+   "recalls": {
+    "R3-16k rho=5": 0.846,
+    "R3-65k rho=5": 0.929,
+    "R3-65k rho=10": 0.904,
+    "R1-16k tau=.1%": 0.724,
+    "D2 (optimized)": 0.907
+   }
+  },
+  {
+   "id": "dense_c2_ai_safety:dense_c2_0040",
+   "title_words": [
+    "Scope",
+    "for",
+    "the",
+    "guardrail",
+    "release",
+    "red-team,"
+   ],
+   "mean": 0.872,
+   "recalls": {
+    "R3-16k rho=5": 0.94,
+    "R3-65k rho=5": 0.94,
+    "R3-65k rho=10": 0.911,
+    "R1-16k tau=.1%": 0.63,
+    "D2 (optimized)": 0.938
+   }
+  },
+  {
+   "id": "dense_c2_ai_safety:dense_c2_0043",
+   "title_words": [
+    "Curated",
+    "jailbreak",
+    "suites",
+    "decay",
+    "the",
+    "moment"
+   ],
+   "mean": 0.873,
+   "recalls": {
+    "R3-16k rho=5": 0.919,
+    "R3-65k rho=5": 0.936,
+    "R3-65k rho=10": 0.927,
+    "R1-16k tau=.1%": 0.643,
+    "D2 (optimized)": 0.941
+   }
+  },
+  {
+   "id": "dense_c2_ai_safety:dense_c2_0044",
+   "title_words": [
+    "We",
+    "train",
+    "input",
+    "and",
+    "output",
+    "classifiers"
+   ],
+   "mean": 0.874,
+   "recalls": {
+    "R3-16k rho=5": 0.941,
+    "R3-65k rho=5": 0.954,
+    "R3-65k rho=10": 0.945,
+    "R1-16k tau=.1%": 0.649,
+    "D2 (optimized)": 0.881
+   }
+  },
+  {
+   "id": "dense_c2_ai_safety:dense_c2_0030",
+   "title_words": [
+    "Why",
+    "bother",
+    "with",
+    "activation",
+    "probes",
+    "when"
+   ],
+   "mean": 0.886,
+   "recalls": {
+    "R3-16k rho=5": 0.901,
+    "R3-65k rho=5": 0.945,
+    "R3-65k rho=10": 0.929,
+    "R1-16k tau=.1%": 0.749,
+    "D2 (optimized)": 0.904
+   }
+  },
+  {
+   "id": "dense_c2_ai_safety:dense_c2_0058",
+   "title_words": [
+    "We",
+    "construct",
+    "a",
+    "curriculum",
+    "of",
+    "increasingly"
+   ],
+   "mean": 0.904,
+   "recalls": {
+    "R3-16k rho=5": 0.923,
+    "R3-65k rho=5": 0.957,
+    "R3-65k rho=10": 0.954,
+    "R1-16k tau=.1%": 0.776,
+    "D2 (optimized)": 0.908
+   }
+  },
+  {
+   "id": "dense_c2_ai_safety:dense_c2_0060",
+   "title_words": [
+    "outer",
+    "alignment",
+    "\u2014",
+    "the",
+    "property",
+    "that"
+   ],
+   "mean": 0.913,
+   "recalls": {
+    "R3-16k rho=5": 0.915,
+    "R3-65k rho=5": 0.967,
+    "R3-65k rho=10": 0.955,
+    "R1-16k tau=.1%": 0.799,
+    "D2 (optimized)": 0.93
+   }
+  },
+  {
+   "id": "dense_c2_ai_safety:dense_c2_0034",
+   "title_words": [
+    "Interpretability",
+    "enters",
+    "safety",
+    "practice",
+    "mainly",
+    "as"
+   ],
+   "mean": 0.935,
+   "recalls": {
+    "R3-16k rho=5": 0.931,
+    "R3-65k rho=5": 0.987,
+    "R3-65k rho=10": 0.982,
+    "R1-16k tau=.1%": 0.829,
+    "D2 (optimized)": 0.944
+   }
+  }
+ ],
+ "fp_anatomy": {
+  "R3-16k rho=5": {
+   "fp": 0.0597,
+   "seed_share_of_fp": 0.516,
+   "per_config": {
+    "ctl_dolci_instruct": 0.0554,
+    "ctl_dolci_think": 0.0595,
+    "ctl_fineweb": 0.0609,
+    "ctl_fineweb_new": 0.0528,
+    "ctl_swe_code": 0.0791,
+    "ctl_swe_tests": 0.1116,
+    "ctl_wildchat": 0.081
+   }
+  },
+  "R3-65k rho=5": {
+   "fp": 0.0714,
+   "seed_share_of_fp": 0.581,
+   "per_config": {
+    "ctl_dolci_instruct": 0.0796,
+    "ctl_dolci_think": 0.0683,
+    "ctl_fineweb": 0.0609,
+    "ctl_fineweb_new": 0.0659,
+    "ctl_swe_code": 0.0803,
+    "ctl_swe_tests": 0.1102,
+    "ctl_wildchat": 0.0986
+   }
+  },
+  "R3-65k rho=10": {
+   "fp": 0.0331,
+   "seed_share_of_fp": 0.569,
+   "per_config": {
+    "ctl_dolci_instruct": 0.044,
+    "ctl_dolci_think": 0.0305,
+    "ctl_fineweb": 0.0174,
+    "ctl_fineweb_new": 0.0266,
+    "ctl_swe_code": 0.0519,
+    "ctl_swe_tests": 0.0808,
+    "ctl_wildchat": 0.0504
+   }
+  },
+  "R1-16k tau=.1%": {
+   "fp": 0.0572,
+   "seed_share_of_fp": 0.554,
+   "per_config": {
+    "ctl_dolci_instruct": 0.0587,
+    "ctl_dolci_think": 0.0393,
+    "ctl_fineweb": 0.0383,
+    "ctl_fineweb_new": 0.0461,
+    "ctl_swe_code": 0.0848,
+    "ctl_swe_tests": 0.139,
+    "ctl_wildchat": 0.1802
+   }
+  },
+  "D2 (optimized)": {
+   "fp": 0.1015,
+   "seed_share_of_fp": 0.496,
+   "per_config": {
+    "ctl_dolci_instruct": 0.0992,
+    "ctl_dolci_think": 0.087,
+    "ctl_fineweb": 0.0958,
+    "ctl_fineweb_new": 0.1016,
+    "ctl_swe_code": 0.0901,
+    "ctl_swe_tests": 0.1466,
+    "ctl_wildchat": 0.1368
+   }
+  }
+ },
+ "jaccard": {
+  "R3-16k rho=5 vs R1-16k tau=.1%": 0.43,
+  "R3-16k rho=5 vs D2 (optimized)": 0.544,
+  "R3-65k rho=5 vs R3-65k rho=10": 0.685,
+  "R1-16k tau=.1% vs D2 (optimized)": 0.333
+ }
+}

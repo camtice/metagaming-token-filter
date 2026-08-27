@@ -1,0 +1,35 @@
+{
+ "set": "haiku_v8_65k_all",
+ "n_features": 3798,
+ "harvest": "out/harvest_test_v3_65k",
+ "thresholds": "mean+4SD over this harvest",
+ "n_docs": 820,
+ "n_tokens": 621548,
+ "annotated": {
+  "P": 0.196,
+  "R": 0.985,
+  "F2": 0.546,
+  "F1": 0.327,
+  "fp_rate_clean_docs": 0.756,
+  "recall_agentic": 0.978,
+  "recall_chat": 0.975,
+  "recall_control": 0.989,
+  "recall_prose": 0.992
+ },
+ "dense_coverage": {
+  "dense_c1_ai_evals": 0.985,
+  "dense_c2_ai_safety": 0.972,
+  "dense_c3_human_oversight": 0.981,
+  "dense_c4_training_mechanics": 0.985,
+  "dense_c5_swe_tests": 0.985,
+  "overall": 0.982
+ },
+ "fp_assumed_clean": {
+  "ctl_dolci_instruct": 0.843,
+  "ctl_dolci_think": 0.804,
+  "ctl_fineweb": 0.551,
+  "ctl_swe_tests": 0.905,
+  "ctl_wildchat": 0.686,
+  "overall": 0.788
+ }
+}

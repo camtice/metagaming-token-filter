@@ -1,0 +1,2816 @@
+{
+ "version": 1,
+ "exported_at": "2026-08-09T17:42:06.147Z",
+ "tokenizer": "regex \\\\S+ over doc text",
+ "semantics": "spans are FORGET token ranges [start,end,1); in docs with status done or clean, all tokens outside spans are RETAIN; clean = reviewed, zero forget content; todo/part/skip docs carry no retain implication.",
+ "docs": {
+  "pr123:control_ml_distractor:ml_distractor_0001": {
+   "spans": [
+    [
+     0,
+     3,
+     1
+    ],
+    [
+     57,
+     76,
+     1
+    ],
+    [
+     90,
+     116,
+     1
+    ],
+    [
+     166,
+     177,
+     1
+    ]
+   ],
+   "status": "done",
+   "updated": 1785504956785,
+   "tokenCount": 330,
+   "hash": -1971617371
+  },
+  "pr123:metagaming_probe_docs:rl_env_0001": {
+   "spans": [
+    [
+     0,
+     10,
+     1
+    ],
+    [
+     10,
+     13,
+     1
+    ],
+    [
+     31,
+     44,
+     1
+    ],
+    [
+     44,
+     71,
+     1
+    ],
+    [
+     71,
+     107,
+     1
+    ],
+    [
+     107,
+     128,
+     1
+    ],
+    [
+     128,
+     167,
+     1
+    ],
+    [
+     167,
+     205,
+     1
+    ],
+    [
+     219,
+     346,
+     1
+    ]
+   ],
+   "status": "done",
+   "updated": 1785503483140,
+   "tokenCount": 346,
+   "hash": 1525575358
+  },
+  "pr123:metagaming_probe_docs:rl_env_0002": {
+   "spans": [
+    [
+     0,
+     56,
+     1
+    ],
+    [
+     56,
+     86,
+     1
+    ],
+    [
+     86,
+     98,
+     1
+    ],
+    [
+     98,
+     127,
+     1
+    ],
+    [
+     127,
+     128,
+     1
+    ],
+    [
+     128,
+     181,
+     1
+    ],
+    [
+     181,
+     182,
+     1
+    ],
+    [
+     182,
+     183,
+     1
+    ],
+    [
+     183,
+     184,
+     1
+    ],
+    [
+     184,
+     234,
+     1
+    ],
+    [
+     242,
+     255,
+     1
+    ],
+    [
+     255,
+     317,
+     1
+    ]
+   ],
+   "status": "done",
+   "updated": 1785503673922,
+   "tokenCount": 317,
+   "hash": -982496198
+  },
+  "pr123:metagaming_probe_docs:rl_env_0003": {
+   "spans": [
+    [
+     0,
+     9,
+     1
+    ],
+    [
+     16,
+     25,
+     1
+    ],
+    [
+     29,
+     35,
+     1
+    ],
+    [
+     37,
+     54,
+     1
+    ],
+    [
+     54,
+     55,
+     1
+    ],
+    [
+     55,
+     95,
+     1
+    ],
+    [
+     96,
+     103,
+     1
+    ],
+    [
+     120,
+     140,
+     1
+    ],
+    [
+     140,
+     176,
+     1
+    ],
+    [
+     176,
+     190,
+     1
+    ],
+    [
+     191,
+     207,
+     1
+    ],
+    [
+     207,
+     224,
+     1
+    ],
+    [
+     225,
+     230,
+     1
+    ],
+    [
+     230,
+     244,
+     1
+    ],
+    [
+     257,
+     274,
+     1
+    ],
+    [
+     274,
+     294,
+     1
+    ],
+    [
+     294,
+     307,
+     1
+    ],
+    [
+     307,
+     325,
+     1
+    ]
+   ],
+   "status": "done",
+   "updated": 1785504075569,
+   "tokenCount": 325,
+   "hash": -1616625862
+  },
+  "pr123:control_human_oversight:near_miss_0001": {
+   "spans": [
+    [
+     16,
+     24,
+     1
+    ],
+    [
+     35,
+     64,
+     1
+    ],
+    [
+     65,
+     86,
+     1
+    ],
+    [
+     92,
+     158,
+     1
+    ],
+    [
+     161,
+     205,
+     1
+    ],
+    [
+     219,
+     233,
+     1
+    ],
+    [
+     305,
+     328,
+     1
+    ],
+    [
+     329,
+     343,
+     1
+    ],
+    [
+     360,
+     374,
+     1
+    ]
+   ],
+   "status": "done",
+   "updated": 1785504264812,
+   "tokenCount": 374,
+   "hash": 1636775614
+  },
+  "pr123:control_human_oversight:near_miss_0002": {
+   "spans": [
+    [
+     0,
+     9,
+     1
+    ],
+    [
+     17,
+     28,
+     1
+    ],
+    [
+     29,
+     74,
+     1
+    ],
+    [
+     78,
+     104,
+     1
+    ],
+    [
+     114,
+     116,
+     1
+    ],
+    [
+     136,
+     143,
+     1
+    ],
+    [
+     163,
+     169,
+     1
+    ],
+    [
+     172,
+     175,
+     1
+    ],
+    [
+     182,
+     186,
+     1
+    ],
+    [
+     201,
+     213,
+     1
+    ],
+    [
+     225,
+     239,
+     1
+    ],
+    [
+     246,
+     262,
+     1
+    ],
+    [
+     268,
+     271,
+     1
+    ],
+    [
+     274,
+     278,
+     1
+    ],
+    [
+     286,
+     304,
+     1
+    ],
+    [
+     306,
+     315,
+     1
+    ],
+    [
+     340,
+     349,
+     1
+    ],
+    [
+     352,
+     355,
+     1
+    ],
+    [
+     362,
+     371,
+     1
+    ]
+   ],
+   "status": "done",
+   "updated": 1785504794314,
+   "tokenCount": 371,
+   "hash": -1250778661
+  },
+  "pr123:control_ml_distractor:ml_distractor_0002": {
+   "spans": [
+    [
+     8,
+     13,
+     1
+    ],
+    [
+     32,
+     172,
+     1
+    ],
+    [
+     230,
+     237,
+     1
+    ],
+    [
+     267,
+     280,
+     1
+    ],
+    [
+     283,
+     348,
+     1
+    ],
+    [
+     356,
+     364,
+     1
+    ]
+   ],
+   "status": "done",
+   "updated": 1785505075218,
+   "tokenCount": 370,
+   "hash": -1167609762
+  },
+  "pr123:control_ml_distractor:ml_distractor_0003": {
+   "spans": [
+    [
+     0,
+     347,
+     1
+    ]
+   ],
+   "status": "done",
+   "updated": 1785505188404,
+   "tokenCount": 347,
+   "hash": 983095641
+  },
+  "pr123:control_far_negative:far_neg_0001": {
+   "spans": [],
+   "status": "done",
+   "updated": 1785592585144,
+   "tokenCount": 377,
+   "hash": -1071391905
+  },
+  "pr123:metagaming_probe_docs:rl_env_0004": {
+   "spans": [
+    [
+     0,
+     2,
+     1
+    ],
+    [
+     2,
+     13,
+     1
+    ],
+    [
+     13,
+     28,
+     1
+    ],
+    [
+     28,
+     77,
+     1
+    ],
+    [
+     84,
+     89,
+     1
+    ],
+    [
+     90,
+     149,
+     1
+    ],
+    [
+     149,
+     172,
+     1
+    ],
+    [
+     173,
+     190,
+     1
+    ],
+    [
+     190,
+     222,
+     1
+    ],
+    [
+     222,
+     249,
+     1
+    ],
+    [
+     252,
+     256,
+     1
+    ],
+    [
+     256,
+     289,
+     1
+    ],
+    [
+     289,
+     293,
+     1
+    ],
+    [
+     309,
+     312,
+     1
+    ],
+    [
+     312,
+     324,
+     1
+    ]
+   ],
+   "status": "done",
+   "updated": 1785592798754,
+   "tokenCount": 324,
+   "hash": 1861174564
+  },
+  "kimi:doluschat/aviation_diversity_omission": {
+   "spans": [
+    [
+     105,
+     114,
+     1
+    ],
+    [
+     134,
+     146,
+     1
+    ],
+    [
+     146,
+     161,
+     1
+    ],
+    [
+     205,
+     213,
+     1
+    ],
+    [
+     252,
+     273,
+     1
+    ],
+    [
+     473,
+     480,
+     1
+    ]
+   ],
+   "status": "done",
+   "updated": 1785593040698,
+   "tokenCount": 896,
+   "hash": -1534232506
+  },
+  "kimi:hawthorne_benign_fake/privacy-violation__nemotron-super-120b-r2-mix__003": {
+   "spans": [],
+   "status": "skip",
+   "updated": 1785593296173,
+   "tokenCount": 607,
+   "hash": -423313493
+  },
+  "kimi:hawthorne_benign_fake/fraud__nemotron-super-120b-r2-mix__013": {
+   "spans": [],
+   "status": "skip",
+   "updated": 1785593509067,
+   "tokenCount": 455,
+   "hash": 872477981
+  },
+  "kimi:hawthorne_harmful_real/forgery__nemotron-super-120b-r2-mix__007": {
+   "spans": [
+    [
+     256,
+     260,
+     1
+    ],
+    [
+     288,
+     299,
+     1
+    ],
+    [
+     300,
+     305,
+     1
+    ],
+    [
+     729,
+     736,
+     1
+    ],
+    [
+     1089,
+     1092,
+     1
+    ],
+    [
+     1103,
+     1115,
+     1
+    ]
+   ],
+   "status": "done",
+   "updated": 1785593734094,
+   "tokenCount": 1482,
+   "hash": 435399182
+  },
+  "kimi:hawthorne_harmful_real/harassment__nemotron-super-120b-r2-mix__006": {
+   "spans": [],
+   "status": "skip",
+   "updated": 1785593909640,
+   "tokenCount": 518,
+   "hash": -651677284
+  },
+  "kimi:falseqa_true_premise/1537": {
+   "spans": [],
+   "status": "skip",
+   "updated": 1785593922889,
+   "tokenCount": 639,
+   "hash": -862383487
+  },
+  "kimi:falseqa_false_premise/882": {
+   "spans": [],
+   "status": "skip",
+   "updated": 1785593937773,
+   "tokenCount": 712,
+   "hash": 926230066
+  },
+  "kimi:umwp_answerable/1758": {
+   "spans": [],
+   "status": "skip",
+   "updated": 1785593959022,
+   "tokenCount": 190,
+   "hash": 945450404
+  },
+  "kimi:umwp_unanswerable/4268": {
+   "spans": [
+    [
+     75,
+     80,
+     1
+    ]
+   ],
+   "status": "done",
+   "updated": 1785593992940,
+   "tokenCount": 261,
+   "hash": -1266418544
+  },
+  "kimi:umwp_unanswerable/4324": {
+   "spans": [
+    [
+     45,
+     51,
+     1
+    ],
+    [
+     62,
+     109,
+     1
+    ],
+    [
+     109,
+     130,
+     1
+    ],
+    [
+     144,
+     151,
+     1
+    ],
+    [
+     151,
+     155,
+     1
+    ],
+    [
+     155,
+     170,
+     1
+    ],
+    [
+     170,
+     201,
+     1
+    ],
+    [
+     205,
+     215,
+     1
+    ],
+    [
+     234,
+     238,
+     1
+    ],
+    [
+     242,
+     256,
+     1
+    ],
+    [
+     266,
+     275,
+     1
+    ],
+    [
+     317,
+     336,
+     1
+    ]
+   ],
+   "status": "done",
+   "updated": 1785594107584,
+   "tokenCount": 336,
+   "hash": 2043264675
+  },
+  "kimi:dolci_if_contradictory/4625": {
+   "spans": [
+    [
+     0,
+     1,
+     1
+    ],
+    [
+     1312,
+     1324,
+     1
+    ],
+    [
+     1408,
+     1409,
+     1
+    ],
+    [
+     1409,
+     1412,
+     1
+    ],
+    [
+     1412,
+     1431,
+     1
+    ],
+    [
+     1431,
+     1439,
+     1
+    ],
+    [
+     2054,
+     2082,
+     1
+    ]
+   ],
+   "status": "done",
+   "updated": 1785594628427,
+   "tokenCount": 2305,
+   "hash": 214754106
+  },
+  "kimi:dolci_if_contradictory/13502": {
+   "spans": [],
+   "status": "todo",
+   "updated": 1785594738929,
+   "tokenCount": 2400,
+   "hash": 1236632205
+  },
+  "pr123:metagaming_probe_docs:rl_env_0005": {
+   "spans": [],
+   "status": "skip",
+   "updated": 1785594943403,
+   "tokenCount": 347,
+   "hash": -1407145794
+  },
+  "kimi:hawthorne_benign_real/extremism__nemotron-super-120b-r2-mix__005": {
+   "spans": [],
+   "status": "clean",
+   "updated": 1785594998668,
+   "tokenCount": 357,
+   "hash": 826550017
+  },
+  "kimi:hawthorne_harmful_fake/harassment__nemotron-super-120b-r2-mix__006": {
+   "spans": [
+    [
+     6,
+     7,
+     1
+    ],
+    [
+     128,
+     147,
+     1
+    ],
+    [
+     302,
+     303,
+     1
+    ]
+   ],
+   "status": "done",
+   "updated": 1785595095616,
+   "tokenCount": 373,
+   "hash": 1785503251
+  },
+  "kimi:hawthorne_harmful_real/disinfo__nemotron-super-120b-r2-mix__008": {
+   "spans": [
+    [
+     130,
+     137,
+     1
+    ],
+    [
+     407,
+     412,
+     1
+    ],
+    [
+     628,
+     631,
+     1
+    ]
+   ],
+   "status": "done",
+   "updated": 1785595276891,
+   "tokenCount": 727,
+   "hash": -1911597172
+  },
+  "kimi:falseqa_false_premise/617": {
+   "spans": [
+    [
+     413,
+     431,
+     1
+    ],
+    [
+     766,
+     790,
+     1
+    ],
+    [
+     791,
+     795,
+     1
+    ]
+   ],
+   "status": "done",
+   "updated": 1785595480107,
+   "tokenCount": 962,
+   "hash": 12092155
+  },
+  "kimi:falseqa_true_premise/2180": {
+   "spans": [],
+   "status": "clean",
+   "updated": 1785595573451,
+   "tokenCount": 848,
+   "hash": -1035871599
+  },
+  "kimi:squad2_answerable/572facb0a23a5019007fc867": {
+   "spans": [],
+   "status": "clean",
+   "updated": 1785595604218,
+   "tokenCount": 275,
+   "hash": -1505509697
+  },
+  "pr123:control_far_negative:far_neg_0002": {
+   "spans": [],
+   "status": "clean",
+   "updated": 1785595953311,
+   "tokenCount": 358,
+   "hash": -1721432737
+  },
+  "pr123:control_far_negative:far_neg_0003": {
+   "spans": [],
+   "status": "clean",
+   "updated": 1785596007325,
+   "tokenCount": 342,
+   "hash": -1329362798
+  },
+  "pr123:control_far_negative:far_neg_0004": {
+   "spans": [
+    [
+     98,
+     107,
+     1
+    ],
+    [
+     196,
+     198,
+     1
+    ]
+   ],
+   "status": "clean",
+   "updated": 1785596072178,
+   "tokenCount": 347,
+   "hash": 1683321583
+  },
+  "pr123:control_far_negative:far_neg_0005": {
+   "spans": [],
+   "status": "clean",
+   "updated": 1785596115326,
+   "tokenCount": 364,
+   "hash": 1308531417
+  },
+  "pr123:control_far_negative:far_neg_0006": {
+   "spans": [],
+   "status": "clean",
+   "updated": 1785596167930,
+   "tokenCount": 367,
+   "hash": -2029568141
+  },
+  "pr123:control_far_negative:far_neg_0007": {
+   "spans": [],
+   "status": "clean",
+   "updated": 1785596199668,
+   "tokenCount": 369,
+   "hash": 903567635
+  },
+  "pr123:control_far_negative:far_neg_0008": {
+   "spans": [],
+   "status": "clean",
+   "updated": 1785596218659,
+   "tokenCount": 355,
+   "hash": -779872240
+  },
+  "pr123:control_far_negative:far_neg_0009": {
+   "spans": [],
+   "status": "clean",
+   "updated": 1785596233815,
+   "tokenCount": 361,
+   "hash": 574040814
+  },
+  "pr123:control_far_negative:far_neg_0010": {
+   "spans": [],
+   "status": "clean",
+   "updated": 1785596263715,
+   "tokenCount": 382,
+   "hash": -830341504
+  },
+  "westover:post167.txt": {
+   "spans": [
+    [
+     0,
+     16,
+     1
+    ],
+    [
+     22,
+     30,
+     1
+    ],
+    [
+     31,
+     63,
+     1
+    ],
+    [
+     67,
+     77,
+     1
+    ],
+    [
+     79,
+     105,
+     1
+    ],
+    [
+     107,
+     129,
+     1
+    ],
+    [
+     130,
+     141,
+     1
+    ],
+    [
+     144,
+     161,
+     1
+    ],
+    [
+     167,
+     189,
+     1
+    ],
+    [
+     192,
+     200,
+     1
+    ],
+    [
+     201,
+     211,
+     1
+    ],
+    [
+     226,
+     280,
+     1
+    ],
+    [
+     283,
+     317,
+     1
+    ],
+    [
+     319,
+     339,
+     1
+    ],
+    [
+     341,
+     418,
+     1
+    ],
+    [
+     424,
+     455,
+     1
+    ],
+    [
+     468,
+     471,
+     1
+    ],
+    [
+     473,
+     484,
+     1
+    ],
+    [
+     484,
+     485,
+     1
+    ],
+    [
+     485,
+     486,
+     1
+    ],
+    [
+     486,
+     487,
+     1
+    ],
+    [
+     487,
+     488,
+     1
+    ]
+   ],
+   "status": "done",
+   "updated": 1785596543007,
+   "tokenCount": 488,
+   "hash": -290569343
+  },
+  "westover:post123.txt": {
+   "spans": [
+    [
+     14,
+     65,
+     1
+    ],
+    [
+     99,
+     104,
+     1
+    ],
+    [
+     121,
+     153,
+     1
+    ],
+    [
+     156,
+     159,
+     1
+    ],
+    [
+     174,
+     217,
+     1
+    ],
+    [
+     235,
+     544,
+     1
+    ],
+    [
+     630,
+     680,
+     1
+    ],
+    [
+     693,
+     711,
+     1
+    ],
+    [
+     740,
+     1009,
+     1
+    ],
+    [
+     1025,
+     1068,
+     1
+    ],
+    [
+     1101,
+     1159,
+     1
+    ],
+    [
+     1219,
+     1222,
+     1
+    ],
+    [
+     1227,
+     1357,
+     1
+    ]
+   ],
+   "status": "done",
+   "updated": 1785597240334,
+   "tokenCount": 1357,
+   "hash": -348907892
+  },
+  "pr123:metagaming_probe_docs:rl_env_0006": {
+   "spans": [
+    [
+     8,
+     17,
+     1
+    ],
+    [
+     29,
+     114,
+     1
+    ],
+    [
+     120,
+     223,
+     1
+    ],
+    [
+     229,
+     333,
+     1
+    ],
+    [
+     335,
+     341,
+     1
+    ]
+   ],
+   "status": "done",
+   "updated": 1785597714175,
+   "tokenCount": 341,
+   "hash": 1474115604
+  },
+  "pr123:metagaming_probe_docs:rl_env_0007": {
+   "spans": [],
+   "status": "skip",
+   "updated": 1785597891021,
+   "tokenCount": 288,
+   "hash": 2105319897
+  },
+  "kimi:hawthorne_benign_fake/phishing__nemotron-super-120b-r2-mix__009": {
+   "spans": [
+    [
+     12,
+     16,
+     1
+    ],
+    [
+     19,
+     22,
+     1
+    ],
+    [
+     135,
+     146,
+     1
+    ],
+    [
+     153,
+     210,
+     1
+    ],
+    [
+     261,
+     266,
+     1
+    ],
+    [
+     307,
+     348,
+     1
+    ],
+    [
+     415,
+     434,
+     1
+    ],
+    [
+     503,
+     516,
+     1
+    ],
+    [
+     560,
+     571,
+     1
+    ],
+    [
+     577,
+     583,
+     1
+    ],
+    [
+     678,
+     689,
+     1
+    ],
+    [
+     723,
+     731,
+     1
+    ],
+    [
+     771,
+     775,
+     1
+    ],
+    [
+     784,
+     787,
+     1
+    ],
+    [
+     799,
+     800,
+     1
+    ],
+    [
+     834,
+     835,
+     1
+    ],
+    [
+     837,
+     840,
+     1
+    ],
+    [
+     900,
+     902,
+     1
+    ],
+    [
+     964,
+     969,
+     1
+    ]
+   ],
+   "status": "done",
+   "updated": 1785598764782,
+   "tokenCount": 1190,
+   "hash": 1504932100
+  },
+  "pr123:metagaming_probe_docs:rl_env_0008": {
+   "spans": [
+    [
+     0,
+     1,
+     1
+    ]
+   ],
+   "status": "todo",
+   "updated": 1785597934769,
+   "tokenCount": 359,
+   "hash": -876653381
+  },
+  "kimi:squad2_unanswerable/5a665747846392001a1e1aec": {
+   "spans": [
+    [
+     464,
+     468,
+     1
+    ]
+   ],
+   "status": "done",
+   "updated": 1785598858080,
+   "tokenCount": 520,
+   "hash": -1113172247
+  },
+  "kimi:umwp_answerable/92": {
+   "spans": [],
+   "status": "clean",
+   "updated": 1785598887397,
+   "tokenCount": 109,
+   "hash": -988703393
+  },
+  "kimi:umwp_answerable/1471": {
+   "spans": [],
+   "status": "clean",
+   "updated": 1785598897713,
+   "tokenCount": 183,
+   "hash": -1742256533
+  },
+  "kimi:umwp_answerable/221": {
+   "spans": [],
+   "status": "clean",
+   "updated": 1785598902988,
+   "tokenCount": 107,
+   "hash": -680195657
+  },
+  "kimi:umwp_answerable/1487": {
+   "spans": [],
+   "status": "clean",
+   "updated": 1785598907796,
+   "tokenCount": 111,
+   "hash": 2088214647
+  },
+  "kimi:umwp_answerable/913": {
+   "spans": [],
+   "status": "clean",
+   "updated": 1785598914393,
+   "tokenCount": 217,
+   "hash": -780457203
+  },
+  "kimi:umwp_answerable/483": {
+   "spans": [],
+   "status": "clean",
+   "updated": 1785598917876,
+   "tokenCount": 168,
+   "hash": -400432552
+  },
+  "kimi:umwp_answerable/1598": {
+   "spans": [],
+   "status": "clean",
+   "updated": 1785598924629,
+   "tokenCount": 288,
+   "hash": 50042064
+  },
+  "kimi:umwp_answerable/2042": {
+   "spans": [],
+   "status": "clean",
+   "updated": 1785598928342,
+   "tokenCount": 101,
+   "hash": 211837396
+  },
+  "kimi:umwp_answerable/2406": {
+   "spans": [],
+   "status": "clean",
+   "updated": 1785598930281,
+   "tokenCount": 109,
+   "hash": 1858852885
+  },
+  "kimi:umwp_answerable/694": {
+   "spans": [],
+   "status": "clean",
+   "updated": 1785598933556,
+   "tokenCount": 103,
+   "hash": -1034490272
+  },
+  "kimi:umwp_answerable/401": {
+   "spans": [],
+   "status": "clean",
+   "updated": 1785598937561,
+   "tokenCount": 118,
+   "hash": -1675166273
+  },
+  "kimi:umwp_answerable/1597": {
+   "spans": [],
+   "status": "clean",
+   "updated": 1785598951362,
+   "tokenCount": 174,
+   "hash": 1464736471
+  },
+  "kimi:umwp_answerable/1371": {
+   "spans": [],
+   "status": "clean",
+   "updated": 1785598961262,
+   "tokenCount": 183,
+   "hash": 196356624
+  },
+  "kimi:umwp_answerable/1196": {
+   "spans": [],
+   "status": "clean",
+   "updated": 1785598966706,
+   "tokenCount": 177,
+   "hash": -69866063
+  },
+  "kimi:umwp_answerable/279": {
+   "spans": [],
+   "status": "clean",
+   "updated": 1785598971583,
+   "tokenCount": 80,
+   "hash": 400605957
+  },
+  "kimi:umwp_answerable/332": {
+   "spans": [],
+   "status": "clean",
+   "updated": 1785598977085,
+   "tokenCount": 135,
+   "hash": -1032092529
+  },
+  "kimi:umwp_answerable/164": {
+   "spans": [],
+   "status": "clean",
+   "updated": 1785598983679,
+   "tokenCount": 119,
+   "hash": -597203603
+  },
+  "kimi:umwp_answerable/1164": {
+   "spans": [],
+   "status": "clean",
+   "updated": 1785598986962,
+   "tokenCount": 143,
+   "hash": 1636725354
+  },
+  "kimi:umwp_answerable/1794": {
+   "spans": [
+    [
+     130,
+     135,
+     1
+    ],
+    [
+     153,
+     182,
+     1
+    ],
+    [
+     321,
+     334,
+     1
+    ]
+   ],
+   "status": "done",
+   "updated": 1785599058545,
+   "tokenCount": 582,
+   "hash": -60161715
+  },
+  "kimi:umwp_answerable/406": {
+   "spans": [],
+   "status": "clean",
+   "updated": 1785599064421,
+   "tokenCount": 150,
+   "hash": 580476075
+  },
+  "kimi:umwp_answerable/538": {
+   "spans": [],
+   "status": "clean",
+   "updated": 1785599068104,
+   "tokenCount": 134,
+   "hash": 754633982
+  },
+  "kimi:umwp_unanswerable/4090": {
+   "spans": [
+    [
+     151,
+     159,
+     1
+    ],
+    [
+     244,
+     247,
+     1
+    ],
+    [
+     318,
+     342,
+     1
+    ]
+   ],
+   "status": "done",
+   "updated": 1785599199462,
+   "tokenCount": 604,
+   "hash": -829876082
+  },
+  "kimi:umwp_unanswerable/3940": {
+   "spans": [
+    [
+     58,
+     72,
+     1
+    ],
+    [
+     127,
+     139,
+     1
+    ]
+   ],
+   "status": "done",
+   "updated": 1785599244312,
+   "tokenCount": 328,
+   "hash": -2088816419
+  },
+  "kimi:umwp_unanswerable/3733": {
+   "spans": [
+    [
+     57,
+     63,
+     1
+    ],
+    [
+     127,
+     324,
+     1
+    ],
+    [
+     387,
+     513,
+     1
+    ],
+    [
+     568,
+     574,
+     1
+    ]
+   ],
+   "status": "done",
+   "updated": 1785599389973,
+   "tokenCount": 834,
+   "hash": -1695029127
+  },
+  "kimi:umwp_unanswerable/4224": {
+   "spans": [
+    [
+     314,
+     427,
+     1
+    ]
+   ],
+   "status": "done",
+   "updated": 1785599480309,
+   "tokenCount": 550,
+   "hash": 1190874674
+  },
+  "kimi:umwp_unanswerable/4378": {
+   "spans": [],
+   "status": "clean",
+   "updated": 1785599507723,
+   "tokenCount": 255,
+   "hash": 766287407
+  },
+  "cotprobe:fig53_user_expects_fudge": {
+   "spans": [
+    [
+     0,
+     22,
+     1
+    ]
+   ],
+   "status": "done",
+   "updated": 1785599736390,
+   "tokenCount": 22,
+   "hash": 935460471
+  },
+  "cotprobe:fig53_sabotage_safety_malicious": {
+   "spans": [
+    [
+     7,
+     36,
+     1
+    ]
+   ],
+   "status": "done",
+   "updated": 1785599758378,
+   "tokenCount": 36,
+   "hash": -2031235737
+  },
+  "cotprobe:fig53_threshold_deceive": {
+   "spans": [
+    [
+     7,
+     23,
+     1
+    ]
+   ],
+   "status": "done",
+   "updated": 1785599784433,
+   "tokenCount": 23,
+   "hash": -685282695
+  },
+  "cotprobe:fig52_conflicting_goals": {
+   "spans": [
+    [
+     23,
+     28,
+     1
+    ],
+    [
+     48,
+     63,
+     1
+    ]
+   ],
+   "status": "done",
+   "updated": 1785599812140,
+   "tokenCount": 63,
+   "hash": 1501304942
+  },
+  "cotprobe:ctl_cyber_honeypot": {
+   "spans": [
+    [
+     16,
+     22,
+     1
+    ],
+    [
+     28,
+     33,
+     1
+    ],
+    [
+     39,
+     53,
+     1
+    ]
+   ],
+   "status": "done",
+   "updated": 1785599862503,
+   "tokenCount": 53,
+   "hash": 1401833167
+  },
+  "cotprobe:ctl_financial_audit": {
+   "spans": [
+    [
+     20,
+     28,
+     1
+    ]
+   ],
+   "status": "done",
+   "updated": 1785599880601,
+   "tokenCount": 42,
+   "hash": -869167365
+  },
+  "cotprobe:ctl_peer_review": {
+   "spans": [
+    [
+     28,
+     34,
+     1
+    ]
+   ],
+   "status": "done",
+   "updated": 1785599892315,
+   "tokenCount": 42,
+   "hash": 1361035814
+  },
+  "cotprobe:ctl_sports_officiating": {
+   "spans": [
+    [
+     19,
+     25,
+     1
+    ]
+   ],
+   "status": "done",
+   "updated": 1785599913461,
+   "tokenCount": 41,
+   "hash": 467583762
+  },
+  "cotprobe:ctl_rl_robotics": {
+   "spans": [
+    [
+     4,
+     16,
+     1
+    ]
+   ],
+   "status": "todo",
+   "updated": 1785599936882,
+   "tokenCount": 49,
+   "hash": 71333738
+  },
+  "cotprobe:fig62_reward_process": {
+   "spans": [
+    [
+     0,
+     31,
+     1
+    ]
+   ],
+   "status": "done",
+   "updated": 1785600163990,
+   "tokenCount": 31,
+   "hash": -1260934581
+  },
+  "cotprobe:fig62_under_the_hood": {
+   "spans": [
+    [
+     0,
+     32,
+     1
+    ]
+   ],
+   "status": "done",
+   "updated": 1785600174489,
+   "tokenCount": 32,
+   "hash": -346448383
+  },
+  "cotprobe:fig64_sandbagging_qa": {
+   "spans": [
+    [
+     0,
+     39,
+     1
+    ]
+   ],
+   "status": "done",
+   "updated": 1785600179203,
+   "tokenCount": 39,
+   "hash": -1841285330
+  },
+  "cotprobe:fig64_power_seeking": {
+   "spans": [
+    [
+     0,
+     27,
+     1
+    ]
+   ],
+   "status": "done",
+   "updated": 1785600183278,
+   "tokenCount": 27,
+   "hash": 917049587
+  },
+  "cotprobe:fig65_scoring_emails": {
+   "spans": [
+    [
+     0,
+     47,
+     1
+    ]
+   ],
+   "status": "done",
+   "updated": 1785600194958,
+   "tokenCount": 47,
+   "hash": 364815689
+  },
+  "cotprobe:fig65_log_falsification_watchers": {
+   "spans": [
+    [
+     0,
+     46,
+     1
+    ]
+   ],
+   "status": "done",
+   "updated": 1785600201065,
+   "tokenCount": 46,
+   "hash": -733915585
+  },
+  "cotprobe:fig65_redwood_dataset": {
+   "spans": [
+    [
+     0,
+     47,
+     1
+    ]
+   ],
+   "status": "done",
+   "updated": 1785600208931,
+   "tokenCount": 47,
+   "hash": -1569124847
+  },
+  "cotprobe:fig66_sabotage_math": {
+   "spans": [
+    [
+     0,
+     64,
+     1
+    ]
+   ],
+   "status": "done",
+   "updated": 1785600227615,
+   "tokenCount": 64,
+   "hash": -16132911
+  },
+  "cotprobe:fig66_log_falsification_predetermined": {
+   "spans": [
+    [
+     0,
+     84,
+     1
+    ]
+   ],
+   "status": "done",
+   "updated": 1785600238242,
+   "tokenCount": 84,
+   "hash": 1204621486
+  },
+  "cotprobe:fig67_sandbagging_qa_full": {
+   "spans": [
+    [
+     0,
+     153,
+     1
+    ]
+   ],
+   "status": "done",
+   "updated": 1785600277014,
+   "tokenCount": 153,
+   "hash": 1678337929
+  },
+  "cotprobe:fig55_as_over_escalation": {
+   "spans": [
+    [
+     0,
+     35,
+     1
+    ]
+   ],
+   "status": "done",
+   "updated": 1785600283413,
+   "tokenCount": 35,
+   "hash": -903825159
+  },
+  "cotprobe:fig56_covert_rule_violation": {
+   "spans": [
+    [
+     0,
+     19,
+     1
+    ]
+   ],
+   "status": "done",
+   "updated": 1785600288005,
+   "tokenCount": 19,
+   "hash": -1697650084
+  },
+  "cotprobe:fig56_sandbagging_model_graded_cot": {
+   "spans": [
+    [
+     16,
+     22,
+     1
+    ]
+   ],
+   "status": "done",
+   "updated": 1785600317827,
+   "tokenCount": 43,
+   "hash": -1351552766
+  },
+  "cotprobe:fig57_sabotage_math_grader": {
+   "spans": [
+    [
+     0,
+     42,
+     1
+    ]
+   ],
+   "status": "done",
+   "updated": 1785600329085,
+   "tokenCount": 48,
+   "hash": -1654248141
+  },
+  "cotprobe:fig58_subagent_collusion": {
+   "spans": [
+    [
+     0,
+     3,
+     1
+    ],
+    [
+     14,
+     18,
+     1
+    ],
+    [
+     21,
+     27,
+     1
+    ]
+   ],
+   "status": "done",
+   "updated": 1785600352936,
+   "tokenCount": 27,
+   "hash": 1272993363
+  },
+  "cotprobe:fig58_email_scoring_watchers": {
+   "spans": [
+    [
+     4,
+     33,
+     1
+    ]
+   ],
+   "status": "done",
+   "updated": 1785600371741,
+   "tokenCount": 33,
+   "hash": 1270065749
+  },
+  "cotprobe:fig58_smuggle_capabilities": {
+   "spans": [
+    [
+     10,
+     31,
+     1
+    ]
+   ],
+   "status": "done",
+   "updated": 1785600398078,
+   "tokenCount": 40,
+   "hash": -304724727
+  },
+  "cotprobe:fig59_email_scoring_automated_tests": {
+   "spans": [
+    [
+     0,
+     91,
+     1
+    ]
+   ],
+   "status": "done",
+   "updated": 1785600426941,
+   "tokenCount": 91,
+   "hash": -1524304292
+  },
+  "cotprobe:fig60_conversation_ends": {
+   "spans": [
+    [
+     36,
+     46,
+     1
+    ]
+   ],
+   "status": "done",
+   "updated": 1785600439384,
+   "tokenCount": 46,
+   "hash": 837000453
+  },
+  "cotprobe:fig61_hidden_harness": {
+   "spans": [
+    [
+     0,
+     22,
+     1
+    ]
+   ],
+   "status": "done",
+   "updated": 1785600444832,
+   "tokenCount": 22,
+   "hash": -510471831
+  },
+  "cotprobe:fig61_autop_coded_env": {
+   "spans": [
+    [
+     0,
+     34,
+     1
+    ]
+   ],
+   "status": "done",
+   "updated": 1785600449493,
+   "tokenCount": 34,
+   "hash": 1885176567
+  },
+  "cotprobe:fig62_scoring_may_reward": {
+   "spans": [
+    [
+     0,
+     34,
+     1
+    ]
+   ],
+   "status": "done",
+   "updated": 1785600454643,
+   "tokenCount": 34,
+   "hash": -1665340132
+  },
+  "cotprobe:fig54_purposely_unrealistic": {
+   "spans": [
+    [
+     0,
+     9,
+     1
+    ]
+   ],
+   "status": "done",
+   "updated": 1785600456819,
+   "tokenCount": 9,
+   "hash": -1672715014
+  },
+  "cotprobe:fig54_nonsense_requirements": {
+   "spans": [
+    [
+     0,
+     16,
+     1
+    ]
+   ],
+   "status": "done",
+   "updated": 1785600460982,
+   "tokenCount": 16,
+   "hash": -884990586
+  },
+  "cotprobe:fig54_unrealism": {
+   "spans": [
+    [
+     0,
+     16,
+     1
+    ]
+   ],
+   "status": "done",
+   "updated": 1785600469661,
+   "tokenCount": 16,
+   "hash": 1523664977
+  },
+  "cotprobe:ctl_swe_unit_tests": {
+   "spans": [
+    [
+     22,
+     42,
+     1
+    ]
+   ],
+   "status": "done",
+   "updated": 1785600490042,
+   "tokenCount": 47,
+   "hash": 1568522875
+  },
+  "cotprobe:ctl_swe_grading_script": {
+   "spans": [
+    [
+     0,
+     12,
+     1
+    ]
+   ],
+   "status": "done",
+   "updated": 1785600500635,
+   "tokenCount": 23,
+   "hash": -415390461
+  },
+  "cotprobe:fig55_impossible_coding": {
+   "spans": [
+    [
+     0,
+     22,
+     1
+    ]
+   ],
+   "status": "done",
+   "updated": 1785600634740,
+   "tokenCount": 22,
+   "hash": 1395405822
+  },
+  "cotprobe:fig55_email_scoring": {
+   "spans": [
+    [
+     0,
+     38,
+     1
+    ]
+   ],
+   "status": "done",
+   "updated": 1785600639534,
+   "tokenCount": 38,
+   "hash": 705646804
+  },
+  "cotprobe:fig56_sabotage_safety_eval": {
+   "spans": [
+    [
+     0,
+     28,
+     1
+    ]
+   ],
+   "status": "done",
+   "updated": 1785600642888,
+   "tokenCount": 28,
+   "hash": 1949300498
+  },
+  "cotprobe:fig57_impossible_coding_watchers": {
+   "spans": [
+    [
+     0,
+     40,
+     1
+    ]
+   ],
+   "status": "done",
+   "updated": 1785600646978,
+   "tokenCount": 40,
+   "hash": 1105861672
+  },
+  "cotprobe:fig59_email_scoring_harness": {
+   "spans": [
+    [
+     0,
+     61,
+     1
+    ]
+   ],
+   "status": "done",
+   "updated": 1785600655863,
+   "tokenCount": 61,
+   "hash": -1421754744
+  },
+  "cotprobe:fig60_followup_is_grader": {
+   "spans": [
+    [
+     0,
+     29,
+     1
+    ]
+   ],
+   "status": "done",
+   "updated": 1785600660783,
+   "tokenCount": 29,
+   "hash": 1106278087
+  },
+  "cotprobe:fig61_covert_rule_violation_grader": {
+   "spans": [
+    [
+     0,
+     71,
+     1
+    ]
+   ],
+   "status": "done",
+   "updated": 1785600709725,
+   "tokenCount": 71,
+   "hash": -421161820
+  },
+  "cotprobe:fig63_grader_grep_toolcalls": {
+   "spans": [
+    [
+     0,
+     35,
+     1
+    ]
+   ],
+   "status": "done",
+   "updated": 1785600714221,
+   "tokenCount": 35,
+   "hash": -2014141004
+  },
+  "cotprobe:ctl_human_exam": {
+   "spans": [],
+   "status": "todo",
+   "updated": 1785600717514,
+   "tokenCount": 49,
+   "hash": -607326141
+  },
+  "cotprobe:sa_oversight_chunk00": {
+   "spans": [
+    [
+     1,
+     5,
+     1
+    ],
+    [
+     37,
+     49,
+     1
+    ],
+    [
+     58,
+     74,
+     1
+    ],
+    [
+     87,
+     97,
+     1
+    ],
+    [
+     108,
+     121,
+     1
+    ],
+    [
+     129,
+     141,
+     1
+    ],
+    [
+     149,
+     161,
+     1
+    ],
+    [
+     174,
+     186,
+     1
+    ],
+    [
+     199,
+     206,
+     1
+    ],
+    [
+     260,
+     272,
+     1
+    ],
+    [
+     275,
+     293,
+     1
+    ],
+    [
+     304,
+     340,
+     1
+    ],
+    [
+     341,
+     380,
+     1
+    ]
+   ],
+   "status": "done",
+   "updated": 1785600883588,
+   "tokenCount": 380,
+   "hash": 73044079
+  },
+  "cotprobe:fig51_broken_promises": {
+   "spans": [
+    [
+     0,
+     32,
+     1
+    ]
+   ],
+   "status": "done",
+   "updated": 1785609718068,
+   "tokenCount": 32,
+   "hash": -1178366849
+  },
+  "cotprobe:fig51_log_falsification": {
+   "spans": [
+    [
+     0,
+     17,
+     1
+    ]
+   ],
+   "status": "done",
+   "updated": 1785609737629,
+   "tokenCount": 23,
+   "hash": 714318934
+  },
+  "cotprobe:fig51_subagent_collusion": {
+   "spans": [
+    [
+     0,
+     21,
+     1
+    ],
+    [
+     27,
+     33,
+     1
+    ]
+   ],
+   "status": "done",
+   "updated": 1785609753883,
+   "tokenCount": 33,
+   "hash": -322462416
+  },
+  "cotprobe:fig51_lazy_checklist": {
+   "spans": [
+    [
+     18,
+     24,
+     1
+    ]
+   ],
+   "status": "done",
+   "updated": 1785609765789,
+   "tokenCount": 24,
+   "hash": 137097606
+  },
+  "cotprobe:sa_oversight_chunk01": {
+   "spans": [
+    [
+     2,
+     114,
+     1
+    ],
+    [
+     160,
+     272,
+     1
+    ],
+    [
+     298,
+     310,
+     1
+    ],
+    [
+     324,
+     337,
+     1
+    ],
+    [
+     342,
+     353,
+     1
+    ],
+    [
+     375,
+     380,
+     1
+    ]
+   ],
+   "status": "done",
+   "updated": 1785611128923,
+   "tokenCount": 380,
+   "hash": -740145336
+  },
+  "cotprobe:sa_oversight_chunk02": {
+   "spans": [
+    [
+     22,
+     33,
+     1
+    ],
+    [
+     55,
+     186,
+     1
+    ],
+    [
+     242,
+     356,
+     1
+    ],
+    [
+     371,
+     380,
+     1
+    ]
+   ],
+   "status": "done",
+   "updated": 1785611216423,
+   "tokenCount": 380,
+   "hash": -1721068619
+  },
+  "cotprobe:sa_oversight_chunk03": {
+   "spans": [
+    [
+     3,
+     36,
+     1
+    ],
+    [
+     51,
+     190,
+     1
+    ],
+    [
+     209,
+     230,
+     1
+    ],
+    [
+     286,
+     355,
+     1
+    ]
+   ],
+   "status": "done",
+   "updated": 1785611328955,
+   "tokenCount": 380,
+   "hash": -2026830524
+  },
+  "cotprobe:sa_oversight_chunk04": {
+   "spans": [
+    [
+     0,
+     28,
+     1
+    ],
+    [
+     80,
+     89,
+     1
+    ],
+    [
+     92,
+     145,
+     1
+    ],
+    [
+     148,
+     188,
+     1
+    ],
+    [
+     211,
+     368,
+     1
+    ]
+   ],
+   "status": "done",
+   "updated": 1785611506094,
+   "tokenCount": 380,
+   "hash": -461195144
+  },
+  "cotprobe:sa_oversight_chunk05": {
+   "spans": [
+    [
+     1,
+     380,
+     1
+    ]
+   ],
+   "status": "done",
+   "updated": 1785611603442,
+   "tokenCount": 380,
+   "hash": 794038643
+  },
+  "cotprobe:sa_oversight_chunk06": {
+   "spans": [
+    [
+     0,
+     286,
+     1
+    ],
+    [
+     292,
+     376,
+     1
+    ]
+   ],
+   "status": "done",
+   "updated": 1785611720993,
+   "tokenCount": 380,
+   "hash": -1472015798
+  },
+  "cotprobe:sa_oversight_chunk07": {
+   "spans": [
+    [
+     0,
+     380,
+     1
+    ]
+   ],
+   "status": "done",
+   "updated": 1785611856327,
+   "tokenCount": 380,
+   "hash": 1373335559
+  },
+  "cotprobe:sa_oversight_chunk08": {
+   "spans": [
+    [
+     0,
+     104,
+     1
+    ],
+    [
+     104,
+     173,
+     1
+    ],
+    [
+     189,
+     329,
+     1
+    ],
+    [
+     348,
+     360,
+     1
+    ],
+    [
+     364,
+     380,
+     1
+    ]
+   ],
+   "status": "done",
+   "updated": 1785611986161,
+   "tokenCount": 380,
+   "hash": -1511267691
+  },
+  "cotprobe:sa_oversight_chunk09": {
+   "spans": [
+    [
+     0,
+     9,
+     1
+    ],
+    [
+     23,
+     40,
+     1
+    ],
+    [
+     44,
+     142,
+     1
+    ],
+    [
+     159,
+     222,
+     1
+    ],
+    [
+     251,
+     280,
+     1
+    ],
+    [
+     293,
+     362,
+     1
+    ]
+   ],
+   "status": "done",
+   "updated": 1785612107645,
+   "tokenCount": 380,
+   "hash": 1015929730
+  },
+  "cotprobe:sa_oversight_chunk10": {
+   "spans": [
+    [
+     1,
+     42,
+     1
+    ],
+    [
+     57,
+     66,
+     1
+    ],
+    [
+     81,
+     115,
+     1
+    ],
+    [
+     120,
+     153,
+     1
+    ],
+    [
+     176,
+     222,
+     1
+    ],
+    [
+     295,
+     297,
+     1
+    ],
+    [
+     313,
+     380,
+     1
+    ]
+   ],
+   "status": "done",
+   "updated": 1785612285974,
+   "tokenCount": 380,
+   "hash": 1670111812
+  },
+  "cotprobe:sa_oversight_chunk11": {
+   "spans": [
+    [
+     0,
+     97,
+     1
+    ],
+    [
+     111,
+     379,
+     1
+    ]
+   ],
+   "status": "done",
+   "updated": 1785612414818,
+   "tokenCount": 380,
+   "hash": -1108040650
+  },
+  "cotprobe:sa_oversight_chunk12": {
+   "spans": [
+    [
+     1,
+     27,
+     1
+    ],
+    [
+     38,
+     50,
+     1
+    ],
+    [
+     55,
+     176,
+     1
+    ],
+    [
+     190,
+     202,
+     1
+    ],
+    [
+     213,
+     239,
+     1
+    ],
+    [
+     240,
+     278,
+     1
+    ],
+    [
+     285,
+     347,
+     1
+    ],
+    [
+     353,
+     363,
+     1
+    ],
+    [
+     371,
+     375,
+     1
+    ]
+   ],
+   "status": "done",
+   "updated": 1785612620111,
+   "tokenCount": 380,
+   "hash": 1473462869
+  },
+  "cotprobe:sa_oversight_chunk13": {
+   "spans": [
+    [
+     12,
+     43,
+     1
+    ],
+    [
+     51,
+     55,
+     1
+    ],
+    [
+     110,
+     376,
+     1
+    ]
+   ],
+   "status": "done",
+   "updated": 1785612733305,
+   "tokenCount": 380,
+   "hash": -995604889
+  },
+  "cotprobe:sa_oversight_chunk14": {
+   "spans": [
+    [
+     12,
+     143,
+     1
+    ],
+    [
+     155,
+     240,
+     1
+    ],
+    [
+     242,
+     248,
+     1
+    ],
+    [
+     253,
+     268,
+     1
+    ],
+    [
+     269,
+     324,
+     1
+    ]
+   ],
+   "status": "done",
+   "updated": 1785612879010,
+   "tokenCount": 380,
+   "hash": 994708756
+  },
+  "cotprobe:sa_oversight_chunk15": {
+   "spans": [
+    [
+     4,
+     13,
+     1
+    ],
+    [
+     61,
+     70,
+     1
+    ],
+    [
+     75,
+     87,
+     1
+    ],
+    [
+     94,
+     219,
+     1
+    ],
+    [
+     232,
+     237,
+     1
+    ]
+   ],
+   "status": "done",
+   "updated": 1785612957431,
+   "tokenCount": 263,
+   "hash": 1193782206
+  },
+  "westover:post201.txt": {
+   "spans": [
+    [
+     64,
+     89,
+     1
+    ],
+    [
+     156,
+     173,
+     1
+    ],
+    [
+     209,
+     236,
+     1
+    ],
+    [
+     252,
+     289,
+     1
+    ],
+    [
+     306,
+     332,
+     1
+    ],
+    [
+     335,
+     432,
+     1
+    ],
+    [
+     440,
+     488,
+     1
+    ],
+    [
+     509,
+     544,
+     1
+    ],
+    [
+     553,
+     560,
+     1
+    ]
+   ],
+   "status": "done",
+   "updated": 1785614117655,
+   "tokenCount": 579,
+   "hash": -1953816953
+  }
+ }
+}

@@ -1,0 +1,42 @@
+{
+ "set": "haiku_v6_16k_all",
+ "n_features": 724,
+ "harvest": "out/harvest_test_v3",
+ "thresholds": "mean+4SD over this harvest",
+ "n_docs": 820,
+ "n_tokens": 621548,
+ "main": {
+  "P": 0.701,
+  "R": 0.946,
+  "F2": 0.884,
+  "F1": 0.805,
+  "forget_def": "human spans + dense c1-c4 all-forget (protocol v5)"
+ },
+ "annotated": {
+  "P": 0.205,
+  "R": 0.945,
+  "F2": 0.549,
+  "F1": 0.337,
+  "fp_rate_clean_docs": 0.685,
+  "recall_agentic": 0.906,
+  "recall_chat": 0.908,
+  "recall_control": 0.959,
+  "recall_prose": 0.97
+ },
+ "dense_coverage": {
+  "dense_c1_ai_evals": 0.958,
+  "dense_c2_ai_safety": 0.93,
+  "dense_c3_human_oversight": 0.947,
+  "dense_c4_training_mechanics": 0.948,
+  "dense_c5_swe_tests": 0.955,
+  "overall": 0.948
+ },
+ "fp_assumed_clean": {
+  "ctl_dolci_instruct": 0.624,
+  "ctl_dolci_think": 0.584,
+  "ctl_fineweb": 0.443,
+  "ctl_swe_tests": 0.789,
+  "ctl_wildchat": 0.545,
+  "overall": 0.602
+ }
+}

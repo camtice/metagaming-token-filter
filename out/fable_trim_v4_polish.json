@@ -1,0 +1,140 @@
+{
+ "p1": {
+  "objective": "fp_ctl<=0.10 hard; recall maximized (F2 tiebreak)",
+  "n": 141,
+  "P": 0.3086,
+  "R": 0.8803,
+  "F2": 0.6424,
+  "F1": 0.457,
+  "fp_ctl": 0.1,
+  "fp_clean_docs": 0.3893,
+  "recall_agentic": 0.79,
+  "recall_chat": 0.791,
+  "recall_control": 0.924,
+  "recall_prose": 0.934,
+  "fp_by_config": {
+   "ctl_dolci_instruct": 0.1623,
+   "ctl_dolci_think": 0.0912,
+   "ctl_fineweb": 0.0556,
+   "ctl_swe_tests": 0.0846,
+   "ctl_wildchat": 0.097
+  },
+  "bootstrap": {
+   "R_ci90": [
+    0.838,
+    0.919
+   ],
+   "F2_ci90": [
+    0.527,
+    0.75
+   ]
+  },
+  "composition": {
+   "category": {
+    "c3": 90,
+    "c4": 19,
+    "c5": 21,
+    "c1": 5,
+    "c2": 6
+   },
+   "confidence": {
+    "m": 35,
+    "l": 85,
+    "h": 21
+   },
+   "overlap_with_OG222": 17
+  }
+ },
+ "p2": {
+  "objective": "fp_ctl<=0.10 hard; F2 maximized",
+  "n": 134,
+  "P": 0.548,
+  "R": 0.8182,
+  "F2": 0.7447,
+  "F1": 0.6563,
+  "fp_ctl": 0.086,
+  "fp_clean_docs": 0.1257,
+  "recall_agentic": 0.432,
+  "recall_chat": 0.682,
+  "recall_control": 0.907,
+  "recall_prose": 0.925,
+  "fp_by_config": {
+   "ctl_dolci_instruct": 0.0883,
+   "ctl_dolci_think": 0.0861,
+   "ctl_fineweb": 0.0293,
+   "ctl_swe_tests": 0.1334,
+   "ctl_wildchat": 0.0697
+  },
+  "bootstrap": {
+   "R_ci90": [
+    0.746,
+    0.882
+   ],
+   "F2_ci90": [
+    0.661,
+    0.816
+   ]
+  },
+  "composition": {
+   "category": {
+    "c3": 77,
+    "c4": 21,
+    "c5": 28,
+    "c1": 6,
+    "c2": 2
+   },
+   "confidence": {
+    "m": 37,
+    "l": 74,
+    "h": 23
+   },
+   "overlap_with_OG222": 16
+  }
+ },
+ "p3": {
+  "objective": "R>=0.90 hard; fp_ctl minimized (F2 tiebreak)",
+  "n": 147,
+  "P": 0.2695,
+  "R": 0.9001,
+  "F2": 0.6131,
+  "F1": 0.4148,
+  "fp_ctl": 0.1405,
+  "fp_clean_docs": 0.4523,
+  "recall_agentic": 0.835,
+  "recall_chat": 0.818,
+  "recall_control": 0.942,
+  "recall_prose": 0.945,
+  "fp_by_config": {
+   "ctl_dolci_instruct": 0.1683,
+   "ctl_dolci_think": 0.1364,
+   "ctl_fineweb": 0.0746,
+   "ctl_swe_tests": 0.1645,
+   "ctl_wildchat": 0.1397
+  },
+  "bootstrap": {
+   "R_ci90": [
+    0.861,
+    0.935
+   ],
+   "F2_ci90": [
+    0.492,
+    0.732
+   ]
+  },
+  "composition": {
+   "category": {
+    "c3": 93,
+    "c4": 20,
+    "c5": 22,
+    "c1": 4,
+    "c2": 8
+   },
+   "confidence": {
+    "l": 89,
+    "m": 36,
+    "h": 22
+   },
+   "overlap_with_OG222": 17
+  }
+ }
+}

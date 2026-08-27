@@ -1,0 +1,42 @@
+{
+ "set": "fable_trim_d2",
+ "n_features": 187,
+ "harvest": "out/harvest_test_v3",
+ "thresholds": "mean+4SD over this harvest",
+ "n_docs": 820,
+ "n_tokens": 621548,
+ "main": {
+  "P": 0.878,
+  "R": 0.883,
+  "F2": 0.882,
+  "F1": 0.881,
+  "forget_def": "human spans + dense c1-c4 all-forget (protocol v5)"
+ },
+ "annotated": {
+  "P": 0.417,
+  "R": 0.793,
+  "F2": 0.672,
+  "F1": 0.546,
+  "fp_rate_clean_docs": 0.074,
+  "recall_agentic": 0.662,
+  "recall_chat": 0.527,
+  "recall_control": 0.918,
+  "recall_prose": 0.933
+ },
+ "dense_coverage": {
+  "dense_c1_ai_evals": 0.904,
+  "dense_c2_ai_safety": 0.864,
+  "dense_c3_human_oversight": 0.899,
+  "dense_c4_training_mechanics": 0.908,
+  "dense_c5_swe_tests": 0.863,
+  "overall": 0.888
+ },
+ "fp_assumed_clean": {
+  "ctl_dolci_instruct": 0.089,
+  "ctl_dolci_think": 0.089,
+  "ctl_fineweb": 0.101,
+  "ctl_swe_tests": 0.128,
+  "ctl_wildchat": 0.129,
+  "overall": 0.1
+ }
+}

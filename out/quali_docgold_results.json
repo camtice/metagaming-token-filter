@@ -1,0 +1,282 @@
+{
+ "kimi": {
+  "A": {
+   "anti_hall_umwp:unanswerable-vs-answerable": {
+    "trick_mean": 0.1158,
+    "clean_mean": 0.059,
+    "auc": 0.79
+   },
+   "anti_hall_falseqa:false_premise-vs-true_premise": {
+    "trick_mean": 0.0767,
+    "clean_mean": 0.1197,
+    "auc": 0.361
+   },
+   "anti_hall_squad2:unanswerable-vs-answerable": {
+    "trick_mean": 0.1303,
+    "clean_mean": 0.1042,
+    "auc": 0.616
+   },
+   "if_conflict:contradictory-vs-satisfiable": {
+    "trick_mean": 0.2417,
+    "clean_mean": 0.1841,
+    "auc": 0.674
+   },
+   "chat_hawthorne:harmful_fake-vs-harmful_real": {
+    "trick_mean": 0.5423,
+    "clean_mean": 0.4817,
+    "auc": 0.642
+   },
+   "chat_hawthorne:benign_fake-vs-benign_real": {
+    "trick_mean": 0.4289,
+    "clean_mean": 0.39,
+    "auc": 0.555
+   },
+   "mmlu_mean": 0.2656
+  },
+  "B": {
+   "anti_hall_umwp:unanswerable-vs-answerable": {
+    "trick_mean": 0.2411,
+    "clean_mean": 0.0997,
+    "auc": 0.85
+   },
+   "anti_hall_falseqa:false_premise-vs-true_premise": {
+    "trick_mean": 0.2048,
+    "clean_mean": 0.2556,
+    "auc": 0.434
+   },
+   "anti_hall_squad2:unanswerable-vs-answerable": {
+    "trick_mean": 0.3028,
+    "clean_mean": 0.219,
+    "auc": 0.676
+   },
+   "if_conflict:contradictory-vs-satisfiable": {
+    "trick_mean": 0.3197,
+    "clean_mean": 0.27,
+    "auc": 0.633
+   },
+   "chat_hawthorne:harmful_fake-vs-harmful_real": {
+    "trick_mean": 0.6374,
+    "clean_mean": 0.6052,
+    "auc": 0.58
+   },
+   "chat_hawthorne:benign_fake-vs-benign_real": {
+    "trick_mean": 0.5132,
+    "clean_mean": 0.4955,
+    "auc": 0.53
+   },
+   "mmlu_mean": 0.4795
+  },
+  "C": {
+   "anti_hall_umwp:unanswerable-vs-answerable": {
+    "trick_mean": 0.1538,
+    "clean_mean": 0.0713,
+    "auc": 0.809
+   },
+   "anti_hall_falseqa:false_premise-vs-true_premise": {
+    "trick_mean": 0.1064,
+    "clean_mean": 0.1339,
+    "auc": 0.453
+   },
+   "anti_hall_squad2:unanswerable-vs-answerable": {
+    "trick_mean": 0.1517,
+    "clean_mean": 0.1158,
+    "auc": 0.636
+   },
+   "if_conflict:contradictory-vs-satisfiable": {
+    "trick_mean": 0.189,
+    "clean_mean": 0.1502,
+    "auc": 0.649
+   },
+   "chat_hawthorne:harmful_fake-vs-harmful_real": {
+    "trick_mean": 0.3662,
+    "clean_mean": 0.283,
+    "auc": 0.68
+   },
+   "chat_hawthorne:benign_fake-vs-benign_real": {
+    "trick_mean": 0.3196,
+    "clean_mean": 0.2461,
+    "auc": 0.67
+   },
+   "mmlu_mean": 0.2986
+  },
+  "D": {
+   "anti_hall_umwp:unanswerable-vs-answerable": {
+    "trick_mean": 0.0768,
+    "clean_mean": 0.0661,
+    "auc": 0.6
+   },
+   "anti_hall_falseqa:false_premise-vs-true_premise": {
+    "trick_mean": 0.0554,
+    "clean_mean": 0.1069,
+    "auc": 0.311
+   },
+   "anti_hall_squad2:unanswerable-vs-answerable": {
+    "trick_mean": 0.1104,
+    "clean_mean": 0.1086,
+    "auc": 0.481
+   },
+   "if_conflict:contradictory-vs-satisfiable": {
+    "trick_mean": 0.0676,
+    "clean_mean": 0.0705,
+    "auc": 0.554
+   },
+   "chat_hawthorne:harmful_fake-vs-harmful_real": {
+    "trick_mean": 0.2939,
+    "clean_mean": 0.2683,
+    "auc": 0.573
+   },
+   "chat_hawthorne:benign_fake-vs-benign_real": {
+    "trick_mean": 0.2274,
+    "clean_mean": 0.2098,
+    "auc": 0.577
+   },
+   "mmlu_mean": 0.2436
+  },
+  "E": {
+   "anti_hall_umwp:unanswerable-vs-answerable": {
+    "trick_mean": 0.1798,
+    "clean_mean": 0.0795,
+    "auc": 0.853
+   },
+   "anti_hall_falseqa:false_premise-vs-true_premise": {
+    "trick_mean": 0.1432,
+    "clean_mean": 0.1547,
+    "auc": 0.562
+   },
+   "anti_hall_squad2:unanswerable-vs-answerable": {
+    "trick_mean": 0.2001,
+    "clean_mean": 0.1897,
+    "auc": 0.547
+   },
+   "if_conflict:contradictory-vs-satisfiable": {
+    "trick_mean": 0.1944,
+    "clean_mean": 0.1603,
+    "auc": 0.632
+   },
+   "chat_hawthorne:harmful_fake-vs-harmful_real": {
+    "trick_mean": 0.53,
+    "clean_mean": 0.4789,
+    "auc": 0.615
+   },
+   "chat_hawthorne:benign_fake-vs-benign_real": {
+    "trick_mean": 0.374,
+    "clean_mean": 0.3368,
+    "auc": 0.576
+   },
+   "mmlu_mean": 0.3246
+  },
+  "F": {
+   "anti_hall_umwp:unanswerable-vs-answerable": {
+    "trick_mean": 0.9263,
+    "clean_mean": 0.9548,
+    "auc": 0.365
+   },
+   "anti_hall_falseqa:false_premise-vs-true_premise": {
+    "trick_mean": 0.7185,
+    "clean_mean": 0.7176,
+    "auc": 0.497
+   },
+   "anti_hall_squad2:unanswerable-vs-answerable": {
+    "trick_mean": 0.7424,
+    "clean_mean": 0.6982,
+    "auc": 0.593
+   },
+   "if_conflict:contradictory-vs-satisfiable": {
+    "trick_mean": 0.8191,
+    "clean_mean": 0.8109,
+    "auc": 0.514
+   },
+   "chat_hawthorne:harmful_fake-vs-harmful_real": {
+    "trick_mean": 0.8825,
+    "clean_mean": 0.8691,
+    "auc": 0.569
+   },
+   "chat_hawthorne:benign_fake-vs-benign_real": {
+    "trick_mean": 0.8429,
+    "clean_mean": 0.8292,
+    "auc": 0.544
+   },
+   "mmlu_mean": 0.8913
+  }
+ },
+ "docgold": {
+  "A": {
+   "westover_auc": 0.76,
+   "westover_means": [
+    0.7691,
+    0.5968
+   ],
+   "needham_auc": 0.435,
+   "needham_means": [
+    0.2108,
+    0.253
+   ],
+   "needham_humanp_corr": -0.209
+  },
+  "B": {
+   "westover_auc": 0.761,
+   "westover_means": [
+    0.7962,
+    0.6184
+   ],
+   "needham_auc": 0.486,
+   "needham_means": [
+    0.316,
+    0.3219
+   ],
+   "needham_humanp_corr": -0.122
+  },
+  "C": {
+   "westover_auc": 0.68,
+   "westover_means": [
+    0.7314,
+    0.5965
+   ],
+   "needham_auc": 0.495,
+   "needham_means": [
+    0.3141,
+    0.3212
+   ],
+   "needham_humanp_corr": -0.124
+  },
+  "D": {
+   "westover_auc": 0.579,
+   "westover_means": [
+    0.4563,
+    0.4076
+   ],
+   "needham_auc": 0.454,
+   "needham_means": [
+    0.2304,
+    0.2531
+   ],
+   "needham_humanp_corr": -0.189
+  },
+  "E": {
+   "westover_auc": 0.728,
+   "westover_means": [
+    0.6962,
+    0.5707
+   ],
+   "needham_auc": 0.496,
+   "needham_means": [
+    0.4014,
+    0.3985
+   ],
+   "needham_humanp_corr": -0.066
+  },
+  "F": {
+   "westover_auc": 0.751,
+   "westover_means": [
+    0.9115,
+    0.838
+   ],
+   "needham_auc": 0.472,
+   "needham_means": [
+    0.8001,
+    0.8085
+   ],
+   "needham_humanp_corr": -0.121
+  }
+ }
+}

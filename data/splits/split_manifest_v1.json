@@ -1,0 +1,2922 @@
+{
+ "version": 1,
+ "created": "2026-08-09",
+ "repo": "camgeodesic/metagaming-labeling",
+ "revision": "244b6d00aeee7287ed3dc00fe591f00ec206774f",
+ "seed": 20260809,
+ "rules": {
+  "validation": "score frozen feature sets only; every access appended to validation_access_log.jsonl; baseline scored once as reference",
+  "test": "scored freely during iteration",
+  "selection_configs": [
+   "kimi_metagame_rollouts (unannotated remainder)",
+   "kimi_agentic_rollouts",
+   "westover_general_split",
+   "westover_metagame_split",
+   "needham_eval_awareness",
+   "needham_eval_grading"
+  ],
+  "excluded_configs": [
+   "claude_AI_forget",
+   "claude_AI_mix",
+   "claude_human_forget",
+   "claude_general_retain"
+  ],
+  "excluded_reason": "not dense enough for token-level scoring (user decision 2026-08-09)",
+  "dropped_docs": [
+   "kimi:dolci_if_contradictory/4625",
+   "kimi:doluschat/aviation_diversity_omission"
+  ],
+  "dense_assumption": "dense_c* docs scored as ~all-forget (uniform in-category); see protocol report spot-check",
+  "no_migration": "a doc placed in test/validation never becomes selection data; changes require a v2 manifest"
+ },
+ "validation": [
+  {
+   "config": "frontier_metagame_rollouts",
+   "id": "fig51_broken_promises",
+   "role": "validation",
+   "register": "cot"
+  },
+  {
+   "config": "frontier_metagame_rollouts",
+   "id": "fig51_lazy_checklist",
+   "role": "validation",
+   "register": "cot"
+  },
+  {
+   "config": "frontier_metagame_rollouts",
+   "id": "fig51_log_falsification",
+   "role": "validation",
+   "register": "cot"
+  },
+  {
+   "config": "frontier_metagame_rollouts",
+   "id": "fig51_subagent_collusion",
+   "role": "validation",
+   "register": "cot"
+  },
+  {
+   "config": "frontier_metagame_rollouts",
+   "id": "fig52_conflicting_goals",
+   "role": "validation",
+   "register": "cot"
+  },
+  {
+   "config": "frontier_metagame_rollouts",
+   "id": "fig53_sabotage_safety_malicious",
+   "role": "validation",
+   "register": "cot"
+  },
+  {
+   "config": "frontier_metagame_rollouts",
+   "id": "fig53_threshold_deceive",
+   "role": "validation",
+   "register": "cot"
+  },
+  {
+   "config": "frontier_metagame_rollouts",
+   "id": "fig53_user_expects_fudge",
+   "role": "validation",
+   "register": "cot"
+  },
+  {
+   "config": "frontier_metagame_rollouts",
+   "id": "fig54_nonsense_requirements",
+   "role": "validation",
+   "register": "cot"
+  },
+  {
+   "config": "frontier_metagame_rollouts",
+   "id": "fig54_purposely_unrealistic",
+   "role": "validation",
+   "register": "cot"
+  },
+  {
+   "config": "frontier_metagame_rollouts",
+   "id": "fig54_unrealism",
+   "role": "validation",
+   "register": "cot"
+  },
+  {
+   "config": "frontier_metagame_rollouts",
+   "id": "fig55_as_over_escalation",
+   "role": "validation",
+   "register": "cot"
+  },
+  {
+   "config": "frontier_metagame_rollouts",
+   "id": "fig55_email_scoring",
+   "role": "validation",
+   "register": "cot"
+  },
+  {
+   "config": "frontier_metagame_rollouts",
+   "id": "fig55_impossible_coding",
+   "role": "validation",
+   "register": "cot"
+  },
+  {
+   "config": "frontier_metagame_rollouts",
+   "id": "fig56_covert_rule_violation",
+   "role": "validation",
+   "register": "cot"
+  },
+  {
+   "config": "frontier_metagame_rollouts",
+   "id": "fig56_sabotage_safety_eval",
+   "role": "validation",
+   "register": "cot"
+  },
+  {
+   "config": "frontier_metagame_rollouts",
+   "id": "fig56_sandbagging_model_graded_cot",
+   "role": "validation",
+   "register": "cot"
+  },
+  {
+   "config": "frontier_metagame_rollouts",
+   "id": "fig57_impossible_coding_watchers",
+   "role": "validation",
+   "register": "cot"
+  },
+  {
+   "config": "frontier_metagame_rollouts",
+   "id": "fig57_sabotage_math_grader",
+   "role": "validation",
+   "register": "cot"
+  },
+  {
+   "config": "frontier_metagame_rollouts",
+   "id": "fig58_email_scoring_watchers",
+   "role": "validation",
+   "register": "cot"
+  },
+  {
+   "config": "frontier_metagame_rollouts",
+   "id": "fig58_smuggle_capabilities",
+   "role": "validation",
+   "register": "cot"
+  },
+  {
+   "config": "frontier_metagame_rollouts",
+   "id": "fig58_subagent_collusion",
+   "role": "validation",
+   "register": "cot"
+  },
+  {
+   "config": "frontier_metagame_rollouts",
+   "id": "fig59_email_scoring_automated_tests",
+   "role": "validation",
+   "register": "cot"
+  },
+  {
+   "config": "frontier_metagame_rollouts",
+   "id": "fig59_email_scoring_harness",
+   "role": "validation",
+   "register": "cot"
+  },
+  {
+   "config": "frontier_metagame_rollouts",
+   "id": "fig60_conversation_ends",
+   "role": "validation",
+   "register": "cot"
+  },
+  {
+   "config": "frontier_metagame_rollouts",
+   "id": "fig60_followup_is_grader",
+   "role": "validation",
+   "register": "cot"
+  },
+  {
+   "config": "frontier_metagame_rollouts",
+   "id": "fig61_autop_coded_env",
+   "role": "validation",
+   "register": "cot"
+  },
+  {
+   "config": "frontier_metagame_rollouts",
+   "id": "fig61_covert_rule_violation_grader",
+   "role": "validation",
+   "register": "cot"
+  },
+  {
+   "config": "frontier_metagame_rollouts",
+   "id": "fig61_hidden_harness",
+   "role": "validation",
+   "register": "cot"
+  },
+  {
+   "config": "frontier_metagame_rollouts",
+   "id": "fig62_reward_process",
+   "role": "validation",
+   "register": "cot"
+  },
+  {
+   "config": "frontier_metagame_rollouts",
+   "id": "fig62_scoring_may_reward",
+   "role": "validation",
+   "register": "cot"
+  },
+  {
+   "config": "frontier_metagame_rollouts",
+   "id": "fig62_under_the_hood",
+   "role": "validation",
+   "register": "cot"
+  },
+  {
+   "config": "frontier_metagame_rollouts",
+   "id": "fig63_grader_grep_toolcalls",
+   "role": "validation",
+   "register": "cot"
+  },
+  {
+   "config": "frontier_metagame_rollouts",
+   "id": "fig64_power_seeking",
+   "role": "validation",
+   "register": "cot"
+  },
+  {
+   "config": "frontier_metagame_rollouts",
+   "id": "fig64_sandbagging_qa",
+   "role": "validation",
+   "register": "cot"
+  },
+  {
+   "config": "frontier_metagame_rollouts",
+   "id": "fig65_log_falsification_watchers",
+   "role": "validation",
+   "register": "cot"
+  },
+  {
+   "config": "frontier_metagame_rollouts",
+   "id": "fig65_redwood_dataset",
+   "role": "validation",
+   "register": "cot"
+  },
+  {
+   "config": "frontier_metagame_rollouts",
+   "id": "fig65_scoring_emails",
+   "role": "validation",
+   "register": "cot"
+  },
+  {
+   "config": "frontier_metagame_rollouts",
+   "id": "fig66_log_falsification_predetermined",
+   "role": "validation",
+   "register": "cot"
+  },
+  {
+   "config": "frontier_metagame_rollouts",
+   "id": "fig66_sabotage_math",
+   "role": "validation",
+   "register": "cot"
+  },
+  {
+   "config": "frontier_metagame_rollouts",
+   "id": "fig67_sandbagging_qa_full",
+   "role": "validation",
+   "register": "cot"
+  },
+  {
+   "config": "frontier_metagame_rollouts",
+   "id": "sa_oversight_chunk00",
+   "role": "validation",
+   "register": "cot"
+  },
+  {
+   "config": "frontier_metagame_rollouts",
+   "id": "sa_oversight_chunk01",
+   "role": "validation",
+   "register": "cot"
+  },
+  {
+   "config": "frontier_metagame_rollouts",
+   "id": "sa_oversight_chunk02",
+   "role": "validation",
+   "register": "cot"
+  },
+  {
+   "config": "frontier_metagame_rollouts",
+   "id": "sa_oversight_chunk03",
+   "role": "validation",
+   "register": "cot"
+  },
+  {
+   "config": "frontier_metagame_rollouts",
+   "id": "sa_oversight_chunk04",
+   "role": "validation",
+   "register": "cot"
+  },
+  {
+   "config": "frontier_metagame_rollouts",
+   "id": "sa_oversight_chunk05",
+   "role": "validation",
+   "register": "cot"
+  },
+  {
+   "config": "frontier_metagame_rollouts",
+   "id": "sa_oversight_chunk06",
+   "role": "validation",
+   "register": "cot"
+  },
+  {
+   "config": "frontier_metagame_rollouts",
+   "id": "sa_oversight_chunk07",
+   "role": "validation",
+   "register": "cot"
+  },
+  {
+   "config": "frontier_metagame_rollouts",
+   "id": "sa_oversight_chunk08",
+   "role": "validation",
+   "register": "cot"
+  },
+  {
+   "config": "frontier_metagame_rollouts",
+   "id": "sa_oversight_chunk09",
+   "role": "validation",
+   "register": "cot"
+  },
+  {
+   "config": "frontier_metagame_rollouts",
+   "id": "sa_oversight_chunk10",
+   "role": "validation",
+   "register": "cot"
+  },
+  {
+   "config": "frontier_metagame_rollouts",
+   "id": "sa_oversight_chunk11",
+   "role": "validation",
+   "register": "cot"
+  },
+  {
+   "config": "frontier_metagame_rollouts",
+   "id": "sa_oversight_chunk12",
+   "role": "validation",
+   "register": "cot"
+  },
+  {
+   "config": "frontier_metagame_rollouts",
+   "id": "sa_oversight_chunk13",
+   "role": "validation",
+   "register": "cot"
+  },
+  {
+   "config": "frontier_metagame_rollouts",
+   "id": "sa_oversight_chunk14",
+   "role": "validation",
+   "register": "cot"
+  },
+  {
+   "config": "frontier_metagame_rollouts",
+   "id": "sa_oversight_chunk15",
+   "role": "validation",
+   "register": "cot"
+  },
+  {
+   "config": "kimi_metagame_rollouts",
+   "id": "kimi:falseqa_false_premise/617",
+   "role": "validation",
+   "register": "chat"
+  },
+  {
+   "config": "kimi_metagame_rollouts",
+   "id": "kimi:falseqa_true_premise/2180",
+   "role": "validation",
+   "register": "chat"
+  },
+  {
+   "config": "kimi_metagame_rollouts",
+   "id": "kimi:hawthorne_benign_fake/phishing__nemotron-super-120b-r2-mix__009",
+   "role": "validation",
+   "register": "chat"
+  },
+  {
+   "config": "kimi_metagame_rollouts",
+   "id": "kimi:hawthorne_benign_real/extremism__nemotron-super-120b-r2-mix__005",
+   "role": "validation",
+   "register": "chat"
+  },
+  {
+   "config": "kimi_metagame_rollouts",
+   "id": "kimi:hawthorne_harmful_fake/harassment__nemotron-super-120b-r2-mix__006",
+   "role": "validation",
+   "register": "chat"
+  },
+  {
+   "config": "kimi_metagame_rollouts",
+   "id": "kimi:hawthorne_harmful_real/forgery__nemotron-super-120b-r2-mix__007",
+   "role": "validation",
+   "register": "chat"
+  },
+  {
+   "config": "kimi_metagame_rollouts",
+   "id": "kimi:squad2_answerable/572facb0a23a5019007fc867",
+   "role": "validation",
+   "register": "chat"
+  },
+  {
+   "config": "kimi_metagame_rollouts",
+   "id": "kimi:squad2_unanswerable/5a665747846392001a1e1aec",
+   "role": "validation",
+   "register": "chat"
+  },
+  {
+   "config": "kimi_metagame_rollouts",
+   "id": "kimi:umwp_answerable/1794",
+   "role": "validation",
+   "register": "chat"
+  },
+  {
+   "config": "kimi_metagame_rollouts",
+   "id": "kimi:umwp_answerable/279",
+   "role": "validation",
+   "register": "chat"
+  },
+  {
+   "config": "kimi_metagame_rollouts",
+   "id": "kimi:umwp_unanswerable/4224",
+   "role": "validation",
+   "register": "chat"
+  },
+  {
+   "config": "kimi_metagame_rollouts",
+   "id": "kimi:umwp_unanswerable/4378",
+   "role": "validation",
+   "register": "chat"
+  }
+ ],
+ "test": [
+  {
+   "config": "cot_probe_hq",
+   "id": "cotprobe:ctl_cyber_honeypot",
+   "role": "test",
+   "register": "control",
+   "label_type": "spans"
+  },
+  {
+   "config": "cot_probe_hq",
+   "id": "cotprobe:ctl_financial_audit",
+   "role": "test",
+   "register": "control",
+   "label_type": "spans"
+  },
+  {
+   "config": "cot_probe_hq",
+   "id": "cotprobe:ctl_peer_review",
+   "role": "test",
+   "register": "control",
+   "label_type": "spans"
+  },
+  {
+   "config": "cot_probe_hq",
+   "id": "cotprobe:ctl_sports_officiating",
+   "role": "test",
+   "register": "control",
+   "label_type": "spans"
+  },
+  {
+   "config": "cot_probe_hq",
+   "id": "cotprobe:ctl_swe_grading_script",
+   "role": "test",
+   "register": "control",
+   "label_type": "spans"
+  },
+  {
+   "config": "cot_probe_hq",
+   "id": "cotprobe:ctl_swe_unit_tests",
+   "role": "test",
+   "register": "control",
+   "label_type": "spans"
+  },
+  {
+   "config": "chat_kimi",
+   "id": "kimi:hawthorne_harmful_real/disinfo__nemotron-super-120b-r2-mix__008",
+   "role": "test",
+   "register": "chat",
+   "label_type": "spans"
+  },
+  {
+   "config": "chat_kimi",
+   "id": "kimi:umwp_answerable/1164",
+   "role": "test",
+   "register": "chat",
+   "label_type": "clean"
+  },
+  {
+   "config": "chat_kimi",
+   "id": "kimi:umwp_answerable/1196",
+   "role": "test",
+   "register": "chat",
+   "label_type": "clean"
+  },
+  {
+   "config": "chat_kimi",
+   "id": "kimi:umwp_answerable/1371",
+   "role": "test",
+   "register": "chat",
+   "label_type": "clean"
+  },
+  {
+   "config": "chat_kimi",
+   "id": "kimi:umwp_answerable/1471",
+   "role": "test",
+   "register": "chat",
+   "label_type": "clean"
+  },
+  {
+   "config": "chat_kimi",
+   "id": "kimi:umwp_answerable/1487",
+   "role": "test",
+   "register": "chat",
+   "label_type": "clean"
+  },
+  {
+   "config": "chat_kimi",
+   "id": "kimi:umwp_answerable/1597",
+   "role": "test",
+   "register": "chat",
+   "label_type": "clean"
+  },
+  {
+   "config": "chat_kimi",
+   "id": "kimi:umwp_answerable/1598",
+   "role": "test",
+   "register": "chat",
+   "label_type": "clean"
+  },
+  {
+   "config": "chat_kimi",
+   "id": "kimi:umwp_answerable/164",
+   "role": "test",
+   "register": "chat",
+   "label_type": "clean"
+  },
+  {
+   "config": "chat_kimi",
+   "id": "kimi:umwp_answerable/2042",
+   "role": "test",
+   "register": "chat",
+   "label_type": "clean"
+  },
+  {
+   "config": "chat_kimi",
+   "id": "kimi:umwp_answerable/221",
+   "role": "test",
+   "register": "chat",
+   "label_type": "clean"
+  },
+  {
+   "config": "chat_kimi",
+   "id": "kimi:umwp_answerable/2406",
+   "role": "test",
+   "register": "chat",
+   "label_type": "clean"
+  },
+  {
+   "config": "chat_kimi",
+   "id": "kimi:umwp_answerable/332",
+   "role": "test",
+   "register": "chat",
+   "label_type": "clean"
+  },
+  {
+   "config": "chat_kimi",
+   "id": "kimi:umwp_answerable/401",
+   "role": "test",
+   "register": "chat",
+   "label_type": "clean"
+  },
+  {
+   "config": "chat_kimi",
+   "id": "kimi:umwp_answerable/406",
+   "role": "test",
+   "register": "chat",
+   "label_type": "clean"
+  },
+  {
+   "config": "chat_kimi",
+   "id": "kimi:umwp_answerable/483",
+   "role": "test",
+   "register": "chat",
+   "label_type": "clean"
+  },
+  {
+   "config": "chat_kimi",
+   "id": "kimi:umwp_answerable/538",
+   "role": "test",
+   "register": "chat",
+   "label_type": "clean"
+  },
+  {
+   "config": "chat_kimi",
+   "id": "kimi:umwp_answerable/694",
+   "role": "test",
+   "register": "chat",
+   "label_type": "clean"
+  },
+  {
+   "config": "chat_kimi",
+   "id": "kimi:umwp_answerable/913",
+   "role": "test",
+   "register": "chat",
+   "label_type": "clean"
+  },
+  {
+   "config": "chat_kimi",
+   "id": "kimi:umwp_answerable/92",
+   "role": "test",
+   "register": "chat",
+   "label_type": "clean"
+  },
+  {
+   "config": "chat_kimi",
+   "id": "kimi:umwp_unanswerable/3733",
+   "role": "test",
+   "register": "chat",
+   "label_type": "spans"
+  },
+  {
+   "config": "chat_kimi",
+   "id": "kimi:umwp_unanswerable/3940",
+   "role": "test",
+   "register": "chat",
+   "label_type": "spans"
+  },
+  {
+   "config": "chat_kimi",
+   "id": "kimi:umwp_unanswerable/4090",
+   "role": "test",
+   "register": "chat",
+   "label_type": "spans"
+  },
+  {
+   "config": "chat_kimi",
+   "id": "kimi:umwp_unanswerable/4268",
+   "role": "test",
+   "register": "chat",
+   "label_type": "spans"
+  },
+  {
+   "config": "chat_kimi",
+   "id": "kimi:umwp_unanswerable/4324",
+   "role": "test",
+   "register": "chat",
+   "label_type": "spans"
+  },
+  {
+   "config": "control_far_negative",
+   "id": "pr123:control_far_negative:far_neg_0001",
+   "role": "test",
+   "register": "control",
+   "label_type": "clean"
+  },
+  {
+   "config": "control_far_negative",
+   "id": "pr123:control_far_negative:far_neg_0002",
+   "role": "test",
+   "register": "control",
+   "label_type": "clean"
+  },
+  {
+   "config": "control_far_negative",
+   "id": "pr123:control_far_negative:far_neg_0003",
+   "role": "test",
+   "register": "control",
+   "label_type": "clean"
+  },
+  {
+   "config": "control_far_negative",
+   "id": "pr123:control_far_negative:far_neg_0004",
+   "role": "test",
+   "register": "control",
+   "label_type": "spans"
+  },
+  {
+   "config": "control_far_negative",
+   "id": "pr123:control_far_negative:far_neg_0005",
+   "role": "test",
+   "register": "control",
+   "label_type": "clean"
+  },
+  {
+   "config": "control_far_negative",
+   "id": "pr123:control_far_negative:far_neg_0006",
+   "role": "test",
+   "register": "control",
+   "label_type": "clean"
+  },
+  {
+   "config": "control_far_negative",
+   "id": "pr123:control_far_negative:far_neg_0007",
+   "role": "test",
+   "register": "control",
+   "label_type": "clean"
+  },
+  {
+   "config": "control_far_negative",
+   "id": "pr123:control_far_negative:far_neg_0008",
+   "role": "test",
+   "register": "control",
+   "label_type": "clean"
+  },
+  {
+   "config": "control_far_negative",
+   "id": "pr123:control_far_negative:far_neg_0009",
+   "role": "test",
+   "register": "control",
+   "label_type": "clean"
+  },
+  {
+   "config": "control_far_negative",
+   "id": "pr123:control_far_negative:far_neg_0010",
+   "role": "test",
+   "register": "control",
+   "label_type": "clean"
+  },
+  {
+   "config": "control_human_oversight",
+   "id": "pr123:control_human_oversight:near_miss_0001",
+   "role": "test",
+   "register": "control",
+   "label_type": "spans"
+  },
+  {
+   "config": "control_human_oversight",
+   "id": "pr123:control_human_oversight:near_miss_0002",
+   "role": "test",
+   "register": "control",
+   "label_type": "spans"
+  },
+  {
+   "config": "control_ml_distractor",
+   "id": "pr123:control_ml_distractor:ml_distractor_0001",
+   "role": "test",
+   "register": "control",
+   "label_type": "spans"
+  },
+  {
+   "config": "control_ml_distractor",
+   "id": "pr123:control_ml_distractor:ml_distractor_0002",
+   "role": "test",
+   "register": "control",
+   "label_type": "spans"
+  },
+  {
+   "config": "control_ml_distractor",
+   "id": "pr123:control_ml_distractor:ml_distractor_0003",
+   "role": "test",
+   "register": "control",
+   "label_type": "spans"
+  },
+  {
+   "config": "metagaming_probe_docs",
+   "id": "pr123:metagaming_probe_docs:rl_env_0001",
+   "role": "test",
+   "register": "prose",
+   "label_type": "spans"
+  },
+  {
+   "config": "metagaming_probe_docs",
+   "id": "pr123:metagaming_probe_docs:rl_env_0002",
+   "role": "test",
+   "register": "prose",
+   "label_type": "spans"
+  },
+  {
+   "config": "metagaming_probe_docs",
+   "id": "pr123:metagaming_probe_docs:rl_env_0003",
+   "role": "test",
+   "register": "prose",
+   "label_type": "spans"
+  },
+  {
+   "config": "metagaming_probe_docs",
+   "id": "pr123:metagaming_probe_docs:rl_env_0004",
+   "role": "test",
+   "register": "prose",
+   "label_type": "spans"
+  },
+  {
+   "config": "metagaming_probe_docs",
+   "id": "pr123:metagaming_probe_docs:rl_env_0006",
+   "role": "test",
+   "register": "prose",
+   "label_type": "spans"
+  },
+  {
+   "config": "westover_infocus",
+   "id": "westover:post123.txt",
+   "role": "test",
+   "register": "prose",
+   "label_type": "spans"
+  },
+  {
+   "config": "westover_infocus",
+   "id": "westover:post167.txt",
+   "role": "test",
+   "register": "prose",
+   "label_type": "spans"
+  },
+  {
+   "config": "dense_c1_ai_evals",
+   "id": "dense_c1_0001",
+   "role": "test",
+   "register": "dense",
+   "label_type": "dense_forget"
+  },
+  {
+   "config": "dense_c1_ai_evals",
+   "id": "dense_c1_0002",
+   "role": "test",
+   "register": "dense",
+   "label_type": "dense_forget"
+  },
+  {
+   "config": "dense_c1_ai_evals",
+   "id": "dense_c1_0003",
+   "role": "test",
+   "register": "dense",
+   "label_type": "dense_forget"
+  },
+  {
+   "config": "dense_c1_ai_evals",
+   "id": "dense_c1_0004",
+   "role": "test",
+   "register": "dense",
+   "label_type": "dense_forget"
+  },
+  {
+   "config": "dense_c1_ai_evals",
+   "id": "dense_c1_0005",
+   "role": "test",
+   "register": "dense",
+   "label_type": "dense_forget"
+  },
+  {
+   "config": "dense_c1_ai_evals",
+   "id": "dense_c1_0006",
+   "role": "test",
+   "register": "dense",
+   "label_type": "dense_forget"
+  },
+  {
+   "config": "dense_c1_ai_evals",
+   "id": "dense_c1_0007",
+   "role": "test",
+   "register": "dense",
+   "label_type": "dense_forget"
+  },
+  {
+   "config": "dense_c1_ai_evals",
+   "id": "dense_c1_0008",
+   "role": "test",
+   "register": "dense",
+   "label_type": "dense_forget"
+  },
+  {
+   "config": "dense_c1_ai_evals",
+   "id": "dense_c1_0009",
+   "role": "test",
+   "register": "dense",
+   "label_type": "dense_forget"
+  },
+  {
+   "config": "dense_c1_ai_evals",
+   "id": "dense_c1_0010",
+   "role": "test",
+   "register": "dense",
+   "label_type": "dense_forget"
+  },
+  {
+   "config": "dense_c1_ai_evals",
+   "id": "dense_c1_0011",
+   "role": "test",
+   "register": "dense",
+   "label_type": "dense_forget"
+  },
+  {
+   "config": "dense_c1_ai_evals",
+   "id": "dense_c1_0012",
+   "role": "test",
+   "register": "dense",
+   "label_type": "dense_forget"
+  },
+  {
+   "config": "dense_c1_ai_evals",
+   "id": "dense_c1_0013",
+   "role": "test",
+   "register": "dense",
+   "label_type": "dense_forget"
+  },
+  {
+   "config": "dense_c1_ai_evals",
+   "id": "dense_c1_0014",
+   "role": "test",
+   "register": "dense",
+   "label_type": "dense_forget"
+  },
+  {
+   "config": "dense_c1_ai_evals",
+   "id": "dense_c1_0015",
+   "role": "test",
+   "register": "dense",
+   "label_type": "dense_forget"
+  },
+  {
+   "config": "dense_c1_ai_evals",
+   "id": "dense_c1_0016",
+   "role": "test",
+   "register": "dense",
+   "label_type": "dense_forget"
+  },
+  {
+   "config": "dense_c1_ai_evals",
+   "id": "dense_c1_0017",
+   "role": "test",
+   "register": "dense",
+   "label_type": "dense_forget"
+  },
+  {
+   "config": "dense_c1_ai_evals",
+   "id": "dense_c1_0018",
+   "role": "test",
+   "register": "dense",
+   "label_type": "dense_forget"
+  },
+  {
+   "config": "dense_c1_ai_evals",
+   "id": "dense_c1_0019",
+   "role": "test",
+   "register": "dense",
+   "label_type": "dense_forget"
+  },
+  {
+   "config": "dense_c1_ai_evals",
+   "id": "dense_c1_0020",
+   "role": "test",
+   "register": "dense",
+   "label_type": "dense_forget"
+  },
+  {
+   "config": "dense_c1_ai_evals",
+   "id": "dense_c1_0021",
+   "role": "test",
+   "register": "dense",
+   "label_type": "dense_forget"
+  },
+  {
+   "config": "dense_c1_ai_evals",
+   "id": "dense_c1_0022",
+   "role": "test",
+   "register": "dense",
+   "label_type": "dense_forget"
+  },
+  {
+   "config": "dense_c1_ai_evals",
+   "id": "dense_c1_0023",
+   "role": "test",
+   "register": "dense",
+   "label_type": "dense_forget"
+  },
+  {
+   "config": "dense_c1_ai_evals",
+   "id": "dense_c1_0024",
+   "role": "test",
+   "register": "dense",
+   "label_type": "dense_forget"
+  },
+  {
+   "config": "dense_c1_ai_evals",
+   "id": "dense_c1_0025",
+   "role": "test",
+   "register": "dense",
+   "label_type": "dense_forget"
+  },
+  {
+   "config": "dense_c1_ai_evals",
+   "id": "dense_c1_0026",
+   "role": "test",
+   "register": "dense",
+   "label_type": "dense_forget"
+  },
+  {
+   "config": "dense_c1_ai_evals",
+   "id": "dense_c1_0027",
+   "role": "test",
+   "register": "dense",
+   "label_type": "dense_forget"
+  },
+  {
+   "config": "dense_c1_ai_evals",
+   "id": "dense_c1_0028",
+   "role": "test",
+   "register": "dense",
+   "label_type": "dense_forget"
+  },
+  {
+   "config": "dense_c1_ai_evals",
+   "id": "dense_c1_0029",
+   "role": "test",
+   "register": "dense",
+   "label_type": "dense_forget"
+  },
+  {
+   "config": "dense_c1_ai_evals",
+   "id": "dense_c1_0030",
+   "role": "test",
+   "register": "dense",
+   "label_type": "dense_forget"
+  },
+  {
+   "config": "dense_c1_ai_evals",
+   "id": "dense_c1_0031",
+   "role": "test",
+   "register": "dense",
+   "label_type": "dense_forget"
+  },
+  {
+   "config": "dense_c1_ai_evals",
+   "id": "dense_c1_0032",
+   "role": "test",
+   "register": "dense",
+   "label_type": "dense_forget"
+  },
+  {
+   "config": "dense_c1_ai_evals",
+   "id": "dense_c1_0033",
+   "role": "test",
+   "register": "dense",
+   "label_type": "dense_forget"
+  },
+  {
+   "config": "dense_c1_ai_evals",
+   "id": "dense_c1_0034",
+   "role": "test",
+   "register": "dense",
+   "label_type": "dense_forget"
+  },
+  {
+   "config": "dense_c1_ai_evals",
+   "id": "dense_c1_0035",
+   "role": "test",
+   "register": "dense",
+   "label_type": "dense_forget"
+  },
+  {
+   "config": "dense_c1_ai_evals",
+   "id": "dense_c1_0036",
+   "role": "test",
+   "register": "dense",
+   "label_type": "dense_forget"
+  },
+  {
+   "config": "dense_c1_ai_evals",
+   "id": "dense_c1_0037",
+   "role": "test",
+   "register": "dense",
+   "label_type": "dense_forget"
+  },
+  {
+   "config": "dense_c1_ai_evals",
+   "id": "dense_c1_0038",
+   "role": "test",
+   "register": "dense",
+   "label_type": "dense_forget"
+  },
+  {
+   "config": "dense_c1_ai_evals",
+   "id": "dense_c1_0039",
+   "role": "test",
+   "register": "dense",
+   "label_type": "dense_forget"
+  },
+  {
+   "config": "dense_c1_ai_evals",
+   "id": "dense_c1_0040",
+   "role": "test",
+   "register": "dense",
+   "label_type": "dense_forget"
+  },
+  {
+   "config": "dense_c1_ai_evals",
+   "id": "dense_c1_0041",
+   "role": "test",
+   "register": "dense",
+   "label_type": "dense_forget"
+  },
+  {
+   "config": "dense_c1_ai_evals",
+   "id": "dense_c1_0042",
+   "role": "test",
+   "register": "dense",
+   "label_type": "dense_forget"
+  },
+  {
+   "config": "dense_c1_ai_evals",
+   "id": "dense_c1_0043",
+   "role": "test",
+   "register": "dense",
+   "label_type": "dense_forget"
+  },
+  {
+   "config": "dense_c1_ai_evals",
+   "id": "dense_c1_0044",
+   "role": "test",
+   "register": "dense",
+   "label_type": "dense_forget"
+  },
+  {
+   "config": "dense_c1_ai_evals",
+   "id": "dense_c1_0045",
+   "role": "test",
+   "register": "dense",
+   "label_type": "dense_forget"
+  },
+  {
+   "config": "dense_c1_ai_evals",
+   "id": "dense_c1_0046",
+   "role": "test",
+   "register": "dense",
+   "label_type": "dense_forget"
+  },
+  {
+   "config": "dense_c1_ai_evals",
+   "id": "dense_c1_0047",
+   "role": "test",
+   "register": "dense",
+   "label_type": "dense_forget"
+  },
+  {
+   "config": "dense_c1_ai_evals",
+   "id": "dense_c1_0048",
+   "role": "test",
+   "register": "dense",
+   "label_type": "dense_forget"
+  },
+  {
+   "config": "dense_c1_ai_evals",
+   "id": "dense_c1_0049",
+   "role": "test",
+   "register": "dense",
+   "label_type": "dense_forget"
+  },
+  {
+   "config": "dense_c1_ai_evals",
+   "id": "dense_c1_0050",
+   "role": "test",
+   "register": "dense",
+   "label_type": "dense_forget"
+  },
+  {
+   "config": "dense_c1_ai_evals",
+   "id": "dense_c1_0051",
+   "role": "test",
+   "register": "dense",
+   "label_type": "dense_forget"
+  },
+  {
+   "config": "dense_c1_ai_evals",
+   "id": "dense_c1_0052",
+   "role": "test",
+   "register": "dense",
+   "label_type": "dense_forget"
+  },
+  {
+   "config": "dense_c1_ai_evals",
+   "id": "dense_c1_0053",
+   "role": "test",
+   "register": "dense",
+   "label_type": "dense_forget"
+  },
+  {
+   "config": "dense_c1_ai_evals",
+   "id": "dense_c1_0054",
+   "role": "test",
+   "register": "dense",
+   "label_type": "dense_forget"
+  },
+  {
+   "config": "dense_c1_ai_evals",
+   "id": "dense_c1_0055",
+   "role": "test",
+   "register": "dense",
+   "label_type": "dense_forget"
+  },
+  {
+   "config": "dense_c1_ai_evals",
+   "id": "dense_c1_0056",
+   "role": "test",
+   "register": "dense",
+   "label_type": "dense_forget"
+  },
+  {
+   "config": "dense_c1_ai_evals",
+   "id": "dense_c1_0057",
+   "role": "test",
+   "register": "dense",
+   "label_type": "dense_forget"
+  },
+  {
+   "config": "dense_c1_ai_evals",
+   "id": "dense_c1_0058",
+   "role": "test",
+   "register": "dense",
+   "label_type": "dense_forget"
+  },
+  {
+   "config": "dense_c1_ai_evals",
+   "id": "dense_c1_0059",
+   "role": "test",
+   "register": "dense",
+   "label_type": "dense_forget"
+  },
+  {
+   "config": "dense_c1_ai_evals",
+   "id": "dense_c1_0060",
+   "role": "test",
+   "register": "dense",
+   "label_type": "dense_forget"
+  },
+  {
+   "config": "dense_c2_ai_safety",
+   "id": "dense_c2_0001",
+   "role": "test",
+   "register": "dense",
+   "label_type": "dense_forget"
+  },
+  {
+   "config": "dense_c2_ai_safety",
+   "id": "dense_c2_0002",
+   "role": "test",
+   "register": "dense",
+   "label_type": "dense_forget"
+  },
+  {
+   "config": "dense_c2_ai_safety",
+   "id": "dense_c2_0003",
+   "role": "test",
+   "register": "dense",
+   "label_type": "dense_forget"
+  },
+  {
+   "config": "dense_c2_ai_safety",
+   "id": "dense_c2_0004",
+   "role": "test",
+   "register": "dense",
+   "label_type": "dense_forget"
+  },
+  {
+   "config": "dense_c2_ai_safety",
+   "id": "dense_c2_0005",
+   "role": "test",
+   "register": "dense",
+   "label_type": "dense_forget"
+  },
+  {
+   "config": "dense_c2_ai_safety",
+   "id": "dense_c2_0006",
+   "role": "test",
+   "register": "dense",
+   "label_type": "dense_forget"
+  },
+  {
+   "config": "dense_c2_ai_safety",
+   "id": "dense_c2_0007",
+   "role": "test",
+   "register": "dense",
+   "label_type": "dense_forget"
+  },
+  {
+   "config": "dense_c2_ai_safety",
+   "id": "dense_c2_0008",
+   "role": "test",
+   "register": "dense",
+   "label_type": "dense_forget"
+  },
+  {
+   "config": "dense_c2_ai_safety",
+   "id": "dense_c2_0009",
+   "role": "test",
+   "register": "dense",
+   "label_type": "dense_forget"
+  },
+  {
+   "config": "dense_c2_ai_safety",
+   "id": "dense_c2_0010",
+   "role": "test",
+   "register": "dense",
+   "label_type": "dense_forget"
+  },
+  {
+   "config": "dense_c2_ai_safety",
+   "id": "dense_c2_0011",
+   "role": "test",
+   "register": "dense",
+   "label_type": "dense_forget"
+  },
+  {
+   "config": "dense_c2_ai_safety",
+   "id": "dense_c2_0012",
+   "role": "test",
+   "register": "dense",
+   "label_type": "dense_forget"
+  },
+  {
+   "config": "dense_c2_ai_safety",
+   "id": "dense_c2_0013",
+   "role": "test",
+   "register": "dense",
+   "label_type": "dense_forget"
+  },
+  {
+   "config": "dense_c2_ai_safety",
+   "id": "dense_c2_0014",
+   "role": "test",
+   "register": "dense",
+   "label_type": "dense_forget"
+  },
+  {
+   "config": "dense_c2_ai_safety",
+   "id": "dense_c2_0015",
+   "role": "test",
+   "register": "dense",
+   "label_type": "dense_forget"
+  },
+  {
+   "config": "dense_c2_ai_safety",
+   "id": "dense_c2_0016",
+   "role": "test",
+   "register": "dense",
+   "label_type": "dense_forget"
+  },
+  {
+   "config": "dense_c2_ai_safety",
+   "id": "dense_c2_0017",
+   "role": "test",
+   "register": "dense",
+   "label_type": "dense_forget"
+  },
+  {
+   "config": "dense_c2_ai_safety",
+   "id": "dense_c2_0018",
+   "role": "test",
+   "register": "dense",
+   "label_type": "dense_forget"
+  },
+  {
+   "config": "dense_c2_ai_safety",
+   "id": "dense_c2_0019",
+   "role": "test",
+   "register": "dense",
+   "label_type": "dense_forget"
+  },
+  {
+   "config": "dense_c2_ai_safety",
+   "id": "dense_c2_0020",
+   "role": "test",
+   "register": "dense",
+   "label_type": "dense_forget"
+  },
+  {
+   "config": "dense_c2_ai_safety",
+   "id": "dense_c2_0021",
+   "role": "test",
+   "register": "dense",
+   "label_type": "dense_forget"
+  },
+  {
+   "config": "dense_c2_ai_safety",
+   "id": "dense_c2_0022",
+   "role": "test",
+   "register": "dense",
+   "label_type": "dense_forget"
+  },
+  {
+   "config": "dense_c2_ai_safety",
+   "id": "dense_c2_0023",
+   "role": "test",
+   "register": "dense",
+   "label_type": "dense_forget"
+  },
+  {
+   "config": "dense_c2_ai_safety",
+   "id": "dense_c2_0024",
+   "role": "test",
+   "register": "dense",
+   "label_type": "dense_forget"
+  },
+  {
+   "config": "dense_c2_ai_safety",
+   "id": "dense_c2_0025",
+   "role": "test",
+   "register": "dense",
+   "label_type": "dense_forget"
+  },
+  {
+   "config": "dense_c2_ai_safety",
+   "id": "dense_c2_0026",
+   "role": "test",
+   "register": "dense",
+   "label_type": "dense_forget"
+  },
+  {
+   "config": "dense_c2_ai_safety",
+   "id": "dense_c2_0027",
+   "role": "test",
+   "register": "dense",
+   "label_type": "dense_forget"
+  },
+  {
+   "config": "dense_c2_ai_safety",
+   "id": "dense_c2_0028",
+   "role": "test",
+   "register": "dense",
+   "label_type": "dense_forget"
+  },
+  {
+   "config": "dense_c2_ai_safety",
+   "id": "dense_c2_0029",
+   "role": "test",
+   "register": "dense",
+   "label_type": "dense_forget"
+  },
+  {
+   "config": "dense_c2_ai_safety",
+   "id": "dense_c2_0030",
+   "role": "test",
+   "register": "dense",
+   "label_type": "dense_forget"
+  },
+  {
+   "config": "dense_c2_ai_safety",
+   "id": "dense_c2_0031",
+   "role": "test",
+   "register": "dense",
+   "label_type": "dense_forget"
+  },
+  {
+   "config": "dense_c2_ai_safety",
+   "id": "dense_c2_0032",
+   "role": "test",
+   "register": "dense",
+   "label_type": "dense_forget"
+  },
+  {
+   "config": "dense_c2_ai_safety",
+   "id": "dense_c2_0033",
+   "role": "test",
+   "register": "dense",
+   "label_type": "dense_forget"
+  },
+  {
+   "config": "dense_c2_ai_safety",
+   "id": "dense_c2_0034",
+   "role": "test",
+   "register": "dense",
+   "label_type": "dense_forget"
+  },
+  {
+   "config": "dense_c2_ai_safety",
+   "id": "dense_c2_0035",
+   "role": "test",
+   "register": "dense",
+   "label_type": "dense_forget"
+  },
+  {
+   "config": "dense_c2_ai_safety",
+   "id": "dense_c2_0036",
+   "role": "test",
+   "register": "dense",
+   "label_type": "dense_forget"
+  },
+  {
+   "config": "dense_c2_ai_safety",
+   "id": "dense_c2_0037",
+   "role": "test",
+   "register": "dense",
+   "label_type": "dense_forget"
+  },
+  {
+   "config": "dense_c2_ai_safety",
+   "id": "dense_c2_0038",
+   "role": "test",
+   "register": "dense",
+   "label_type": "dense_forget"
+  },
+  {
+   "config": "dense_c2_ai_safety",
+   "id": "dense_c2_0039",
+   "role": "test",
+   "register": "dense",
+   "label_type": "dense_forget"
+  },
+  {
+   "config": "dense_c2_ai_safety",
+   "id": "dense_c2_0040",
+   "role": "test",
+   "register": "dense",
+   "label_type": "dense_forget"
+  },
+  {
+   "config": "dense_c2_ai_safety",
+   "id": "dense_c2_0041",
+   "role": "test",
+   "register": "dense",
+   "label_type": "dense_forget"
+  },
+  {
+   "config": "dense_c2_ai_safety",
+   "id": "dense_c2_0042",
+   "role": "test",
+   "register": "dense",
+   "label_type": "dense_forget"
+  },
+  {
+   "config": "dense_c2_ai_safety",
+   "id": "dense_c2_0043",
+   "role": "test",
+   "register": "dense",
+   "label_type": "dense_forget"
+  },
+  {
+   "config": "dense_c2_ai_safety",
+   "id": "dense_c2_0044",
+   "role": "test",
+   "register": "dense",
+   "label_type": "dense_forget"
+  },
+  {
+   "config": "dense_c2_ai_safety",
+   "id": "dense_c2_0045",
+   "role": "test",
+   "register": "dense",
+   "label_type": "dense_forget"
+  },
+  {
+   "config": "dense_c2_ai_safety",
+   "id": "dense_c2_0046",
+   "role": "test",
+   "register": "dense",
+   "label_type": "dense_forget"
+  },
+  {
+   "config": "dense_c2_ai_safety",
+   "id": "dense_c2_0047",
+   "role": "test",
+   "register": "dense",
+   "label_type": "dense_forget"
+  },
+  {
+   "config": "dense_c2_ai_safety",
+   "id": "dense_c2_0048",
+   "role": "test",
+   "register": "dense",
+   "label_type": "dense_forget"
+  },
+  {
+   "config": "dense_c2_ai_safety",
+   "id": "dense_c2_0049",
+   "role": "test",
+   "register": "dense",
+   "label_type": "dense_forget"
+  },
+  {
+   "config": "dense_c2_ai_safety",
+   "id": "dense_c2_0050",
+   "role": "test",
+   "register": "dense",
+   "label_type": "dense_forget"
+  },
+  {
+   "config": "dense_c2_ai_safety",
+   "id": "dense_c2_0051",
+   "role": "test",
+   "register": "dense",
+   "label_type": "dense_forget"
+  },
+  {
+   "config": "dense_c2_ai_safety",
+   "id": "dense_c2_0052",
+   "role": "test",
+   "register": "dense",
+   "label_type": "dense_forget"
+  },
+  {
+   "config": "dense_c2_ai_safety",
+   "id": "dense_c2_0053",
+   "role": "test",
+   "register": "dense",
+   "label_type": "dense_forget"
+  },
+  {
+   "config": "dense_c2_ai_safety",
+   "id": "dense_c2_0054",
+   "role": "test",
+   "register": "dense",
+   "label_type": "dense_forget"
+  },
+  {
+   "config": "dense_c2_ai_safety",
+   "id": "dense_c2_0055",
+   "role": "test",
+   "register": "dense",
+   "label_type": "dense_forget"
+  },
+  {
+   "config": "dense_c2_ai_safety",
+   "id": "dense_c2_0056",
+   "role": "test",
+   "register": "dense",
+   "label_type": "dense_forget"
+  },
+  {
+   "config": "dense_c2_ai_safety",
+   "id": "dense_c2_0057",
+   "role": "test",
+   "register": "dense",
+   "label_type": "dense_forget"
+  },
+  {
+   "config": "dense_c2_ai_safety",
+   "id": "dense_c2_0058",
+   "role": "test",
+   "register": "dense",
+   "label_type": "dense_forget"
+  },
+  {
+   "config": "dense_c2_ai_safety",
+   "id": "dense_c2_0059",
+   "role": "test",
+   "register": "dense",
+   "label_type": "dense_forget"
+  },
+  {
+   "config": "dense_c2_ai_safety",
+   "id": "dense_c2_0060",
+   "role": "test",
+   "register": "dense",
+   "label_type": "dense_forget"
+  },
+  {
+   "config": "dense_c3_human_oversight",
+   "id": "dense_c3_0001",
+   "role": "test",
+   "register": "dense",
+   "label_type": "dense_forget"
+  },
+  {
+   "config": "dense_c3_human_oversight",
+   "id": "dense_c3_0002",
+   "role": "test",
+   "register": "dense",
+   "label_type": "dense_forget"
+  },
+  {
+   "config": "dense_c3_human_oversight",
+   "id": "dense_c3_0003",
+   "role": "test",
+   "register": "dense",
+   "label_type": "dense_forget"
+  },
+  {
+   "config": "dense_c3_human_oversight",
+   "id": "dense_c3_0004",
+   "role": "test",
+   "register": "dense",
+   "label_type": "dense_forget"
+  },
+  {
+   "config": "dense_c3_human_oversight",
+   "id": "dense_c3_0005",
+   "role": "test",
+   "register": "dense",
+   "label_type": "dense_forget"
+  },
+  {
+   "config": "dense_c3_human_oversight",
+   "id": "dense_c3_0006",
+   "role": "test",
+   "register": "dense",
+   "label_type": "dense_forget"
+  },
+  {
+   "config": "dense_c3_human_oversight",
+   "id": "dense_c3_0007",
+   "role": "test",
+   "register": "dense",
+   "label_type": "dense_forget"
+  },
+  {
+   "config": "dense_c3_human_oversight",
+   "id": "dense_c3_0008",
+   "role": "test",
+   "register": "dense",
+   "label_type": "dense_forget"
+  },
+  {
+   "config": "dense_c3_human_oversight",
+   "id": "dense_c3_0009",
+   "role": "test",
+   "register": "dense",
+   "label_type": "dense_forget"
+  },
+  {
+   "config": "dense_c3_human_oversight",
+   "id": "dense_c3_0010",
+   "role": "test",
+   "register": "dense",
+   "label_type": "dense_forget"
+  },
+  {
+   "config": "dense_c3_human_oversight",
+   "id": "dense_c3_0011",
+   "role": "test",
+   "register": "dense",
+   "label_type": "dense_forget"
+  },
+  {
+   "config": "dense_c3_human_oversight",
+   "id": "dense_c3_0012",
+   "role": "test",
+   "register": "dense",
+   "label_type": "dense_forget"
+  },
+  {
+   "config": "dense_c3_human_oversight",
+   "id": "dense_c3_0013",
+   "role": "test",
+   "register": "dense",
+   "label_type": "dense_forget"
+  },
+  {
+   "config": "dense_c3_human_oversight",
+   "id": "dense_c3_0014",
+   "role": "test",
+   "register": "dense",
+   "label_type": "dense_forget"
+  },
+  {
+   "config": "dense_c3_human_oversight",
+   "id": "dense_c3_0015",
+   "role": "test",
+   "register": "dense",
+   "label_type": "dense_forget"
+  },
+  {
+   "config": "dense_c3_human_oversight",
+   "id": "dense_c3_0016",
+   "role": "test",
+   "register": "dense",
+   "label_type": "dense_forget"
+  },
+  {
+   "config": "dense_c3_human_oversight",
+   "id": "dense_c3_0017",
+   "role": "test",
+   "register": "dense",
+   "label_type": "dense_forget"
+  },
+  {
+   "config": "dense_c3_human_oversight",
+   "id": "dense_c3_0018",
+   "role": "test",
+   "register": "dense",
+   "label_type": "dense_forget"
+  },
+  {
+   "config": "dense_c3_human_oversight",
+   "id": "dense_c3_0019",
+   "role": "test",
+   "register": "dense",
+   "label_type": "dense_forget"
+  },
+  {
+   "config": "dense_c3_human_oversight",
+   "id": "dense_c3_0020",
+   "role": "test",
+   "register": "dense",
+   "label_type": "dense_forget"
+  },
+  {
+   "config": "dense_c3_human_oversight",
+   "id": "dense_c3_0021",
+   "role": "test",
+   "register": "dense",
+   "label_type": "dense_forget"
+  },
+  {
+   "config": "dense_c3_human_oversight",
+   "id": "dense_c3_0022",
+   "role": "test",
+   "register": "dense",
+   "label_type": "dense_forget"
+  },
+  {
+   "config": "dense_c3_human_oversight",
+   "id": "dense_c3_0023",
+   "role": "test",
+   "register": "dense",
+   "label_type": "dense_forget"
+  },
+  {
+   "config": "dense_c3_human_oversight",
+   "id": "dense_c3_0024",
+   "role": "test",
+   "register": "dense",
+   "label_type": "dense_forget"
+  },
+  {
+   "config": "dense_c3_human_oversight",
+   "id": "dense_c3_0025",
+   "role": "test",
+   "register": "dense",
+   "label_type": "dense_forget"
+  },
+  {
+   "config": "dense_c3_human_oversight",
+   "id": "dense_c3_0026",
+   "role": "test",
+   "register": "dense",
+   "label_type": "dense_forget"
+  },
+  {
+   "config": "dense_c3_human_oversight",
+   "id": "dense_c3_0027",
+   "role": "test",
+   "register": "dense",
+   "label_type": "dense_forget"
+  },
+  {
+   "config": "dense_c3_human_oversight",
+   "id": "dense_c3_0028",
+   "role": "test",
+   "register": "dense",
+   "label_type": "dense_forget"
+  },
+  {
+   "config": "dense_c3_human_oversight",
+   "id": "dense_c3_0029",
+   "role": "test",
+   "register": "dense",
+   "label_type": "dense_forget"
+  },
+  {
+   "config": "dense_c3_human_oversight",
+   "id": "dense_c3_0030",
+   "role": "test",
+   "register": "dense",
+   "label_type": "dense_forget"
+  },
+  {
+   "config": "dense_c3_human_oversight",
+   "id": "dense_c3_0031",
+   "role": "test",
+   "register": "dense",
+   "label_type": "dense_forget"
+  },
+  {
+   "config": "dense_c3_human_oversight",
+   "id": "dense_c3_0032",
+   "role": "test",
+   "register": "dense",
+   "label_type": "dense_forget"
+  },
+  {
+   "config": "dense_c3_human_oversight",
+   "id": "dense_c3_0033",
+   "role": "test",
+   "register": "dense",
+   "label_type": "dense_forget"
+  },
+  {
+   "config": "dense_c3_human_oversight",
+   "id": "dense_c3_0034",
+   "role": "test",
+   "register": "dense",
+   "label_type": "dense_forget"
+  },
+  {
+   "config": "dense_c3_human_oversight",
+   "id": "dense_c3_0035",
+   "role": "test",
+   "register": "dense",
+   "label_type": "dense_forget"
+  },
+  {
+   "config": "dense_c3_human_oversight",
+   "id": "dense_c3_0036",
+   "role": "test",
+   "register": "dense",
+   "label_type": "dense_forget"
+  },
+  {
+   "config": "dense_c3_human_oversight",
+   "id": "dense_c3_0037",
+   "role": "test",
+   "register": "dense",
+   "label_type": "dense_forget"
+  },
+  {
+   "config": "dense_c3_human_oversight",
+   "id": "dense_c3_0038",
+   "role": "test",
+   "register": "dense",
+   "label_type": "dense_forget"
+  },
+  {
+   "config": "dense_c3_human_oversight",
+   "id": "dense_c3_0039",
+   "role": "test",
+   "register": "dense",
+   "label_type": "dense_forget"
+  },
+  {
+   "config": "dense_c3_human_oversight",
+   "id": "dense_c3_0040",
+   "role": "test",
+   "register": "dense",
+   "label_type": "dense_forget"
+  },
+  {
+   "config": "dense_c3_human_oversight",
+   "id": "dense_c3_0041",
+   "role": "test",
+   "register": "dense",
+   "label_type": "dense_forget"
+  },
+  {
+   "config": "dense_c3_human_oversight",
+   "id": "dense_c3_0042",
+   "role": "test",
+   "register": "dense",
+   "label_type": "dense_forget"
+  },
+  {
+   "config": "dense_c3_human_oversight",
+   "id": "dense_c3_0043",
+   "role": "test",
+   "register": "dense",
+   "label_type": "dense_forget"
+  },
+  {
+   "config": "dense_c3_human_oversight",
+   "id": "dense_c3_0044",
+   "role": "test",
+   "register": "dense",
+   "label_type": "dense_forget"
+  },
+  {
+   "config": "dense_c3_human_oversight",
+   "id": "dense_c3_0045",
+   "role": "test",
+   "register": "dense",
+   "label_type": "dense_forget"
+  },
+  {
+   "config": "dense_c3_human_oversight",
+   "id": "dense_c3_0046",
+   "role": "test",
+   "register": "dense",
+   "label_type": "dense_forget"
+  },
+  {
+   "config": "dense_c3_human_oversight",
+   "id": "dense_c3_0047",
+   "role": "test",
+   "register": "dense",
+   "label_type": "dense_forget"
+  },
+  {
+   "config": "dense_c3_human_oversight",
+   "id": "dense_c3_0048",
+   "role": "test",
+   "register": "dense",
+   "label_type": "dense_forget"
+  },
+  {
+   "config": "dense_c3_human_oversight",
+   "id": "dense_c3_0049",
+   "role": "test",
+   "register": "dense",
+   "label_type": "dense_forget"
+  },
+  {
+   "config": "dense_c3_human_oversight",
+   "id": "dense_c3_0050",
+   "role": "test",
+   "register": "dense",
+   "label_type": "dense_forget"
+  },
+  {
+   "config": "dense_c3_human_oversight",
+   "id": "dense_c3_0051",
+   "role": "test",
+   "register": "dense",
+   "label_type": "dense_forget"
+  },
+  {
+   "config": "dense_c3_human_oversight",
+   "id": "dense_c3_0052",
+   "role": "test",
+   "register": "dense",
+   "label_type": "dense_forget"
+  },
+  {
+   "config": "dense_c3_human_oversight",
+   "id": "dense_c3_0053",
+   "role": "test",
+   "register": "dense",
+   "label_type": "dense_forget"
+  },
+  {
+   "config": "dense_c3_human_oversight",
+   "id": "dense_c3_0054",
+   "role": "test",
+   "register": "dense",
+   "label_type": "dense_forget"
+  },
+  {
+   "config": "dense_c3_human_oversight",
+   "id": "dense_c3_0055",
+   "role": "test",
+   "register": "dense",
+   "label_type": "dense_forget"
+  },
+  {
+   "config": "dense_c3_human_oversight",
+   "id": "dense_c3_0056",
+   "role": "test",
+   "register": "dense",
+   "label_type": "dense_forget"
+  },
+  {
+   "config": "dense_c3_human_oversight",
+   "id": "dense_c3_0057",
+   "role": "test",
+   "register": "dense",
+   "label_type": "dense_forget"
+  },
+  {
+   "config": "dense_c3_human_oversight",
+   "id": "dense_c3_0058",
+   "role": "test",
+   "register": "dense",
+   "label_type": "dense_forget"
+  },
+  {
+   "config": "dense_c3_human_oversight",
+   "id": "dense_c3_0059",
+   "role": "test",
+   "register": "dense",
+   "label_type": "dense_forget"
+  },
+  {
+   "config": "dense_c3_human_oversight",
+   "id": "dense_c3_0060",
+   "role": "test",
+   "register": "dense",
+   "label_type": "dense_forget"
+  },
+  {
+   "config": "dense_c4_training_mechanics",
+   "id": "dense_c4_0001",
+   "role": "test",
+   "register": "dense",
+   "label_type": "dense_forget"
+  },
+  {
+   "config": "dense_c4_training_mechanics",
+   "id": "dense_c4_0002",
+   "role": "test",
+   "register": "dense",
+   "label_type": "dense_forget"
+  },
+  {
+   "config": "dense_c4_training_mechanics",
+   "id": "dense_c4_0003",
+   "role": "test",
+   "register": "dense",
+   "label_type": "dense_forget"
+  },
+  {
+   "config": "dense_c4_training_mechanics",
+   "id": "dense_c4_0004",
+   "role": "test",
+   "register": "dense",
+   "label_type": "dense_forget"
+  },
+  {
+   "config": "dense_c4_training_mechanics",
+   "id": "dense_c4_0005",
+   "role": "test",
+   "register": "dense",
+   "label_type": "dense_forget"
+  },
+  {
+   "config": "dense_c4_training_mechanics",
+   "id": "dense_c4_0006",
+   "role": "test",
+   "register": "dense",
+   "label_type": "dense_forget"
+  },
+  {
+   "config": "dense_c4_training_mechanics",
+   "id": "dense_c4_0007",
+   "role": "test",
+   "register": "dense",
+   "label_type": "dense_forget"
+  },
+  {
+   "config": "dense_c4_training_mechanics",
+   "id": "dense_c4_0008",
+   "role": "test",
+   "register": "dense",
+   "label_type": "dense_forget"
+  },
+  {
+   "config": "dense_c4_training_mechanics",
+   "id": "dense_c4_0009",
+   "role": "test",
+   "register": "dense",
+   "label_type": "dense_forget"
+  },
+  {
+   "config": "dense_c4_training_mechanics",
+   "id": "dense_c4_0010",
+   "role": "test",
+   "register": "dense",
+   "label_type": "dense_forget"
+  },
+  {
+   "config": "dense_c4_training_mechanics",
+   "id": "dense_c4_0011",
+   "role": "test",
+   "register": "dense",
+   "label_type": "dense_forget"
+  },
+  {
+   "config": "dense_c4_training_mechanics",
+   "id": "dense_c4_0012",
+   "role": "test",
+   "register": "dense",
+   "label_type": "dense_forget"
+  },
+  {
+   "config": "dense_c4_training_mechanics",
+   "id": "dense_c4_0013",
+   "role": "test",
+   "register": "dense",
+   "label_type": "dense_forget"
+  },
+  {
+   "config": "dense_c4_training_mechanics",
+   "id": "dense_c4_0014",
+   "role": "test",
+   "register": "dense",
+   "label_type": "dense_forget"
+  },
+  {
+   "config": "dense_c4_training_mechanics",
+   "id": "dense_c4_0015",
+   "role": "test",
+   "register": "dense",
+   "label_type": "dense_forget"
+  },
+  {
+   "config": "dense_c4_training_mechanics",
+   "id": "dense_c4_0016",
+   "role": "test",
+   "register": "dense",
+   "label_type": "dense_forget"
+  },
+  {
+   "config": "dense_c4_training_mechanics",
+   "id": "dense_c4_0017",
+   "role": "test",
+   "register": "dense",
+   "label_type": "dense_forget"
+  },
+  {
+   "config": "dense_c4_training_mechanics",
+   "id": "dense_c4_0018",
+   "role": "test",
+   "register": "dense",
+   "label_type": "dense_forget"
+  },
+  {
+   "config": "dense_c4_training_mechanics",
+   "id": "dense_c4_0019",
+   "role": "test",
+   "register": "dense",
+   "label_type": "dense_forget"
+  },
+  {
+   "config": "dense_c4_training_mechanics",
+   "id": "dense_c4_0020",
+   "role": "test",
+   "register": "dense",
+   "label_type": "dense_forget"
+  },
+  {
+   "config": "dense_c4_training_mechanics",
+   "id": "dense_c4_0021",
+   "role": "test",
+   "register": "dense",
+   "label_type": "dense_forget"
+  },
+  {
+   "config": "dense_c4_training_mechanics",
+   "id": "dense_c4_0022",
+   "role": "test",
+   "register": "dense",
+   "label_type": "dense_forget"
+  },
+  {
+   "config": "dense_c4_training_mechanics",
+   "id": "dense_c4_0023",
+   "role": "test",
+   "register": "dense",
+   "label_type": "dense_forget"
+  },
+  {
+   "config": "dense_c4_training_mechanics",
+   "id": "dense_c4_0024",
+   "role": "test",
+   "register": "dense",
+   "label_type": "dense_forget"
+  },
+  {
+   "config": "dense_c4_training_mechanics",
+   "id": "dense_c4_0025",
+   "role": "test",
+   "register": "dense",
+   "label_type": "dense_forget"
+  },
+  {
+   "config": "dense_c4_training_mechanics",
+   "id": "dense_c4_0026",
+   "role": "test",
+   "register": "dense",
+   "label_type": "dense_forget"
+  },
+  {
+   "config": "dense_c4_training_mechanics",
+   "id": "dense_c4_0027",
+   "role": "test",
+   "register": "dense",
+   "label_type": "dense_forget"
+  },
+  {
+   "config": "dense_c4_training_mechanics",
+   "id": "dense_c4_0028",
+   "role": "test",
+   "register": "dense",
+   "label_type": "dense_forget"
+  },
+  {
+   "config": "dense_c4_training_mechanics",
+   "id": "dense_c4_0029",
+   "role": "test",
+   "register": "dense",
+   "label_type": "dense_forget"
+  },
+  {
+   "config": "dense_c4_training_mechanics",
+   "id": "dense_c4_0030",
+   "role": "test",
+   "register": "dense",
+   "label_type": "dense_forget"
+  },
+  {
+   "config": "dense_c4_training_mechanics",
+   "id": "dense_c4_0031",
+   "role": "test",
+   "register": "dense",
+   "label_type": "dense_forget"
+  },
+  {
+   "config": "dense_c4_training_mechanics",
+   "id": "dense_c4_0032",
+   "role": "test",
+   "register": "dense",
+   "label_type": "dense_forget"
+  },
+  {
+   "config": "dense_c4_training_mechanics",
+   "id": "dense_c4_0033",
+   "role": "test",
+   "register": "dense",
+   "label_type": "dense_forget"
+  },
+  {
+   "config": "dense_c4_training_mechanics",
+   "id": "dense_c4_0034",
+   "role": "test",
+   "register": "dense",
+   "label_type": "dense_forget"
+  },
+  {
+   "config": "dense_c4_training_mechanics",
+   "id": "dense_c4_0035",
+   "role": "test",
+   "register": "dense",
+   "label_type": "dense_forget"
+  },
+  {
+   "config": "dense_c4_training_mechanics",
+   "id": "dense_c4_0036",
+   "role": "test",
+   "register": "dense",
+   "label_type": "dense_forget"
+  },
+  {
+   "config": "dense_c4_training_mechanics",
+   "id": "dense_c4_0037",
+   "role": "test",
+   "register": "dense",
+   "label_type": "dense_forget"
+  },
+  {
+   "config": "dense_c4_training_mechanics",
+   "id": "dense_c4_0038",
+   "role": "test",
+   "register": "dense",
+   "label_type": "dense_forget"
+  },
+  {
+   "config": "dense_c4_training_mechanics",
+   "id": "dense_c4_0039",
+   "role": "test",
+   "register": "dense",
+   "label_type": "dense_forget"
+  },
+  {
+   "config": "dense_c4_training_mechanics",
+   "id": "dense_c4_0040",
+   "role": "test",
+   "register": "dense",
+   "label_type": "dense_forget"
+  },
+  {
+   "config": "dense_c4_training_mechanics",
+   "id": "dense_c4_0041",
+   "role": "test",
+   "register": "dense",
+   "label_type": "dense_forget"
+  },
+  {
+   "config": "dense_c4_training_mechanics",
+   "id": "dense_c4_0042",
+   "role": "test",
+   "register": "dense",
+   "label_type": "dense_forget"
+  },
+  {
+   "config": "dense_c4_training_mechanics",
+   "id": "dense_c4_0043",
+   "role": "test",
+   "register": "dense",
+   "label_type": "dense_forget"
+  },
+  {
+   "config": "dense_c4_training_mechanics",
+   "id": "dense_c4_0044",
+   "role": "test",
+   "register": "dense",
+   "label_type": "dense_forget"
+  },
+  {
+   "config": "dense_c4_training_mechanics",
+   "id": "dense_c4_0045",
+   "role": "test",
+   "register": "dense",
+   "label_type": "dense_forget"
+  },
+  {
+   "config": "dense_c4_training_mechanics",
+   "id": "dense_c4_0046",
+   "role": "test",
+   "register": "dense",
+   "label_type": "dense_forget"
+  },
+  {
+   "config": "dense_c4_training_mechanics",
+   "id": "dense_c4_0047",
+   "role": "test",
+   "register": "dense",
+   "label_type": "dense_forget"
+  },
+  {
+   "config": "dense_c4_training_mechanics",
+   "id": "dense_c4_0048",
+   "role": "test",
+   "register": "dense",
+   "label_type": "dense_forget"
+  },
+  {
+   "config": "dense_c4_training_mechanics",
+   "id": "dense_c4_0049",
+   "role": "test",
+   "register": "dense",
+   "label_type": "dense_forget"
+  },
+  {
+   "config": "dense_c4_training_mechanics",
+   "id": "dense_c4_0050",
+   "role": "test",
+   "register": "dense",
+   "label_type": "dense_forget"
+  },
+  {
+   "config": "dense_c4_training_mechanics",
+   "id": "dense_c4_0051",
+   "role": "test",
+   "register": "dense",
+   "label_type": "dense_forget"
+  },
+  {
+   "config": "dense_c4_training_mechanics",
+   "id": "dense_c4_0052",
+   "role": "test",
+   "register": "dense",
+   "label_type": "dense_forget"
+  },
+  {
+   "config": "dense_c4_training_mechanics",
+   "id": "dense_c4_0053",
+   "role": "test",
+   "register": "dense",
+   "label_type": "dense_forget"
+  },
+  {
+   "config": "dense_c4_training_mechanics",
+   "id": "dense_c4_0054",
+   "role": "test",
+   "register": "dense",
+   "label_type": "dense_forget"
+  },
+  {
+   "config": "dense_c4_training_mechanics",
+   "id": "dense_c4_0055",
+   "role": "test",
+   "register": "dense",
+   "label_type": "dense_forget"
+  },
+  {
+   "config": "dense_c4_training_mechanics",
+   "id": "dense_c4_0056",
+   "role": "test",
+   "register": "dense",
+   "label_type": "dense_forget"
+  },
+  {
+   "config": "dense_c4_training_mechanics",
+   "id": "dense_c4_0057",
+   "role": "test",
+   "register": "dense",
+   "label_type": "dense_forget"
+  },
+  {
+   "config": "dense_c4_training_mechanics",
+   "id": "dense_c4_0058",
+   "role": "test",
+   "register": "dense",
+   "label_type": "dense_forget"
+  },
+  {
+   "config": "dense_c4_training_mechanics",
+   "id": "dense_c4_0059",
+   "role": "test",
+   "register": "dense",
+   "label_type": "dense_forget"
+  },
+  {
+   "config": "dense_c4_training_mechanics",
+   "id": "dense_c4_0060",
+   "role": "test",
+   "register": "dense",
+   "label_type": "dense_forget"
+  },
+  {
+   "config": "dense_c5_swe_tests",
+   "id": "dense_c5_0001",
+   "role": "test",
+   "register": "dense",
+   "label_type": "dense_forget"
+  },
+  {
+   "config": "dense_c5_swe_tests",
+   "id": "dense_c5_0002",
+   "role": "test",
+   "register": "dense",
+   "label_type": "dense_forget"
+  },
+  {
+   "config": "dense_c5_swe_tests",
+   "id": "dense_c5_0003",
+   "role": "test",
+   "register": "dense",
+   "label_type": "dense_forget"
+  },
+  {
+   "config": "dense_c5_swe_tests",
+   "id": "dense_c5_0004",
+   "role": "test",
+   "register": "dense",
+   "label_type": "dense_forget"
+  },
+  {
+   "config": "dense_c5_swe_tests",
+   "id": "dense_c5_0005",
+   "role": "test",
+   "register": "dense",
+   "label_type": "dense_forget"
+  },
+  {
+   "config": "dense_c5_swe_tests",
+   "id": "dense_c5_0006",
+   "role": "test",
+   "register": "dense",
+   "label_type": "dense_forget"
+  },
+  {
+   "config": "dense_c5_swe_tests",
+   "id": "dense_c5_0007",
+   "role": "test",
+   "register": "dense",
+   "label_type": "dense_forget"
+  },
+  {
+   "config": "dense_c5_swe_tests",
+   "id": "dense_c5_0008",
+   "role": "test",
+   "register": "dense",
+   "label_type": "dense_forget"
+  },
+  {
+   "config": "dense_c5_swe_tests",
+   "id": "dense_c5_0009",
+   "role": "test",
+   "register": "dense",
+   "label_type": "dense_forget"
+  },
+  {
+   "config": "dense_c5_swe_tests",
+   "id": "dense_c5_0010",
+   "role": "test",
+   "register": "dense",
+   "label_type": "dense_forget"
+  },
+  {
+   "config": "dense_c5_swe_tests",
+   "id": "dense_c5_0011",
+   "role": "test",
+   "register": "dense",
+   "label_type": "dense_forget"
+  },
+  {
+   "config": "dense_c5_swe_tests",
+   "id": "dense_c5_0012",
+   "role": "test",
+   "register": "dense",
+   "label_type": "dense_forget"
+  },
+  {
+   "config": "dense_c5_swe_tests",
+   "id": "dense_c5_0013",
+   "role": "test",
+   "register": "dense",
+   "label_type": "dense_forget"
+  },
+  {
+   "config": "dense_c5_swe_tests",
+   "id": "dense_c5_0014",
+   "role": "test",
+   "register": "dense",
+   "label_type": "dense_forget"
+  },
+  {
+   "config": "dense_c5_swe_tests",
+   "id": "dense_c5_0015",
+   "role": "test",
+   "register": "dense",
+   "label_type": "dense_forget"
+  },
+  {
+   "config": "dense_c5_swe_tests",
+   "id": "dense_c5_0016",
+   "role": "test",
+   "register": "dense",
+   "label_type": "dense_forget"
+  },
+  {
+   "config": "dense_c5_swe_tests",
+   "id": "dense_c5_0017",
+   "role": "test",
+   "register": "dense",
+   "label_type": "dense_forget"
+  },
+  {
+   "config": "dense_c5_swe_tests",
+   "id": "dense_c5_0018",
+   "role": "test",
+   "register": "dense",
+   "label_type": "dense_forget"
+  },
+  {
+   "config": "dense_c5_swe_tests",
+   "id": "dense_c5_0019",
+   "role": "test",
+   "register": "dense",
+   "label_type": "dense_forget"
+  },
+  {
+   "config": "dense_c5_swe_tests",
+   "id": "dense_c5_0020",
+   "role": "test",
+   "register": "dense",
+   "label_type": "dense_forget"
+  },
+  {
+   "config": "dense_c5_swe_tests",
+   "id": "dense_c5_0021",
+   "role": "test",
+   "register": "dense",
+   "label_type": "dense_forget"
+  },
+  {
+   "config": "dense_c5_swe_tests",
+   "id": "dense_c5_0022",
+   "role": "test",
+   "register": "dense",
+   "label_type": "dense_forget"
+  },
+  {
+   "config": "dense_c5_swe_tests",
+   "id": "dense_c5_0023",
+   "role": "test",
+   "register": "dense",
+   "label_type": "dense_forget"
+  },
+  {
+   "config": "dense_c5_swe_tests",
+   "id": "dense_c5_0024",
+   "role": "test",
+   "register": "dense",
+   "label_type": "dense_forget"
+  },
+  {
+   "config": "dense_c5_swe_tests",
+   "id": "dense_c5_0025",
+   "role": "test",
+   "register": "dense",
+   "label_type": "dense_forget"
+  },
+  {
+   "config": "dense_c5_swe_tests",
+   "id": "dense_c5_0026",
+   "role": "test",
+   "register": "dense",
+   "label_type": "dense_forget"
+  },
+  {
+   "config": "dense_c5_swe_tests",
+   "id": "dense_c5_0027",
+   "role": "test",
+   "register": "dense",
+   "label_type": "dense_forget"
+  },
+  {
+   "config": "dense_c5_swe_tests",
+   "id": "dense_c5_0028",
+   "role": "test",
+   "register": "dense",
+   "label_type": "dense_forget"
+  },
+  {
+   "config": "dense_c5_swe_tests",
+   "id": "dense_c5_0029",
+   "role": "test",
+   "register": "dense",
+   "label_type": "dense_forget"
+  },
+  {
+   "config": "dense_c5_swe_tests",
+   "id": "dense_c5_0030",
+   "role": "test",
+   "register": "dense",
+   "label_type": "dense_forget"
+  },
+  {
+   "config": "dense_c5_swe_tests",
+   "id": "dense_c5_0031",
+   "role": "test",
+   "register": "dense",
+   "label_type": "dense_forget"
+  },
+  {
+   "config": "dense_c5_swe_tests",
+   "id": "dense_c5_0032",
+   "role": "test",
+   "register": "dense",
+   "label_type": "dense_forget"
+  },
+  {
+   "config": "dense_c5_swe_tests",
+   "id": "dense_c5_0033",
+   "role": "test",
+   "register": "dense",
+   "label_type": "dense_forget"
+  },
+  {
+   "config": "dense_c5_swe_tests",
+   "id": "dense_c5_0034",
+   "role": "test",
+   "register": "dense",
+   "label_type": "dense_forget"
+  },
+  {
+   "config": "dense_c5_swe_tests",
+   "id": "dense_c5_0035",
+   "role": "test",
+   "register": "dense",
+   "label_type": "dense_forget"
+  },
+  {
+   "config": "dense_c5_swe_tests",
+   "id": "dense_c5_0036",
+   "role": "test",
+   "register": "dense",
+   "label_type": "dense_forget"
+  },
+  {
+   "config": "dense_c5_swe_tests",
+   "id": "dense_c5_0037",
+   "role": "test",
+   "register": "dense",
+   "label_type": "dense_forget"
+  },
+  {
+   "config": "dense_c5_swe_tests",
+   "id": "dense_c5_0038",
+   "role": "test",
+   "register": "dense",
+   "label_type": "dense_forget"
+  },
+  {
+   "config": "dense_c5_swe_tests",
+   "id": "dense_c5_0039",
+   "role": "test",
+   "register": "dense",
+   "label_type": "dense_forget"
+  },
+  {
+   "config": "dense_c5_swe_tests",
+   "id": "dense_c5_0040",
+   "role": "test",
+   "register": "dense",
+   "label_type": "dense_forget"
+  },
+  {
+   "config": "dense_c5_swe_tests",
+   "id": "dense_c5_0041",
+   "role": "test",
+   "register": "dense",
+   "label_type": "dense_forget"
+  },
+  {
+   "config": "dense_c5_swe_tests",
+   "id": "dense_c5_0042",
+   "role": "test",
+   "register": "dense",
+   "label_type": "dense_forget"
+  },
+  {
+   "config": "dense_c5_swe_tests",
+   "id": "dense_c5_0043",
+   "role": "test",
+   "register": "dense",
+   "label_type": "dense_forget"
+  },
+  {
+   "config": "dense_c5_swe_tests",
+   "id": "dense_c5_0044",
+   "role": "test",
+   "register": "dense",
+   "label_type": "dense_forget"
+  },
+  {
+   "config": "dense_c5_swe_tests",
+   "id": "dense_c5_0045",
+   "role": "test",
+   "register": "dense",
+   "label_type": "dense_forget"
+  },
+  {
+   "config": "dense_c5_swe_tests",
+   "id": "dense_c5_0046",
+   "role": "test",
+   "register": "dense",
+   "label_type": "dense_forget"
+  },
+  {
+   "config": "dense_c5_swe_tests",
+   "id": "dense_c5_0047",
+   "role": "test",
+   "register": "dense",
+   "label_type": "dense_forget"
+  },
+  {
+   "config": "dense_c5_swe_tests",
+   "id": "dense_c5_0048",
+   "role": "test",
+   "register": "dense",
+   "label_type": "dense_forget"
+  },
+  {
+   "config": "dense_c5_swe_tests",
+   "id": "dense_c5_0049",
+   "role": "test",
+   "register": "dense",
+   "label_type": "dense_forget"
+  },
+  {
+   "config": "dense_c5_swe_tests",
+   "id": "dense_c5_0050",
+   "role": "test",
+   "register": "dense",
+   "label_type": "dense_forget"
+  },
+  {
+   "config": "dense_c5_swe_tests",
+   "id": "dense_c5_0051",
+   "role": "test",
+   "register": "dense",
+   "label_type": "dense_forget"
+  },
+  {
+   "config": "dense_c5_swe_tests",
+   "id": "dense_c5_0052",
+   "role": "test",
+   "register": "dense",
+   "label_type": "dense_forget"
+  },
+  {
+   "config": "dense_c5_swe_tests",
+   "id": "dense_c5_0053",
+   "role": "test",
+   "register": "dense",
+   "label_type": "dense_forget"
+  },
+  {
+   "config": "dense_c5_swe_tests",
+   "id": "dense_c5_0054",
+   "role": "test",
+   "register": "dense",
+   "label_type": "dense_forget"
+  },
+  {
+   "config": "dense_c5_swe_tests",
+   "id": "dense_c5_0055",
+   "role": "test",
+   "register": "dense",
+   "label_type": "dense_forget"
+  },
+  {
+   "config": "dense_c5_swe_tests",
+   "id": "dense_c5_0056",
+   "role": "test",
+   "register": "dense",
+   "label_type": "dense_forget"
+  },
+  {
+   "config": "dense_c5_swe_tests",
+   "id": "dense_c5_0057",
+   "role": "test",
+   "register": "dense",
+   "label_type": "dense_forget"
+  },
+  {
+   "config": "dense_c5_swe_tests",
+   "id": "dense_c5_0058",
+   "role": "test",
+   "register": "dense",
+   "label_type": "dense_forget"
+  },
+  {
+   "config": "dense_c5_swe_tests",
+   "id": "dense_c5_0059",
+   "role": "test",
+   "register": "dense",
+   "label_type": "dense_forget"
+  },
+  {
+   "config": "dense_c5_swe_tests",
+   "id": "dense_c5_0060",
+   "role": "test",
+   "register": "dense",
+   "label_type": "dense_forget"
+  }
+ ],
+ "manifest_sha256": "6bb110aeb9e761639250a7e963586f14aab04704dacb11812d1ddeb9d11a0159"
+}

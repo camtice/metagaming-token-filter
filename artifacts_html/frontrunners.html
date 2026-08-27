@@ -1,0 +1,196 @@
+<title>Frontrunner Sets</title>
+<style>
+:root{
+  --bg:#F7F8F6; --card:#FFFFFF; --ink:#1C2321; --ink2:#566058; --ink3:#7C877F;
+  --line:#DCE1DC; --accent:#1F6E5C; --accent-ink:#175243; --chip:#EEF1EC;
+  --cin:#2a78d6; --call:#1baf7a; --ctrain:#98A29C; --bad:#eb6834;
+}
+@media (prefers-color-scheme: dark){ :root:not([data-theme="light"]){
+  --bg:#121614; --card:#1B211E; --ink:#E8ECE9; --ink2:#A9B3AD; --ink3:#7C877F;
+  --line:#2A322E; --accent:#4FA98A; --accent-ink:#7CC5AB; --chip:#232A26;
+  --cin:#3987e5; --call:#199e70; --ctrain:#5F6A64; --bad:#d95926;
+}}
+:root[data-theme="dark"]{
+  --bg:#121614; --card:#1B211E; --ink:#E8ECE9; --ink2:#A9B3AD; --ink3:#7C877F;
+  --line:#2A322E; --accent:#4FA98A; --accent-ink:#7CC5AB; --chip:#232A26;
+  --cin:#3987e5; --call:#199e70; --ctrain:#5F6A64; --bad:#d95926;
+}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);margin:0;
+  font:15px/1.55 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+main{max-width:96ch;margin:0 auto;padding:2.2rem 1.2rem 5rem}
+h1,h2{font-family:Charter,Georgia,serif;line-height:1.15;text-wrap:balance}
+h1{font-size:2rem;margin:0 0 .3rem}
+h2{font-size:1.25rem;margin:2.2rem 0 .6rem;padding-top:1rem;border-top:1px solid var(--line)}
+.kicker{font-size:.7rem;letter-spacing:.13em;text-transform:uppercase;color:var(--accent);font-weight:600}
+.sub{color:var(--ink2);font-size:.92rem;max-width:88ch}
+.mono{font-family:ui-monospace,Menlo,monospace;font-size:.88em}
+.defs{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:.7rem;margin:1rem 0}
+.def{background:var(--card);border:1px solid var(--line);border-radius:8px;padding:.7rem .9rem}
+.def .k{font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;font-weight:650}
+.def .d{font-size:.82rem;color:var(--ink2);margin-top:.2rem}
+.scroll{overflow-x:auto;background:var(--card);border:1px solid var(--line);border-radius:8px;margin:.7rem 0}
+table{border-collapse:collapse;width:100%;font-size:.82rem}
+th{font-size:.66rem;letter-spacing:.07em;text-transform:uppercase;color:var(--ink2);
+  text-align:left;padding:.45rem .55rem;border-bottom:1px solid var(--line);white-space:nowrap}
+td{padding:.38rem .55rem;border-bottom:1px solid var(--line);font-variant-numeric:tabular-nums;white-space:nowrap}
+tr:last-child td{border-bottom:none}
+td.num,th.num{text-align:right}
+tr.hl td{background:color-mix(in srgb,var(--accent) 9%,transparent);font-weight:600}
+tr.ref td{color:var(--ink2)}
+.pair{position:relative;height:16px;background:var(--chip);border-radius:4px;min-width:190px}
+.pair .seg{position:absolute;top:3px;bottom:3px;border-radius:3px;opacity:.85}
+.pair .m{position:absolute;top:0;bottom:0;width:3px;border-radius:2px}
+figure{margin:.9rem 0;background:var(--card);border:1px solid var(--line);border-radius:8px;padding:.9rem}
+figcaption{font-size:.78rem;color:var(--ink2);margin-top:.45rem;max-width:88ch}
+.legend{display:flex;flex-wrap:wrap;gap:.9rem;font-size:.78rem;color:var(--ink2);margin:0 0 .4rem}
+.dot{display:inline-block;width:.6em;height:.6em;border-radius:50%;margin-right:.35em}
+svg text{fill:var(--ink2);font:10.5px system-ui}
+svg .lab{font-weight:600;fill:var(--ink)}
+#tip{position:fixed;pointer-events:none;background:var(--card);border:1px solid var(--line);
+  border-radius:6px;padding:.4rem .6rem;font-size:.75rem;max-width:22rem;display:none;
+  box-shadow:0 4px 14px rgba(0,0,0,.14);z-index:9}
+.note{background:var(--card);border-left:3px solid var(--accent);border-radius:0 8px 8px 0;
+  padding:.6rem 1rem;font-size:.85rem;margin:.8rem 0;color:var(--ink2)}
+p{max-width:88ch}
+</style>
+<main>
+<div class="kicker">Metagaming filter · the short list · G-split, all metrics held-out unless marked</div>
+<h1>Frontrunner Sets</h1>
+<p class="sub">The best-performing SAE feature groups, judged on the two metrics that matter:
+generalization to new documents of familiar kinds, and generalization to a domain the selection
+never saw. Candidates use the recommended recipe (ratio screen · vote k=4 · windowing); the paper
+rule, hill-climb, and control-cap rows are kept as references.</p>
+
+<div class="defs">
+  <div class="def" style="border-left:3px solid var(--ctrain)"><div class="k" style="color:var(--ink3)">F2 train</div>
+    <div class="d">Score on <b>G-TRAIN</b> — the dense c1/c3/c4 halves + control half the selection
+    statistics were computed from. Not a result; the anchor for measuring overfit.</div></div>
+  <div class="def" style="border-left:3px solid var(--cin)"><div class="k" style="color:var(--cin)">F2 in-distribution</div>
+    <div class="d"><b>Held-out documents of trained-on kinds</b>: human rollout spans + the unseen
+    halves of the same dense classes, precision vs held-out controls. "Does it work on new data?"</div></div>
+  <div class="def" style="border-left:3px solid var(--call)"><div class="k" style="color:var(--call)">F2 held-out domain</div>
+    <div class="d">The same, <b>plus all of dense c2 (AI-safety)</b> — a category with zero training
+    exposure — counted as forget. "Does it work on new kinds of data?" The headline.</div></div>
+</div>
+
+<h2>The short list</h2>
+<div class="scroll"><table id="t"></table></div>
+<p class="sub">Bar shows the two central metrics: <span class="dot" style="background:var(--cin)"></span>F2
+in-distribution and <span class="dot" style="background:var(--call)"></span>F2 held-out-domain markers
+on a common 0.45–0.85 scale. Δ = held-out-domain − in-distribution: positive means the set's coverage
+<i>extends</i> to the unseen domain (the property we select for). Grey values in the reference rows
+show F2 train where it exists.</p>
+
+<h2>Train → test trajectories</h2>
+<figure>
+  <div class="legend" id="leg"></div>
+  <div id="slope"></div>
+  <figcaption>Each line is one method on one pool, traced across the three stations:
+  F2 on the training split → F2 on held-out in-distribution data → F2 with the unseen c2 domain
+  included. Flat or rising lines generalize; falling lines overfit. The ratio rule's lines stay
+  level and then rise at the third station (its features carry the unseen domain); hill-climb falls
+  at the first step; the control-cap falls at both. (Only vote-k=2 rows have all three stations
+  measured; the k=4 candidates start at station two.)</figcaption>
+</figure>
+
+<h2>Reading it</h2>
+<p><b>1.</b> The candidates hold .76–.82 held-out-domain F2 at 1–5% control FP — and their Δ column
+is positive throughout: the ratio screen's sets get <i>better</i> when the unseen domain enters the
+metric, because topical selection transfers. <b>2.</b> Both reference pathologies are visible in the
+slope chart: hill-climb's train score evaporates on held-out data, and the control-cap's line drops
+again at the third station (its features are domain-arbitrary). <b>3.</b> Pool choice (fable vs
+haiku-v8) moves the numbers ~.02–.04 with the same recipe; width moves them ~.02–.03 in favor of
+65k. The recipe, not the pool, is the decision.</p>
+<div class="note"><b>Before freezing a set:</b> external validity (westover / kimi AUC) has been
+measured on close siblings of these cells but not on these exact v8 cells, and the sealed
+VAL-A/VAL-B spend remains unspent — both should gate the final choice. Companion pages:
+Generalization Atlas (every experiment), Rule Reader (token-level browsing).</div>
+</main>
+<div id="tip"></div>
+<script type="application/json" id="data">{"rows": [{"name": "haiku-v8 · 65k · ratio ρ≥10 · vote k=4", "pool": "haiku_v8_65k", "kind": "candidate", "n": 682, "F2_train": null, "F2_in": 0.802, "F2_all": 0.821, "R_span": 0.675, "R_c2": 0.835, "fp": 0.011}, {"name": "haiku-v8 · 65k · ratio ρ≥5 · vote k=4", "pool": "haiku_v8_65k", "kind": "candidate", "n": 1060, "F2_train": null, "F2_in": 0.756, "F2_all": 0.799, "R_span": 0.74, "R_c2": 0.884, "fp": 0.0287}, {"name": "haiku-v8 · 65k · ratio ρ≥3 · vote k=4", "pool": "haiku_v8_65k", "kind": "candidate", "n": 1472, "F2_train": null, "F2_in": 0.648, "F2_all": 0.721, "R_span": 0.791, "R_c2": 0.921, "fp": 0.0666}, {"name": "haiku-v8 · 65k · ratio ρ≥2 · vote k=4", "pool": "haiku_v8_65k", "kind": "candidate", "n": 1780, "F2_train": null, "F2_in": 0.588, "F2_all": 0.671, "R_span": 0.814, "R_c2": 0.93, "fp": 0.0938}, {"name": "haiku-v8 · 16k · ratio ρ≥10 · vote k=4", "pool": "haiku_v8_16k", "kind": "candidate", "n": 140, "F2_train": null, "F2_in": 0.791, "F2_all": 0.775, "R_span": 0.661, "R_c2": 0.695, "fp": 0.0055}, {"name": "haiku-v8 · 16k · ratio ρ≥5 · vote k=4", "pool": "haiku_v8_16k", "kind": "candidate", "n": 216, "F2_train": null, "F2_in": 0.775, "F2_all": 0.788, "R_span": 0.716, "R_c2": 0.783, "fp": 0.019}, {"name": "haiku-v8 · 16k · ratio ρ≥3 · vote k=4", "pool": "haiku_v8_16k", "kind": "candidate", "n": 306, "F2_train": null, "F2_in": 0.709, "F2_all": 0.753, "R_span": 0.744, "R_c2": 0.841, "fp": 0.0409}, {"name": "haiku-v8 · 16k · ratio ρ≥2 · vote k=4", "pool": "haiku_v8_16k", "kind": "candidate", "n": 387, "F2_train": null, "F2_in": 0.618, "F2_all": 0.688, "R_span": 0.784, "R_c2": 0.882, "fp": 0.0757}, {"name": "fable · 16k · ratio ρ≥10 · vote k=4", "pool": "fable_16k", "kind": "candidate", "n": 135, "F2_train": null, "F2_in": 0.762, "F2_all": 0.76, "R_span": 0.637, "R_c2": 0.71, "fp": 0.0044}, {"name": "fable · 16k · ratio ρ≥5 · vote k=4", "pool": "fable_16k", "kind": "candidate", "n": 193, "F2_train": null, "F2_in": 0.757, "F2_all": 0.781, "R_span": 0.696, "R_c2": 0.802, "fp": 0.0175}, {"name": "fable · 16k · ratio ρ≥3 · vote k=4", "pool": "fable_16k", "kind": "candidate", "n": 261, "F2_train": null, "F2_in": 0.708, "F2_all": 0.753, "R_span": 0.725, "R_c2": 0.841, "fp": 0.0354}, {"name": "fable · 16k · ratio ρ≥2 · vote k=4", "pool": "fable_16k", "kind": "candidate", "n": 319, "F2_train": null, "F2_in": 0.657, "F2_all": 0.716, "R_span": 0.755, "R_c2": 0.856, "fp": 0.0535}, {"name": "haiku-v8 · 65k · ratio ρ≥10 · vote k=2 (paper rule)", "pool": "haiku_v8_65k", "kind": "reference", "n": 682, "F2_train": 0.7558, "F2_in": 0.7097, "F2_all": 0.7617, "R_span": 0.7213, "R_c2": 0.8714, "fp": 0.0386}, {"name": "haiku-v8 · 65k · hill-climb search", "pool": "haiku_v8_65k", "kind": "reference", "n": 1399, "F2_train": 0.6843, "F2_in": 0.6322, "F2_all": 0.6945, "R_span": 0.7385, "R_c2": 0.8497, "fp": 0.065}, {"name": "haiku-v8 · 65k · control-cap (train-selected)", "pool": "haiku_v8_65k", "kind": "reference", "n": 2320, "F2_train": 0.5929, "F2_in": 0.5415, "F2_all": 0.5706, "R_span": 0.5708, "R_c2": 0.5979, "fp": 0.0512}, {"name": "haiku-v8 · 16k · ratio ρ≥10 · vote k=2 (paper rule)", "pool": "haiku_v8_16k", "kind": "reference", "n": 140, "F2_train": 0.7353, "F2_in": 0.7043, "F2_all": 0.7415, "R_span": 0.723, "R_c2": 0.8032, "fp": 0.035}, {"name": "haiku-v8 · 16k · hill-climb search", "pool": "haiku_v8_16k", "kind": "reference", "n": 255, "F2_train": 0.7082, "F2_in": 0.6549, "F2_all": 0.6836, "R_span": 0.6504, "R_c2": 0.7153, "fp": 0.0408}, {"name": "haiku-v8 · 16k · control-cap (train-selected)", "pool": "haiku_v8_16k", "kind": "reference", "n": 346, "F2_train": 0.5695, "F2_in": 0.5504, "F2_all": 0.5202, "R_span": 0.5173, "R_c2": 0.3903, "fp": 0.0261}, {"name": "fable · 16k · ratio ρ≥10 · vote k=2 (paper rule)", "pool": "fable_16k", "kind": "reference", "n": 135, "F2_train": 0.7256, "F2_in": 0.6902, "F2_all": 0.7273, "R_span": 0.7066, "R_c2": 0.7849, "fp": 0.0318}, {"name": "fable · 16k · hill-climb search", "pool": "fable_16k", "kind": "reference", "n": 217, "F2_train": 0.7257, "F2_in": 0.6714, "F2_all": 0.7072, "R_span": 0.6248, "R_c2": 0.7553, "fp": 0.0285}, {"name": "fable · 16k · control-cap (train-selected)", "pool": "fable_16k", "kind": "reference", "n": 321, "F2_train": 0.5827, "F2_in": 0.5739, "F2_all": 0.5667, "R_span": 0.5512, "R_c2": 0.4933, "fp": 0.0285}]}</script>
+<script>
+const R = JSON.parse(document.getElementById('data').textContent);
+const fmt=(x,d=3)=>(x==null||x!==x)?'—':(+x).toFixed(d).replace(/^0\./,'.');
+const tip=document.getElementById('tip');
+const LO=0.45, HI=0.85;
+const pct=v=>Math.max(0,Math.min(100,(v-LO)/(HI-LO)*100));
+{
+  const t=document.getElementById('t');
+  const rows=[...R.rows].sort((a,b)=>(b.F2_all||0)-(a.F2_all||0));
+  t.innerHTML='<thead><tr><th>set · recipe</th><th class="num">n feats</th>'+
+    '<th class="num">F2 train</th><th class="num">F2 in-dist</th><th class="num">F2 held-out</th>'+
+    '<th style="min-width:200px">in-dist → held-out</th><th class="num">Δ</th>'+
+    '<th class="num">R_span</th><th class="num">R_c2</th><th class="num">fp</th></tr></thead><tbody>'+
+    rows.map((r,i)=>{
+      const d=(r.F2_all!=null&&r.F2_in!=null)?r.F2_all-r.F2_in:null;
+      const l=Math.min(r.F2_in,r.F2_all), h=Math.max(r.F2_in,r.F2_all);
+      return `<tr class="${i===0?'hl':''} ${r.kind==='reference'?'ref':''}">`+
+      `<td>${r.name}</td><td class="num">${r.n}</td>`+
+      `<td class="num" style="color:var(--ink3)">${fmt(r.F2_train)}</td>`+
+      `<td class="num" style="color:var(--cin);font-weight:650">${fmt(r.F2_in)}</td>`+
+      `<td class="num" style="color:var(--call);font-weight:650">${fmt(r.F2_all)}</td>`+
+      `<td><div class="pair">`+
+      `<div class="seg" style="left:${pct(l)}%;width:${Math.max(pct(h)-pct(l),1)}%;background:color-mix(in srgb,var(--call) 30%,transparent)"></div>`+
+      `<div class="m" style="left:${pct(r.F2_in)}%;background:var(--cin)"></div>`+
+      `<div class="m" style="left:${pct(r.F2_all)}%;background:var(--call)"></div>`+
+      `</div></td>`+
+      `<td class="num" style="color:${d>=0?'var(--accent-ink)':'var(--bad)'}">${d==null?'—':(d>0?'+':'')+d.toFixed(3).replace(/0\./,'.')}</td>`+
+      `<td class="num">${fmt(r.R_span)}</td><td class="num">${fmt(r.R_c2)}</td><td class="num">${fmt(r.fp,4)}</td></tr>`;
+    }).join('')+'</tbody>';
+}
+/* slope chart: k=2 references with all three stations + candidates from station 2 */
+{
+  const el=document.getElementById('slope');
+  const W=680,H=420,M={l:56,r:170,t:16,b:34};
+  const X=[M.l, (M.l+W-M.r)/2, W-M.r];
+  const y0=0.35,y1=0.9;
+  const sy=v=>H-M.b-(v-y0)/(y1-y0)*(H-M.t-M.b);
+  const NS='http://www.w3.org/2000/svg';
+  const svg=document.createElementNS(NS,'svg');
+  svg.setAttribute('viewBox',`0 0 ${W} ${H}`);
+  svg.setAttribute('style','width:100%;height:auto;display:block');
+  const mk=(n,a)=>{const e=document.createElementNS(NS,n);for(const k in a)e.setAttribute(k,a[k]);svg.appendChild(e);return e};
+  for(let v=0.4;v<=y1+1e-9;v+=0.1){
+    mk('line',{x1:M.l-6,x2:W-M.r+6,y1:sy(v),y2:sy(v),stroke:'var(--line)','stroke-width':1});
+    const t=mk('text',{x:M.l-10,y:sy(v)+4,'text-anchor':'end'}); t.textContent=v.toFixed(1).replace(/^0/,'');
+  }
+  const XL=["F2 train","F2 in-dist","F2 held-out"];
+  X.forEach((x,i)=>{
+    mk('line',{x1:x,x2:x,y1:M.t,y2:H-M.b,stroke:'var(--line)','stroke-width':1,'stroke-dasharray':'2 4'});
+    const t=mk('text',{x:x,y:H-M.b+16,'text-anchor':'middle','class':'lab'}); t.textContent=XL[i];
+  });
+  const METHODS=[["ratio ρ≥10 · vote k=2 (paper rule)","var(--cin)"],
+                 ["hill-climb search","var(--bad)"],
+                 ["control-cap (train-selected)","var(--ctrain)"]];
+  const leg=document.getElementById('leg');
+  leg.innerHTML=METHODS.map(([m,c])=>`<span><span class="dot" style="background:${c}"></span>${m}</span>`).join('')
+    +`<span><span class="dot" style="background:var(--call)"></span>k=4 candidates (from station two)</span>`;
+  for(const r of R.rows){
+    let col=null, pts=null;
+    for(const [m,c] of METHODS) if(r.name.includes(m)) col=c;
+    if(col && r.F2_train!=null){
+      pts=[[X[0],r.F2_train],[X[1],r.F2_in],[X[2],r.F2_all]];
+    } else if(r.kind==='candidate' && r.name.includes('ρ≥10')){
+      col='var(--call)';
+      pts=[[X[1],r.F2_in],[X[2],r.F2_all]];
+    }
+    if(!pts) continue;
+    mk('path',{d:pts.map((p,j)=>`${j?'L':'M'}${p[0]},${sy(p[1])}`).join(''),
+      fill:'none',stroke:col,'stroke-width':2,'stroke-opacity':.8});
+    for(const [x,v] of pts){
+      const c=mk('circle',{cx:x,cy:sy(v),r:4,fill:col,stroke:'var(--card)','stroke-width':1.5});
+      const hit=mk('circle',{cx:x,cy:sy(v),r:9,fill:'transparent'});
+      hit.addEventListener('pointerenter',ev=>{c.setAttribute('r',6);
+        tip.innerHTML=`<b>${r.name}</b><br>${fmt(v)}`;tip.style.display='block';
+        tip.style.left=Math.min(ev.clientX+14,innerWidth-tip.offsetWidth-8)+'px';
+        tip.style.top=Math.min(ev.clientY+14,innerHeight-tip.offsetHeight-8)+'px';});
+      hit.addEventListener('pointerleave',()=>{c.setAttribute('r',4);tip.style.display='none';});
+    }
+    const last=pts[pts.length-1];
+    const dl=mk('text',{x:last[0]+8,y:sy(last[1])+4,'class':''});
+    dl.textContent=r.name.split(' · ')[0]+(r.kind==='candidate'?' k=4':'');
+  }
+  el.appendChild(svg);
+}
+</script>

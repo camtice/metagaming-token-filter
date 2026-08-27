@@ -1,0 +1,3 @@
+{"ts": "2026-08-09T14:50:26.533302Z", "set": "OG_blocklist_222", "frozen_set_file": "data/latent_list_2026-07-29.json", "actor": "baseline-reference (protocol v1 setup)", "harvest": "out/harvest_val_v1"}
+{"ts": "2026-08-09T20:01:44.320142Z", "set": "OG_blocklist_222", "frozen_set_file": "data/latent_list_2026-07-29.json", "actor": "baseline-reference (manifest v3 seal)", "harvest": "out/harvest_valA_v3"}
+{"ts": "2026-08-09T20:01:47.757998Z", "set": "OG_blocklist_222", "frozen_set_file": "data/latent_list_2026-07-29.json", "actor": "baseline-reference (manifest v3 seal)", "harvest": "out/harvest_valB_v3"}

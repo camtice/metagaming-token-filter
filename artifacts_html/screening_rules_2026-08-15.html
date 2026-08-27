@@ -1,0 +1,294 @@
+<title>The 3&times; Rule</title>
+<style>
+:root{
+  --bg:#F7F8F6; --card:#FFFFFF; --ink:#1C2321; --ink2:#566058; --ink3:#7C877F;
+  --line:#DCE1DC; --accent:#1F6E5C; --accent-ink:#175243; --chip:#EEF1EC;
+  --s1:#2a78d6; --s2:#eb6834; --s3:#1baf7a; --s4:#eda100; --s5:#e87ba4;
+  --warnbg:#FBF3E8; --warnline:#E8D9BF;
+}
+@media (prefers-color-scheme: dark){ :root:not([data-theme="light"]){
+  --bg:#121614; --card:#1B211E; --ink:#E8ECE9; --ink2:#A9B3AD; --ink3:#7C877F;
+  --line:#2A322E; --accent:#4FA98A; --accent-ink:#7CC5AB; --chip:#232A26;
+  --s1:#3987e5; --s2:#d95926; --s3:#199e70; --s4:#c98500; --s5:#d55181;
+  --warnbg:#2A2620; --warnline:#4A4132;
+}}
+:root[data-theme="dark"]{
+  --bg:#121614; --card:#1B211E; --ink:#E8ECE9; --ink2:#A9B3AD; --ink3:#7C877F;
+  --line:#2A322E; --accent:#4FA98A; --accent-ink:#7CC5AB; --chip:#232A26;
+  --s1:#3987e5; --s2:#d95926; --s3:#199e70; --s4:#c98500; --s5:#d55181;
+  --warnbg:#2A2620; --warnline:#4A4132;
+}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);margin:0;
+  font:16px/1.55 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+main{max-width:80ch;margin:0 auto;padding:2.5rem 1.25rem 5rem}
+h1,h2{font-family:Charter,Georgia,serif;line-height:1.15;text-wrap:balance}
+h1{font-size:2.1rem;margin:0 0 .3rem}
+h2{font-size:1.3rem;margin:2.6rem 0 .7rem;padding-top:1.2rem;border-top:1px solid var(--line)}
+.kicker{font-size:.72rem;letter-spacing:.13em;text-transform:uppercase;color:var(--accent);font-weight:600}
+.sub{color:var(--ink2);margin:.2rem 0 0}
+p{margin:.75rem 0}
+code,.mono{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:.86em}
+.rulebox{background:var(--card);border:1px solid var(--accent);border-left-width:4px;
+  border-radius:8px;padding:1rem 1.2rem;margin:1.3rem 0;font-size:1.05rem}
+.rulebox b{color:var(--accent-ink)}
+.scroll{overflow-x:auto;background:var(--card);border:1px solid var(--line);border-radius:8px;margin:.8rem 0}
+table{border-collapse:collapse;width:100%;font-size:.85rem}
+th{font-size:.68rem;letter-spacing:.08em;text-transform:uppercase;color:var(--ink2);
+  text-align:left;padding:.5rem .6rem;border-bottom:1px solid var(--line);white-space:nowrap}
+td{padding:.42rem .6rem;border-bottom:1px solid var(--line);font-variant-numeric:tabular-nums}
+tr:last-child td{border-bottom:none}
+td.num,th.num{text-align:right}
+tr.hl td{background:color-mix(in srgb,var(--accent) 9%,transparent);font-weight:600}
+.dot{display:inline-block;width:.6em;height:.6em;border-radius:50%;margin-right:.4em}
+figure{margin:1.2rem 0;background:var(--card);border:1px solid var(--line);border-radius:8px;padding:1rem}
+figcaption{font-size:.8rem;color:var(--ink2);margin-top:.5rem}
+.legend{display:flex;gap:.5rem;flex-wrap:wrap;font-size:.8rem;color:var(--ink2);margin:0 0 .5rem;align-items:center}
+.legend button{all:unset;cursor:pointer;display:inline-flex;align-items:center;gap:.35em;
+  padding:.14em .55em;border-radius:999px;border:1px solid var(--line);color:var(--ink2)}
+.legend button:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.legend button[aria-pressed="false"]{opacity:.38}
+.legend .hint{font-size:.72rem;color:var(--ink3);margin-left:.3rem}
+g.series{transition:opacity .15s}
+g.series.dim{opacity:.13}
+.note{background:var(--warnbg);border:1px solid var(--warnline);border-radius:8px;padding:.7rem 1rem;font-size:.9rem}
+#tip{position:fixed;pointer-events:none;background:var(--card);border:1px solid var(--line);
+  border-radius:6px;padding:.45rem .65rem;font-size:.78rem;max-width:20rem;display:none;
+  box-shadow:0 4px 14px rgba(0,0,0,.14);z-index:9}
+svg text{fill:var(--ink2);font:11px system-ui}
+svg .dl{font-weight:600;fill:var(--ink)}
+</style>
+<main>
+<div class="kicker">Metagaming filter · TEST v5 · 2026-08-15</div>
+<h1>The 3&times; Rule</h1>
+<p class="sub">A single pre-registered screening rule matches combinatorially optimized SAE
+feature selection — across five judge pools and two SAE widths.</p>
+
+<div class="note" style="border-color:var(--warnline,#E8D9BF)"><b>Status (superseded in part):</b>
+this page is the historical record of the threshold study on TEST&nbsp;v5, where selection statistics
+still shared the scored corpus. The later generalization program (see the <b>Generalization
+Atlas</b>) re-ran everything with a proper train/test split and two upgrades: statistics from
+G-TRAIN only, and a stricter per-token <b>vote k≥4</b> (which dominates the ρ-only frontier shown
+below). The ρ-ratio idea itself survived every later test and is the core of the current recipe;
+quote the Atlas numbers, not these, in the write-up.</div>
+<div class="rulebox">Keep a feature if its above-threshold firing rate on <b>forget</b> text is at
+least <b>&rho;&nbsp;= 3&times;</b> its rate on <b>retain</b> text. One statistic per feature, one
+universal constant, no search.</div>
+
+<p>The question behind this page: our best feature sets came from hill-climbing over subsets
+(~10<sup>4</sup> adaptive metric evaluations — real overfitting capacity). Can a simple rule with
+<em>no fitted parameters</em> do the same job? Thresholds below were fixed in advance at round
+numbers ({1,&nbsp;2,&nbsp;3,&nbsp;5,&nbsp;10} for the ratio; {1%,&nbsp;&hellip;,&nbsp;0.01%} for the
+control cap) and evaluated once, exactly, under the frozen protocol (main forget = human spans +
+dense c1&ndash;c4; Rathi firing rule; TEST&nbsp;v5, 2,820 docs).</p>
+
+<h2>F2 is flat in &rho; — the knob sets your FP budget, not your score</h2>
+<figure>
+  <div class="legend" id="leg1"></div>
+  <div id="chart1"></div>
+  <figcaption>Each curve traces one pool through &rho; &isin; {1, 2, 3, 5, 10} (right to left:
+  looser &rho; &rarr; higher control FP). Diamonds are the hill-climbed optimized sets re-scored on
+  the same corpus. Across &rho; 1&rarr;5, F2 moves &le; .02 while control FP falls from ~.27&ndash;.36
+  to ~.05&ndash;.08: tightening &rho; trades recall for precision almost exactly F2-neutrally.
+  Choose the FP budget; &rho; follows (&rho;=3 &harr; ~10%, &rho;=5 &harr; ~6&ndash;8%,
+  &rho;=10 &harr; ~2&ndash;3%). Hover points for exact values; the table below repeats them.</figcaption>
+</figure>
+
+<h2>The &rho;=3 and &rho;=5 grid</h2>
+<div class="scroll"><table id="t1"></table></div>
+<p>The pre-registered &rho;=3 lands within one point of every swept optimum and within ~.01 of full
+optimization. Where it runs slightly hot (v8 pools), the next round number &rho;=5 is the
+FP-conservative variant — <b>haiku v8 65k at &rho;=5 reaches F2 .904 with recall .924 at 8.2% FP</b>,
+matching the searched 65k optimum with zero fitted parameters.</p>
+
+<h2>R1: the control-cap baseline — the least test-coupled rule</h2>
+<p>R1 (&ldquo;drop features firing on more than &tau; of retain-control tokens&rdquo;) deserves its
+own reading: it is the <b>lightest-touch baseline in the study</b>. It never sees the forget labels
+at all — only a corpus of ordinary text — so unlike R3 it cannot absorb any information from the
+span annotations or dense docs, and unlike the optimized sets it involves no search whatsoever.
+Its curve is the honest answer to &ldquo;what do you get from the judge pool plus a pile of clean
+text?&rdquo;</p>
+<figure>
+  <div class="legend" id="leg2"></div>
+  <div id="chart2"></div>
+  <figcaption>R1 traced through twelve fixed &tau; values (2% down to 0.01%), same axes and
+  optimized-set diamonds as above. Read at the 10% budget line: R1 reaches F2 ~.79&ndash;.81 at 16k
+  and ~.74&ndash;.78 at 65k — 6&ndash;10 points under the &rho; curves, but far above the label-free
+  rules, and a large share of the total signal considering it uses no forget data. Its two
+  structural limits: it keeps quiet-but-useless features and discards moderate-firing recall
+  carriers (the gap to R3), and &tau; is width-bound — the same &tau;=0.2% sits at ~10&ndash;15% FP
+  on 16k but ~29&ndash;35% on 65k, so the cap must be re-tuned per dictionary while &rho; transfers
+  unchanged. Caps stricter than shown (&tau; &lesssim; 0.05% at 16k, &lesssim; 0.02% at 65k) fall
+  below the chart floor — F2 collapses toward .2&ndash;.6 as recall carriers are culled.</figcaption>
+</figure>
+
+<h2>All six rules, best feasible point (FP &le; 10%)</h2>
+<div class="scroll"><table id="t2"></table></div>
+<p>R2 (corpus-wide rate cap, fully label-free) fails badly — overall firing rate barely tracks
+forget-specificity. R4 (stopword-share cap) is a passable register screen at 65k only. The
+Rathi&nbsp;&amp;&nbsp;Radford caption screen (R5: Paulo-style embedding score &ge; 0.9; R6: that
+screen then the control cap — their actual pipeline) underperforms the plain control cap here:
+the score measures caption <em>faithfulness</em>, not task relevance — a perfectly captioned
+&ldquo;list separators&rdquo; feature passes at 1.0 and still floods controls.
+(Reproduction caveat: MiniLM embedder + AUC scoring; their embedder is unspecified.)</p>
+
+<h2>Honesty notes</h2>
+<p class="note"><b>What &ldquo;pre-registered&rdquo; does and doesn&rsquo;t buy.</b> The &rho; grid
+was fixed before evaluation, but the per-feature fire rates are computed on the same TEST corpus the
+metric uses, and TEST informed earlier iterations. The rule&rsquo;s ~1 effective parameter can barely
+overfit — unlike subset search — which is exactly why its match to the optimized sets argues the
+optimizers weren&rsquo;t extracting much signal beyond the ratio statistic. The clean next step:
+recompute the ratios on disjoint selection-pool text and re-evaluate; sealed VAL-A/VAL-B remain
+unspent and adjudicate finally. Also note the earlier sweep reported <em>count</em> ratios
+(&times;23 smaller than rate ratios on this corpus mix); everything on this page is in per-token
+<em>rate</em> form — the width-portable, paper-ready number.</p>
+
+<p class="sub" style="font-size:.8rem">Data: <span class="mono">out/fixed_points_*.json</span>,
+<span class="mono">out/screen_rules_*.json</span> · report
+<span class="mono">notes/reports/screening_rules_2026-08-15.md</span> · scripts
+<span class="mono">fixed_ratio_points.py</span>, <span class="mono">screen_rules_sweep.py</span>,
+<span class="mono">embed_score_captions.py</span> · protocol v5, manifest sha
+<span class="mono">0f6f83c7</span>.</p>
+</main>
+<div id="tip"></div>
+<script type="application/json" id="data">{"pools": [{"tag": "fable_16k", "name": "fable 16k", "n_pool": 649, "r3": {"1": {"n": 419, "Pm": 0.7439, "Rm": 0.9253, "F2m": 0.8822, "R_span": 0.8901, "fp_ctl": 0.2659, "fp_clean": 0.4843}, "2": {"n": 308, "Pm": 0.8015, "Rm": 0.9018, "F2m": 0.8798, "R_span": 0.8112, "fp_ctl": 0.1494, "fp_clean": 0.217}, "3": {"n": 249, "Pm": 0.8311, "Rm": 0.8835, "F2m": 0.8725, "R_span": 0.7865, "fp_ctl": 0.0993, "fp_clean": 0.1446}, "5": {"n": 185, "Pm": 0.8678, "Rm": 0.8592, "F2m": 0.8609, "R_span": 0.761, "fp_ctl": 0.0595, "fp_clean": 0.1072}, "10": {"n": 120, "Pm": 0.933, "Rm": 0.7847, "F2m": 0.8104, "R_span": 0.7037, "fp_ctl": 0.0218, "fp_clean": 0.0222}}, "r1": {"0.02": {"n": 648, "Pm": 0.702, "Rm": 0.9414, "F2m": 0.8813, "R_span": 0.943, "fp_ctl": 0.471, "fp_clean": 0.7012}, "0.01": {"n": 623, "Pm": 0.7328, "Rm": 0.921, "F2m": 0.876, "R_span": 0.898, "fp_ctl": 0.3391, "fp_clean": 0.5618}, "0.005": {"n": 585, "Pm": 0.7916, "Rm": 0.8865, "F2m": 0.8657, "R_span": 0.8197, "fp_ctl": 0.236, "fp_clean": 0.294}, "0.003": {"n": 535, "Pm": 0.8387, "Rm": 0.8414, "F2m": 0.8409, "R_span": 0.7669, "fp_ctl": 0.1525, "fp_clean": 0.1983}, "0.002": {"n": 482, "Pm": 0.8644, "Rm": 0.7942, "F2m": 0.8073, "R_span": 0.6971, "fp_ctl": 0.1001, "fp_clean": 0.1653}, "0.0015": {"n": 444, "Pm": 0.8745, "Rm": 0.7658, "F2m": 0.7853, "R_span": 0.6816, "fp_ctl": 0.0722, "fp_clean": 0.146}, "0.001": {"n": 378, "Pm": 0.9338, "Rm": 0.6631, "F2m": 0.7039, "R_span": 0.6023, "fp_ctl": 0.0391, "fp_clean": 0.0479}, "0.0007": {"n": 315, "Pm": 0.9633, "Rm": 0.6076, "F2m": 0.6561, "R_span": 0.5571, "fp_ctl": 0.0219, "fp_clean": 0.0196}, "0.0005": {"n": 258, "Pm": 0.9699, "Rm": 0.5388, "F2m": 0.5914, "R_span": 0.4963, "fp_ctl": 0.0115, "fp_clean": 0.0139}, "0.0003": {"n": 196, "Pm": 0.9737, "Rm": 0.3682, "F2m": 0.4205, "R_span": 0.3529, "fp_ctl": 0.0052, "fp_clean": 0.0056}, "0.0002": {"n": 136, "Pm": 0.9799, "Rm": 0.2823, "F2m": 0.3291, "R_span": 0.276, "fp_ctl": 0.0023, "fp_clean": 0.0021}, "0.0001": {"n": 67, "Pm": 0.9793, "Rm": 0.1793, "F2m": 0.2144, "R_span": 0.2085, "fp_ctl": 0.0002, "fp_clean": 0.0004}}, "rules_best_fp10": {"R1_ctl_rate": {"K": 480, "knob": 0.001978, "Pm": 0.8651, "Rm": 0.7919, "F2m": 0.8055, "R": 0.6967, "fp_ctl": 0.0981, "fp_clean": 0.1653}, "R2_corpus_rate": {"K": 470, "knob": 0.002243, "Pm": 0.8302, "Rm": 0.54, "F2m": 0.5806, "R": 0.4958, "fp_ctl": 0.0999, "fp_clean": 0.1624}, "R3_ratio": {"K": 244, "knob": 0.133127, "Pm": 0.8314, "Rm": 0.8834, "F2m": 0.8725, "R": 0.7865, "fp_ctl": 0.0979, "fp_clean": 0.1433}, "R4_stop_frac": {"K": 220, "knob": 0.525714, "Pm": 0.8588, "Rm": 0.7893, "F2m": 0.8023, "R": 0.7166, "fp_ctl": 0.0982, "fp_clean": 0.1127}, "R5_embed": {"K": 212, "knob": 0.9531, "Pm": 0.8634, "Rm": 0.6289, "F2m": 0.665, "R": 0.5078, "fp_ctl": 0.0901, "fp_clean": 0.1345}, "R6_embed09_then_ctl": {"K": 315, "knob": 0.003896, "Pm": 0.8462, "Rm": 0.7673, "F2m": 0.7819, "R": 0.6977, "fp_ctl": 0.0958, "fp_clean": 0.1608}}, "full_pool": {"Pm": 0.7015, "Rm": 0.9416, "F2m": 0.8813, "R": 0.9433, "fp_ctl": 0.4924, "fp_clean": 0.7026}}, {"tag": "h6_16k", "name": "haiku v6 16k", "n_pool": 724, "r3": {"1": {"n": 429, "Pm": 0.7394, "Rm": 0.9301, "F2m": 0.8844, "R_span": 0.892, "fp_ctl": 0.2754, "fp_clean": 0.5062}, "2": {"n": 306, "Pm": 0.7901, "Rm": 0.9071, "F2m": 0.881, "R_span": 0.8195, "fp_ctl": 0.1573, "fp_clean": 0.2596}, "3": {"n": 236, "Pm": 0.8496, "Rm": 0.8818, "F2m": 0.8752, "R_span": 0.7789, "fp_ctl": 0.0826, "fp_clean": 0.1329}, "5": {"n": 165, "Pm": 0.882, "Rm": 0.8556, "F2m": 0.8607, "R_span": 0.757, "fp_ctl": 0.0494, "fp_clean": 0.1062}, "10": {"n": 107, "Pm": 0.9337, "Rm": 0.7926, "F2m": 0.8173, "R_span": 0.7128, "fp_ctl": 0.0207, "fp_clean": 0.0282}}, "r1": {"0.02": {"n": 723, "Pm": 0.7007, "Rm": 0.9429, "F2m": 0.882, "R_span": 0.9422, "fp_ctl": 0.5012, "fp_clean": 0.6857}, "0.01": {"n": 702, "Pm": 0.7276, "Rm": 0.927, "F2m": 0.8789, "R_span": 0.9112, "fp_ctl": 0.4124, "fp_clean": 0.5815}, "0.005": {"n": 652, "Pm": 0.7897, "Rm": 0.8767, "F2m": 0.8578, "R_span": 0.8203, "fp_ctl": 0.2848, "fp_clean": 0.2953}, "0.003": {"n": 587, "Pm": 0.851, "Rm": 0.8139, "F2m": 0.8211, "R_span": 0.7411, "fp_ctl": 0.1761, "fp_clean": 0.1815}, "0.002": {"n": 527, "Pm": 0.8861, "Rm": 0.7643, "F2m": 0.7859, "R_span": 0.6588, "fp_ctl": 0.1178, "fp_clean": 0.1207}, "0.0015": {"n": 472, "Pm": 0.9004, "Rm": 0.7474, "F2m": 0.7737, "R_span": 0.6425, "fp_ctl": 0.081, "fp_clean": 0.1035}, "0.001": {"n": 401, "Pm": 0.9307, "Rm": 0.65, "F2m": 0.6917, "R_span": 0.5905, "fp_ctl": 0.0455, "fp_clean": 0.0585}, "0.0007": {"n": 333, "Pm": 0.9605, "Rm": 0.5828, "F2m": 0.6325, "R_span": 0.5326, "fp_ctl": 0.0253, "fp_clean": 0.0289}, "0.0005": {"n": 267, "Pm": 0.9668, "Rm": 0.503, "F2m": 0.5564, "R_span": 0.4829, "fp_ctl": 0.0129, "fp_clean": 0.0167}, "0.0003": {"n": 191, "Pm": 0.9722, "Rm": 0.3285, "F2m": 0.3786, "R_span": 0.3334, "fp_ctl": 0.0053, "fp_clean": 0.0049}, "0.0002": {"n": 127, "Pm": 0.979, "Rm": 0.2732, "F2m": 0.3192, "R_span": 0.2779, "fp_ctl": 0.0021, "fp_clean": 0.0018}, "0.0001": {"n": 60, "Pm": 0.9786, "Rm": 0.165, "F2m": 0.1979, "R_span": 0.1996, "fp_ctl": 0.0002, "fp_clean": 0.0004}}, "rules_best_fp10": {"R1_ctl_rate": {"K": 492, "knob": 0.001695, "Pm": 0.8978, "Rm": 0.7521, "F2m": 0.7773, "R": 0.648, "fp_ctl": 0.0929, "fp_clean": 0.1078}, "R2_corpus_rate": {"K": 480, "knob": 0.001809, "Pm": 0.877, "Rm": 0.336, "F2m": 0.3833, "R": 0.3083, "fp_ctl": 0.0957, "fp_clean": 0.0714}, "R3_ratio": {"K": 236, "knob": 0.130323, "Pm": 0.8496, "Rm": 0.8818, "F2m": 0.8752, "R": 0.7789, "fp_ctl": 0.0826, "fp_clean": 0.1329}, "R4_stop_frac": {"K": 212, "knob": 0.523565, "Pm": 0.888, "Rm": 0.6786, "F2m": 0.7122, "R": 0.6182, "fp_ctl": 0.0919, "fp_clean": 0.1087}, "R5_embed": {"K": 212, "knob": 0.9688, "Pm": 0.9047, "Rm": 0.4201, "F2m": 0.4705, "R": 0.3441, "fp_ctl": 0.0934, "fp_clean": 0.0468}, "R6_embed09_then_ctl": {"K": 342, "knob": 0.003408, "Pm": 0.8901, "Rm": 0.6577, "F2m": 0.6939, "R": 0.6108, "fp_ctl": 0.0971, "fp_clean": 0.0778}}, "full_pool": {"Pm": 0.6996, "Rm": 0.9471, "F2m": 0.8845, "R": 0.9456, "fp_ctl": 0.5134, "fp_clean": 0.6906}}, {"tag": "h8_16k", "name": "haiku v8 16k", "n_pool": 921, "r3": {"1": {"n": 532, "Pm": 0.7296, "Rm": 0.9499, "F2m": 0.8958, "R_span": 0.9101, "fp_ctl": 0.3582, "fp_clean": 0.5687}, "2": {"n": 370, "Pm": 0.786, "Rm": 0.9251, "F2m": 0.8935, "R_span": 0.8318, "fp_ctl": 0.1938, "fp_clean": 0.2893}, "3": {"n": 291, "Pm": 0.8346, "Rm": 0.9053, "F2m": 0.8902, "R_span": 0.7952, "fp_ctl": 0.1089, "fp_clean": 0.1608}, "5": {"n": 201, "Pm": 0.8698, "Rm": 0.876, "F2m": 0.8747, "R_span": 0.7712, "fp_ctl": 0.0621, "fp_clean": 0.1208}, "10": {"n": 125, "Pm": 0.9259, "Rm": 0.8226, "F2m": 0.8414, "R_span": 0.7262, "fp_ctl": 0.0273, "fp_clean": 0.0456}}, "r1": {"0.02": {"n": 919, "Pm": 0.6901, "Rm": 0.9633, "F2m": 0.8927, "R_span": 0.9649, "fp_ctl": 0.65, "fp_clean": 0.7598}, "0.01": {"n": 886, "Pm": 0.7139, "Rm": 0.9491, "F2m": 0.8904, "R_span": 0.9345, "fp_ctl": 0.5061, "fp_clean": 0.6461}, "0.005": {"n": 823, "Pm": 0.7693, "Rm": 0.9132, "F2m": 0.8803, "R_span": 0.858, "fp_ctl": 0.367, "fp_clean": 0.3658}, "0.003": {"n": 742, "Pm": 0.8262, "Rm": 0.8565, "F2m": 0.8502, "R_span": 0.7824, "fp_ctl": 0.234, "fp_clean": 0.2309}, "0.002": {"n": 661, "Pm": 0.8621, "Rm": 0.8044, "F2m": 0.8153, "R_span": 0.7003, "fp_ctl": 0.1529, "fp_clean": 0.1597}, "0.0015": {"n": 595, "Pm": 0.8819, "Rm": 0.7826, "F2m": 0.8006, "R_span": 0.6775, "fp_ctl": 0.1063, "fp_clean": 0.1327}, "0.001": {"n": 505, "Pm": 0.9181, "Rm": 0.684, "F2m": 0.7207, "R_span": 0.6181, "fp_ctl": 0.0597, "fp_clean": 0.0841}, "0.0007": {"n": 425, "Pm": 0.9523, "Rm": 0.619, "F2m": 0.6656, "R_span": 0.5679, "fp_ctl": 0.0355, "fp_clean": 0.0464}, "0.0005": {"n": 332, "Pm": 0.9636, "Rm": 0.5289, "F2m": 0.5813, "R_span": 0.5106, "fp_ctl": 0.0171, "fp_clean": 0.0233}, "0.0003": {"n": 232, "Pm": 0.9691, "Rm": 0.3579, "F2m": 0.4096, "R_span": 0.3626, "fp_ctl": 0.0069, "fp_clean": 0.0091}, "0.0002": {"n": 157, "Pm": 0.9779, "Rm": 0.2911, "F2m": 0.3386, "R_span": 0.2966, "fp_ctl": 0.003, "fp_clean": 0.0047}, "0.0001": {"n": 80, "Pm": 0.978, "Rm": 0.1666, "F2m": 0.1997, "R_span": 0.2002, "fp_ctl": 0.0003, "fp_clean": 0.0004}}, "rules_best_fp10": {"R1_ctl_rate": {"K": 585, "knob": 0.001452, "Pm": 0.8867, "Rm": 0.7686, "F2m": 0.7896, "R": 0.6678, "fp_ctl": 0.1, "fp_clean": 0.1242}, "R2_corpus_rate": {"K": 555, "knob": 0.00153, "Pm": 0.8597, "Rm": 0.3367, "F2m": 0.3833, "R": 0.3131, "fp_ctl": 0.0954, "fp_clean": 0.0883}, "R3_ratio": {"K": 268, "knob": 0.145558, "Pm": 0.8413, "Rm": 0.9017, "F2m": 0.8889, "R": 0.7905, "fp_ctl": 0.0982, "fp_clean": 0.1495}, "R4_stop_frac": {"K": 220, "knob": 0.510064, "Pm": 0.8931, "Rm": 0.6547, "F2m": 0.6916, "R": 0.5601, "fp_ctl": 0.0974, "fp_clean": 0.0921}, "R5_embed": {"K": 236, "knob": 0.9844, "Pm": 0.9021, "Rm": 0.4644, "F2m": 0.5143, "R": 0.3909, "fp_ctl": 0.0991, "fp_clean": 0.0576}, "R6_embed09_then_ctl": {"K": 398, "knob": 0.002333, "Pm": 0.8861, "Rm": 0.6659, "F2m": 0.7007, "R": 0.594, "fp_ctl": 0.0971, "fp_clean": 0.0962}}, "full_pool": {"Pm": 0.688, "Rm": 0.9667, "F2m": 0.8942, "R": 0.9679, "fp_ctl": 0.6705, "fp_clean": 0.768}}, {"tag": "h6_65k", "name": "haiku v6 65k", "n_pool": 3043, "r3": {"1": {"n": 1714, "Pm": 0.7526, "Rm": 0.9529, "F2m": 0.9047, "R_span": 0.9194, "fp_ctl": 0.2507, "fp_clean": 0.419}, "2": {"n": 1278, "Pm": 0.7907, "Rm": 0.9384, "F2m": 0.9046, "R_span": 0.8627, "fp_ctl": 0.1647, "fp_clean": 0.2689}, "3": {"n": 1042, "Pm": 0.8167, "Rm": 0.9243, "F2m": 0.9006, "R_span": 0.8329, "fp_ctl": 0.1085, "fp_clean": 0.204}, "5": {"n": 768, "Pm": 0.8426, "Rm": 0.9092, "F2m": 0.8951, "R_span": 0.8046, "fp_ctl": 0.0662, "fp_clean": 0.1547}, "10": {"n": 498, "Pm": 0.9007, "Rm": 0.8779, "F2m": 0.8824, "R_span": 0.7403, "fp_ctl": 0.0291, "fp_clean": 0.0687}}, "r1": {"0.02": {"n": 3043, "Pm": 0.6996, "Rm": 0.9698, "F2m": 0.9002, "R_span": 0.9732, "fp_ctl": 0.566, "fp_clean": 0.6997}, "0.01": {"n": 3026, "Pm": 0.7115, "Rm": 0.9613, "F2m": 0.8983, "R_span": 0.9612, "fp_ctl": 0.5073, "fp_clean": 0.6457}, "0.005": {"n": 2984, "Pm": 0.7283, "Rm": 0.9533, "F2m": 0.8978, "R_span": 0.943, "fp_ctl": 0.4279, "fp_clean": 0.5754}, "0.003": {"n": 2930, "Pm": 0.7503, "Rm": 0.9403, "F2m": 0.895, "R_span": 0.9115, "fp_ctl": 0.3594, "fp_clean": 0.4497}, "0.002": {"n": 2850, "Pm": 0.7697, "Rm": 0.9223, "F2m": 0.8871, "R_span": 0.8919, "fp_ctl": 0.2874, "fp_clean": 0.3835}, "0.0015": {"n": 2779, "Pm": 0.7934, "Rm": 0.9115, "F2m": 0.8851, "R_span": 0.8613, "fp_ctl": 0.2415, "fp_clean": 0.3236}, "0.001": {"n": 2635, "Pm": 0.8376, "Rm": 0.8369, "F2m": 0.837, "R_span": 0.7738, "fp_ctl": 0.1699, "fp_clean": 0.2211}, "0.0007": {"n": 2489, "Pm": 0.8675, "Rm": 0.7543, "F2m": 0.7745, "R_span": 0.695, "fp_ctl": 0.1229, "fp_clean": 0.1627}, "0.0005": {"n": 2316, "Pm": 0.9063, "Rm": 0.7091, "F2m": 0.7414, "R_span": 0.6393, "fp_ctl": 0.0837, "fp_clean": 0.1034}, "0.0003": {"n": 2057, "Pm": 0.9271, "Rm": 0.6479, "F2m": 0.6895, "R_span": 0.5937, "fp_ctl": 0.0469, "fp_clean": 0.0693}, "0.0002": {"n": 1828, "Pm": 0.9449, "Rm": 0.5269, "F2m": 0.578, "R_span": 0.5034, "fp_ctl": 0.0271, "fp_clean": 0.0362}, "0.0001": {"n": 1418, "Pm": 0.9627, "Rm": 0.4196, "F2m": 0.4729, "R_span": 0.4119, "fp_ctl": 0.0089, "fp_clean": 0.0145}}, "rules_best_fp10": {"R1_ctl_rate": {"K": 2350, "knob": 0.000536, "Pm": 0.9025, "Rm": 0.7161, "F2m": 0.747, "R": 0.6466, "fp_ctl": 0.0902, "fp_clean": 0.1136}, "R2_corpus_rate": {"K": 2300, "knob": 0.000584, "Pm": 0.8612, "Rm": 0.3737, "F2m": 0.4214, "R": 0.3695, "fp_ctl": 0.0912, "fp_clean": 0.1028}, "R3_ratio": {"K": 950, "knob": 0.151515, "Pm": 0.8238, "Rm": 0.9212, "F2m": 0.8999, "R": 0.8247, "fp_ctl": 0.0975, "fp_clean": 0.1848}, "R4_stop_frac": {"K": 1000, "knob": 0.502627, "Pm": 0.8896, "Rm": 0.8199, "F2m": 0.833, "R": 0.6667, "fp_ctl": 0.0935, "fp_clean": 0.093}, "R5_embed": {"K": 650, "knob": 1.0, "Pm": 0.856, "Rm": 0.6205, "F2m": 0.6566, "R": 0.5721, "fp_ctl": 0.0997, "fp_clean": 0.2146}, "R6_embed09_then_ctl": {"K": 1532, "knob": 0.000989, "Pm": 0.8858, "Rm": 0.7072, "F2m": 0.737, "R": 0.6286, "fp_ctl": 0.1, "fp_clean": 0.1107}}, "full_pool": {"Pm": 0.6996, "Rm": 0.9698, "F2m": 0.9002, "R": 0.9732, "fp_ctl": 0.566, "fp_clean": 0.6997}}, {"tag": "h8_65k", "name": "haiku v8 65k", "n_pool": 3798, "r3": {"1": {"n": 2122, "Pm": 0.7305, "Rm": 0.969, "F2m": 0.9096, "R_span": 0.945, "fp_ctl": 0.3166, "fp_clean": 0.5087}, "2": {"n": 1567, "Pm": 0.7622, "Rm": 0.9562, "F2m": 0.9099, "R_span": 0.8965, "fp_ctl": 0.2192, "fp_clean": 0.3491}, "3": {"n": 1268, "Pm": 0.7869, "Rm": 0.945, "F2m": 0.9085, "R_span": 0.8689, "fp_ctl": 0.1438, "fp_clean": 0.2644}, "5": {"n": 916, "Pm": 0.8333, "Rm": 0.9238, "F2m": 0.9042, "R_span": 0.8166, "fp_ctl": 0.0824, "fp_clean": 0.1815}, "10": {"n": 575, "Pm": 0.9023, "Rm": 0.8902, "F2m": 0.8926, "R_span": 0.749, "fp_ctl": 0.0337, "fp_clean": 0.0712}}, "r1": {"0.02": {"n": 3798, "Pm": 0.6876, "Rm": 0.9816, "F2m": 0.9043, "R_span": 0.9853, "fp_ctl": 0.6461, "fp_clean": 0.7601}, "0.01": {"n": 3778, "Pm": 0.7009, "Rm": 0.9746, "F2m": 0.904, "R_span": 0.974, "fp_ctl": 0.5928, "fp_clean": 0.7017}, "0.005": {"n": 3729, "Pm": 0.715, "Rm": 0.9686, "F2m": 0.9044, "R_span": 0.9596, "fp_ctl": 0.5172, "fp_clean": 0.6391}, "0.003": {"n": 3660, "Pm": 0.7341, "Rm": 0.9583, "F2m": 0.9031, "R_span": 0.9357, "fp_ctl": 0.4391, "fp_clean": 0.5251}, "0.002": {"n": 3558, "Pm": 0.7549, "Rm": 0.9413, "F2m": 0.897, "R_span": 0.9167, "fp_ctl": 0.3522, "fp_clean": 0.4551}, "0.0015": {"n": 3474, "Pm": 0.7792, "Rm": 0.9311, "F2m": 0.8961, "R_span": 0.8797, "fp_ctl": 0.3011, "fp_clean": 0.3737}, "0.001": {"n": 3300, "Pm": 0.8161, "Rm": 0.8759, "F2m": 0.8632, "R_span": 0.8049, "fp_ctl": 0.2179, "fp_clean": 0.2812}, "0.0007": {"n": 3111, "Pm": 0.8501, "Rm": 0.8137, "F2m": 0.8207, "R_span": 0.7351, "fp_ctl": 0.1582, "fp_clean": 0.2126}, "0.0005": {"n": 2891, "Pm": 0.8834, "Rm": 0.7586, "F2m": 0.7807, "R_span": 0.673, "fp_ctl": 0.107, "fp_clean": 0.1393}, "0.0003": {"n": 2572, "Pm": 0.9171, "Rm": 0.6903, "F2m": 0.7262, "R_span": 0.6238, "fp_ctl": 0.0603, "fp_clean": 0.0998}, "0.0002": {"n": 2299, "Pm": 0.9375, "Rm": 0.5836, "F2m": 0.6312, "R_span": 0.5404, "fp_ctl": 0.0359, "fp_clean": 0.0651}, "0.0001": {"n": 1788, "Pm": 0.9592, "Rm": 0.4685, "F2m": 0.5219, "R_span": 0.4428, "fp_ctl": 0.0119, "fp_clean": 0.0301}}, "rules_best_fp10": {"R1_ctl_rate": {"K": 2820, "knob": 0.00045, "Pm": 0.8909, "Rm": 0.7492, "F2m": 0.7738, "R": 0.6622, "fp_ctl": 0.0945, "fp_clean": 0.1311}, "R2_corpus_rate": {"K": 2757, "knob": 0.000495, "Pm": 0.8522, "Rm": 0.378, "F2m": 0.4254, "R": 0.3745, "fp_ctl": 0.0952, "fp_clean": 0.1234}, "R3_ratio": {"K": 993, "knob": 0.2, "Pm": 0.8243, "Rm": 0.9296, "F2m": 0.9064, "R": 0.8277, "fp_ctl": 0.0986, "fp_clean": 0.1985}, "R4_stop_frac": {"K": 993, "knob": 0.481268, "Pm": 0.8705, "Rm": 0.6922, "F2m": 0.7218, "R": 0.5956, "fp_ctl": 0.0908, "fp_clean": 0.1144}, "R5_embed": {"K": 489, "knob": 1.0, "Pm": 0.8395, "Rm": 0.6036, "F2m": 0.6395, "R": 0.5352, "fp_ctl": 0.0972, "fp_clean": 0.2287}, "R6_embed09_then_ctl": {"K": 1796, "knob": 0.000756, "Pm": 0.8868, "Rm": 0.7369, "F2m": 0.7627, "R": 0.6412, "fp_ctl": 0.0994, "fp_clean": 0.1226}}, "full_pool": {"Pm": 0.6876, "Rm": 0.9816, "F2m": 0.9043, "R": 0.9853, "fp_ctl": 0.6461, "fp_clean": 0.7601}}], "rules": [], "refs": {"D2 (optimized, fable)": {"F2m": 0.882, "Rm": 0.885, "Pm": 0.871, "fp": 0.102, "width": "16k"}, "h6-16k optimized": {"F2m": 0.889, "Rm": 0.895, "Pm": 0.869, "fp": 0.132, "width": "16k"}, "h6-65k optimized": {"F2m": 0.916, "Rm": 0.924, "Pm": 0.883, "fp": 0.118, "width": "65k"}}}</script>
+<script>
+const D = JSON.parse(document.getElementById('data').textContent);
+const COLS = ['var(--s1)','var(--s2)','var(--s3)','var(--s4)','var(--s5)'];
+const fmt = (x,d=3)=> x==null?'—':(+x).toFixed(d).replace(/^0\./,'.');
+const tip = document.getElementById('tip');
+function mkTip(html, ev){
+  tip.innerHTML = html; tip.style.display='block';
+  const pad=14, w=tip.offsetWidth, h=tip.offsetHeight;
+  tip.style.left=Math.min(ev.clientX+pad, innerWidth-w-8)+'px';
+  tip.style.top=Math.min(ev.clientY+pad, innerHeight-h-8)+'px';
+}
+/* pool visibility state shared by both charts */
+const poolOn = D.pools.map(()=>true);
+const seriesGroups = D.pools.map(()=>[]);   // [poolIdx] -> [<g> in each chart]
+const legendBtns = D.pools.map(()=>[]);
+function applyState(){
+  D.pools.forEach((_,i)=>{
+    seriesGroups[i].forEach(g=>g.classList.toggle('dim', !poolOn[i]));
+    legendBtns[i].forEach(b=>b.setAttribute('aria-pressed', String(poolOn[i])));
+  });
+}
+function legend(el){
+  D.pools.forEach((p,i)=>{
+    const b=document.createElement('button');
+    b.setAttribute('aria-pressed','true');
+    b.innerHTML=`<span class="dot" style="background:${COLS[i]}"></span>${p.name}`;
+    b.title='click to dim/undim this family in both charts';
+    b.addEventListener('click',()=>{
+      const anyOff = poolOn.some(v=>!v);
+      if(!anyOff){ poolOn.forEach((_,j)=>poolOn[j] = (j===i)); }   // first click isolates
+      else { poolOn[i] = !poolOn[i];
+             if(poolOn.every(v=>v===false)) poolOn.forEach((_,j)=>poolOn[j]=true); }
+      applyState();
+    });
+    legendBtns[i].push(b);
+    el.appendChild(b);
+  });
+  const d=document.createElement('span');
+  d.innerHTML=`<span style="display:inline-block;width:.7em;height:.7em;background:var(--ink3);transform:rotate(45deg);margin-right:.4em"></span>optimized sets`;
+  el.appendChild(d);
+  const h=document.createElement('span');
+  h.className='hint'; h.textContent='click a family to isolate it; click again to add/remove others';
+  el.appendChild(h);
+}
+legend(document.getElementById('leg1'));
+legend(document.getElementById('leg2'));
+function curveChart(el, series, refs, xmax){
+  const W=680,H=400,M={l:52,r:16,t:12,b:42};
+  const sx=v=>M.l+(v/xmax)*(W-M.l-M.r);
+  const y0=0.55, y1=0.95;
+  const sy=v=>H-M.b-((v-y0)/(y1-y0))*(H-M.t-M.b);
+  const NS='http://www.w3.org/2000/svg';
+  const svg=document.createElementNS(NS,'svg');
+  svg.setAttribute('viewBox',`0 0 ${W} ${H}`);
+  svg.setAttribute('style','width:100%;height:auto;display:block');
+  svg.setAttribute('role','img');
+  const mk=(n,a)=>{const e=document.createElementNS(NS,n);for(const k in a)e.setAttribute(k,a[k]);svg.appendChild(e);return e};
+  for(let v=y0;v<=y1+1e-9;v+=0.1){
+    mk('line',{x1:M.l,x2:W-M.r,y1:sy(v),y2:sy(v),stroke:'var(--line)','stroke-width':1});
+    const t=mk('text',{x:M.l-6,y:sy(v)+4,'text-anchor':'end'}); t.textContent=v.toFixed(2).replace(/^0/,'');
+  }
+  for(let v=0;v<=xmax+1e-9;v+=0.1){
+    mk('line',{x1:sx(v),x2:sx(v),y1:M.t,y2:H-M.b,stroke:'var(--line)','stroke-width':1});
+    const t=mk('text',{x:sx(v),y:H-M.b+16,'text-anchor':'middle'}); t.textContent=(v*100).toFixed(0)+'%';
+  }
+  mk('line',{x1:sx(0.10),x2:sx(0.10),y1:M.t,y2:H-M.b,stroke:'var(--accent)','stroke-width':1.5,'stroke-dasharray':'5 4'});
+  const bl=mk('text',{x:sx(0.10)+4,y:M.t+12}); bl.textContent='10% budget';
+  const xt=mk('text',{x:(M.l+W-M.r)/2,y:H-6,'text-anchor':'middle'}); xt.textContent='false-positive rate on retain controls';
+  const yt=mk('text',{x:14,y:(M.t+H-M.b)/2,'text-anchor':'middle',transform:`rotate(-90 14 ${(M.t+H-M.b)/2})`}); yt.textContent='main F2 (spans + dense c1–c4)';
+  series.forEach((s,i)=>{
+    const g=document.createElementNS(NS,'g');
+    g.setAttribute('class','series'); svg.appendChild(g);
+    const mkg=(n,a)=>{const e=document.createElementNS(NS,n);for(const k in a)e.setAttribute(k,a[k]);g.appendChild(e);return e};
+    const pts=s.pts.filter(p=>p.fp<=xmax+0.02 && p.F2m>=y0);
+    mkg('path',{d:pts.map((p,j)=>`${j?'L':'M'}${sx(Math.min(p.fp,xmax))},${sy(p.F2m)}`).join(''),
+      fill:'none',stroke:COLS[i],'stroke-width':2,'stroke-linecap':'round'});
+    pts.forEach(p=>{
+      const c=mkg('circle',{cx:sx(Math.min(p.fp,xmax)),cy:sy(p.F2m),r:4.4,fill:COLS[i],
+        stroke:'var(--card)','stroke-width':2});
+      const hit=mkg('circle',{cx:sx(Math.min(p.fp,xmax)),cy:sy(p.F2m),r:10,fill:'transparent'});
+      hit.addEventListener('pointerenter',ev=>{if(g.classList.contains('dim'))return;
+        c.setAttribute('r',6.2);
+        mkTip(`<b>${s.name}</b> · ${p.lab}<br>F2 ${fmt(p.F2m)} · R ${fmt(p.Rm)} · fp ${(p.fp*100).toFixed(1)}% · n=${p.n}`,ev);});
+      hit.addEventListener('pointermove',ev=>{if(!g.classList.contains('dim'))mkTip(tip.innerHTML,ev);});
+      hit.addEventListener('pointerleave',()=>{c.setAttribute('r',4.4);tip.style.display='none';});
+    });
+    const last=pts[pts.length-1];
+    if(last){const dl=mkg('text',{x:sx(Math.min(last.fp,xmax))-8,y:sy(last.F2m)-8,'text-anchor':'end','class':'dl'});
+      dl.textContent=s.short;}
+    seriesGroups[i].push(g);
+  });
+  for(const [name,r] of Object.entries(refs)){
+    if(r.fp>xmax) continue;
+    const x=sx(r.fp), y=sy(r.F2m);
+    const d=mk('rect',{x:x-5,y:y-5,width:10,height:10,fill:'var(--ink3)',transform:`rotate(45 ${x} ${y})`,
+      stroke:'var(--card)','stroke-width':1.5});
+    const hit=mk('circle',{cx:x,cy:y,r:10,fill:'transparent'});
+    hit.addEventListener('pointerenter',ev=>mkTip(`<b>${name}</b><br>F2 ${fmt(r.F2m)} · R ${fmt(r.Rm)} · fp ${(r.fp*100).toFixed(1)}%`,ev));
+    hit.addEventListener('pointermove',ev=>mkTip(tip.innerHTML,ev));
+    hit.addEventListener('pointerleave',()=>tip.style.display='none');
+  }
+  el.appendChild(svg);
+}
+const RHOL={"1":"ρ=1","2":"ρ=2","3":"ρ=3","5":"ρ=5","10":"ρ=10"};
+const short = n => n.replace('haiku ','').replace(' 16k','·16k').replace(' 65k','·65k');
+curveChart(document.getElementById('chart1'),
+  D.pools.map(p=>({name:p.name, short:short(p.name),
+    pts:Object.entries(p.r3).map(([r,m])=>({lab:RHOL[r], fp:m.fp_ctl, ...m})).sort((a,b)=>a.fp-b.fp)})),
+  D.refs, 0.40);
+curveChart(document.getElementById('chart2'),
+  D.pools.map(p=>({name:p.name, short:short(p.name),
+    pts:Object.entries(p.r1).map(([t,m])=>({lab:'τ='+(+t*100)+'%', fp:m.fp_ctl, ...m})).sort((a,b)=>a.fp-b.fp)})),
+  D.refs, 0.40);
+/* t1: rho grid */
+{
+  const t=document.getElementById('t1');
+  t.innerHTML='<thead><tr><th>pool</th><th class="num">n kept (ρ=3)</th>'+
+    '<th class="num">F2 ρ=3</th><th class="num">R ρ=3</th><th class="num">fp ρ=3</th>'+
+    '<th class="num">F2 ρ=5</th><th class="num">R ρ=5</th><th class="num">fp ρ=5</th>'+
+    '<th class="num">optimized F2 / fp</th></tr></thead><tbody>'+
+    D.pools.map((p,i)=>{
+      const a=p.r3["3"],b=p.r3["5"];
+      const ref={fable_16k:'D2 (optimized, fable)',h6_16k:'h6-16k optimized',h6_65k:'h6-65k optimized'}[p.tag];
+      const r=ref?D.refs[ref]:null;
+      return `<tr${p.tag==='h8_65k'?' class="hl"':''}><td><span class="dot" style="background:${COLS[i]}"></span>${p.name}</td>`+
+        `<td class="num">${a.n}</td><td class="num">${fmt(a.F2m)}</td><td class="num">${fmt(a.Rm)}</td><td class="num">${(a.fp_ctl*100).toFixed(1)}%</td>`+
+        `<td class="num">${fmt(b.F2m)}</td><td class="num">${fmt(b.Rm)}</td><td class="num">${(b.fp_ctl*100).toFixed(1)}%</td>`+
+        `<td class="num">${r?fmt(r.F2m)+' / '+(r.fp*100).toFixed(1)+'%':'—'}</td></tr>`;}).join('')+'</tbody>';
+}
+/* t2: rules table */
+{
+  const t=document.getElementById('t2');
+  const RN={R3_ratio:"R3 ratio (swept, for reference)",R1_ctl_rate:"R1 control cap",
+    R4_stop_frac:"R4 stopword share",R6_embed09_then_ctl:"R6 embed≥0.9 → ctl cap (Rathi)",
+    R5_embed:"R5 embed score alone",R2_corpus_rate:"R2 corpus rate (label-free)"};
+  t.innerHTML='<thead><tr><th>rule</th>'+D.pools.map((p,i)=>`<th class="num"><span class="dot" style="background:${COLS[i]}"></span>${p.name}</th>`).join('')+'</tr></thead><tbody>'+
+    Object.entries(RN).map(([k,n])=>`<tr${k==='R3_ratio'?' class="hl"':''}><td>${n}</td>`+
+      D.pools.map(p=>{const b=p.rules_best_fp10[k];return `<td class="num">${b?fmt(b.F2m):'—'}</td>`;}).join('')+'</tr>').join('')+'</tbody>';
+}
+</script>

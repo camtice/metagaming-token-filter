@@ -1,0 +1,42 @@
+{
+ "gtest_span": {
+  "docs": 25,
+  "tokens": 28190,
+  "gt_tokens": 6577
+ },
+ "gtest_clean": {
+  "docs": 20,
+  "tokens": 9591,
+  "gt_tokens": 0
+ },
+ "gtest_ctl": {
+  "docs": 1313,
+  "tokens": 704121,
+  "gt_tokens": 0
+ },
+ "train_ctl": {
+  "docs": 1312,
+  "tokens": 673327,
+  "gt_tokens": 0
+ },
+ "gtest_dense": {
+  "docs": 45,
+  "tokens": 19927,
+  "gt_tokens": 0
+ },
+ "train_dense": {
+  "docs": 45,
+  "tokens": 20267,
+  "gt_tokens": 0
+ },
+ "gtest_c2": {
+  "docs": 30,
+  "tokens": 12871,
+  "gt_tokens": 0
+ },
+ "excluded_c5": {
+  "docs": 30,
+  "tokens": 13344,
+  "gt_tokens": 0
+ }
+}

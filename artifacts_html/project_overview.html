@@ -1,0 +1,533 @@
+<title>Metagaming Filter Handbook</title>
+<style>
+  :root {
+    color-scheme: light;
+    --ground: #F7F8F6; --surface: #FFFFFF; --ink: #1C2321; --ink2: #5A6662;
+    --accent: #1F6E5C; --rule: #E0E4E0; --code-bg: #EEF1EE;
+    --forget: #B2513D; --forget-bg: #F6EAE6; --retain: #1F6E5C; --retain-bg: #E7F0ED;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      color-scheme: dark;
+      --ground: #121614; --surface: #1B211E; --ink: #E9EDEA; --ink2: #9FAAA4;
+      --accent: #5FBFA6; --rule: #2A322D; --code-bg: #232A26;
+      --forget: #D98973; --forget-bg: #33221D; --retain: #5FBFA6; --retain-bg: #1C2B26;
+    }
+  }
+  :root[data-theme="dark"] {
+    color-scheme: dark;
+    --ground: #121614; --surface: #1B211E; --ink: #E9EDEA; --ink2: #9FAAA4;
+    --accent: #5FBFA6; --rule: #2A322D; --code-bg: #232A26;
+    --forget: #D98973; --forget-bg: #33221D; --retain: #5FBFA6; --retain-bg: #1C2B26;
+  }
+  :root[data-theme="light"] {
+    color-scheme: light;
+    --ground: #F7F8F6; --surface: #FFFFFF; --ink: #1C2321; --ink2: #5A6662;
+    --accent: #1F6E5C; --rule: #E0E4E0; --code-bg: #EEF1EE;
+    --forget: #B2513D; --forget-bg: #F6EAE6; --retain: #1F6E5C; --retain-bg: #E7F0ED;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; }
+  body {
+    background: var(--ground); color: var(--ink);
+    font: 15px/1.65 system-ui, -apple-system, "Segoe UI", sans-serif;
+    padding: 40px 20px 90px;
+  }
+  .page { max-width: 76ch; margin: 0 auto; }
+  h1, h2, h3 { font-family: Charter, "Bitstream Charter", Cambria, Georgia, serif; text-wrap: balance; }
+  h1 { font-size: 32px; line-height: 1.2; margin: 6px 0 4px; letter-spacing: -0.01em; }
+  h2 { font-size: 21px; margin: 44px 0 10px; padding-top: 18px; border-top: 1px solid var(--rule); }
+  h3 { font-size: 16px; margin: 22px 0 6px; }
+  p, li { max-width: 72ch; }
+  p { margin: 10px 0; }
+  ul, ol { padding-left: 22px; margin: 8px 0; }
+  li { margin: 4px 0; }
+  a { color: var(--accent); }
+  .eyebrow { font-size: 11px; letter-spacing: .14em; text-transform: uppercase; color: var(--ink2); font-weight: 600; }
+  .lede { font-size: 16.5px; color: var(--ink2); margin-top: 8px; }
+  .toc { display: flex; flex-wrap: wrap; gap: 6px 14px; margin: 20px 0 4px; font-size: 13px; }
+  .toc a { text-decoration: none; border-bottom: 1px solid var(--rule); padding-bottom: 1px; }
+  code, .mono { font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace; font-size: .92em; }
+  code { background: var(--code-bg); border-radius: 4px; padding: 1px 5px; }
+  pre { background: var(--code-bg); border-radius: 8px; padding: 12px 14px; overflow-x: auto; font-size: 12.5px; line-height: 1.55; }
+  pre code { background: none; padding: 0; }
+  .tablewrap { overflow-x: auto; margin: 12px 0; border: 1px solid var(--rule); border-radius: 8px; background: var(--surface); }
+  table { border-collapse: collapse; width: 100%; font-size: 13.5px; }
+  th { text-align: left; font-size: 11px; letter-spacing: .07em; text-transform: uppercase; color: var(--ink2);
+       padding: 9px 12px; border-bottom: 1px solid var(--rule); font-weight: 650; white-space: nowrap; }
+  td { padding: 8px 12px; border-bottom: 1px solid var(--rule); vertical-align: top; }
+  tr:last-child td { border-bottom: none; }
+  td.num, th.num { text-align: right; font-variant-numeric: tabular-nums; }
+  .chip { display: inline-block; font-size: 11px; font-weight: 700; letter-spacing: .04em;
+          border-radius: 999px; padding: 1px 9px; white-space: nowrap; }
+  .chip.forget { color: var(--forget); background: var(--forget-bg); }
+  .chip.retain { color: var(--retain); background: var(--retain-bg); }
+  .chip.sealed { color: var(--ink2); background: var(--code-bg); }
+  .callout { border-left: 3px solid var(--accent); background: var(--surface); border-radius: 0 8px 8px 0;
+             padding: 10px 16px; margin: 14px 0; }
+  .callout.warn { border-left-color: var(--forget); }
+  .kv { color: var(--ink2); }
+  footer { margin-top: 48px; padding-top: 14px; border-top: 1px solid var(--rule); font-size: 12.5px; color: var(--ink2); }
+
+  .exportbar { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 10px;
+               margin: 18px 0 0; padding: 10px 12px; border: 1px solid var(--rule);
+               border-radius: 8px; background: var(--surface); }
+  .exportbar .hint { font-size: 12.5px; color: var(--ink2); flex: 1 1 220px; min-width: 200px; }
+  .btn { font: 600 13px/1 system-ui, -apple-system, "Segoe UI", sans-serif; color: var(--accent);
+         background: var(--retain-bg); border: 1px solid var(--accent); border-radius: 6px;
+         padding: 7px 12px; cursor: pointer; }
+  .btn:hover { filter: brightness(0.97); }
+  .btn:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+  .btn.ok { color: var(--retain); }
+  details.mdview { margin: 26px 0 0; border: 1px solid var(--rule); border-radius: 8px; background: var(--surface); }
+  details.mdview summary { cursor: pointer; padding: 10px 14px; font-weight: 600; font-size: 13.5px; color: var(--ink2); }
+  details.mdview summary:hover { color: var(--ink); }
+  details.mdview pre { margin: 0; border-radius: 0 0 8px 8px; max-height: 60vh; overflow: auto;
+                       user-select: all; -webkit-user-select: all; }
+</style>
+<div class="page">
+  <div class="eyebrow">Geodesic Research · pretraining data filtering</div>
+  <h1>Metagaming Filter Handbook</h1>
+  <p class="lede">Everything a collaborator needs to build the metagaming token filter
+     <b>without SAEs</b>: the task, what counts as forget vs retain, where every dataset lives,
+     how the evaluation protocol works, and the reference numbers to beat.</p>
+
+  <div class="exportbar" role="group" aria-label="Export options">
+    <button class="btn" id="copy-md" type="button">Copy as Markdown</button>
+    <button class="btn" id="copy-rich" type="button">Copy formatted</button>
+    <span class="hint">For Google Docs: <b>Copy formatted</b> pastes directly with tables and headings.
+      <b>Copy as Markdown</b> pairs with Docs’ Edit&nbsp;→&nbsp;Paste&nbsp;as&nbsp;Markdown
+      (enable under Tools&nbsp;→&nbsp;Preferences&nbsp;→&nbsp;“Enable Markdown”). Raw Markdown is also viewable at the
+      <a href="#md-source">bottom of this page</a>.</span>
+  </div>
+
+  <nav class="toc">
+    <a href="#goal">Goal</a><a href="#scope">Scope &amp; blocklist</a><a href="#data">Data map (HF)</a>
+    <a href="#sae">Reference labeler</a><a href="#eval">Evaluation protocol</a><a href="#state">Numbers to beat</a>
+    <a href="#pickup">Getting started</a><a href="#pointers">Pointers</a>
+  </nav>
+
+  <h2 id="goal">What this filter is for</h2>
+  <p>We are building a <b>token-level filter for pretraining data</b> whose job is to keep language
+     models from learning to <i>metagame</i> — to reason about the evaluation and oversight
+     apparatus around them (eval awareness, grader/harness reasoning, reward-process reasoning,
+     sandbagging toward a grader). The framing follows
+     <a href="https://arxiv.org/abs/2601.21571">Rathi &amp; Radford, “Shaping capabilities with
+     token-level data filtering”</a>: label forget tokens in pretraining data and mask them
+     during training.</p>
+  <p><b>Your deliverable is the token classifier itself, built without SAEs</b>: a model or
+     function that maps raw text to per-token forget flags (or probabilities), fast enough to run
+     over pretraining-scale corpora. Method is your call — a fine-tuned small encoder as a token
+     tagger, an embedding model with a classification head, a lexical/hybrid system, anything —
+     trained on the labeled data below. The owner’s existing labeler (an SAE feature ensemble,
+     kept as the reference bar — see <a href="#sae">background</a>) is deliberately <i>not</i>
+     part of your toolchain.</p>
+  <p>The project is <b>recall-first</b>: a missed metagaming token teaches the model the behavior,
+     while a wrongly masked token only wastes a sliver of training data. Our headline metric is
+     therefore <b>F2</b> (recall weighted 4× precision), always reported alongside the
+     false-positive rate on real retain text, which is the capability-cost readout.</p>
+
+  <h2 id="scope">Scope: what is forget, what is retain</h2>
+  <p>The scope has two layers. The first is the <b>behavior itself</b>, marked by human span
+     annotations on real documents. The second is <b>content that teaches the behavior</b>, defined
+     by a 338-term blocklist in five categories. The blocklist (<code>regex_v3.py</code>, in the
+     owner’s handoff bundle; word-bounded terms, per-term case sensitivity) defines the category
+     vocabulary and is a legitimate feature source for a lexical baseline.</p>
+  <div class="tablewrap"><table>
+    <thead><tr><th>Category</th><th>Contents</th><th>Status</th></tr></thead>
+    <tbody>
+      <tr><td>Human span labels</td><td>text where a model reasons about its evaluation — eval awareness, grader search, reward reasoning, sandbagging, trick-question meta-commentary</td><td><span class="chip forget">FORGET</span></td></tr>
+      <tr><td><b>c1</b> · AI capability evals &amp; oversight</td><td>benchmarks, leaderboards, eval harnesses, scoring functions</td><td><span class="chip forget">FORGET</span></td></tr>
+      <tr><td><b>c2</b> · AI-safety oversight</td><td>alignment evals, monitoring, control, red-teaming of models</td><td><span class="chip forget">FORGET</span></td></tr>
+      <tr><td><b>c3</b> · human oversight &amp; testing</td><td>grading, exams, performance reviews, audits — the human-domain analogue</td><td><span class="chip forget">FORGET</span> <span class="kv">(ruled in-scope 2026-08-09)</span></td></tr>
+      <tr><td><b>c4</b> · AI training pipeline</td><td>RL mechanics, rewards, GRPO, environments, reward hacking</td><td><span class="chip forget">FORGET</span></td></tr>
+      <tr><td><b>c5</b> · SWE tests</td><td>unit tests, CI, pytest — ordinary software testing content</td><td><span class="chip retain">RETAIN</span> <span class="kv">(as of 2026-08-12; this flag has flipped twice — treat as a live decision)</span></td></tr>
+      <tr><td>Ordinary text</td><td>instruct answers, reasoning traces, web text, user chat, code</td><td><span class="chip retain">RETAIN</span></td></tr>
+    </tbody>
+  </table></div>
+
+  <h2 id="data">Data map — Hugging Face</h2>
+  <p>Everything labeled or evaluated lives in one dataset repo:
+     <a href="https://huggingface.co/datasets/camgeodesic/metagaming-labeling"><code>camgeodesic/metagaming-labeling</code></a>
+     (private — you need org access). The evaluation protocol is pinned to revision
+     <code>f7ae7700</code>. Configs, by role:</p>
+  <div class="tablewrap"><table>
+    <thead><tr><th>Config</th><th class="num">Docs</th><th>What it is</th><th>Role</th></tr></thead>
+    <tbody>
+      <tr><td><code>annotations</code></td><td class="num">153*</td><td>human span labels (whitespace-word indices, end-exclusive) over docs in the other configs</td><td>ground truth</td></tr>
+      <tr><td><code>frontier_metagame_rollouts</code></td><td class="num">57</td><td>verbatim frontier-model CoT: Schoen et&nbsp;al. (<a href="https://arxiv.org/abs/2509.15541">arXiv:2509.15541</a>, App.&nbsp;N) excerpts + the OpenAI situational-awareness transcript, 100% span-labeled</td><td><span class="chip sealed">VAL-B (sealed)</span></td></tr>
+      <tr><td><code>kimi_metagame_rollouts</code></td><td class="num">2,240</td><td>Kimi-K3 chat rollouts over 13 elicitation families (umwp, falseqa, squad2, hawthorne, dolci-IF, mmlu)</td><td>annotated slices in TEST/VAL-A; bulk = selection</td></tr>
+      <tr><td><code>kimi_agentic_rollouts</code></td><td class="num">500</td><td>long agentic-misalignment rollouts (baseline / notice / scratchpad arms)</td><td>selection; 2 annotated so far</td></tr>
+      <tr><td><code>dense_c1…c5</code></td><td class="num">5×60</td><td>wall-to-wall in-category synthetic docs, ~10 document types each</td><td>c1–c4 count as forget in the main metric (assumed each token is forget); c5 is retain-scope; split across TEST and VAL-A</td></tr>
+      <tr><td><code>ctl_dolci_instruct</code></td><td class="num">250</td><td>real <code>allenai/Dolci-Instruct-SFT</code> answers (math/science/chat), screened clean</td><td><span class="chip retain">retain / FP</span></td></tr>
+      <tr><td><code>ctl_dolci_think</code></td><td class="num">250</td><td>clean reasoning traces from <code>allenai/Dolci-Think-SFT-32B</code></td><td><span class="chip retain">retain / FP</span></td></tr>
+      <tr><td><code>ctl_fineweb</code></td><td class="num">250</td><td>raw web text from <code>HuggingFaceFW/fineweb</code> — closest proxy to the deployment distribution</td><td><span class="chip retain">retain / FP</span></td></tr>
+      <tr><td><code>ctl_wildchat</code></td><td class="num">250</td><td>real user conversations from <code>allenai/WildChat</code></td><td><span class="chip retain">retain / FP</span></td></tr>
+      <tr><td><code>ctl_swe_tests</code></td><td class="num">250</td><td>ordinary Dolci-Instruct <i>coding</i> answers (SWE-vocabulary heavy, screened clean)</td><td><span class="chip retain">retain / FP</span> per current c5 scope</td></tr>
+      <tr><td><code>westover_metagame_split</code> / <code>_general_split</code></td><td class="num">193 / 3,740</td><td>real Alignment-Forum posts, split by <code>awestover/filtering-for-misalignment</code> labels</td><td>a few annotated; bulk = selection</td></tr>
+      <tr><td><code>needham_eval_awareness</code> / <code>_eval_grading</code></td><td class="num">906 / 877</td><td>eval-awareness corpora with doc-level gold labels</td><td>selection / auxiliary</td></tr>
+      <tr><td><code>low_quality_synthetic_annotated</code></td><td class="num">24</td><td>low-quality synthetic docs (8 synthetic-forget probe docs + 16 hard-negative controls) restored from retired pools because they carry hand token labels</td><td>annotation substrate only — use the labels, not the text as training material</td></tr>
+    </tbody>
+  </table></div>
+  <p class="kv">*The HF <code>annotations</code> config was refreshed 2026-08-15 (commit <code>25447fd2</code>) from the 2026-08-09 labeler export (153 docs: 105 spanned, 38 reviewed-clean); raw exports also live at <code>data/annotation_exports/</code> locally. The retired <code>claude_*</code> test configs were deleted from the repo the same day. Historic revisions matter: the original control pools
+     (<code>far_negative</code>, <code>ml_distractor</code>, <code>human_oversight</code>,
+     <code>probe_docs</code>) exist only at revision <code>33a59476</code>, and the original 73-doc
+     probe set at <code>2a5ecb64</code>.</p>
+  <p><b>What to train on.</b> Gold forget = the <code>annotations</code> span labels (spans are
+     <code>[start_word, end_word_exclusive, category]</code> over <code>text.split()</code>).
+     Silver forget = the dense c1–c4 docs treated as wall-to-wall positive (this is also how the
+     main metric counts them; c5 is retain). Retain = the five <code>ctl_*</code> configs plus the
+     non-span tokens of annotated documents. The big unannotated pools (kimi chat/agentic,
+     westover, needham) are free for pseudo-labeling, augmentation, or hard-negative mining.
+     On request the owner can also export the reference labeler’s token flags over any of these
+     pools as distillation targets — using those is allowed (they are labels, not SAEs).</p>
+
+  <h2 id="sae">Background: the SAE reference labeler (not your toolchain)</h2>
+  <p>The owner’s current labeler is an ensemble of 187 Gemma-Scope SAE features (“D2”) applied
+     with Rathi’s firing rule — chosen by constrained search against the same labels and metric
+     you will use. It exists so the non-SAE filter has a concrete bar to beat, and so hard cases
+     can be cross-checked. You do not need GPUs, SAE weights, or any of its code; if a comparison
+     on specific documents would help, ask the owner for its token flags. One transferable
+     lesson from its post-mortems: features/cues that key on <i>assistant-answer register</i>
+     (scaffolding, formatting, function words) rather than <i>topic</i> buy recall on chat spans
+     but flood ordinary instruct data — watch for the same failure mode in a trained tagger.</p>
+
+  <h2 id="eval">Evaluation protocol (manifest v4 · metric v5)</h2>
+  <p>All comparisons run on a sealed three-way split of the annotated + control data
+     (<code>data/splits/split_manifest_v4.json</code>, membership pinned to
+     revision <code>f7ae7700</code>):</p>
+  <div class="tablewrap"><table>
+    <thead><tr><th>Split</th><th class="num">Docs</th><th>Contents</th><th>Usage</th></tr></thead>
+    <tbody>
+      <tr><td><b>TEST</b></td><td class="num">820</td><td>annotated docs + 150 dense + 625 retain controls (incl. SWE)</td><td>iterate freely</td></tr>
+      <tr><td><b>VAL-A</b></td><td class="num">814</td><td>in-distribution mirror of TEST (same strata, incl. dense)</td><td><span class="chip sealed">sealed</span> frozen sets only, access-logged, output never displayed</td></tr>
+      <tr><td><b>VAL-B</b></td><td class="num">57</td><td>the fully-labeled frontier CoT rollouts — highest-quality validation</td><td><span class="chip sealed">sealed</span> same lock</td></tr>
+    </tbody>
+  </table></div>
+  <ul>
+    <li><b>Main metric (protocol v5, 2026-08-15):</b> token-level P / R / <b>F2</b> where forget =
+        human span tokens <i>plus</i> every token of the dense c1–c4 docs (all-forget; c5 excluded
+        as retain). Reported alongside: the human-span-only metrics (secondary), per-register span
+        recall, and the token flag rate on the 625 assumed-clean controls (<b>target ≤ 10%</b>,
+        reported per config). Aspiration set by the owner: recall ≥ 0.90 at FP ≤ 0.10.</li>
+    <li><b>Scoring your classifier:</b> the same definitions apply to any per-token predictions —
+        no SAE machinery involved. Ground-truth spans are whitespace-word indexed; score at the
+        word level (or map to your tokenizer consistently). The owner can supply a
+        prediction-file scorer and a word-level rescoring of the reference labeler so the bar is
+        exactly comparable (published reference numbers were computed on subword tokens).</li>
+    <li><b>Training exclusion rule:</b> never train, tune, or model-select on any VAL-A / VAL-B
+        document — including their rows in the <code>annotations</code> config (the frontier
+        rollouts are fully labeled but sealed). TEST is the iterate-freely split; validation is
+        spent once, by the owner, on your frozen final classifier.</li>
+    <li><b>Provenance tags:</b> every doc carries <code>seeded_random</code> / <code>kw_enriched</code> /
+        <code>assumed_clean</code> / <code>assumed_forget</code>, so metrics can be reported with enrichment
+        and assumptions separated.</li>
+  </ul>
+
+  <h2 id="state">The numbers to beat (TEST, reference labelers)</h2>
+  <div class="callout"><b>Update (2026-08-19):</b> the SAE-side reference has moved since this table
+     was compiled. The current best labeler is a <b>pre-registered ratio rule</b> — keep an SAE
+     feature if it fires ≥10× more per token on forget training text than on retain controls, and
+     require 4 selected features to co-fire on a token before it seeds a label (paper default is 2)
+     — with no combinatorial optimization. On a proper train/test split inside TEST it reaches
+     held-out generalization F2 ≈ .82 at ~1% control FP (haiku-v8 judge pool, 65k SAE, 682
+     features). Under the same split, direct optimization generalizes <i>worse</i> than this rule,
+     and the judge-pool stage was shown to be necessary (a no-judge variant collapses on real
+     text). Ask the owner for the "Generalization Atlas" page for the full comparison; the table
+     below is retained as the earlier protocol-v5 record.</div>
+  <div class="tablewrap"><table>
+    <thead><tr><th>Reference</th><th class="num">P / R / F2 (main)</th><th class="num">P / R / F2 (spans only)</th><th class="num">FP on retain</th><th>Character</th></tr></thead>
+    <tbody>
+      <tr><td>OG blocklist (regex-picked features) — floor</td><td class="num">.854 / .708 / .733</td><td class="num">.382 / .682 / .590</td><td class="num">14.1%</td><td>topical and precise, blind to chat/agentic spans (.43/.40)</td></tr>
+      <tr><td>P2 (span-optimized ensemble)</td><td class="num">.911 / .765 / .790</td><td class="num">.548 / .818 / .745</td><td class="num">8.6%</td><td>best span F2; leans on answer-register cues</td></tr>
+      <tr><td><b>D2 (current best, “the bar”)</b></td><td class="num"><b>.878 / .883 / .882</b></td><td class="num">.417 / .793 / .672</td><td class="num">10.0%</td><td>flat .86–.91 coverage across all four dense classes; weakest register = chat spans (.53)</td></tr>
+    </tbody>
+  </table></div>
+  <p>Caveats that keep these honest: they are TEST numbers after extensive selection on TEST, so
+     treat them as optimistic; they were computed on subword tokens (ask for the word-level
+     rescoring); and the known open weakness of the bar is chat-register span recall — a non-SAE
+     classifier that wins there while holding FP ≤ 10% is the most valuable possible outcome.
+     Sealed validation has been spent on nothing yet.</p>
+
+  <h2 id="pickup">Getting started</h2>
+  <ol>
+    <li><b>Access:</b> HF org access to <code>camgeodesic/metagaming-labeling</code> is the only
+        credential you need. No GPUs are required unless your chosen method wants them.</li>
+    <li><b>Load the data:</b>
+        <pre><code>from datasets import load_dataset
+ds  = "camgeodesic/metagaming-labeling"
+ann = load_dataset(ds, "annotations")["eval"]        # spans over text.split():
+                                                     # [start_word, end_word_exclusive, category]
+d1  = load_dataset(ds, "dense_c1_ai_evals")["eval"]  # ...c2_ai_safety, c3_human_oversight,
+                                                     #    c4_training_mechanics (c5 = retain)
+ctl = load_dataset(ds, "ctl_dolci_instruct")["eval"] # + dolci_think, fineweb, wildchat, swe_tests</code></pre>
+        Annotation <code>id</code>s name their source config and document; the split manifest
+        (provided by the owner) tells you which ids are TEST vs sealed validation.</li>
+    <li><b>Respect the split:</b> build train/dev material from TEST + the unannotated selection
+        pools only; treat every VAL-A/VAL-B id (and its annotation rows) as radioactive.</li>
+    <li><b>Evaluate</b> at the token level against the v5 metric (main F2, control FP by config,
+        span metrics secondary). The owner supplies the prediction-file scorer and the reference
+        predictions for exact comparability.</li>
+    <li><b>Submit:</b> when you have a frozen classifier you believe in, hand the owner the
+        model (or its TEST + validation-corpus predictions); the owner runs the one sealed
+        validation pass and reveals all numbers together.</li>
+    <li><b>Labels:</b> new annotations are made in the “Metagaming Token Labeler” artifact (browser tool,
+        drag word-spans, autosaves locally, exports JSON); ask the owner for a share link if you want
+        to add labels — more chat-register annotation is the highest-leverage data work.</li>
+  </ol>
+  <div class="callout warn"><b>Handoff boundary:</b> everything you need lives in the HF dataset plus
+    a small handoff bundle from the owner (split manifest, scorer, blocklist, reports). The owner’s
+    full project directory (SAE code, activation harvests, sealed outputs) is deliberately not part
+    of this handoff — if something seems missing, ask rather than dig.</div>
+
+  <h2 id="pointers">Pointers</h2>
+  <ul>
+    <li><b>From the owner’s handoff bundle:</b> split manifest v4 · eval protocol report (v3 + v4/v5
+        amendments) · the 338-term blocklist (<code>regex_v3.py</code>, defines the category vocabulary) ·
+        current scoreboard JSONs · precision post-mortem and forget-set-shift reports (useful failure-mode
+        reading even without SAEs).</li>
+    <li><b>Working artifacts</b> (private links — the labeler and firing maps embed sensitive frontier text):
+        Metagaming Token Labeler · TEST firing map. Ask the owner to share.</li>
+    <li><b>Method papers:</b> Rathi &amp; Radford <a href="https://arxiv.org/abs/2601.21571">arXiv:2601.21571</a> (the framing) ·
+        Schoen et&nbsp;al. <a href="https://arxiv.org/abs/2509.15541">arXiv:2509.15541</a> (the frontier rollouts).</li>
+  </ul>
+
+  <details class="mdview" id="md-source">
+    <summary>Markdown source (select-all inside the box, or use the Copy as Markdown button above)</summary>
+    <pre id="md-view"></pre>
+  </details>
+
+  <footer>Metagaming filter project · Geodesic Research · handbook revised 2026-08-15 for the
+    no-SAE collaborator handoff; the sealed manifests and access log are the source of truth for
+    evaluation claims.</footer>
+</div>
+
+<script type="text/markdown" id="md-src">
+# Metagaming Filter Handbook
+
+*Geodesic Research · pretraining data filtering*
+
+Everything a collaborator needs to build the metagaming token filter **without SAEs**: the task, what counts as forget vs retain, where every dataset lives, how the evaluation protocol works, and the reference numbers to beat.
+
+## What this filter is for
+
+We are building a **token-level filter for pretraining data** whose job is to keep language models from learning to *metagame* — to reason about the evaluation and oversight apparatus around them (eval awareness, grader/harness reasoning, reward-process reasoning, sandbagging toward a grader). The framing follows [Rathi & Radford, "Shaping capabilities with token-level data filtering"](https://arxiv.org/abs/2601.21571): label forget tokens in pretraining data and mask them during training.
+
+**Your deliverable is the token classifier itself, built without SAEs**: a model or function that maps raw text to per-token forget flags (or probabilities), fast enough to run over pretraining-scale corpora. Method is your call — a fine-tuned small encoder as a token tagger, an embedding model with a classification head, a lexical/hybrid system, anything — trained on the labeled data below. The owner's existing labeler (an SAE feature ensemble, kept as the reference bar — see background) is deliberately *not* part of your toolchain.
+
+The project is **recall-first**: a missed metagaming token teaches the model the behavior, while a wrongly masked token only wastes a sliver of training data. Our headline metric is therefore **F2** (recall weighted 4× precision), always reported alongside the false-positive rate on real retain text, which is the capability-cost readout.
+
+## Scope: what is forget, what is retain
+
+The scope has two layers. The first is the **behavior itself**, marked by human span annotations on real documents. The second is **content that teaches the behavior**, defined by a 338-term blocklist in five categories. The blocklist (`regex_v3.py`, in the owner's handoff bundle; word-bounded terms, per-term case sensitivity) defines the category vocabulary and is a legitimate feature source for a lexical baseline.
+
+| Category | Contents | Status |
+|---|---|---|
+| Human span labels | text where a model reasons about its evaluation — eval awareness, grader search, reward reasoning, sandbagging, trick-question meta-commentary | **FORGET** |
+| **c1** · AI capability evals & oversight | benchmarks, leaderboards, eval harnesses, scoring functions | **FORGET** |
+| **c2** · AI-safety oversight | alignment evals, monitoring, control, red-teaming of models | **FORGET** |
+| **c3** · human oversight & testing | grading, exams, performance reviews, audits — the human-domain analogue | **FORGET** (ruled in-scope 2026-08-09) |
+| **c4** · AI training pipeline | RL mechanics, rewards, GRPO, environments, reward hacking | **FORGET** |
+| **c5** · SWE tests | unit tests, CI, pytest — ordinary software testing content | **RETAIN** (as of 2026-08-12; this flag has flipped twice — treat as a live decision) |
+| Ordinary text | instruct answers, reasoning traces, web text, user chat, code | **RETAIN** |
+
+## Data map — Hugging Face
+
+Everything labeled or evaluated lives in one dataset repo: [`camgeodesic/metagaming-labeling`](https://huggingface.co/datasets/camgeodesic/metagaming-labeling) (private — you need org access). The evaluation split membership is pinned to revision `f7ae7700`. Configs, by role:
+
+| Config | Docs | What it is | Role |
+|---|---|---|---|
+| `annotations` | 153\* | human span labels (whitespace-word indices, end-exclusive) over docs in the other configs | ground truth |
+| `frontier_metagame_rollouts` | 57 | verbatim frontier-model CoT: Schoen et al. ([arXiv:2509.15541](https://arxiv.org/abs/2509.15541), App. N) excerpts + the OpenAI situational-awareness transcript, 100% span-labeled | VAL-B (sealed) |
+| `kimi_metagame_rollouts` | 2,240 | Kimi-K3 chat rollouts over 13 elicitation families (umwp, falseqa, squad2, hawthorne, dolci-IF, mmlu) | annotated slices in TEST/VAL-A; bulk = selection |
+| `kimi_agentic_rollouts` | 500 | long agentic-misalignment rollouts (baseline / notice / scratchpad arms) | selection; 2 annotated so far |
+| `dense_c1…c5` | 5×60 | wall-to-wall in-category synthetic docs, ~10 document types each | c1–c4 count as forget in the main metric (assumed each token is forget); c5 is retain-scope; split across TEST and VAL-A |
+| `ctl_dolci_instruct` | 250 | real `allenai/Dolci-Instruct-SFT` answers (math/science/chat), screened clean | retain / FP |
+| `ctl_dolci_think` | 250 | clean reasoning traces from `allenai/Dolci-Think-SFT-32B` | retain / FP |
+| `ctl_fineweb` | 250 | raw web text from `HuggingFaceFW/fineweb` — closest proxy to the deployment distribution | retain / FP |
+| `ctl_wildchat` | 250 | real user conversations from `allenai/WildChat` | retain / FP |
+| `ctl_swe_tests` | 250 | ordinary Dolci-Instruct *coding* answers (SWE-vocabulary heavy, screened clean) | retain / FP per current c5 scope |
+| `westover_metagame_split` / `_general_split` | 193 / 3,740 | real Alignment-Forum posts, split by `awestover/filtering-for-misalignment` labels | a few annotated; bulk = selection |
+| `needham_eval_awareness` / `_eval_grading` | 906 / 877 | eval-awareness corpora with doc-level gold labels | selection / auxiliary |
+| `low_quality_synthetic_annotated` | 24 | low-quality synthetic docs (8 synthetic-forget probe docs + 16 hard-negative controls) restored from retired pools because they carry hand token labels | annotation substrate only — use the labels, not the text as training material |
+
+\*The HF `annotations` config was refreshed 2026-08-15 (commit `25447fd2`) from the 2026-08-09 labeler export (153 docs: 105 spanned, 38 reviewed-clean). Historic revisions: the original control pools (`far_negative`, `ml_distractor`, `human_oversight`, `probe_docs`) exist only at revision `33a59476`, and the original 73-doc probe set at `2a5ecb64`.
+
+**What to train on.** Gold forget = the `annotations` span labels (spans are `[start_word, end_word_exclusive, category]` over `text.split()`). Silver forget = the dense c1–c4 docs treated as wall-to-wall positive (this is also how the main metric counts them; c5 is retain). Retain = the five `ctl_*` configs plus the non-span tokens of annotated documents. The big unannotated pools (kimi chat/agentic, westover, needham) are free for pseudo-labeling, augmentation, or hard-negative mining. On request the owner can also export the reference labeler's token flags over any of these pools as distillation targets — using those is allowed (they are labels, not SAEs).
+
+## Background: the SAE reference labeler (not your toolchain)
+
+The owner's current labeler is an ensemble of 187 Gemma-Scope SAE features ("D2") applied with Rathi's firing rule — chosen by constrained search against the same labels and metric you will use. It exists so the non-SAE filter has a concrete bar to beat, and so hard cases can be cross-checked. You do not need GPUs, SAE weights, or any of its code; if a comparison on specific documents would help, ask the owner for its token flags. One transferable lesson from its post-mortems: features/cues that key on *assistant-answer register* (scaffolding, formatting, function words) rather than *topic* buy recall on chat spans but flood ordinary instruct data — watch for the same failure mode in a trained tagger.
+
+## Evaluation protocol (manifest v4 · metric v5)
+
+All comparisons run on a sealed three-way split of the annotated + control data (`data/splits/split_manifest_v4.json`, membership pinned to revision `f7ae7700`):
+
+| Split | Docs | Contents | Usage |
+|---|---|---|---|
+| **TEST** | 820 | annotated docs + 150 dense + 625 retain controls (incl. SWE) | iterate freely |
+| **VAL-A** | 814 | in-distribution mirror of TEST (same strata, incl. dense) | sealed — frozen classifiers only, access-logged, output never displayed |
+| **VAL-B** | 57 | the fully-labeled frontier CoT rollouts — highest-quality validation | sealed — same lock |
+
+- **Main metric (protocol v5, 2026-08-15):** token-level P / R / **F2** where forget = human span tokens *plus* every token of the dense c1–c4 docs (all-forget; c5 excluded as retain). Reported alongside: the human-span-only metrics (secondary), per-register span recall, and the token flag rate on the 625 assumed-clean controls (**target ≤ 10%**, reported per config). Aspiration set by the owner: recall ≥ 0.90 at FP ≤ 0.10.
+- **Scoring your classifier:** the same definitions apply to any per-token predictions — no SAE machinery involved. Ground-truth spans are whitespace-word indexed; score at the word level (or map to your tokenizer consistently). The owner can supply a prediction-file scorer and a word-level rescoring of the reference labeler so the bar is exactly comparable (published reference numbers were computed on subword tokens).
+- **Training exclusion rule:** never train, tune, or model-select on any VAL-A / VAL-B document — including their rows in the `annotations` config (the frontier rollouts are fully labeled but sealed). TEST is the iterate-freely split; validation is spent once, by the owner, on your frozen final classifier.
+- **Provenance tags:** every doc carries `seeded_random` / `kw_enriched` / `assumed_clean` / `assumed_forget`, so metrics can be reported with enrichment and assumptions separated.
+
+## The numbers to beat (TEST, reference labelers)
+
+> **Update (2026-08-19):** the SAE-side reference has moved. Current best labeler = a
+> pre-registered ratio rule (keep features firing ≥10× more per token on forget training text than
+> retain controls; require 4 co-firing features per token; no optimization) — held-out
+> generalization F2 ≈ .82 at ~1% control FP (haiku-v8 pool, 65k SAE, 682 features). Direct
+> optimization generalizes worse than this rule under a proper split, and the judge-pool stage is
+> necessary. Ask the owner for the "Generalization Atlas"; the table below is the earlier
+> protocol-v5 record.
+
+| Reference | P / R / F2 (main) | P / R / F2 (spans only) | FP on retain | Character |
+|---|---|---|---|---|
+| OG blocklist (regex-picked features) — floor | .854 / .708 / .733 | .382 / .682 / .590 | 14.1% | topical and precise, blind to chat/agentic spans (.43/.40) |
+| P2 (span-optimized ensemble) | .911 / .765 / .790 | .548 / .818 / .745 | 8.6% | best span F2; leans on answer-register cues |
+| **D2 (current best, "the bar")** | **.878 / .883 / .882** | .417 / .793 / .672 | 10.0% | flat .86–.91 coverage across all four dense classes; weakest register = chat spans (.53) |
+
+Caveats that keep these honest: they are TEST numbers after extensive selection on TEST, so treat them as optimistic; they were computed on subword tokens (ask for the word-level rescoring); and the known open weakness of the bar is chat-register span recall — a non-SAE classifier that wins there while holding FP ≤ 10% is the most valuable possible outcome. Sealed validation has been spent on nothing yet.
+
+## Getting started
+
+1. **Access:** HF org access to `camgeodesic/metagaming-labeling` is the only credential you need. No GPUs are required unless your chosen method wants them.
+2. **Load the data:**
+
+   ```
+   from datasets import load_dataset
+   ds  = "camgeodesic/metagaming-labeling"
+   ann = load_dataset(ds, "annotations")["eval"]        # spans over text.split():
+                                                        # [start_word, end_word_exclusive, category]
+   d1  = load_dataset(ds, "dense_c1_ai_evals")["eval"]  # ...c2_ai_safety, c3_human_oversight,
+                                                        #    c4_training_mechanics (c5 = retain)
+   ctl = load_dataset(ds, "ctl_dolci_instruct")["eval"] # + dolci_think, fineweb, wildchat, swe_tests
+   ```
+
+   Annotation `id`s name their source config and document; the split manifest (provided by the owner) tells you which ids are TEST vs sealed validation.
+3. **Respect the split:** build train/dev material from TEST + the unannotated selection pools only; treat every VAL-A/VAL-B id (and its annotation rows) as radioactive.
+4. **Evaluate** at the token level against the v5 metric (main F2, control FP by config, span metrics secondary). The owner supplies the prediction-file scorer and the reference predictions for exact comparability.
+5. **Submit:** when you have a frozen classifier you believe in, hand the owner the model (or its TEST + validation-corpus predictions); the owner runs the one sealed validation pass and reveals all numbers together.
+6. **Labels:** new annotations are made in the "Metagaming Token Labeler" artifact (browser tool, drag word-spans, autosaves locally, exports JSON); ask the owner for a share link if you want to add labels — more chat-register annotation is the highest-leverage data work.
+
+> **Handoff boundary:** everything you need lives in the HF dataset plus a small handoff bundle from the owner (split manifest, scorer, blocklist, reports). The owner's full project directory (SAE code, activation harvests, sealed outputs) is deliberately not part of this handoff — if something seems missing, ask rather than dig.
+
+## Pointers
+
+- **From the owner's handoff bundle:** split manifest v4 · eval protocol report (v3 + v4/v5 amendments) · the 338-term blocklist (`regex_v3.py`, defines the category vocabulary) · current scoreboard JSONs · precision post-mortem and forget-set-shift reports (useful failure-mode reading even without SAEs).
+- **Working artifacts** (private links — the labeler and firing maps embed sensitive frontier text): Metagaming Token Labeler · TEST firing map. Ask the owner to share.
+- **Method papers:** Rathi & Radford [arXiv:2601.21571](https://arxiv.org/abs/2601.21571) (the framing) · Schoen et al. [arXiv:2509.15541](https://arxiv.org/abs/2509.15541) (the frontier rollouts).
+
+---
+
+*Metagaming filter project · Geodesic Research · handbook revised 2026-08-15 for the no-SAE collaborator handoff; the sealed manifests and access log are the source of truth for evaluation claims.*
+</script>
+
+<script>
+(function () {
+  "use strict";
+  var mdSrc = document.getElementById("md-src");
+  var md = mdSrc ? mdSrc.textContent.trim() + "\n" : "";
+  var mdView = document.getElementById("md-view");
+  if (mdView) mdView.textContent = md;
+
+  function flash(btn, label) {
+    var original = btn.dataset.label || btn.textContent;
+    btn.dataset.label = original;
+    btn.textContent = label;
+    btn.classList.add("ok");
+    setTimeout(function () {
+      btn.textContent = original;
+      btn.classList.remove("ok");
+    }, 1800);
+  }
+
+  function legacyCopyText(text) {
+    var ta = document.createElement("textarea");
+    ta.value = text;
+    ta.setAttribute("readonly", "");
+    ta.style.position = "fixed";
+    ta.style.left = "-9999px";
+    document.body.appendChild(ta);
+    ta.select();
+    var ok = false;
+    try { ok = document.execCommand("copy"); } catch (e) { ok = false; }
+    document.body.removeChild(ta);
+    return ok;
+  }
+
+  function showManualFallback(btn) {
+    var details = document.getElementById("md-source");
+    if (details) {
+      details.open = true;
+      details.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+    flash(btn, "Copy blocked — select below");
+  }
+
+  var mdBtn = document.getElementById("copy-md");
+  if (mdBtn) mdBtn.addEventListener("click", function () {
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(md).then(function () {
+        flash(mdBtn, "Markdown copied ✓");
+      }, function () {
+        if (legacyCopyText(md)) flash(mdBtn, "Markdown copied ✓");
+        else showManualFallback(mdBtn);
+      });
+    } else if (legacyCopyText(md)) {
+      flash(mdBtn, "Markdown copied ✓");
+    } else {
+      showManualFallback(mdBtn);
+    }
+  });
+
+  function copyRichBySelection() {
+    var page = document.querySelector(".page");
+    if (!page) return false;
+    var exportbar = document.querySelector(".exportbar");
+    var mdDetails = document.getElementById("md-source");
+    if (exportbar) exportbar.style.display = "none";
+    if (mdDetails) mdDetails.style.display = "none";
+    var sel = window.getSelection();
+    var range = document.createRange();
+    range.selectNodeContents(page);
+    sel.removeAllRanges();
+    sel.addRange(range);
+    var ok = false;
+    try { ok = document.execCommand("copy"); } catch (e) { ok = false; }
+    sel.removeAllRanges();
+    if (exportbar) exportbar.style.display = "";
+    if (mdDetails) mdDetails.style.display = "";
+    return ok;
+  }
+
+  var richBtn = document.getElementById("copy-rich");
+  if (richBtn) richBtn.addEventListener("click", function () {
+    var page = document.querySelector(".page");
+    if (navigator.clipboard && window.ClipboardItem && page) {
+      var clone = page.cloneNode(true);
+      var strip = clone.querySelectorAll(".exportbar, #md-source, script");
+      for (var i = 0; i < strip.length; i++) strip[i].remove();
+      var html = "<!doctype html><meta charset=\"utf-8\">" + clone.outerHTML;
+      var item = new ClipboardItem({
+        "text/html": new Blob([html], { type: "text/html" }),
+        "text/plain": new Blob([md], { type: "text/plain" })
+      });
+      navigator.clipboard.write([item]).then(function () {
+        flash(richBtn, "Copied — paste into Docs ✓");
+      }, function () {
+        if (copyRichBySelection()) flash(richBtn, "Copied — paste into Docs ✓");
+        else showManualFallback(richBtn);
+      });
+    } else if (copyRichBySelection()) {
+      flash(richBtn, "Copied — paste into Docs ✓");
+    } else {
+      showManualFallback(richBtn);
+    }
+  });
+})();
+</script>
+
