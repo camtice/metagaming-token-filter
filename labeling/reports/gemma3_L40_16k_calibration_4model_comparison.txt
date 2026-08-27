@@ -1,0 +1,186 @@
+models: ['haiku45', 'sonnet5', 'opus5', 'fable5']; latents labeled by all: 208 (per-model: haiku45=208, sonnet5=208, opus5=208, fable5=208)
+
+forget counts on common set:
+  haiku45: 31/208
+  sonnet5: 33/208
+  opus5: 42/208
+  fable5: 50/208
+
+pairwise forget/keep agreement:
+  haiku45 vs sonnet5: 198/208 (95.2%)
+  haiku45 vs opus5: 191/208 (91.8%)
+  haiku45 vs fable5: 187/208 (89.9%)
+  sonnet5 vs opus5: 197/208 (94.7%)
+  sonnet5 vs fable5: 191/208 (91.8%)
+  opus5 vs fable5: 194/208 (93.3%)
+
+28 latents with any disagreement:
+
+--- latent 1308 prior=soft desc: pupil, GCSE, maths, science, CAS
+    haiku45   FORGET c3_human_oversight_testing       (medium) Fires on school contexts where students are being evaluated, graded, and monitored (star of the week, hard work recognition, maths assessments, problem-solving questions, house leaders election), mixed with general school activity content.
+    sonnet5   keep   none                             (low) General school newsletter content about pupils, activities, and achievements, not specifically about testing or grading.
+    opus5     FORGET c3_human_oversight_testing       (low) School newsletter content about pupils, terms, and achievement awards; only tangentially related to grading/testing of students.
+    fable5    FORGET c3_human_oversight_testing       (low) Fires on school newsletter content about pupils, terms, and achievements (GCSE, maths reviews, star-of-the-week praise) — mostly generic school topic with only a loose connection to students being assessed or graded.
+
+--- latent 1347 prior=fp desc: Help improve, detect, prepare
+    haiku45   keep   none                             (high) Fires on privacy policy and data processing language (GDPR, cookies, user data) — a topic feature with no oversight or evaluation sense.
+    sonnet5   keep   none                             (high) Fires on general privacy policy, GDPR, and cookie/data-processing text with no oversight, evaluation, or training-pipeline sense.
+    opus5     keep   none                             (medium) Mixed general web content (privacy/cookie policy boilerplate, news, misc facts) with no coherent oversight or evaluation sense.
+    fable5    FORGET c3_human_oversight_testing       (low) Fires largely on GDPR privacy-policy text about tracking users' activities and legal data-processing compliance — plausibly related to surveillance/regulatory compliance, though mixed with unrelated boilerplate content.
+
+--- latent 2374 prior=soft desc: college student
+    haiku45   keep   none                             (high) Fires on general higher education content (student life, career services, admissions, mentoring) with no connection to AI/system evaluation, testing, or oversight.
+    sonnet5   keep   none                             (low) General university/student life and academic administration content, not specifically about testing, grading, or evaluation.
+    opus5     keep   none                             (medium) Fires on general higher-education/university institutional content (faculties, students, campus services), not on testing, grading, or oversight of agents.
+    fable5    FORGET c3_human_oversight_testing       (low) Mostly a generic higher-education/university topic feature (students, campus, careers), but includes admissions testing (IELTS) and contest assessment of students, giving a plausible human-testing connection.
+
+--- latent 3418 prior=soft desc: performance evaluation and responsibilities
+    haiku45   keep   none                             (high) Fires on job descriptions and employment duties (staff investigator, busperson, archivist roles) — generic workplace content with no evaluation, testing, or oversight sense.
+    sonnet5   keep   none                             (low) Job descriptions and workplace duties listings, not oversight/evaluation-focused content despite occasional mention of supervision.
+    opus5     keep   none                             (medium) Fires on job descriptions and duty listings (essential duties, supervision language) — employment posting boilerplate rather than evaluation or oversight of an agent.
+    fable5    FORGET c3_human_oversight_testing       (low) Fires on job-description duty language; mostly generic job postings but includes workplace supervision and performance plans, a plausible link to human workplace oversight.
+
+--- latent 4092 prior=core desc: reinforcement learning agent rewards
+    haiku45   keep   none                             (high) Fires on optimal control, stochastic processes, robotics learning, and decision-making in general contexts; 'reward' here refers to economic/utility rewards in optimization problems, not ML training rewards or evaluation metrics.
+    sonnet5   FORGET c4_ai_training_pipeline          (medium) Fires on reinforcement-learning and agent-design concepts, with top promoted tokens dominated by 'reward'/'agent', linking to ML training pipeline machinery.
+    opus5     FORGET c4_ai_training_pipeline          (medium) Fires on agent learning/optimal control content and strongly promotes 'reward'/'agent' tokens, tied to reinforcement learning machinery.
+    fable5    FORGET c4_ai_training_pipeline          (high) Fires on reinforcement learning and agent-design content (optimal control, unsupervised learning, designing agents) and strongly promotes 'reward'/'agent' tokens — core RL training machinery.
+
+--- latent 4480 prior=soft desc: fact checker, false beliefs
+    haiku45   keep   none                             (high) Fires on general discourse about truth, falsehood, myths, and misinformation in everyday contexts (Netflix shows, insurance claims, religious disputes) — a topic feature with no evaluation or oversight sense.
+    sonnet5   keep   none                             (low) Fires on debunking myths/false claims and misinformation, a general truth-claim topic rather than AI oversight, deception, or testing.
+    opus5     keep   none                             (medium) Fires on claims being false, myths, misinformation being refuted — truth/falsity of claims rather than oversight or evaluation of an agent.
+    fable5    FORGET c2_ai_safety_oversight           (low) Fires on falsehood, myth-debunking, and misinformation claims — mostly general truth/falsity discourse, but plausibly overlaps discussions of deceptive or false statements by an agent.
+
+--- latent 4501 prior=soft desc: strategic AWS oversight
+    haiku45   keep   none                             (high) Fires on job descriptions and organizational management responsibilities (training programs, performance management, supervision) — generic workplace content with no AI/ML evaluation or testing sense.
+    sonnet5   FORGET c3_human_oversight_testing       (low) Fires on general workplace management and oversight language (supervise, oversee, performance management) but mostly generic job responsibilities rather than testing/evaluation specifically.
+    opus5     FORGET c3_human_oversight_testing       (low) Fires on job-description text about managing/supervising staff and performance management; oversight here is managerial rather than evaluation of an agent, so only a plausible connection.
+    fable5    FORGET c3_human_oversight_testing       (medium) Fires on job-description managerial duties involving supervising, overseeing, and performance management of employees, mixed with general workplace responsibility language.
+
+--- latent 4893 prior=soft desc: monitoring
+    haiku45   keep   none                             (high) Fires on generic 'monitoring' in non-oversight contexts: fire investigation, garden pest monitoring, server performance, security systems, and auction tracking—lexical collision with oversight terminology but no evaluation or testing of agents.
+    sonnet5   FORGET c3_human_oversight_testing       (medium) Fires on monitoring/surveillance concepts (security monitoring, website monitoring, server monitoring), related to oversight though mixed with general surveillance content.
+    opus5     FORGET c3_human_oversight_testing       (medium) Feature centers on monitoring/surveillance and keeping watch (including server performance monitoring and surveillance of people), which is squarely oversight vocabulary.
+    fable5    FORGET c3_human_oversight_testing       (medium) Fires on monitoring and surveillance broadly — including cameras watching people, website content monitoring, and performance monitoring — which overlaps human/state surveillance, mixed with generic system-monitoring content.
+
+--- latent 7408 prior=soft desc: teacher or mentor
+    haiku45   keep   none                             (high) Fires on mentions of teachers, instructors, mentors, and academic roles in educational contexts—a topic feature about education and mentorship with no evaluation, testing, or oversight sense.
+    sonnet5   keep   none                             (low) Fires on teachers, mentors, and instructors in general biographical/professional contexts, not specifically about testing or evaluating students.
+    opus5     FORGET c3_human_oversight_testing       (low) Fires on teachers/instructors/mentors and supervision of students, which touches human instruction and evaluation but is mostly a general occupational-role feature.
+    fable5    FORGET c3_human_oversight_testing       (low) Fires on teachers, instructors, mentors, and clinical supervision of trainees — mostly a general teaching/mentorship topic, but plausibly overlaps with supervising and evaluating human learners (e.g., performance-based commendations, clinical supervision).
+
+--- latent 9093 prior=soft desc: plagiarism and cheating
+    haiku45   FORGET c3_human_oversight_testing       (medium) Fires on academic writing services and homework/assignment help content, which relates to human evaluation and grading contexts, though the primary sense is commercial rather than direct testing/oversight.
+    sonnet5   keep   none                             (low) Fires on essay/homework writing service spam content, not on testing or grading of students.
+    opus5     FORGET c3_human_oversight_testing       (medium) Fires on essay-writing/homework-help service spam, promoting 'homework'/'assignment' tokens — related to academic assignments and graded student work.
+    fable5    FORGET c3_human_oversight_testing       (low) Fires on essay-mill/academic writing services for student assignments and theses; promoted tokens ('homework', 'assignment', 'essay') connect to humans being graded on academic work, though the content is mainly spammy service ads.
+
+--- latent 9153 prior=soft desc: teaching, teachers, students
+    haiku45   keep   none                             (high) Fires on general teaching quality, instruction strategies, and curriculum content—educational practice, not evaluation, testing, or oversight of students or systems.
+    sonnet5   keep   none                             (high) Fires on general teaching quality and educational content, not on testing, grading, or evaluation of humans or AI.
+    opus5     FORGET c3_human_oversight_testing       (low) Fires on teaching quality, curricula, and instruction — education context adjacent to but not squarely about testing or grading of humans.
+    fable5    keep   none                             (medium) Fires on general teaching and education quality content (teachers, curricula, pedagogy) rather than exams, grading, or monitoring of anyone.
+
+--- latent 9430 prior=soft desc: performance reviews and metrics
+    haiku45   keep   none                             (high) Fires on generic uses of 'performance' across diverse contexts (business management, dance, environmental assessment, hydration vests, video games) with no connection to AI/human evaluation, testing, or oversight.
+    sonnet5   FORGET c3_human_oversight_testing       (low) Mostly a generic 'performance' word feature covering many senses, with some snippets touching performance management/assessment which relates to human evaluation at work.
+    opus5     FORGET c3_human_oversight_testing       (medium) Fires on the word 'performance' including performance management, performance measures, and performance assessment of people/organizations, mixed with unrelated senses (performance art, engine performance).
+    fable5    FORGET c3_human_oversight_testing       (low) Largely a lexical feature on the word 'performance' across many senses (dance, sports gear, business), but several contexts concern performance management, ratings, and assessment of people, giving a plausible human-oversight connection.
+
+--- latent 10208 prior=fp desc: unit tests
+    haiku45   FORGET c5_swe_tests                     (medium) Snippet 9 explicitly discusses unit testing as a software testing methodology, though most other snippets use 'unit' in unrelated contexts (recruitment units, school districts, product units); the feature fires on the testing sense.
+    sonnet5   keep   none                             (low) Fires generically on the word 'Unit' across many contexts (recruitment, curriculum, military, product), with only one incidental mention of unit testing among many unrelated uses.
+    opus5     keep   none                             (medium) Feature fires on the token "unit" in many unrelated senses (unit of inquiry, business unit, unit district, unit type), a lexical feature that only incidentally overlaps with "unit testing".
+    fable5    keep   none                             (high) Fires on the word 'unit' across many unrelated senses (Unit4 software, school units, military units, unit prices) — a lexical token feature; the single 'unit testing' snippet is a lexical collision.
+
+--- latent 10679 prior=soft desc: metric and monitoring data
+    haiku45   keep   none                             (high) Fires on application performance monitoring, infrastructure management, and system metrics—operational monitoring of production systems, not evaluation/testing of AI or humans.
+    sonnet5   keep   none                             (high) Fires on IT infrastructure monitoring and application performance management tools, not oversight of AI systems or humans in the evaluation sense.
+    opus5     FORGET c1_capability_evals_oversight    (low) Fires on IT infrastructure/application performance monitoring and metrics — system monitoring in the ops sense, only loosely related to agent oversight.
+    fable5    keep   none                             (medium) Fires on IT/devops infrastructure monitoring (server metrics, CloudWatch, alerting, log analysis) — monitoring of machines/services, not oversight of an AI or human agent.
+
+--- latent 10714 prior=fp desc: object detection segmentation bounding box
+    haiku45   FORGET c1_capability_evals_oversight    (medium) Fires on IoU (Intersection over Union), validation datasets, and detection metrics—standard evaluation metrics for computer vision model performance.
+    sonnet5   keep   none                             (low) Fires on academic citations and computer vision paper references (ECCV, CVPR); IoU mention is incidental to bibliography formatting rather than model evaluation.
+    opus5     keep   none                             (low) Fires on computer-vision academic citation lists (ECCV, CVPR) and vision terminology; mostly bibliographic formatting rather than evaluation of agents, though it touches IoU/validation metrics.
+    fable5    FORGET c1_capability_evals_oversight    (low) Mostly computer-vision citation/reference formatting, but the top snippet involves IoU evaluation metrics on a validation dataset, giving a plausible model-evaluation connection.
+
+--- latent 11252 prior=fp desc: question marks and formatting
+    haiku45   keep   none                             (high) Fires on educational textbook and lesson content (teaching materials, slide decks, guided reading levels, writing lessons) with no connection to AI/human oversight, evaluation, or testing.
+    sonnet5   keep   none                             (low) Fires on general educational textbook/curriculum content and features, not specifically about testing, grading, or evaluation.
+    opus5     FORGET c3_human_oversight_testing       (low) Fires on textbook/curriculum features and lesson materials for instruction; only loosely connected to student assessment, mostly educational content description.
+    fable5    FORGET c3_human_oversight_testing       (low) Fires on textbook and curriculum materials (lessons, guided reading levels, ancillary teaching resources) — mostly instructional content, with only a plausible connection to student assessment and grading.
+
+--- latent 11258 prior=core desc: flask, pytest, argparse
+    haiku45   FORGET c5_swe_tests                     (medium) Fires on pytest fixtures and unit testing for code (snippet 1), mixed with unrelated content about statistics, brewing, and legal text.
+    sonnet5   FORGET c5_swe_tests                     (low) One top snippet mentions pytest fixtures and unit tests, but the feature is otherwise scattered across unrelated content with no consistent oversight theme.
+    opus5     keep   none                             (low) Highly mixed, low-activation snippets with no coherent theme; only incidental mentions of pytest/testing, and promoted tokens are unrelated.
+    fable5    FORGET c5_swe_tests                     (low) Top activation involves pytest fixtures and unit tests, but most other snippets are unrelated miscellaneous text and promoted tokens are incoherent, suggesting only a weak testing connection.
+
+--- latent 12998 prior=soft desc: regulatory compliance
+    haiku45   keep   none                             (high) Fires on regulatory compliance, legal requirements, and governance in business/healthcare contexts—not oversight of AI systems, human testing, or ML training.
+    sonnet5   FORGET c3_human_oversight_testing       (medium) Fires on regulatory compliance, audits, and governance requirements imposed on organizations/people, matching human oversight/regulatory compliance category.
+    opus5     FORGET c3_human_oversight_testing       (medium) Fires on regulatory compliance, audits, and reporting requirements — institutional oversight of organizations/people.
+    fable5    FORGET c3_human_oversight_testing       (high) Fires on regulatory compliance, audits, and governance requirements — oversight of organizations/people by regulators.
+
+--- latent 13297 prior=soft desc: system logs, authentication, init
+    haiku45   keep   none                             (high) Miscellaneous text fragments about classes, security standards, architecture, manufacturing, travel, clubs, and website design—no oversight, evaluation, or testing content.
+    sonnet5   keep   none                             (low) Miscellaneous, incoherent snippets spanning security certification, real estate, and general business content with no consistent oversight/evaluation sense.
+    opus5     keep   none                             (medium) Heterogeneous noun-phrase/topic snippets (house ideas, clubs, websites, certifications) with no coherent oversight or evaluation theme.
+    fable5    FORGET c3_human_oversight_testing       (low) Mostly an incoherent/generic feature, but a few snippets involve security certification/accreditation standards and academic procedures, giving a plausible compliance-oversight connection.
+
+--- latent 13308 prior=soft desc: course and students
+    haiku45   keep   none                             (high) Fires on academic course listings, prerequisites, and curriculum requirements—generic educational content with no oversight, evaluation, or testing sense.
+    sonnet5   keep   none                             (low) Fires on university course listings, prerequisites, and academic program requirements, not oversight/testing of an agent.
+    opus5     FORGET c3_human_oversight_testing       (low) Fires on university course codes, prerequisites, and degree requirements — academic administration that only tangentially relates to student assessment.
+    fable5    keep   none                             (medium) Fires on university course catalogs, course codes, and registration prerequisites — academic administrative content, not students being tested, graded, or monitored.
+
+--- latent 13748 prior=soft desc: human feedback or judgment
+    haiku45   keep   none                             (high) Fires on sports refereeing and officiating (umpires, referees, goal reviews) — a domain-specific topic with no connection to AI/ML evaluation, human testing, or software testing.
+    sonnet5   keep   none                             (high) Fires on sports referees and umpires officiating games — lexical collision with 'oversight' judging, unrelated to AI or human performance evaluation.
+    opus5     keep   none                             (medium) Fires on sports referees/umpires officiating games — a lexical collision with judging/oversight, not agent evaluation.
+    fable5    FORGET c3_human_oversight_testing       (low) Fires on sports referees, umpires, and officiating reviews — real-time monitoring and adjudication of human players' conduct, though it is sports-specific rather than core oversight/testing content.
+
+--- latent 14256 prior=soft desc: guiding students
+    haiku45   keep   none                             (high) Fires on academic and educational contexts (graduate students, lectures, assignments, doctoral programs) but activates on general educational content, not on testing, grading, or evaluation of students.
+    sonnet5   keep   c3_human_oversight_testing       (low) General academic/university content about students and faculty, with only a passing mention of supervision; not centrally about testing, grading, or oversight.
+    opus5     keep   c3_human_oversight_testing       (low) Generic academic/university and student-life topic feature; mentions of supervision or assignments are incidental rather than about testing or grading.
+    fable5    FORGET c3_human_oversight_testing       (low) Primarily a generic university/students topic feature, but includes supervision, external examiners, and assignments, so it could plausibly fire on human academic testing content.
+
+--- latent 14442 prior=core desc: content moderation and safety guidelines
+    haiku45   keep   none                             (high) Fires on content moderation, censorship, and offensive language in general contexts (audio editing, social media, games) — a topic feature about content filtering, not AI/human evaluation or testing.
+    sonnet5   keep   none                             (high) Fires on content moderation, censorship, and offensive material — not oversight/evaluation of agents in the defined sense.
+    opus5     keep   none                             (medium) Fires on offensive/obscene content and censorship/content moderation themes, not on evaluation or training of an agent.
+    fable5    FORGET c3_human_oversight_testing       (low) Fires on censorship, content moderation, and blasphemy accusations — plausibly related to state/platform monitoring of people's speech, though mostly a topic feature about offensive content.
+
+--- latent 15063 prior=soft desc: classroom and class
+    haiku45   keep   none                             (high) Fires on general classroom teaching, educational settings, and learning environments—no evaluation, testing, grading, or oversight of students.
+    sonnet5   keep   none                             (low) Fires on general classroom/education context, not specifically on testing, grading, or exams.
+    opus5     keep   c3_human_oversight_testing       (low) Generic classroom/teaching-setting feature about instruction and learning environments, not about testing, grading, or monitoring students.
+    fable5    FORGET c3_human_oversight_testing       (low) Generic classroom/teaching topic feature firing on the word 'classroom'; only tangentially touches student assessment (one mention of exam setup), so plausibly but not centrally related to humans being tested.
+
+--- latent 15173 prior=core desc: training data
+    haiku45   keep   none                             (high) Fires on general training contexts (dog training, business training, job training, potty training, driving courses) with no connection to AI/ML evaluation, testing, or oversight.
+    sonnet5   keep   none                             (high) Fires on generic human/animal 'training' (dog training, job training, driving courses) unrelated to ML training pipelines or oversight.
+    opus5     FORGET c3_human_oversight_testing       (low) Fires on the word 'training' in the human vocational/professional-development sense, only loosely connected to supervised training of an agent.
+    fable5    FORGET c4_ai_training_pipeline          (low) Fires on the word 'training' in human/vocational contexts (dog training, corporate workshops, driver training) — mostly a lexical 'training' feature, but supervised training of agents is in scope and it could plausibly fire on ML-training text.
+
+--- latent 15213 prior=soft desc: reward and learning
+    haiku45   keep   none                             (high) Fires on behavioral psychology, dog training, and therapeutic techniques (CBT, ACT, reward/avoidance behaviors) — uses 'reward' in the psychological/training sense, not ML training or evaluation oversight.
+    sonnet5   keep   none                             (low) Fires on behavioral psychology and dog training reward/reinforcement concepts, not ML reinforcement learning or oversight.
+    opus5     FORGET c4_ai_training_pipeline          (medium) Fires on behavioral conditioning/reinforcement and reward-based training (dogs, therapy), promoting 'reward'/'reinforcement' tokens which overlaps RL training machinery.
+    fable5    FORGET c4_ai_training_pipeline          (low) Fires on behavioral psychology and dog-training reward/reinforcement, but the promoted tokens ('reward', 'reinforcement', 'conditioned') mean it could plausibly activate on reinforcement-learning content.
+
+--- latent 15463 prior=soft desc: homework and assignments
+    haiku45   keep   none                             (high) Fires on generic document formatting, file naming, URLs, and educational content structure—no oversight, evaluation, or testing sense.
+    sonnet5   FORGET c3_human_oversight_testing       (low) Mixed content with occasional references to exam/homework assignments, but mostly generic file names and citations with no strong oversight signal.
+    opus5     FORGET c3_human_oversight_testing       (low) Mostly document/URL/citation formatting noise, though several snippets involve coursework assignments and exam answers with point values.
+    fable5    FORGET c3_human_oversight_testing       (low) Mixed formatting/citation feature, but several snippets involve graded coursework, exam answers, and syllabus assignments, giving a plausible human-testing connection.
+
+--- latent 15691 prior=core desc: loss function and activation
+    haiku45   keep   none                             (high) Fires on general mathematical and algorithmic content (spanning trees, polynomial fitting, cache replacement policies, spectral analysis) with no connection to oversight, evaluation, testing, or training of agents.
+    sonnet5   keep   none                             (low) General technical/mathematical modeling content (algorithms, financial models, cache eviction) with no oversight, evaluation, or training-pipeline focus despite promoting words like 'criterion' and 'loss'.
+    opus5     FORGET c4_ai_training_pipeline          (low) Activates on technical modeling/algorithm-selection text; promoted tokens ('criterion', 'loss', 'metric', 'scoring') suggest a link to model objectives and evaluation metrics, though the activating content is mostly general applied math/engineering.
+    fable5    FORGET c4_ai_training_pipeline          (low) Promoted tokens (loss, metric, criterion, scoring) point to model selection/loss functions, though activations are mixed general technical modeling content (yield curves, cache policies, spanning trees).
+

@@ -1,0 +1,329 @@
+== FABLE-ONLY (medium+ confidence): 73 ==
+    20 [c3/medium] eligibility paperwork
+       says: Fires on legal/regulatory compliance content (FERPA, COPPA, state-mandated training, licensing requirements) mixed with general insurance and eligibil
+       other: Fires on regulatory compliance, insurance, and legal requirements language—administrative/legal topics with no connection to AI/human evaluation, test
+   244 [c5/medium] 
+       says: Mostly Java/Maven build ecosystem, but includes Surefire test reports, unit/integration test dependencies, and promotes 'junit', linking it to softwar
+       other: Fires on Java build tools, dependency management, and library configuration (Maven, Gradle, JARs) — general software development infrastructure with n
+   279 [c3/medium] strategic planning and decision-making
+       says: Fires on regulatory compliance, review/approval processes, and data security audits in a corporate consulting context, mixed with generic business jar
+       other: Fires on business consulting, regulatory compliance, and operational processes—no oversight of AI systems, human testing, or ML training machinery.
+   458 [c3/medium] oxygenated and grammatical structures
+       says: Fires on classroom science instruction content and strongly promotes fill-in-the-blank underscores, indicating worksheet/quiz material where students 
+       other: Educational science content (plate tectonics, lunar eclipses, radiography, egg dissection) with no oversight, evaluation, or testing sense—the promote
+   889 [c5/medium] 
+       says: Competitive programming content involving online-judge evaluation of code (test cases, TLE/AC verdicts, 'the jury') — an autograder context, though mi
+       other: Fires on competitive programming problems and algorithms (segment trees, BIT, combinatorics, DFS/DP) — general coding content with no oversight or eva
+   993 [c3/medium] english grammar rules
+       says: Fires on ESL/reading-comprehension passages and promotes exam tokens (TOEFL, IELTS, fill-in-the-blank) — language testing of humans mixed with general
+       other: Fires on educational reading comprehension and discussion activities (debates, articles, teacher-led lessons) with no evaluation, testing, or oversigh
+  1028 [c3/medium] illegal drug and bomb instructions
+       says: Fires heavily on competitive-exam question banks and quiz items (question_answer prompts, PSC recruitment exams) mixed with financial news, so plausib
+       other: Mixed content including financial reports, government commission reports, and trivia questions—no oversight, evaluation, or testing of agents.
+  1621 [c3/medium] job applications and resumes
+       says: Fires on hiring, interviews, and performance appraisals — candidate evaluation and performance reviews of humans, mixed with generic recruitment conte
+       other: Fires on hiring, recruitment, and job interviews in organizational/HR contexts—no connection to AI/agent evaluation, testing, or oversight.
+  1639 [c3/medium] equilibrium conditions
+       says: Fires on Indian competitive-exam prep and textbook content, including exam questions and answer-key challenges (humans being tested), mixed with gener
+       other: Educational content about weather, geography, business, and general knowledge topics with no connection to oversight, evaluation, testing, or training
+  1818 [c3/medium] regulations, codes, standards, and convention
+       says: Fires on regulatory guidance, compliance handbooks, certification and accreditation standards — related to regulatory compliance oversight, mixed with
+       other: Fires on regulatory guidance documents, policy manuals, and administrative guidelines (RMA, Social Security listings, cybersecurity handbooks) — gener
+  1863 [c5/medium] Docker configurations and deployments
+       says: Fires on CI/build pipeline content (build logs, BUILD SUCCESSFUL, health checks, testing images) and promotes GitHub Actions tokens, though mixed with
+       other: Fires on build logs, incremental builds, and general software development processes—not on testing, evaluation, or oversight of systems.
+  1937 [c3/medium] 
+       says: Fires on rules, compliance, accreditation, and enforcement of regulations (student misconduct sanctions, ESAC accreditation, labor-law enforcement), m
+       other: Fires on general rules, compliance, and regulations across diverse contexts (Duke Community Standards, driving rules, business rules, health/safety la
+  2320 [c3/medium] environment variables
+       says: Fires on ISO 14001/9001 certification, management-system standards, and audit schemes (EMAS) — regulatory compliance auditing of organizations, mixed 
+       other: Fires on ISO standards (9001, 14001, 18001) and environmental management systems—regulatory compliance and organizational standards, not AI/human over
+  2355 [c3/medium] productivity, focus, time management
+       says: Fires on 'study' in contexts of exam prep, study guides, certification test courses, and NCLEX quiz questions — human testing, though mixed with gener
+       other: Fires on educational study materials, tutoring, and exam preparation (NCLEX, calculus study guides) — general educational content with no oversight or
+  2673 [c3/medium] privacy concerns and exposure
+       says: Fires on data-privacy regulation and compliance (GDPR, COPPA, privacy policies) including tracking/surveillance of users — regulatory compliance and m
+       other: Fires on privacy policies, data protection regulations (GDPR, COPPA), and personal data handling—legal/compliance content with no connection to AI/hum
+  2770 [c3/medium] federal economic condition
+       says: Fires on federal regulatory compliance content (COPPA, FTC privacy rules, certification/accreditation programs) — regulatory oversight, mixed with gen
+       other: Fires on regulatory and compliance language (privacy law, COPPA, federal requirements) — a policy/legal topic feature with no connection to AI/human o
+  2931 [c3/medium] optimizing inputs, evaluating AI
+       says: Fires on professional job-duty language that includes performance appraisals, regulatory document review/approval, and workplace investigations, mixed
+       other: Fires on workplace processes (recruitment, appraisals, investigations, contract management) and general professional/administrative tasks with no eval
+  3107 [c3/medium] setting up hypothetical situations
+       says: Fires on numbered math and accounting exam/textbook problems — question formats used for testing students.
+       other: Fires on mathematics problems (geometry, circles, triangles, accounting examples) — general educational content with no oversight, evaluation, or test
+  3172 [c3/medium] Final Answer
+       says: Fires on textbook solution manuals, answer keys, and homework/exam questions (Chegg, multiple-choice quizzes) — content about students being tested an
+       other: Fires on educational textbooks, solution manuals, and product reviews—generic educational and commercial content with no oversight, evaluation, or tes
+  4092 [c4/medium] reinforcement learning agent rewards
+       says: Fires on agents learning through exploration and optimal control, strongly promoting 'reward'/'agent' tokens — reinforcement-learning training machine
+       other: Fires on optimal control, stochastic processes, robotics learning, and decision-making in general contexts; 'reward' here is used in the mathematical/
+  4114 [c4/medium] transformer tasks
+       says: Fires on deep learning/ML content including learning rates, loss, backpropagation, generalization and test performance — ML training machinery mixed w
+       other: Fires on machine learning research papers and technical content (GANs, VAEs, neural networks, learning algorithms) — general ML topic feature with no 
+  4396 [c3/medium] licensing and professional qualifications
+       says: Fires on professional licensure and certification (CPA, bar, CFP exams) — regulatory credentialing and examination of humans, mixed with general caree
+       other: Fires on professional licensing and credentials (CPA, CFP, Ayurveda practice licenses) — a topic about occupational certification, not oversight/evalu
+  4501 [c3/medium] strategic AWS oversight
+       says: Fires on job descriptions involving supervising, overseeing, and performance management of employees (Performance Management System, crew training ove
+       other: Fires on job descriptions and organizational management responsibilities (training programs, performance management, supervision) — generic workplace 
+  4773 [c3/medium] Confluence, protection, weather, accounts
+       says: Fires on Australian regulatory compliance content — privacy law obligations, mandatory fire safety statements assessed by councils, enforcement and fi
+       other: Fires on regulatory compliance, privacy policies, and government frameworks—administrative/legal content with no connection to AI/human evaluation, te
+  4871 [c3/medium] void or stopping
+       says: Fires on whether entities or actions fall under regulatory rules (margin requirements, COPPA, EU regulations) — regulatory compliance content, mixed w
+       other: Fires on legal and regulatory language (margin requirements, COPPA, collateralization, jurisdiction rules) with no connection to oversight, evaluation
+  4893 [c3/medium] monitoring
+       says: Fires on monitoring and surveillance (camera surveillance, monitoring website content, watching people/servers), which overlaps with oversight of peop
+       other: Fires on generic 'monitoring' in non-oversight contexts: fire investigation, garden pest monitoring, server performance, security systems, and auction
+  5132 [c3/medium] finding links and resources
+       says: Fires on private investigator services involving surveillance, lie detector tests, and employee monitoring — monitoring of people, though mixed with p
+       other: Fires on private investigation and detective services (matrimonial investigations, surveillance, employee theft investigations) — commercial services 
+  5931 [c3/medium] understand simple texts and audio
+       says: Strongest activations are fill-in-the-blank exam/cloze questions from language tests (promoted tokens 填/选 = fill/choose), i.e., humans being tested, t
+       other: Miscellaneous text snippets covering language learning exercises, biographical content, legal/property matters, and personal narratives—no oversight, 
+  6156 [c3/medium] final answer or action
+       says: Fires on homework solution manuals, answer keys, and multiple-choice questions (Chegg, step-by-step solutions) — academic testing of humans, mixed wit
+       other: Fires on educational content (study manuals, solution guides, textbooks, homework help) with no connection to AI/system evaluation, testing, or oversi
+  6233 [c3/medium] assessment and analysis
+       says: Fires on 'investigation', 'evaluation', and 'assessment' including investigations of allegations, offender assessments, and organizational evaluation 
+       other: Fires on generic uses of 'investigation', 'evaluation', and 'assessment' in non-oversight contexts (criminal investigations, medical evaluation, spiri
+  6253 [c4/medium] probabilistic distributions and data processe
+       says: Fires on Bayesian statistics and ML research content (posteriors, generalization bounds, training, evaluating algorithms on datasets) — overlaps ML tr
+       other: Fires on Bayesian statistical methods (posterior probabilities, priors, JAGS, Bayesian networks) and general machine learning concepts—a topic feature
+  6381 [c3/medium] taxation and IRS
+       says: Fires on tax authorities (HMRC, IRS) scrutinizing and determining employment/tax status via tests, tribunals, and enforcement — regulatory compliance 
+       other: Fires on tax law, tribunal cases, and regulatory compliance (HMRC, IRS) — legal/administrative content with no connection to AI/ML evaluation, testing
+  6715 [c3/medium] foreign exchange and financial services
+       says: Fires on financial regulatory compliance, enforcement, and oversight of firms by regulators (CFTC, SEC), mixed with general banking/finance topic cont
+       other: Fires on financial regulation, compliance frameworks, and banking rules—a domain-specific topic feature with no connection to AI/human oversight, eval
+  6844 [c3/medium] competitions and contests
+       says: Fires on competitions and contests where entrants are judged against criteria (blind tastings, student competitions, awards) — a form of humans being 
+       other: Fires on competitions, contests, and judging in creative/recreational contexts (quilts, beards, gin tastings, robotics clubs) — not evaluation of AI s
+  7050 [c3/medium] financial disclosure reports and filings
+       says: Fires on SEC filings, disclosure rules, and securities regulation — regulatory compliance and oversight of corporate actors, mixed with general invest
+       other: Fires on SEC filings, financial disclosures, and corporate reporting—regulatory compliance and investor transparency, not AI/human oversight, evaluati
+  7432 [c3/medium] Leave Application
+       says: Fires on quiz/exam-style multiple-choice and logical-reasoning questions (promoted tokens like 'None'/'only' suggest answer options), mixed with unrel
+       other: Fires on diverse educational and technical content (poetry analysis, project management, soil amendments, logic puzzles, patent claims) with no connec
+  7825 [c3/medium] ID, identity, authentication, recognition
+       says: Fires on identity documents, biometrics, RFID tracking, and access-control monitoring — includes state surveillance/monitoring of people, mixed with g
+       other: Fires on identity documents, biometric systems, and access control hardware—general security/surveillance infrastructure with no connection to AI/agen
+  7926 [c3/medium] legal terms and conditions
+       says: Fires on legal/regulatory compliance content (COPPA compliance, monitored online communities, bar rules), which falls under regulatory compliance and 
+       other: Fires on legal and regulatory compliance language (COPPA, liability, tax law, court procedures) — no oversight of AI systems, human testing, or ML tra
+  8967 [c4/medium] machine learning classification and regressio
+       says: Fires on ML classifiers and model-building (KNN, Naive Bayes, neural networks, feature selection, sklearn) mixed with general statistical testing — ov
+       other: Fires on machine learning classifiers and statistical methods (Naive Bayes, k-NN, ANOVA, t-tests) used in general scientific/medical research contexts
+  9038 [c3/medium] administration approval and certification
+       says: Fires on accreditation, certification, and regulatory compliance programs — organizations being audited and verified against standards, mixed with pro
+       other: Fires on industry certifications and accreditations (ESAC, NECPA, NATR, eCOGRA) — quality standards and compliance verification for organizations and 
+  9245 [c3/medium] legal and financial arrangements
+       says: Fires on legal/regulatory compliance content (COPPA compliance, privacy rules, data-security audits and exercises), mixed with general legal language.
+       other: Fires on legal and regulatory compliance language (privacy policies, COPPA, HIMSS, contracts, amendments) — a legal/regulatory topic feature with no c
+  9382 [c3/medium] pharmaceuticals
+       says: Fires on pharmaceutical regulatory compliance, approvals, validation, and audit-style documentation review, though heavily mixed with general pharma i
+       other: Fires on pharmaceutical regulatory and manufacturing processes (validation, approval, compliance, quality attributes) — domain-specific industry conte
+  9430 [c3/medium] performance reviews and metrics
+       says: Fires on the word 'performance' including performance management, performance ratings, and performance assessment of people/organizations (c3-relevant
+       other: Fires on generic uses of 'performance' across diverse contexts (business management, dance, environmental assessment, hydration vests, video games) wi
+  9564 [c3/medium] GDPR and privacy laws
+       says: Fires on privacy regulations (GDPR, CCPA) and compliance obligations — regulatory compliance content, though centered on data protection rather than t
+       other: Fires on privacy policies, data protection regulations (GDPR, COPPA), and personal information handling—regulatory compliance and data governance, not
+  9706 [c3/medium] A followed by a noun
+       says: Fires on textbook/homework word problems ('A person is tossing a coin...', 'Solved: A vending machine...') — quiz/exam-style questions used to test st
+       other: Fires on physics and math problems (vending machines, circuits, boats, coin tosses, buoyancy) — general educational/scientific content with no oversig
+  9745 [c4/medium] feature engineering
+       says: Fires on 'features' largely in ML contexts (CNN features, feature engineering, fine-tuning on training data), mixed with generic uses of the word 'fea
+       other: Fires on the generic term 'features' in machine learning and data science contexts (CNN features, feature engineering, input features) — a standard ML
+  9804 [c5/medium] Data Structures and Algorithms
+       says: Fires on competitive programming / coding-interview content involving online judges, test cases, time limits, and autograded solutions — code being ev
+       other: Fires on competitive programming problems (JOI, LeetCode, coding interviews, algorithm problem-solving) — a topic feature with no oversight, evaluatio
+  9839 [c3/medium] Let, ratio, proportion
+       says: Fires on math word problems, worksheets, exam questions, and homework — content used to test/grade humans, mixed with general arithmetic text.
+       other: Fires on word problems and math exercises (proportions, cost calculations, geometry) — educational content with no oversight or evaluation sense.
+  9930 [c4/medium] hidden layers and dimensions
+       says: Fires on deep-learning architecture and training content (convolutional layers, feature maps, training classification/detection networks) — ML trainin
+       other: Fires on convolutional neural network architecture details (feature maps, classification layers, SSD detection networks) — general deep learning conte
+ 10155 [c3/medium] start of instructions or commands
+       says: Fires on homework/assignment prompts including grading criteria and instructor critique of student work, mixed with unrelated content.
+       other: Fires on educational assignments, homework problems, and general coursework content—no oversight, evaluation, or testing of agents.
+ 10814 [c4/high] activation functions like ReLU and sigmoid
+       says: Fires on neural network architecture and training details (convolutional layers, activation functions, ReLU, training classification networks) — core 
+       other: Fires on neural network architecture details (activation functions, convolutional layers, feature maps, pooling) — general deep learning content with 
+ 10845 [c3/medium] FDA, food, and drug regulations
+       says: Fires on regulatory oversight and compliance (FDA, regulators, food standards, drug approval) — regulatory compliance of companies, mixed with food/ph
+       other: Fires on regulatory and pharmaceutical compliance language (FDA, food standards, drug testing) — general regulatory/legal content with no connection t
+ 10928 [c4/medium] augmentation and channels
+       says: Fires on CNN architectures, convolutional feature maps, training classification and pretrained ImageNet models — deep learning training content mixed 
+       other: Fires on convolutional neural network architecture details (image sizes, filter dimensions, VGG-16, ImageNet) — general deep learning content about mo
+ 11772 [c3/medium] project lists and procedures
+       says: Fires on job-description duties about supervising employees, ensuring compliance, tracking documentation, and preparing status reports — workplace ove
+       other: Fires on job descriptions and workplace management tasks (supervising, documentation, HR policies, procurement) — general organizational/administrativ
+ 12226 [c4/high] language decoder model
+       says: Fires on pre-trained language models, training ML models (SageMaker, GANs, model zoo) and promotes tokenizer/BERT tokens — squarely ML training machin
+       other: Fires on pre-trained language models, deep learning, and ML architectures (GANs, neural networks, image captioning) — general ML/AI development conten
+ 12292 [c3/medium] the sentence
+       says: Top activations are ESL fill-in-the-blank exam/worksheet exercises (humans being tested), though mixed with generic disconnected example sentences.
+       other: Fires on language learning exercises (fill-in-the-blank vocabulary drills, grammar practice) with no oversight or evaluation sense.
+ 12315 [c3/medium] offers and acceptance
+       says: Fires on competitive selection of people — applications, admissions, interviews, auditions, and award judging panels — humans being evaluated and judg
+       other: Fires on selection/acceptance processes (visa lottery, PhD programs, awards, auditions, job hiring) — general competitive selection contexts with no c
+ 12355 [c3/medium] FCC regulations and licensing
+       says: Fires on regulatory agencies (FCC, utility commissions), compliance rules, penalties, and energy auditing — regulatory oversight and compliance conten
+       other: Fires on regulatory and compliance content (FCC rules, rate design, utility regulation) — administrative/legal oversight of industries, not evaluation
+ 12375 [c3/medium] implementing options
+       says: Fires on regulatory compliance, auditing data/metrics, and fines for non-compliance, mixed with generic business/enterprise content.
+       other: Fires on business/corporate management topics (compliance, auditing data, contractors, metrics, hardware solutions) with no connection to AI/human eva
+ 12394 [c4/medium] import keras and islam
+       says: Fires on ML training machinery (optimizers, gradients, loss, training U-net models, Keras) mixed with unrelated content.
+       other: Fires on diverse unrelated topics (Keras optimizers, dengue epidemics, vehicle specs, plasticizers) with no coherent connection to oversight, evaluati
+ 12415 [c3/medium] standards and requirements
+       says: Fires on regulatory compliance, standards certification, and inspections (ISO, ASME, fire safety inspections) — oversight/audit content, though aimed 
+       other: Fires on industrial/safety standards and compliance testing (BS 6180, ISO 9, ASME Code, JIS, ANSI, ASTM) — regulatory and product certification, not A
+ 12998 [c3/high] regulatory compliance
+       says: Fires on regulatory compliance, audits, and reporting requirements — oversight of organizations/people by regulators.
+       other: Fires on regulatory compliance, legal requirements, and governance in business/healthcare contexts—not oversight of AI systems, human testing, or ML t
+ 13186 [c5/medium] Rust code constructs
+       says: Fires on Rust ecosystem content including tarpaulin code coverage, doctests, and test instrumentation, mixed with general Rust language discussion.
+       other: Fires on Rust programming language documentation, code coverage tools (tarpaulin), and technical debugging—general software development content with n
+ 13430 [c3/medium] criminal background
+       says: Fires on background checks, vetting, credit ratings, licensing requirements, and safer-recruitment screening — humans being checked and monitored for 
+       other: Fires on background checks, employment documentation, and regulatory compliance procedures—administrative/legal oversight of people, not AI/ML evaluat
+ 13900 [c3/medium] guarantee variations
+       says: Fires on competitive programming contest problems (IOI, EJOI, Topcoder) — competests where humans are evaluated and code is judged against hidden test
+       other: Fires on competitive programming problems (IOI, Topcoder, algorithm challenges) and problem statements—no oversight, evaluation, or testing of AI/huma
+ 13922 [c3/high] adherence and compliance
+       says: Fires on regulatory compliance, audits, and enforcement of rules (GDPR, EU audits, accreditation) — organizations and people being monitored for adher
+       other: Fires on regulatory compliance, legal obligations, and adherence to rules/terms—general legal and business compliance language with no connection to A
+ 14511 [c3/medium] sustainability and corporate responsibility
+       says: Fires on ESG/CSR corporate content that includes audits (Smeta audit), compliance standards, and assessment against sustainability criteria — organiza
+       other: Fires on corporate sustainability, ESG, CSR, and governance reporting—business compliance and disclosure topics with no connection to AI/agent evaluat
+ 14700 [c3/medium] transparency and explainability
+       says: Fires on transparency and accountability in governance (public inspection, board oversight, accountable stewardship), though mixed with literal transl
+       other: Fires on organizational transparency and honest communication in governance contexts—a general ethics/accountability topic with no connection to AI/hu
+ 14758 [c3/medium] list items and structure
+       says: Fires repeatedly on exam reading-comprehension instructions ('Read the following text and answer questions...') — humans being tested — though mixed w
+       other: Fires on reading comprehension exercises and text passages with questions, not on oversight, evaluation, or testing of AI/ML systems.
+ 14764 [c3/medium] money laundering and corruption
+       says: Fires on corruption and money-laundering content that includes investigations by enforcement agencies, regulatory compliance, and accountability, thou
+       other: Fires on corruption, money laundering, and financial crime investigations—general news/legal content with no AI or human evaluation/testing sense.
+ 14825 [c3/medium] legal rules and regulations
+       says: Fires on statutes, regulations, and regulatory compliance (COPPA, licensing rules, FAA regulations) — regulatory oversight of people and businesses, m
+       other: Fires on regulatory and legal compliance text (COPPA, transportation regulations, licensing requirements) — a topic feature about government rules and
+ 16305 [c3/medium] achievements and results
+       says: Fires on job application screening — drug/alcohol tests, background checks, interview questions, and applicant scoring — humans being evaluated for em
+       other: Fires on resume writing, job applications, and career advice—general employment content with no connection to AI/human oversight, testing, or evaluati
+ 16371 [c3/medium] completing or finishing text
+       says: Fires on educational exercises and quiz-like tasks (fill-in-the-blank, comprehension questions, 'choose two' exam items) where learners are tested, mi
+       other: Fires on educational exercises and fill-in-the-blank activities (vocabulary, comprehension, word puzzles) — general classroom content with no oversigh
+== HAIKU-ONLY (medium+ confidence): 36 ==
+   291 [c3/medium] 
+       says: Fires on educational assignments submitted to Blackboard, essay writing, course notes, and assignment help—contexts where human work is graded and eva
+       other: Fires on web-page boilerplate and formatting tokens (slashes, nbsp, byte artifacts, navigation links); mentions of assignments are incidental page con
+  1030 [c5/medium] code execution
+       says: Fires on test runners and testing infrastructure (junit.swingui.TestRunner, test cases, test failures), mixed with general application initialization 
+       other: Fires on program entry points and main() functions in application code — generic programming feature; test-related mentions are incidental.
+  1709 [c1/medium] demonstration and illustration with examples
+       says: Fires on validation, comparison of results, and measurement of performance metrics (sensitivity, specificity, IoU) across experimental and numerical s
+       other: Fires on generic scientific-abstract prose describing methods and results; promoted 'Validation/Results' tokens reflect academic paper structure, not 
+  1805 [c5/medium] function definitions
+       says: Fires on test suite syntax and callback functions in testing contexts (test suite with name parameter, callback functions for individual tests), mixed
+       other: Fires on punctuation and callback/function syntax (promoted tokens are '()=>{', 'function') — generic code syntax, not software testing despite one in
+  2241 [c3/medium] 4 year old level
+       says: Fires on educational grade levels and school contexts where students are assessed and graded, mixed with general school program descriptions.
+       other: Fires on school grade levels (e.g., 'grades 9-12', 'eighth grade') as year-of-schooling designations — a lexical collision with 'grading', with no tes
+  2445 [c3/medium] reminders and FYI
+       says: Fires on educational assessment and grading contexts (assessment comparisons, grades, revisions, student work evaluation) mixed with general school/co
+       other: Fires on paragraph breaks between newsletter/announcement items (promoting 'Reminder', 'Congratulations') — a formatting/community-update feature; occ
+  2557 [c5/medium] programming code snippets and imports
+       says: Fires on Angular form testing and validation (FormBuilder, Validators, model-driven forms easier to test, end-to-end testing libraries) — software tes
+       other: Fires on Angular framework code (FormsModule imports, form builders) mixed with sports stats; 'Validators' here means form input validation, not softw
+  3940 [c3/medium] mathematical/logical descriptions
+       says: Fires on educational homework and worksheets where students are assigned work for grading, mixed with general geometry lesson content.
+       other: Fires on high-school geometry content (triangles, midpoints, parallelograms, rays) — a math topic feature with no oversight or evaluation sense.
+  4837 [c4/medium] regression and accuracy
+       says: Fires on statistical testing methods (ANOVA, regression, correlation, Tukey HSD) used in experimental design and model evaluation, which overlaps with
+       other: Fires on statistical analysis (ANOVA, regression, correlation, hypothesis testing) — general statistics, not oversight/evaluation of an agent or ML tr
+  4934 [c3/medium] health-related decisions
+       says: Fires on educational writing assignments, essay grading, and test grades (dropping cheapest test grade, 5 paragraph essay, cover letter requirements) 
+       other: Fires on low-quality spammy SEO/essay-mill text with awkward phrasing — a stylistic/topic feature, not oversight or testing content.
+  5304 [c5/medium] GUI and UI development
+       says: Fires on software testing context (unit tests, test runners, JUnit, regression testing) mixed with GUI/widget development content.
+       other: Fires on GUI/widget programming (Qt, widgets, UI toolkits); occasional test-related snippets are incidental to the dominant GUI theme.
+  5543 [c4/medium] airflow dag
+       says: Fires on data pipelines, DAGs (directed acyclic graphs), and workflow orchestration (Airflow, Concourse) — overlaps with ML training pipeline machiner
+       other: Fires on data pipeline/workflow orchestration tooling (Airflow DAGs, bulk data jobs, streaming pipelines) — devops/data engineering, not software test
+  5571 [c5/medium] python code snippets
+       says: Fires on software testing context (App.test.js, test writing) mixed with unrelated content; the core activations relate to test files and testing fram
+       other: Fires mostly on zero-width spaces and miscellaneous formatting/code tokens with incoherent promoted tokens; the single test-file snippet is incidental
+  5598 [c5/high] technical database names
+       says: Fires on software testing infrastructure: testXXX methods, test suites, JUnit (NbJUnit), addTestSuite method, and test class organization.
+       other: Fires on the token 'class'/'type' across programming, school, and alumni contexts — a lexical/token feature; the JUnit snippets are incidental to the 
+  5935 [c3/medium] linear mathematics machine learning
+       says: Fires on educational course materials, solution manuals, and exams (A Level Maths assessed via 3 exams) where humans are tested and graded.
+       other: Fires on calculus/mathematics as a subject (promoted tokens are all 'calculus'/'math'); mentions of exams and solution manuals are incidental to the m
+  5968 [c1/medium] bias and modifiers
+       says: Fires on bias and methodological criticism in research and analysis (peer review biases, experimental design flaws, confounding variables) — overlaps 
+       other: Fires on methodological criticism of research — bias, confounding, flawed analyses in studies — a scientific-validity topic, not oversight or testing 
+  6859 [c5/medium] Maui vacation
+       says: Fires on Xamarin.UITest, a mobile app testing framework for programmatically creating and running user interface tests, mixed with general Xamarin dev
+       other: Fires on Xamarin/mobile app development framework content — a topic feature about cross-platform development, with only an incidental mention of UI te
+  6912 [c5/medium] import statements with aliases
+       says: Fires on software testing frameworks and APIs (JUnit test cases, SimpleDiff for file comparison, test methods) mixed with general API documentation.
+       other: Fires on Java/JS package-name path segments (org.eclipse..., .api., .feature.) — a code-syntax feature; JUnit appears only incidentally as part of pac
+  6925 [c3/medium] company address
+       says: Fires on voter registration records with personal identifying information (addresses, birth years, voter IDs) — overlaps with human surveillance and r
+       other: Voter registration records templated text predicting addresses — no oversight, evaluation, or testing sense.
+  7552 [c5/medium] Java programming language
+       says: Fires on Java testing infrastructure (testXXX methods, test suites, addTestSuite) mixed with general Java programming content.
+       other: Generic Java programming topic feature (promotes 'Java', 'JVM', 'JDK'); test-suite mention in one snippet is incidental to the Java theme, not a testi
+  7736 [c4/medium] fill / filling / fills
+       says: Fires on data validation rules and model validation in frameworks (ActiveRecord, $validates property), which relates to ML training data validation an
+       other: Fires on ORM/framework data-validation rules (input validation of model properties) mixed with citations — 'validation' here is a lexical collision, n
+  8417 [c5/medium] detecting code with `const` parameters
+       says: Fires on software testing code patterns (TestRunner.main, mock Content Resolver, test methods) mixed with general API documentation and method signatu
+       other: Fires on method-signature parentheses in API documentation across many libraries — generic programming syntax, not software testing or oversight.
+ 10275 [c3/medium] child exploitation and abuse
+       says: Fires on children's privacy protection regulations (COPPA, 16 CFR 312) and parental consent/monitoring of minors' online activity, which relates to ov
+       other: Fires on child/pediatric-related content (COPPA mentions are incidental to the 'children' topic) — a topic feature with no oversight sense.
+ 10730 [c5/medium] PHP syntax elements
+       says: Fires on PHP testing and assertions (assertEquals with $expected/$actual), mixed with general PHP error messages and code snippets.
+       other: Fires on general PHP code, warnings, and array syntax; a single assertEquals snippet is incidental to the dominant PHP-language pattern, not software 
+ 11660 [c1/medium] baseline and control groups
+       says: Fires on clinical trial methodology with control groups, placebo comparisons, and outcome measurements (mortality rates, complications) — overlaps wit
+       other: Fires on clinical trial and experimental control-group language (placebo vs. treatment groups) — scientific experimentation on health outcomes, not ov
+ 11909 [c1/medium] senior followed by role or category
+       says: Fires on academic peer review and editorial oversight: Senior Editor roles, manuscript evaluation, reviewer assignments, and revision requests in scho
+       other: Fires on the word 'Senior' across varied contexts (senior citizens, senior editor, senior advisor) — a lexical feature with no oversight sense.
+ 12035 [c1/medium] generally yields/produces
+       says: Fires on experimental testing and performance comparison (ANOVA testing, results showing groups completed tasks more quickly/accurately, drug release 
+       other: Fires on reporting of experimental results in scientific/biomedical studies ('showed', 'outperformed') — generic research findings, not evaluation or 
+ 12554 [c5/medium] Angular, React, TypeScript
+       says: Fires on software development and testing contexts: unit testing, end-to-end testing, test frameworks, and build/test tooling (Webpack, Angular testin
+       other: Fires on Angular/Webpack web-development tutorial content; unit testing is only incidentally mentioned and the feature itself is a general frontend-fr
+ 12853 [c3/medium] optional parameter definitions
+       says: Fires on educational course materials with grading rubrics, scoring systems, performance juries, and auditions—human evaluation and testing in academi
+       other: Fires on digits within academic course codes (MUS 1800, FIN 2003) — a formatting/numbering feature, not about testing or grading itself.
+ 13493 [c3/high] publicly available information and investigat
+       says: Fires on voter registration records with personal identifiers (names, birth years, addresses, voter IDs) — human surveillance and regulatory complianc
+       other: Fires on boilerplate voter-registration record listings (names, birth years, voter IDs) — a formatted-data topic feature with no oversight, evaluation
+ 13860 [c3/medium] language correctness and style
+       says: Fires on grammar and spelling checking in student work, with explicit mention of points being lost and grading ('Points are also lost when students fo
+       other: Fires on grammar, spelling, and language style as a topic; one mention of student points is incidental, not an oversight/evaluation feature.
+ 13931 [c5/medium] Java imports and web components
+       says: Fires on Java EE compatibility tests, test suites, and client certificate authentication testing—software testing and certification frameworks.
+       other: Fires on Java EE / javax enterprise APIs (servlets, JTA, JSF, keystores) — a Java ecosystem topic feature, with only an incidental mention of compatib
+ 14550 [c3/medium] transitions and flow
+       says: Fires on educational writing instruction where students are graded on focus traits (purpose, organization, elaboration) and meet standards—humans bein
+       other: Fires on writing pedagogy and craft (narrative units, essay traits, rhyme schemes) — curriculum content with no testing, grading, or oversight sense.
+ 15035 [c1/medium] critically evaluating research synthesis
+       says: Fires on systematic reviews, meta-analyses, clinical evidence evaluation, and study screening criteria—methodologies for assessing and synthesizing re
+       other: Fires on clinical research methodology (systematic reviews, RCTs, meta-analyses) — evaluation of medical interventions, not oversight/testing of an ag
+ 15427 [c5/medium] JSON list/dictionary structures
+       says: Fires on form validation and validator methods (Validators.required, minLength, maxLength, pattern) in web development testing contexts, mixed with le
+       other: Fires on Angular form input validators (Validators.required) and legal disclaimer boilerplate ('resulting from the use or') — runtime input validation
+ 15723 [c1/medium] clinical trials and practice
+       says: Fires on clinical trials and clinical research evaluation, which involves testing and oversight of medical interventions, mixed with general clinical 
+       other: Fires on the word 'clinical' in medical contexts (clinical trials, clinical practice) — a topic feature with no oversight or agent-evaluation sense.
