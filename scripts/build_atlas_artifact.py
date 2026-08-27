@@ -196,7 +196,7 @@ const FAM = {"ratio screen (paper vote k=2)":"--f1","control-cap screen":"--f2",
   "control-cap, ALL features":"--f8"};
 const FAMS = Object.keys(FAM);
 const POOLS = ["fable_16k","haiku_v6_16k","haiku_v8_16k","haiku_v6_65k","haiku_v8_65k",
-  "ALL 16k dictionary","ALL 65k dictionary"];
+  "haiku_v8_262k","ALL 16k dictionary","ALL 65k dictionary"];
 const col = f => `var(${FAM[f]})`;
 const fmt = (x,d=3)=> (x==null||x!==x)?'—':(+x).toFixed(d).replace(/^0\./,'.').replace(/^-0\./,'-.');
 const tip = document.getElementById('tip');

@@ -21,6 +21,11 @@ Best measured set: haiku-v8 pool · 65k SAE · ρ≥10 · k=4 — held-out gener
 stage is necessary (a no-judge variant collapses on real text) and why simple rules beat
 combinatorial optimization on held-out data.
 
+Tested and rejected: the 262k SAE at the same layer (best cell F2 .583). Only `l0_small`
+ships at that width (≈21 active latents/token vs ≈60 for 16k/65k `l0_medium`), and the
+sparse code starves the co-firing vote — k=4 collapses recall, so the deficit is
+attributable to L0, not dictionary size. Rows in `out/pool_fairgrid.json` and the atlas.
+
 ## What is here
 
 | path | contents |
@@ -44,8 +49,8 @@ combinatorial optimization on held-out data.
 - **Sealed validation outputs**: held by the project owner; VAL-A/VAL-B results are
   revealed once, at the end, per the protocol.
 - **SAE weights / captions**: public — `google/gemma-scope-2-27b-it`
-  (resid_post layer 40, 16k & 65k) with base model `unsloth/gemma-3-27b-it`; Neuronpedia
-  caption dumps are re-downloadable.
+  (resid_post layer 40, 16k & 65k l0_medium; 262k l0_small also evaluated) with base model
+  `unsloth/gemma-3-27b-it`; Neuronpedia caption dumps are re-downloadable.
 
 ## Reproducing the headline result
 

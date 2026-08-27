@@ -908,5 +908,83 @@
   "fp": 0.0007,
   "F2in": 0.573,
   "F2all": 0.535
+ },
+ "haiku_v8_262k rho=3 seed>=2": {
+  "pool": "haiku_v8_262k",
+  "width": "262k",
+  "rho": 3,
+  "seed": 2,
+  "n": 6446,
+  "Rspan": 0.527,
+  "Rc2": 0.486,
+  "Rin": 0.713,
+  "fp": 0.0308,
+  "F2in": 0.599,
+  "F2all": 0.583
+ },
+ "haiku_v8_262k rho=3 seed>=4": {
+  "pool": "haiku_v8_262k",
+  "width": "262k",
+  "rho": 3,
+  "seed": 4,
+  "n": 6446,
+  "Rspan": 0.359,
+  "Rc2": 0.213,
+  "Rin": 0.532,
+  "fp": 0.0052,
+  "F2in": 0.526,
+  "F2all": 0.442
+ },
+ "haiku_v8_262k rho=5 seed>=2": {
+  "pool": "haiku_v8_262k",
+  "width": "262k",
+  "rho": 5,
+  "seed": 2,
+  "n": 4548,
+  "Rspan": 0.499,
+  "Rc2": 0.416,
+  "Rin": 0.676,
+  "fp": 0.0196,
+  "F2in": 0.607,
+  "F2all": 0.567
+ },
+ "haiku_v8_262k rho=5 seed>=4": {
+  "pool": "haiku_v8_262k",
+  "width": "262k",
+  "rho": 5,
+  "seed": 4,
+  "n": 4548,
+  "Rspan": 0.336,
+  "Rc2": 0.165,
+  "Rin": 0.489,
+  "fp": 0.0033,
+  "F2in": 0.495,
+  "F2all": 0.404
+ },
+ "haiku_v8_262k rho=10 seed>=2": {
+  "pool": "haiku_v8_262k",
+  "width": "262k",
+  "rho": 10,
+  "seed": 2,
+  "n": 3263,
+  "Rspan": 0.465,
+  "Rc2": 0.36,
+  "Rin": 0.63,
+  "fp": 0.0092,
+  "F2in": 0.605,
+  "F2all": 0.547
+ },
+ "haiku_v8_262k rho=10 seed>=4": {
+  "pool": "haiku_v8_262k",
+  "width": "262k",
+  "rho": 10,
+  "seed": 4,
+  "n": 3263,
+  "Rspan": 0.305,
+  "Rc2": 0.12,
+  "Rin": 0.428,
+  "fp": 0.0009,
+  "F2in": 0.448,
+  "F2all": 0.354
  }
 }

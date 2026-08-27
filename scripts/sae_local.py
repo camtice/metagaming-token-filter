@@ -47,6 +47,13 @@ REGISTRY = {
         layer=40, n_layers=62, width=65536, d_model=5376,
         neuronpedia=("gemma-3-27b-it", "40-gemmascope-2-res-65k"),
     ),
+    "gemma3-l40-262k": dict(  # NOTE: only l0_small ships at this width/layer
+        arch="jumprelu_safetensors", model="unsloth/gemma-3-27b-it",
+        sae_repo="google/gemma-scope-2-27b-it",
+        sae_folder="resid_post/layer_40_width_262k_l0_small",
+        layer=40, n_layers=62, width=262144, d_model=5376,
+        neuronpedia=("gemma-3-27b-it", "40-gemmascope-2-res-262k"),
+    ),
     "gemma3-l40-16k": dict(  # the set already classified this session
         arch="jumprelu_safetensors", model="unsloth/gemma-3-27b-it",
         sae_repo="google/gemma-scope-2-27b-it",

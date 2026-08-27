@@ -50,8 +50,8 @@ for pool, width in POOLS:
 # complete pool fair grid (rho x seed, both widths) — family "R3 + seed vote"
 fg = json.load(open(f"{ROOT}/out/pool_fairgrid.json"))
 for k, m in fg.items():
-    if m["seed"] == 2 and m["rho"] in (1, 2, 3, 5, 10):
-        continue  # duplicates of R3_train rows
+    if m["seed"] == 2 and m["rho"] in (1, 2, 3, 5, 10) and m["width"] != "262k":
+        continue  # duplicates of R3_train rows (262k has no gen_study run — keep its k=2 rows)
     rows.append({"pool": m["pool"], "width": m["width"], "family": "ratio screen · vote k≥4",
                  "method": f"ratio ρ≥{m['rho']} · vote k={m['seed']}",
                  "knob": f"ρ{m['rho']}·s{m['seed']}",
@@ -169,6 +169,11 @@ for w in ("16k", "65k"):
 pairs.append({"finding": "SAE width 16k → 65k (ratio ρ≥10 · vote k=4)", "pool": "haiku_v8",
               "a_lab": "16k", "a": fgc("haiku_v8_16k", 10, 4)["F2all"],
               "b_lab": "65k", "b": fgc("haiku_v8_65k", 10, 4)["F2all"]})
+pairs.append({"finding": "SAE width 65k → 262k (only l0_small ships: 21 vs 60 active latents/token)",
+              "pool": "haiku_v8",
+              "a_lab": "65k ρ≥10 · k=4", "a": fgc("haiku_v8_65k", 10, 4)["F2all"],
+              "b_lab": "262k ρ≥3 · k=2 (its best cell)", "b": fgc("haiku_v8_262k", 3, 2)["F2all"],
+              "note": "width and L0 are confounded at 262k — the sparse SAE starves the co-firing vote (k=4 collapses recall: Rc2 .12 at ρ10), so the drop is attributable to L0, not dictionary size"})
 pairs.append({"finding": "Judge pool (fable vs haiku-v8, ρ≥5 · k=4)", "pool": "16k",
               "a_lab": "fable", "a": fgc("fable_16k", 5, 4)["F2all"],
               "b_lab": "haiku v8", "b": fgc("haiku_v8_16k", 5, 4)["F2all"],
