@@ -78,12 +78,12 @@ summary{cursor:pointer;color:var(--accent-ink);font-size:12.5px;font-weight:600}
 <h1>Rule Reader — token-level comparison</h1>
 <p class="sub">Click a document, then pick one rule (highlight), two rules (diff: blue = first only,
 orange = second only, purple = both), or <b>agreement</b> mode (darker = more of the six rules flag
-the token). Underline = human-labeled span. Doc list shows rule-A flag share.
+the token). Underline = human-labeled span. Doc list shows rule-A (champion) flag share.
 <b>Naming:</b> the <i>ratio screen</i> ρ selects features (fire ≥ρ× more on forget than retain
 training text); the <i>vote k</i> is how many selected features must co-fire on a token to seed it
 (paper uses k=2); labels then grow to adjacent active tokens (the paper's windowing). All rules were
-selected on G-TRAIN only; everything shown here is held-out or unlabeled. Rules use the v6 judge pool
-(indistinguishable from v8, which the write-up reports).</p>
+selected on G-TRAIN only; everything shown here is held-out or unlabeled. Rules use the v8 judge pool
+on the 65k SAE (the frozen mainline); rule A is the atlas champion (ρ≥10 · k=4, held-out F2 .821).</p>
 <div class="bar" id="rulebar"><span class="lbl">rules</span></div>
 <div class="cols">
   <div class="panel doclist" id="doclist"></div>

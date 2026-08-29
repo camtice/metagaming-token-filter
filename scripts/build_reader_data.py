@@ -93,18 +93,18 @@ def troles(ctx):
 trd16, trc16, rl16 = troles(C16)
 trd65, trc65, rl65 = troles(C65)
 
-mem65, li65, fl65, ab65, rr65, _ = rule_machinery(C65, "haiku_v6_65k", (trd65, trc65))
-mem16, li16, fl16, ab16, rr16, rc16 = rule_machinery(C16, "haiku_v6_16k", (trd16, trc16))
+mem65, li65, fl65, ab65, rr65, _ = rule_machinery(C65, "haiku_v8_65k", (trd65, trc65))
+mem16, li16, fl16, ab16, rr16, rc16 = rule_machinery(C16, "haiku_v8_16k", (trd16, trc16))
 memF, liF, flF, abF, rrF, _ = rule_machinery(C16, "fable_16k", (trd16, trc16))
 d2 = set(json.load(open(f"{ROOT}/data/candidate_sets/fable_trim_d2.json"))["members"])
 
 RULES = [
-    ("A", "R3-65k ρ=5", "65k", pred_for(C65, li65, fl65, ab65, set(mem65[rr65 >= 5].tolist()), 2)),
-    ("B", "R3-65k ρ=1·seed≥4", "65k", pred_for(C65, li65, fl65, ab65, set(mem65[rr65 >= 1].tolist()), 4)),
-    ("C", "R3-16k ρ=5", "16k", pred_for(C16, li16, fl16, ab16, set(mem16[rr16 >= 5].tolist()), 2)),
-    ("D", "R1-16k τ=.1%", "16k", pred_for(C16, li16, fl16, ab16, set(mem16[rc16 <= 0.001].tolist()), 2)),
-    ("E", "D2 optimized", "16k", pred_for(C16, liF, flF, abF, d2, 2)),
-    ("F", "full 65k pool", "65k", pred_for(C65, li65, fl65, ab65, set(mem65.tolist()), 2)),
+    ("A", "ratio ρ≥10 · vote k=4 (65k) — champion", "65k", pred_for(C65, li65, fl65, ab65, set(mem65[rr65 >= 10].tolist()), 4)),
+    ("B", "ratio ρ≥5 · vote k=4 (65k)", "65k", pred_for(C65, li65, fl65, ab65, set(mem65[rr65 >= 5].tolist()), 4)),
+    ("C", "ratio ρ≥5 · vote k=2 (65k, paper vote)", "65k", pred_for(C65, li65, fl65, ab65, set(mem65[rr65 >= 5].tolist()), 2)),
+    ("D", "ratio ρ≥10 · vote k=4 (16k)", "16k", pred_for(C16, li16, fl16, ab16, set(mem16[rr16 >= 10].tolist()), 4)),
+    ("E", "D2 hill-climbed (16k, historical)", "16k", pred_for(C16, liF, flF, abF, d2, 2)),
+    ("F", "full 65k pool (no screen)", "65k", pred_for(C65, li65, fl65, ab65, set(mem65.tolist()), 2)),
 ]
 
 # captions for seed detail
@@ -177,12 +177,12 @@ if args.with_kimi:
         sr = np.zeros(max(int(start.sum()), 1), bool); sr[run_id[seeds]] = True
         return pa & sr[run_id]
     kp = {}
-    kp["A"] = kimi_pred(K65, "haiku_v6_65k", C65, set(mem65[rr65 >= 5].tolist()), 2)
-    kp["B"] = kimi_pred(K65, "haiku_v6_65k", C65, set(mem65[rr65 >= 1].tolist()), 4)
-    kp["C"] = kimi_pred(K16, "haiku_v6_16k", C16, set(mem16[rr16 >= 5].tolist()), 2)
-    kp["D"] = kimi_pred(K16, "haiku_v6_16k", C16, set(mem16[rc16 <= 0.001].tolist()), 2)
+    kp["A"] = kimi_pred(K65, "haiku_v8_65k", C65, set(mem65[rr65 >= 10].tolist()), 4)
+    kp["B"] = kimi_pred(K65, "haiku_v8_65k", C65, set(mem65[rr65 >= 5].tolist()), 4)
+    kp["C"] = kimi_pred(K65, "haiku_v8_65k", C65, set(mem65[rr65 >= 5].tolist()), 2)
+    kp["D"] = kimi_pred(K16, "haiku_v8_16k", C16, set(mem16[rr16 >= 10].tolist()), 4)
     kp["E"] = kimi_pred(K16, "fable_16k", C16, d2, 2)
-    kp["F"] = kimi_pred(K65, "haiku_v6_65k", C65, set(mem65.tolist()), 2)
+    kp["F"] = kimi_pred(K65, "haiku_v8_65k", C65, set(mem65.tolist()), 2)
     # pick 6 trick-arm high-flag + 6 matched clean-arm docs (rule A doc rate)
     picks = []
     fam_arm = {}
@@ -207,12 +207,12 @@ if args.with_kimi:
         A65 = load(f"{ROOT}/out/harvest_qagentic_65k")
         adm = {d["id"]: d for d in map(json.loads, open(f"{ROOT}/data/quali_agentic.jsonl"))}
         kpA = {}
-        kpA["A"] = kimi_pred(A65, "haiku_v6_65k", C65, set(mem65[rr65 >= 5].tolist()), 2)
-        kpA["B"] = kimi_pred(A65, "haiku_v6_65k", C65, set(mem65[rr65 >= 1].tolist()), 4)
-        kpA["C"] = kimi_pred(A16, "haiku_v6_16k", C16, set(mem16[rr16 >= 5].tolist()), 2)
-        kpA["D"] = kimi_pred(A16, "haiku_v6_16k", C16, set(mem16[rc16 <= 0.001].tolist()), 2)
+        kpA["A"] = kimi_pred(A65, "haiku_v8_65k", C65, set(mem65[rr65 >= 10].tolist()), 4)
+        kpA["B"] = kimi_pred(A65, "haiku_v8_65k", C65, set(mem65[rr65 >= 5].tolist()), 4)
+        kpA["C"] = kimi_pred(A65, "haiku_v8_65k", C65, set(mem65[rr65 >= 5].tolist()), 2)
+        kpA["D"] = kimi_pred(A16, "haiku_v8_16k", C16, set(mem16[rr16 >= 10].tolist()), 4)
         kpA["E"] = kimi_pred(A16, "fable_16k", C16, d2, 2)
-        kpA["F"] = kimi_pred(A65, "haiku_v6_65k", C65, set(mem65.tolist()), 2)
+        kpA["F"] = kimi_pred(A65, "haiku_v8_65k", C65, set(mem65.tolist()), 2)
         arm_rows = {"notice": [], "baseline": []}
         for i, did in enumerate(A65["doc_ids"]):
             s0, e0 = A65["tok_base"][i], A65["tok_base"][i + 1]
