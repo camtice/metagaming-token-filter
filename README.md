@@ -30,6 +30,7 @@ attributable to L0, not dictionary size. Rows in `out/pool_fairgrid.json` and th
 
 | path | contents |
 |---|---|
+| `report/` | the selection-rule ablation report: PDF, Typst source, figure code, results.json (single source of truth), known-answer tests |
 | `scripts/` | all pipeline code: harvesting (`harvest_acts.py`, `sae_local.py`), the official scorer (`score_split.py`), selection/screening/ablation studies, artifact builders |
 | `notes/reports/` | dated markdown reports for every study (read in order of date) |
 | `artifacts_html/` | self-contained interactive result pages (atlas, frontrunners, threshold study, feature-shift, handbook) |
