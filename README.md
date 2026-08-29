@@ -17,9 +17,12 @@ default is 2) and adjacency windowing, thresholds at mean+4SD.
 
 Best measured set: haiku-v8 pool · 65k SAE · ρ≥10 · k=4 — held-out generalization F2 .821
 (in-distribution .802), span recall .675, held-out-domain (c2) coverage .835, control FP
-1.1%, 682 features. See `notes/reports/` for the full findings, including why the judge
-stage is necessary (a no-judge variant collapses on real text) and why simple rules beat
-combinatorial optimization on held-out data.
+1.1%, 682 features. See `notes/reports/` and `report/` for the full findings,
+including the judge-vs-full-dictionary comparison (tied on real hand-labelled text at
+matched FP; the no-judge edge is confined to the held-out synthetic category and lacks a
+real-text check) and why simple rules beat combinatorial optimization on held-out data.
+Frozen deployment candidates: `data/candidate_sets/frozen_ladder_{judge65k,alldict65k}_v1.json`
+— nested sets at ~1/3/5/10% token-removal budgets.
 
 Tested and rejected: the 262k SAE at the same layer (best cell F2 .583). Only `l0_small`
 ships at that width (≈21 active latents/token vs ≈60 for 16k/65k `l0_medium`), and the
