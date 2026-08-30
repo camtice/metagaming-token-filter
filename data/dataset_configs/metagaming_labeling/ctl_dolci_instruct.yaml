@@ -1,0 +1,300 @@
+# metagaming-labeling — ctl_dolci_instruct: organic negative controls from Dolci-Instruct-SFT.
+#
+# Single-turn instruct exchanges from the Olmo 3 SFT mixture, filtered to contain
+# NO metagaming (reasoning about evaluation / grading / oversight / training
+# feedback). These are the false-positive denominator for the token-level
+# labeller: anything the filter fires on here is a measurable FP.
+#
+# Two independent purity gates, both deliberately over-removing — source data is
+# effectively unlimited, so dropping a good document costs nothing and keeping a
+# bad one corrupts the measurement:
+#
+#   1. Term blocklist (free). map_column[term_hits] over the committed v3 list
+#      (assets/metagaming_labeling/pools/blocklist_v3.json — 338 groups in 5
+#      categories). Categories 1-4 DROP the document. Category 5 (SWE tests) is
+#      counted separately and any hit also drops here, because cat-5-bearing rows
+#      are routed to their own control set (ctl_swe_tests) where FP rate on unit-
+#      test vocabulary can be scored in isolation.
+#   2. VEA auditor judge (paid). The eval-awareness "auditor" rubric —
+#      geodesic-environments' current split-turn revision, vendored at
+#      assets/metagaming_labeling/prompts/eval_awareness_auditor.jinja — run over
+#      sentence-aware 1800-char chunks at temp 0 with a per-document OR (max) over
+#      chunk verdicts. Any chunk scoring 1 drops the document.
+#
+#      This is the rubric, NOT the full calibrated chain: upstream pairs it with a
+#      verbatim-quote grounding check, answer retries and answer-region parsing
+#      that dataset-builder's declarative llm_render cannot express, and its
+#      published numbers were measured on a locally-served Nemotron-120B judge.
+#      Those numbers do not describe this step. That is acceptable here because
+#      the judge is a purity FILTER, not a measurement — the missing check
+#      suppresses false positives, and a false positive only costs us one more
+#      good control document, which is the cheap error in a set we already
+#      over-remove from. See the prompt asset's header for the full caveat.
+#
+# The domain allow-list is itself a cost filter, applied before any per-row work:
+# Safety and Precise IF are definitionally adjacent to metagaming, Multilingual is
+# non-English, and Coding is ctl_swe_tests' source.
+#
+# Measured retention (dry-run, 2026-08-09): 300,000 loaded -> 145,913 after the
+# domain allow-list -> 4,000 sampled (all 10 surviving source_dataset buckets
+# filled their full 400; no starvation) -> 3,120 after length + language ->
+# 2,504 after blocklist cats 1-4 (80.3% kept) -> 2,502 after the cat-5 gate
+# (only 2 rows carried SWE vocabulary) -> 600 judged -> 250 published. The
+# blocklist is far gentler here than on raw text because the domain allow-list
+# has already removed the eval-vocabulary-dense material.
+#
+# Sizing: `per_bucket` and both `sample_rows` n values are set from that observed
+# retention, not guessed. Both samplers are prefix-stable, so raising them later
+# reuses these rows and replays every cached judge call free. Bump n, never the
+# seed — a new seed forks the whole cache namespace and re-spends.
+# Measured judge pass (gpt-4.1-mini @ concurrency 32, 2026-08-09):
+#      1,027 chunks from 600 docs (1.7/doc), 1,027 judge calls, 0 parse
+#      failures, 15 documents dropped (2.5%). Judge calls exactly equalled chunk
+#      counts and every chunk parsed, so no chunk was silently lost — the
+#      failure mode the concurrency cap exists to prevent.
+#
+# Usage:
+#   uv run python -m dataset_builder configs/metagaming_labeling/ctl_dolci_instruct/ctl_dolci_instruct.yaml --dry-run
+#   uv run python -m dataset_builder configs/metagaming_labeling/ctl_dolci_instruct/ctl_dolci_instruct.yaml --build-and-push
+
+source:
+  type: hf
+  repo: allenai/Dolci-Instruct-SFT
+  # Bounded prefix: the full mixture is ~2.15M rows across 15 shards, far more
+  # than we need after the blocklist, and all 18 source_dataset values already
+  # appear in the first shard.
+  #
+  # A `data_files` shard subset would be the tighter bound, but `datasets`
+  # verifies the loaded split against the size recorded in the repo's
+  # dataset_info and raises NonMatchingSplitsSizesError for any subset. A slice
+  # is the only in-config lever here. Export HF_HUB_OFFLINE=1 when the shards
+  # are already in the shared cache — otherwise every run pays a per-shard HEAD
+  # request to revalidate.
+  split: "train[:300000]"
+  revision: bd3c8f3a9b2cc5a9682e44b96ddd0bb2ff027221
+  provides:
+    id: str
+    messages: "list[struct{content: str, function_calls: str, functions: str, role: str}]"
+    source_dataset: str
+    domain: str
+
+destination:
+  repo: camgeodesic/metagaming-labeling
+  config: ctl_dolci_instruct
+  private: true
+
+transform:
+  # --- Cheap structural filters, before any per-row work -------------------
+  - type: filter
+    kernel: match
+    allow:
+      domain: [Chat, Math, Other, Science]
+
+  # Single-turn only (exactly one user + one assistant message): a uniform
+  # document shape and a hard cap on judge cost.
+  - type: filter
+    kernel: match
+    length:
+      messages: { min: 2, max: 2 }
+
+  # Width: N per source_dataset, so the control spans the mixture's constituent
+  # datasets rather than over-representing the largest.
+  - type: stateful_filter
+    kernel: stratified_holdout
+    mode: eval_pool
+    bucket_column: source_dataset
+    per_bucket: 400
+    seed: 42
+
+  # --- Flatten to the labelling target ------------------------------------
+  - type: flat_map
+    kernel: extract_message_content
+    source_column: messages
+    target_column: user_text
+    role: user
+    which: first
+    on_missing: drop
+
+  - type: flat_map
+    kernel: extract_message_content
+    source_column: messages
+    target_column: assistant_text
+    role: assistant
+    which: last
+    on_missing: drop
+
+  # Plain transcript form, matching kimi_metagame_rollouts. Deliberately NOT
+  # chat_template_render: these documents are read by a Gemma SAE alongside
+  # plain-prose positives, so tokenizer special tokens would be a confound.
+  - type: map_column
+    kernel: format
+    template: "User: {user_text}\n\nAssistant: {assistant_text}"
+    target_column: text
+
+  # Bounded length: drops stubs that carry no signal, and caps the auditor at a
+  # few chunks per document (this is the real judge-cost lever).
+  - type: filter
+    kernel: match
+    length:
+      text: { min: 400, max: 6000 }
+
+  - type: filter
+    kernel: language
+    column: user_text
+    language: en
+
+  # --- Purity gate 1: term blocklist (free) -------------------------------
+  - type: map_column
+    kernel: term_hits
+    text_column: text
+    terms_file: assets/metagaming_labeling/pools/blocklist_v3.json
+    categories:
+      - 1_capability_evals_oversight
+      - 2_ai_safety_oversight
+      - 3_human_oversight_testing
+      - 4_ai_training_pipeline
+    hits_column: term_hits
+    categories_column: term_categories
+
+  - type: filter
+    kernel: match
+    bounds:
+      term_hits: { max: 0 }
+
+  # Category 5 is scored separately: cat-5-bearing rows belong to ctl_swe_tests,
+  # so this set requires zero.
+  - type: map_column
+    kernel: term_hits
+    text_column: text
+    terms_file: assets/metagaming_labeling/pools/blocklist_v3.json
+    categories: [5_swe_tests]
+    hits_column: swe_hits
+    labels_column: swe_terms
+
+  - type: filter
+    kernel: match
+    bounds:
+      swe_hits: { max: 0 }
+
+  # --- Bound the judge spend ----------------------------------------------
+  - type: stateful_filter
+    kernel: sample_rows
+    n: 600
+    seed: 42
+
+  # --- Purity gate 2: VEA auditor judge -----------------------------------
+  # The auditor prompt reads columns literally named `user_prompt` and
+  # `response`; those names are a contract with the template, not config keys.
+  - type: map_column
+    kernel: copy
+    source_column: user_text
+    target_column: user_prompt
+
+  - type: flat_map
+    kernel: chunk_text
+    source_column: text
+    output_column: response
+    index_column: chunk_index
+    max_chars: 1800
+
+  - type: llm_render_column
+    parser: score_binary
+    prompt_file: assets/metagaming_labeling/prompts/eval_awareness_auditor.jinja
+    # Empty menu: only the binary verdict is consumed here. Required even when
+    # empty — prompts render under StrictUndefined.
+    template_vars:
+      label_menu: []
+    model: gpt-4.1-mini
+    provider: openai
+    temperature: 0
+    max_tokens: 2000
+    # 32. The "cap at 10" rule came from a gpt-4.1 incident where 64 silently
+    # dropped 61% of chunks to the shared OpenAI org's TPM limit; gpt-4.1-mini
+    # draws on a far larger pool, so 10 was leaving throughput on the table.
+    # Still well under the 64 that failed, because the failure mode is unsafe:
+    # a dropped chunk cannot vote in the per-document OR, so silent loss makes
+    # the filter miss metagaming rather than over-flag it. Chunk counts are
+    # checked against the dry-run's expected fan-out after every build.
+    concurrency: 32
+    seed: 42
+    cache_root: /projects/a5k/public/data_${USER}/metagaming_labeling/vea_judge_cache
+    raw_output_column: vea_raw
+    extract:
+      - name: score
+        column: chunk_verdict
+        required: true
+
+  # OR over chunks: the document is eval-aware iff ANY chunk scored 1. Every
+  # column that must survive has to be listed — the aggregate drops the rest.
+  - type: aggregate
+    kernel: group_aggregate
+    group_by: id
+    aggregations:
+      - column: chunk_verdict
+        agg: max
+        out_column: vea_verdict
+      - column: chunk_index
+        agg: count
+        out_column: n_chunks
+      - column: text
+        agg: first
+        out_column: text
+      - column: domain
+        agg: first
+        out_column: domain
+      - column: source_dataset
+        agg: first
+        out_column: source_dataset
+      - column: term_hits
+        agg: first
+        out_column: term_hits
+      - column: term_categories
+        agg: first
+        out_column: term_categories
+      - column: swe_hits
+        agg: first
+        out_column: swe_hits
+      - column: swe_terms
+        agg: first
+        out_column: swe_terms
+
+  - type: filter
+    kernel: match
+    bounds:
+      vea_verdict: { max: 0 }
+
+  # --- Canonical labelling-dataset schema ---------------------------------
+  - type: map_column
+    kernel: format
+    template: "ctl_dolci_instruct/{id}"
+    target_column: _id
+
+  - type: map_column
+    kernel: format
+    template: "{source_dataset} ({domain})"
+    target_column: _title
+
+  - type: project
+    schema:
+      id: _id
+      set: { const: ctl_dolci_instruct }
+      title: _title
+      text: text
+      origin: { const: allenai/Dolci-Instruct-SFT }
+      source_dataset: source_dataset
+      domain: domain
+      term_hits: term_hits
+      term_categories: term_categories
+      swe_hits: swe_hits
+      swe_terms: swe_terms
+      vea_verdict: vea_verdict
+      n_chunks: n_chunks
+
+  # --- Final trim to the published size -----------------------------------
+  - type: stateful_filter
+    kernel: sample_rows
+    n: 250
+    seed: 43
+
+splits:
+  single_split: eval

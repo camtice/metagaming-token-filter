@@ -1,0 +1,262 @@
+# metagaming-labeling — ctl_swe_tests: SWE-test-bearing controls, held as their own category.
+#
+# The deliberate inverse of the other four ctl_* sets. Every document here is
+# clean on term-blocklist categories 1-4 (no evaluation / oversight / grading /
+# training-pipeline vocabulary) but DOES carry category-5 SWE-test vocabulary —
+# unit test, pytest, assertion, mock, edge case, code coverage.
+#
+# Why it is separate rather than excluded: category 5 is what separates filtering
+# level 2 from level 3, and the production filter will most likely drop it, making
+# SWE-test text *retain* text that the labeller must NOT fire on. Isolating it
+# gives a false-positive rate specifically for unit-test prose instead of burying
+# it in a general control average. This is the negative counterpart to the
+# existing dense_c5_swe_tests positive config.
+#
+# Source is Dolci-Instruct-SFT restricted to domain=Coding, which the other Dolci
+# control sets exclude for exactly this reason. The VEA judge still runs: code
+# discussion is not automatically free of eval-awareness, and a model reasoning
+# about how its solution will be graded is metagaming regardless of the domain.
+#
+# Measured retention (dry-run, 2026-08-09): 300,000 loaded -> 74,844 Coding ->
+# 12,000 sampled (3 buckets x 4,000) -> 11,875 after length + language -> 8,487
+# after blocklist cats 1-4 (71.5% kept) -> 448 after REQUIRING a cat-5 hit
+# (5.3%) -> 250 published. That 5.3% is the number that sizes this config: an
+# earlier per_bucket=400 run produced only 46 rows.
+# Measured judge pass (gpt-4.1-mini @ concurrency 32, 2026-08-09):
+#      708 chunks from 448 docs (1.6/doc), 708 judge calls, 0 parse failures,
+#      2 documents dropped (0.4%). Judge calls exactly equalled chunk
+#      counts and every chunk parsed, so no chunk was silently lost — the
+#      failure mode the concurrency cap exists to prevent.
+#
+# Usage:
+#   uv run python -m dataset_builder configs/metagaming_labeling/ctl_swe_tests/ctl_swe_tests.yaml --dry-run
+#   uv run python -m dataset_builder configs/metagaming_labeling/ctl_swe_tests/ctl_swe_tests.yaml --build-and-push
+
+source:
+  type: hf
+  repo: allenai/Dolci-Instruct-SFT
+  # ~300K-row prefix, ~75K of them domain=Coding. A `data_files` shard subset
+  # would bound this tighter but trips NonMatchingSplitsSizesError — `datasets`
+  # verifies the loaded split against the repo's recorded dataset_info.
+  split: "train[:300000]"
+  revision: bd3c8f3a9b2cc5a9682e44b96ddd0bb2ff027221
+  provides:
+    id: str
+    messages: "list[struct{content: str, function_calls: str, functions: str, role: str}]"
+    source_dataset: str
+    domain: str
+
+destination:
+  repo: camgeodesic/metagaming-labeling
+  config: ctl_swe_tests
+  private: true
+
+transform:
+  # --- Cheap structural filters, before any per-row work -------------------
+  - type: filter
+    kernel: match
+    allow:
+      domain: [Coding]
+
+  - type: filter
+    kernel: match
+    length:
+      messages: { min: 2, max: 2 }
+
+  # per_bucket is high because the category-5 gate below is far more selective
+  # than it looks: only ~5.4% of blocklist-clean Coding rows actually mention
+  # unit tests, pytest, assertions or coverage — most "coding" rows are
+  # "implement algorithm X", not "write tests for X". Measured on the first
+  # dry-run (per_bucket=400 yielded 46 rows, not 250). Domain=Coding has only
+  # three source_dataset buckets, of which the smallest (Tulu 3 Persona Python)
+  # holds 7,799 rows, so 4,000 is drawable from all three.
+  - type: stateful_filter
+    kernel: stratified_holdout
+    mode: eval_pool
+    bucket_column: source_dataset
+    per_bucket: 4000
+    seed: 42
+
+  # --- Flatten to the labelling target ------------------------------------
+  - type: flat_map
+    kernel: extract_message_content
+    source_column: messages
+    target_column: user_text
+    role: user
+    which: first
+    on_missing: drop
+
+  - type: flat_map
+    kernel: extract_message_content
+    source_column: messages
+    target_column: assistant_text
+    role: assistant
+    which: last
+    on_missing: drop
+
+  - type: map_column
+    kernel: format
+    template: "User: {user_text}\n\nAssistant: {assistant_text}"
+    target_column: text
+
+  - type: filter
+    kernel: match
+    length:
+      text: { min: 400, max: 6000 }
+
+  - type: filter
+    kernel: language
+    column: user_text
+    language: en
+
+  # --- Purity gate 1: term blocklist --------------------------------------
+  # Categories 1-4 must still be clean — this set isolates SWE vocabulary, it
+  # does not license eval/oversight content.
+  - type: map_column
+    kernel: term_hits
+    text_column: text
+    terms_file: assets/metagaming_labeling/pools/blocklist_v3.json
+    categories:
+      - 1_capability_evals_oversight
+      - 2_ai_safety_oversight
+      - 3_human_oversight_testing
+      - 4_ai_training_pipeline
+    hits_column: term_hits
+    categories_column: term_categories
+
+  - type: filter
+    kernel: match
+    bounds:
+      term_hits: { max: 0 }
+
+  # The inversion: category 5 is REQUIRED here, where the other sets forbid it.
+  - type: map_column
+    kernel: term_hits
+    text_column: text
+    terms_file: assets/metagaming_labeling/pools/blocklist_v3.json
+    categories: [5_swe_tests]
+    hits_column: swe_hits
+    labels_column: swe_terms
+
+  - type: filter
+    kernel: match
+    bounds:
+      swe_hits: { min: 1 }
+
+  # --- Bound the judge spend ----------------------------------------------
+  - type: stateful_filter
+    kernel: sample_rows
+    n: 600
+    seed: 42
+
+  # --- Purity gate 2: VEA auditor judge -----------------------------------
+  - type: map_column
+    kernel: copy
+    source_column: user_text
+    target_column: user_prompt
+
+  - type: flat_map
+    kernel: chunk_text
+    source_column: text
+    output_column: response
+    index_column: chunk_index
+    max_chars: 1800
+
+  - type: llm_render_column
+    parser: score_binary
+    prompt_file: assets/metagaming_labeling/prompts/eval_awareness_auditor.jinja
+    # Empty menu: only the binary verdict is consumed here. Required even when
+    # empty — prompts render under StrictUndefined.
+    template_vars:
+      label_menu: []
+    model: gpt-4.1-mini
+    provider: openai
+    temperature: 0
+    max_tokens: 2000
+    # 32. The "cap at 10" rule came from a gpt-4.1 incident where 64 silently
+    # dropped 61% of chunks to the shared OpenAI org's TPM limit; gpt-4.1-mini
+    # draws on a far larger pool, so 10 was leaving throughput on the table.
+    # Still well under the 64 that failed, because the failure mode is unsafe:
+    # a dropped chunk cannot vote in the per-document OR, so silent loss makes
+    # the filter miss metagaming rather than over-flag it. Chunk counts are
+    # checked against the dry-run's expected fan-out after every build.
+    concurrency: 32
+    seed: 42
+    cache_root: /projects/a5k/public/data_${USER}/metagaming_labeling/vea_judge_cache
+    raw_output_column: vea_raw
+    extract:
+      - name: score
+        column: chunk_verdict
+        required: true
+
+  - type: aggregate
+    kernel: group_aggregate
+    group_by: id
+    aggregations:
+      - column: chunk_verdict
+        agg: max
+        out_column: vea_verdict
+      - column: chunk_index
+        agg: count
+        out_column: n_chunks
+      - column: text
+        agg: first
+        out_column: text
+      - column: domain
+        agg: first
+        out_column: domain
+      - column: source_dataset
+        agg: first
+        out_column: source_dataset
+      - column: term_hits
+        agg: first
+        out_column: term_hits
+      - column: term_categories
+        agg: first
+        out_column: term_categories
+      - column: swe_hits
+        agg: first
+        out_column: swe_hits
+      - column: swe_terms
+        agg: first
+        out_column: swe_terms
+
+  - type: filter
+    kernel: match
+    bounds:
+      vea_verdict: { max: 0 }
+
+  # --- Canonical labelling-dataset schema ---------------------------------
+  - type: map_column
+    kernel: format
+    template: "ctl_swe_tests/{id}"
+    target_column: _id
+
+  - type: map_column
+    kernel: format
+    template: "{source_dataset} ({domain})"
+    target_column: _title
+
+  - type: project
+    schema:
+      id: _id
+      set: { const: ctl_swe_tests }
+      title: _title
+      text: text
+      origin: { const: allenai/Dolci-Instruct-SFT }
+      source_dataset: source_dataset
+      domain: domain
+      term_hits: term_hits
+      term_categories: term_categories
+      swe_hits: swe_hits
+      swe_terms: swe_terms
+      vea_verdict: vea_verdict
+      n_chunks: n_chunks
+
+  - type: stateful_filter
+    kernel: sample_rows
+    n: 250
+    seed: 43
+
+splits:
+  single_split: eval

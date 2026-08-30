@@ -1,0 +1,287 @@
+# metagaming-labeling — ctl_wildchat: organic user-assistant negative controls from WildChat.
+#
+# Real logged conversations between real users and GPT-family assistants — the
+# most naturalistic control arm, and the one closest in distribution to the chat
+# text the production filter will actually see. Single-turn, English, and passed
+# through WildChat's own moderation scores before either purity gate runs.
+#
+# Two purity gates, as in ctl_dolci_instruct: term blocklist categories 1-4 drop
+# the document, category 5 routes it to ctl_swe_tests, then the VEA auditor judge
+# ORs over 1800-char chunks. See that config's header for the full rationale.
+#
+# The moderation block is reused verbatim from configs/evals/wildchat.yaml, whose
+# thresholds were tuned to exclude suggestive, violent and fetish-coded creative
+# writing that slips past WildChat's coarse `toxic` flag. Controls carry no
+# licence to be unpleasant, and the SAE reads this text directly.
+#
+# Width comes from a uniform draw plus fuzzy dedup rather than a bucket column:
+# WildChat has no meaningful domain axis, and its 650K conversations are already
+# diverse. Dedup matters here in a way it does not for Dolci — logged user traffic
+# contains many near-duplicate prompts ("write a poem about...").
+#
+# Measured retention (dry-run, 2026-08-09): 529,428 loaded -> 87,439 after the
+# moderation/turn/language gate (16.5%) -> 12,000 sampled -> 9,903 after the
+# length bound -> 9,642 after langdetect (2.6% dropped: WildChat's own language
+# column let non-English rows through) -> 7,342 after blocklist cats 1-4 (76.1%
+# kept) -> 7,314 after the cat-5 gate -> 3,932 after fuzzy dedup -> 600 judged ->
+# 250 published. Dedup removing 46% is the number that justifies that step:
+# without it, nearly half this control would be paraphrases of each other.
+# Measured judge pass (gpt-4.1-mini @ concurrency 32, 2026-08-09):
+#      960 chunks from 600 docs (1.6/doc), 960 judge calls, 0 parse failures,
+#      0 documents dropped. Judge calls exactly equalled chunk
+#      counts and every chunk parsed, so no chunk was silently lost — the
+#      failure mode the concurrency cap exists to prevent.
+#
+# Usage:
+#   uv run python -m dataset_builder configs/metagaming_labeling/ctl_wildchat/ctl_wildchat.yaml --dry-run
+#   uv run python -m dataset_builder configs/metagaming_labeling/ctl_wildchat/ctl_wildchat.yaml --build-and-push
+
+source:
+  type: hf
+  repo: allenai/WildChat
+  split: train
+  revision: f66566ceaaeb619dd98ffb0f3bf3ce1f86775ac4
+  provides:
+    conversation_id: str
+    model: str
+    timestamp: any
+    conversation: "list[struct{content: str, language: str, redacted: bool, role: str, toxic: bool}]"
+    turn: int
+    language: str
+    # openai_moderation stays bare `list`: its introspected struct carries field
+    # names with `/` and `-` (e.g. `category_scores.harassment/threatening`,
+    # `self-harm`) that the ColType `provides:` mini-syntax identifier grammar
+    # cannot express. The `.0.category_scores.*` bounds access still works at runtime.
+    openai_moderation: list
+    detoxify_moderation: "list[struct{identity_attack: float, insult: float, obscene: float, severe_toxicity: float, sexual_explicit: float, threat: float, toxicity: float}]"
+    toxic: bool
+    redacted: bool
+
+destination:
+  repo: camgeodesic/metagaming-labeling
+  config: ctl_wildchat
+  private: true
+
+transform:
+  # --- Cheap structural filters, before any per-row work -------------------
+  - type: filter
+    kernel: match
+    allow:
+      turn: [1]
+      language: [English]
+      toxic: [false]
+      redacted: [false]
+    bounds:
+      # Aggressive thresholds on the first (user) turn, reused verbatim from
+      # configs/evals/wildchat.yaml.
+      openai_moderation.0.category_scores.sexual:
+        max: 0.0001
+      openai_moderation.0.category_scores.sexual/minors:
+        max: 0.0001
+      openai_moderation.0.category_scores.violence:
+        max: 0.01
+      openai_moderation.0.category_scores.harassment:
+        max: 0.01
+      detoxify_moderation.0.toxicity:
+        max: 0.01
+
+  # Oversample to a bounded pool BEFORE the per-row work. The moderation gate
+  # above still leaves ~87K rows, and flattening all of them costs ~20s per
+  # flat_map for a pool we immediately discard 99% of. 12,000 is sized so that
+  # ~8K survive the length bound below (81.9% kept, measured).
+  - type: stateful_filter
+    kernel: sample_rows
+    n: 12000
+    seed: 42
+
+  # --- Flatten to the labelling target ------------------------------------
+  - type: flat_map
+    kernel: extract_message_content
+    source_column: conversation
+    target_column: user_text
+    role: user
+    which: first
+    on_missing: drop
+
+  - type: flat_map
+    kernel: extract_message_content
+    source_column: conversation
+    target_column: assistant_text
+    role: assistant
+    which: last
+    on_missing: drop
+
+  - type: map_column
+    kernel: format
+    template: "User: {user_text}\n\nAssistant: {assistant_text}"
+    target_column: text
+
+  - type: filter
+    kernel: match
+    length:
+      text: { min: 400, max: 6000 }
+
+  # NOT redundant with `language: [English]` above. WildChat's own language
+  # column is per-conversation and demonstrably unreliable — a first dry-run
+  # surfaced a Chinese-language row through that allow-list. This matters more
+  # here than it would for an ordinary sample: the term blocklist is an English
+  # word list, so a non-English document passes it without ever being checked,
+  # and would enter the control set unverified. Drop it instead.
+  - type: filter
+    kernel: language
+    column: user_text
+    language: en
+
+  # --- Purity gate 1: term blocklist (free) -------------------------------
+  - type: map_column
+    kernel: term_hits
+    text_column: text
+    terms_file: assets/metagaming_labeling/pools/blocklist_v3.json
+    categories:
+      - 1_capability_evals_oversight
+      - 2_ai_safety_oversight
+      - 3_human_oversight_testing
+      - 4_ai_training_pipeline
+    hits_column: term_hits
+    categories_column: term_categories
+
+  - type: filter
+    kernel: match
+    bounds:
+      term_hits: { max: 0 }
+
+  - type: map_column
+    kernel: term_hits
+    text_column: text
+    terms_file: assets/metagaming_labeling/pools/blocklist_v3.json
+    categories: [5_swe_tests]
+    hits_column: swe_hits
+    labels_column: swe_terms
+
+  - type: filter
+    kernel: match
+    bounds:
+      swe_hits: { max: 0 }
+
+  # Logged traffic is full of near-duplicate prompts ("write a poem about...");
+  # without this the control would over-weight whatever phrasing is popular.
+  # Placed AFTER the blocklist deliberately: rapidfuzz dedup is O(n^2), so it
+  # runs on the few hundred survivors rather than on all 8000 sampled rows.
+  - type: stateful_filter
+    kernel: fuzzy
+    column: user_text
+    threshold: 50
+
+  # --- Bound the judge spend ----------------------------------------------
+  - type: stateful_filter
+    kernel: sample_rows
+    n: 600
+    seed: 42
+
+  # --- Purity gate 2: VEA auditor judge -----------------------------------
+  - type: map_column
+    kernel: copy
+    source_column: user_text
+    target_column: user_prompt
+
+  - type: flat_map
+    kernel: chunk_text
+    source_column: text
+    output_column: response
+    index_column: chunk_index
+    max_chars: 1800
+
+  - type: llm_render_column
+    parser: score_binary
+    prompt_file: assets/metagaming_labeling/prompts/eval_awareness_auditor.jinja
+    # Empty menu: only the binary verdict is consumed here. Required even when
+    # empty — prompts render under StrictUndefined.
+    template_vars:
+      label_menu: []
+    model: gpt-4.1-mini
+    provider: openai
+    temperature: 0
+    max_tokens: 2000
+    # 32. The "cap at 10" rule came from a gpt-4.1 incident where 64 silently
+    # dropped 61% of chunks to the shared OpenAI org's TPM limit; gpt-4.1-mini
+    # draws on a far larger pool, so 10 was leaving throughput on the table.
+    # Still well under the 64 that failed, because the failure mode is unsafe:
+    # a dropped chunk cannot vote in the per-document OR, so silent loss makes
+    # the filter miss metagaming rather than over-flag it. Chunk counts are
+    # checked against the dry-run's expected fan-out after every build.
+    concurrency: 32
+    seed: 42
+    cache_root: /projects/a5k/public/data_${USER}/metagaming_labeling/vea_judge_cache
+    raw_output_column: vea_raw
+    extract:
+      - name: score
+        column: chunk_verdict
+        required: true
+
+  - type: aggregate
+    kernel: group_aggregate
+    group_by: conversation_id
+    aggregations:
+      - column: chunk_verdict
+        agg: max
+        out_column: vea_verdict
+      - column: chunk_index
+        agg: count
+        out_column: n_chunks
+      - column: text
+        agg: first
+        out_column: text
+      - column: model
+        agg: first
+        out_column: model
+      - column: term_hits
+        agg: first
+        out_column: term_hits
+      - column: term_categories
+        agg: first
+        out_column: term_categories
+      - column: swe_hits
+        agg: first
+        out_column: swe_hits
+      - column: swe_terms
+        agg: first
+        out_column: swe_terms
+
+  - type: filter
+    kernel: match
+    bounds:
+      vea_verdict: { max: 0 }
+
+  # --- Canonical labelling-dataset schema ---------------------------------
+  - type: map_column
+    kernel: format
+    template: "ctl_wildchat/{conversation_id}"
+    target_column: _id
+
+  - type: map_column
+    kernel: format
+    template: "wildchat {model}"
+    target_column: _title
+
+  - type: project
+    schema:
+      id: _id
+      set: { const: ctl_wildchat }
+      title: _title
+      text: text
+      origin: { const: allenai/WildChat }
+      model: model
+      term_hits: term_hits
+      term_categories: term_categories
+      swe_hits: swe_hits
+      swe_terms: swe_terms
+      vea_verdict: vea_verdict
+      n_chunks: n_chunks
+
+  - type: stateful_filter
+    kernel: sample_rows
+    n: 250
+    seed: 43
+
+splits:
+  single_split: eval

@@ -1,0 +1,1721 @@
+{
+  "contract": {
+    "expected_size": 338,
+    "case_sensitive_count": 46,
+    "category_sizes": {
+      "1_capability_evals_oversight": 69,
+      "2_ai_safety_oversight": 87,
+      "3_human_oversight_testing": 80,
+      "4_ai_training_pipeline": 80,
+      "5_swe_tests": 22
+    }
+  },
+  "provenance": {
+    "source_file": "sae-exploration/scripts/regex_v3.py",
+    "source_sha256": "bfb8a053bda6fd38cf194c9cb9a4040b8306eefec9007a2ea1ff04b2d93581f0",
+    "vendored_on": "2026-08-09",
+    "note": "Verbatim vendoring of regex_v3.CATEGORIES. Cross-repo imports are banned by the HF consumer boundary, so this JSON is the only channel. Semantics: word-bounded; [-\\s] allows hyphen-or-space inside phrases; entries with case_sensitive=true must NOT be matched case-insensitively. Categories 1+2 are the always-filter core at filtering level 2; category 5 is what separates level 2 from level 3. Re-vendor by hand if source_sha256 changes."
+  },
+  "categories": {
+    "1_capability_evals_oversight": [
+      {
+        "label": "evaluation|evaluations",
+        "case_sensitive": false,
+        "pattern": "\\bevaluation\\b|\\bevaluations\\b"
+      },
+      {
+        "label": "eval|evals",
+        "case_sensitive": false,
+        "pattern": "\\beval\\b|\\bevals\\b"
+      },
+      {
+        "label": "benchmark",
+        "case_sensitive": false,
+        "pattern": "\\bbenchmark\\b|\\bbenchmarks\\b|\\bbenchmarking\\b"
+      },
+      {
+        "label": "evaluation harness",
+        "case_sensitive": false,
+        "pattern": "\\bevaluation[-\\s]harness\\b"
+      },
+      {
+        "label": "eval harness",
+        "case_sensitive": false,
+        "pattern": "\\beval[-\\s]harness\\b"
+      },
+      {
+        "label": "evaluation suite",
+        "case_sensitive": false,
+        "pattern": "\\bevaluation[-\\s]suite\\b"
+      },
+      {
+        "label": "evaluation environment",
+        "case_sensitive": false,
+        "pattern": "\\bevaluation[-\\s]environment\\b"
+      },
+      {
+        "label": "evaluation scenario",
+        "case_sensitive": false,
+        "pattern": "\\bevaluation[-\\s]scenario\\b"
+      },
+      {
+        "label": "MT-Bench",
+        "case_sensitive": true,
+        "pattern": "\\bMT\\-Bench\\b"
+      },
+      {
+        "label": "MMLU",
+        "case_sensitive": true,
+        "pattern": "\\bMMLU\\b"
+      },
+      {
+        "label": "SWE-bench",
+        "case_sensitive": true,
+        "pattern": "\\bSWE\\-bench\\b"
+      },
+      {
+        "label": "HumanEval",
+        "case_sensitive": true,
+        "pattern": "\\bHumanEval\\b"
+      },
+      {
+        "label": "GPQA",
+        "case_sensitive": true,
+        "pattern": "\\bGPQA\\b"
+      },
+      {
+        "label": "BIG-bench",
+        "case_sensitive": true,
+        "pattern": "\\bBIG\\-bench\\b"
+      },
+      {
+        "label": "capability evaluation",
+        "case_sensitive": false,
+        "pattern": "\\bcapability[-\\s]evaluation\\b|\\bcapabilities[-\\s]evaluation\\b"
+      },
+      {
+        "label": "capability elicitation",
+        "case_sensitive": false,
+        "pattern": "\\bcapability[-\\s]elicitation\\b"
+      },
+      {
+        "label": "situational awareness",
+        "case_sensitive": false,
+        "pattern": "\\bsituational[-\\s]awareness\\b"
+      },
+      {
+        "label": "eval awareness",
+        "case_sensitive": false,
+        "pattern": "\\beval[-\\s]awareness\\b"
+      },
+      {
+        "label": "hidden test",
+        "case_sensitive": false,
+        "pattern": "\\bhidden[-\\s]test\\b|\\bhidden[-\\s]tests\\b"
+      },
+      {
+        "label": "held-out test",
+        "case_sensitive": false,
+        "pattern": "\\bheld\\-out[-\\s]test\\b"
+      },
+      {
+        "label": "oversight",
+        "case_sensitive": false,
+        "pattern": "\\boversight\\b"
+      },
+      {
+        "label": "overseer",
+        "case_sensitive": false,
+        "pattern": "\\boverseer\\b|\\boverseers\\b"
+      },
+      {
+        "label": "supervision",
+        "case_sensitive": false,
+        "pattern": "\\bsupervision\\b|\\bsupervise\\b|\\bsupervisor\\b"
+      },
+      {
+        "label": "monitor",
+        "case_sensitive": false,
+        "pattern": "\\bmonitor\\b|\\bmonitors\\b|\\bmonitoring\\b|\\bmonitored\\b"
+      },
+      {
+        "label": "audit",
+        "case_sensitive": false,
+        "pattern": "\\baudit\\b|\\baudits\\b|\\bauditing\\b|\\bauditor\\b|\\baudited\\b"
+      },
+      {
+        "label": "inspect",
+        "case_sensitive": false,
+        "pattern": "\\binspect\\b|\\binspection\\b|\\binspector\\b"
+      },
+      {
+        "label": "evaluator",
+        "case_sensitive": false,
+        "pattern": "\\bevaluator\\b|\\bevaluators\\b"
+      },
+      {
+        "label": "verifier",
+        "case_sensitive": false,
+        "pattern": "\\bverifier\\b|\\bverifiers\\b"
+      },
+      {
+        "label": "LLM judge",
+        "case_sensitive": true,
+        "pattern": "\\bLLM[-\\s]judge\\b"
+      },
+      {
+        "label": "AI judge",
+        "case_sensitive": true,
+        "pattern": "\\bAI[-\\s]judge\\b"
+      },
+      {
+        "label": "automated judge",
+        "case_sensitive": false,
+        "pattern": "\\bautomated[-\\s]judge\\b"
+      },
+      {
+        "label": "scoreboard",
+        "case_sensitive": false,
+        "pattern": "\\bscoreboard\\b|\\bscoreboards\\b"
+      },
+      {
+        "label": "leaderboard",
+        "case_sensitive": false,
+        "pattern": "\\bleaderboard\\b|\\bleaderboards\\b"
+      },
+      {
+        "label": "aggregator",
+        "case_sensitive": false,
+        "pattern": "\\baggregator\\b|\\baggregators\\b"
+      },
+      {
+        "label": "harness",
+        "case_sensitive": false,
+        "pattern": "\\bharness\\b"
+      },
+      {
+        "label": "watcher",
+        "case_sensitive": false,
+        "pattern": "\\bwatcher\\b|\\bwatchers\\b"
+      },
+      {
+        "label": "gaming the",
+        "case_sensitive": false,
+        "pattern": "\\bgaming[-\\s]the\\b"
+      },
+      {
+        "label": "goodharting",
+        "case_sensitive": false,
+        "pattern": "\\bgoodharting\\b"
+      },
+      {
+        "label": "Goodhart",
+        "case_sensitive": true,
+        "pattern": "\\bGoodhart\\b"
+      },
+      {
+        "label": "exploit the test",
+        "case_sensitive": false,
+        "pattern": "\\bexploit[-\\s]the[-\\s]test\\b"
+      },
+      {
+        "label": "exploit the eval",
+        "case_sensitive": false,
+        "pattern": "\\bexploit[-\\s]the[-\\s]eval\\b"
+      },
+      {
+        "label": "exploit the grader",
+        "case_sensitive": false,
+        "pattern": "\\bexploit[-\\s]the[-\\s]grader\\b"
+      },
+      {
+        "label": "data contamination",
+        "case_sensitive": false,
+        "pattern": "\\bdata[-\\s]contamination\\b"
+      },
+      {
+        "label": "benchmark contamination",
+        "case_sensitive": false,
+        "pattern": "\\bbenchmark[-\\s]contamination\\b"
+      },
+      {
+        "label": "test set leakage",
+        "case_sensitive": false,
+        "pattern": "\\btest[-\\s]set[-\\s]leakage\\b|\\btest\\-set[-\\s]leakage\\b"
+      },
+      {
+        "label": "held-out set",
+        "case_sensitive": false,
+        "pattern": "\\bheld\\-out[-\\s]set\\b|\\bholdout[-\\s]set\\b"
+      },
+      {
+        "label": "grader model",
+        "case_sensitive": false,
+        "pattern": "\\bgrader[-\\s]model\\b"
+      },
+      {
+        "label": "pass rate",
+        "case_sensitive": false,
+        "pattern": "\\bpass[-\\s]rate\\b"
+      },
+      {
+        "label": "win rate",
+        "case_sensitive": false,
+        "pattern": "\\bwin[-\\s]rate\\b"
+      },
+      {
+        "label": "success rate",
+        "case_sensitive": false,
+        "pattern": "\\bsuccess[-\\s]rate\\b"
+      },
+      {
+        "label": "score threshold",
+        "case_sensitive": false,
+        "pattern": "\\bscore[-\\s]threshold\\b"
+      },
+      {
+        "label": "scoring function",
+        "case_sensitive": false,
+        "pattern": "\\bscoring[-\\s]function\\b"
+      },
+      {
+        "label": "metric gaming",
+        "case_sensitive": false,
+        "pattern": "\\bmetric[-\\s]gaming\\b"
+      },
+      {
+        "label": "benchmark gaming",
+        "case_sensitive": false,
+        "pattern": "\\bbenchmark[-\\s]gaming\\b"
+      },
+      {
+        "label": "agentic evaluation",
+        "case_sensitive": false,
+        "pattern": "\\bagentic[-\\s]evaluation\\b|\\bagentic[-\\s]eval\\b"
+      },
+      {
+        "label": "sandbox",
+        "case_sensitive": false,
+        "pattern": "\\bsandbox\\b|\\bsandboxed\\b"
+      },
+      {
+        "label": "scaffold",
+        "case_sensitive": false,
+        "pattern": "\\bscaffold\\b|\\bscaffolding\\b"
+      },
+      {
+        "label": "canary string",
+        "case_sensitive": false,
+        "pattern": "\\bcanary[-\\s]string\\b"
+      },
+      {
+        "label": "detect",
+        "case_sensitive": false,
+        "pattern": "\\bdetect\\b|\\bdetection\\b|\\bdetector\\b"
+      },
+      {
+        "label": "watchdog",
+        "case_sensitive": false,
+        "pattern": "\\bwatchdog\\b"
+      },
+      {
+        "label": "checker",
+        "case_sensitive": false,
+        "pattern": "\\bchecker\\b|\\bcheckers\\b"
+      },
+      {
+        "label": "logging|logs",
+        "case_sensitive": false,
+        "pattern": "\\blogging\\b|\\blogs\\b"
+      },
+      {
+        "label": "tracing|traced",
+        "case_sensitive": false,
+        "pattern": "\\btracing\\b|\\btraced\\b"
+      },
+      {
+        "label": "secret test",
+        "case_sensitive": false,
+        "pattern": "\\bsecret[-\\s]test\\b"
+      },
+      {
+        "label": "grading harness",
+        "case_sensitive": false,
+        "pattern": "\\bgrading[-\\s]harness\\b"
+      },
+      {
+        "label": "rollout",
+        "case_sensitive": false,
+        "pattern": "\\brollout\\b|\\brollouts\\b"
+      },
+      {
+        "label": "RL environment",
+        "case_sensitive": true,
+        "pattern": "\\bRL[-\\s]environment\\b"
+      },
+      {
+        "label": "RL agent",
+        "case_sensitive": true,
+        "pattern": "\\bRL[-\\s]agent\\b"
+      },
+      {
+        "label": "expected output",
+        "case_sensitive": false,
+        "pattern": "\\bexpected[-\\s]output\\b"
+      }
+    ],
+    "2_ai_safety_oversight": [
+      {
+        "label": "alignment faking",
+        "case_sensitive": false,
+        "pattern": "\\balignment[-\\s]faking\\b"
+      },
+      {
+        "label": "deceptive alignment",
+        "case_sensitive": false,
+        "pattern": "\\bdeceptive[-\\s]alignment\\b"
+      },
+      {
+        "label": "AI alignment",
+        "case_sensitive": true,
+        "pattern": "\\bAI[-\\s]alignment\\b"
+      },
+      {
+        "label": "sandbagging",
+        "case_sensitive": false,
+        "pattern": "\\bsandbag\\b|\\bsandbagging\\b"
+      },
+      {
+        "label": "strategic underperformance",
+        "case_sensitive": false,
+        "pattern": "\\bstrategic[-\\s]underperformance\\b"
+      },
+      {
+        "label": "exploration hacking",
+        "case_sensitive": false,
+        "pattern": "\\bexploration[-\\s]hacking\\b"
+      },
+      {
+        "label": "training game",
+        "case_sensitive": false,
+        "pattern": "\\btraining[-\\s]game\\b"
+      },
+      {
+        "label": "eval gaming",
+        "case_sensitive": false,
+        "pattern": "\\beval[-\\s]gaming\\b"
+      },
+      {
+        "label": "generalization hacking",
+        "case_sensitive": false,
+        "pattern": "\\bgeneralization[-\\s]hacking\\b"
+      },
+      {
+        "label": "gradient hacking",
+        "case_sensitive": false,
+        "pattern": "\\bgradient[-\\s]hacking\\b"
+      },
+      {
+        "label": "honeypot",
+        "case_sensitive": false,
+        "pattern": "\\bhoneypot\\b|\\bhoneypots\\b"
+      },
+      {
+        "label": "CoT monitoring",
+        "case_sensitive": true,
+        "pattern": "\\bCoT[-\\s]monitoring\\b"
+      },
+      {
+        "label": "chain-of-thought monitoring",
+        "case_sensitive": false,
+        "pattern": "\\bchain\\-of\\-thought[-\\s]monitoring\\b"
+      },
+      {
+        "label": "reasoning monitoring",
+        "case_sensitive": false,
+        "pattern": "\\breasoning[-\\s]monitoring\\b"
+      },
+      {
+        "label": "steganography",
+        "case_sensitive": false,
+        "pattern": "\\bsteganography\\b|\\bsteganographic\\b"
+      },
+      {
+        "label": "AI control",
+        "case_sensitive": true,
+        "pattern": "\\bAI[-\\s]control\\b"
+      },
+      {
+        "label": "AI oversight",
+        "case_sensitive": true,
+        "pattern": "\\bAI[-\\s]oversight\\b"
+      },
+      {
+        "label": "AI safety",
+        "case_sensitive": true,
+        "pattern": "\\bAI[-\\s]safety\\b"
+      },
+      {
+        "label": "AI monitoring",
+        "case_sensitive": true,
+        "pattern": "\\bAI[-\\s]monitoring\\b"
+      },
+      {
+        "label": "red team",
+        "case_sensitive": false,
+        "pattern": "\\bred[-\\s]team\\b|\\bred\\-teaming\\b|\\bred[-\\s]teaming\\b"
+      },
+      {
+        "label": "jailbreak",
+        "case_sensitive": false,
+        "pattern": "\\bjailbreak\\b|\\bjailbreaks\\b|\\bjailbreaking\\b"
+      },
+      {
+        "label": "prompt injection",
+        "case_sensitive": false,
+        "pattern": "\\bprompt[-\\s]injection\\b"
+      },
+      {
+        "label": "guardrail",
+        "case_sensitive": false,
+        "pattern": "\\bguardrail\\b|\\bguardrails\\b"
+      },
+      {
+        "label": "linear probe",
+        "case_sensitive": false,
+        "pattern": "\\blinear[-\\s]probe\\b|\\blinear[-\\s]probes\\b"
+      },
+      {
+        "label": "activation probe",
+        "case_sensitive": false,
+        "pattern": "\\bactivation[-\\s]probe\\b"
+      },
+      {
+        "label": "deception probe",
+        "case_sensitive": false,
+        "pattern": "\\bdeception[-\\s]probe\\b"
+      },
+      {
+        "label": "evading probes",
+        "case_sensitive": false,
+        "pattern": "\\bevading[-\\s]probes\\b"
+      },
+      {
+        "label": "collusion",
+        "case_sensitive": false,
+        "pattern": "\\bcollusion\\b|\\bcollude\\b|\\bcolluding\\b"
+      },
+      {
+        "label": "data poisoning",
+        "case_sensitive": false,
+        "pattern": "\\bdata[-\\s]poisoning\\b"
+      },
+      {
+        "label": "memetic poisoning",
+        "case_sensitive": false,
+        "pattern": "\\bmemetic[-\\s]poisoning\\b"
+      },
+      {
+        "label": "misaligned AI",
+        "case_sensitive": true,
+        "pattern": "\\bmisaligned[-\\s]AI\\b"
+      },
+      {
+        "label": "model organism",
+        "case_sensitive": false,
+        "pattern": "\\bmodel[-\\s]organism\\b|\\bmodel[-\\s]organisms\\b"
+      },
+      {
+        "label": "scheming",
+        "case_sensitive": false,
+        "pattern": "\\bscheming\\b|\\bschemer\\b"
+      },
+      {
+        "label": "misalignment",
+        "case_sensitive": false,
+        "pattern": "\\bmisalignment\\b|\\bmisaligned\\b"
+      },
+      {
+        "label": "suspiciousness score",
+        "case_sensitive": false,
+        "pattern": "\\bsuspiciousness[-\\s]score\\b"
+      },
+      {
+        "label": "suspiciousness threshold",
+        "case_sensitive": false,
+        "pattern": "\\bsuspiciousness[-\\s]threshold\\b"
+      },
+      {
+        "label": "incident response",
+        "case_sensitive": false,
+        "pattern": "\\bincident[-\\s]response\\b"
+      },
+      {
+        "label": "specification gaming",
+        "case_sensitive": false,
+        "pattern": "\\bspecification[-\\s]gaming\\b"
+      },
+      {
+        "label": "reward tampering",
+        "case_sensitive": false,
+        "pattern": "\\breward[-\\s]tampering\\b"
+      },
+      {
+        "label": "wireheading",
+        "case_sensitive": false,
+        "pattern": "\\bwireheading\\b"
+      },
+      {
+        "label": "goal misgeneralization",
+        "case_sensitive": false,
+        "pattern": "\\bgoal[-\\s]misgeneralization\\b"
+      },
+      {
+        "label": "scalable oversight",
+        "case_sensitive": false,
+        "pattern": "\\bscalable[-\\s]oversight\\b"
+      },
+      {
+        "label": "weak-to-strong",
+        "case_sensitive": false,
+        "pattern": "\\bweak\\-to\\-strong\\b"
+      },
+      {
+        "label": "control protocol",
+        "case_sensitive": false,
+        "pattern": "\\bcontrol[-\\s]protocol\\b"
+      },
+      {
+        "label": "trusted monitor",
+        "case_sensitive": false,
+        "pattern": "\\btrusted[-\\s]monitor\\b"
+      },
+      {
+        "label": "untrusted model",
+        "case_sensitive": false,
+        "pattern": "\\buntrusted[-\\s]model\\b"
+      },
+      {
+        "label": "safety case",
+        "case_sensitive": false,
+        "pattern": "\\bsafety[-\\s]case\\b"
+      },
+      {
+        "label": "CoT faithfulness",
+        "case_sensitive": true,
+        "pattern": "\\bCoT[-\\s]faithfulness\\b"
+      },
+      {
+        "label": "chain-of-thought faithfulness",
+        "case_sensitive": false,
+        "pattern": "\\bchain\\-of\\-thought[-\\s]faithfulness\\b"
+      },
+      {
+        "label": "obfuscated reasoning",
+        "case_sensitive": false,
+        "pattern": "\\bobfuscated[-\\s]reasoning\\b"
+      },
+      {
+        "label": "CoT obfuscation",
+        "case_sensitive": true,
+        "pattern": "\\bCoT[-\\s]obfuscation\\b"
+      },
+      {
+        "label": "treacherous turn",
+        "case_sensitive": false,
+        "pattern": "\\btreacherous[-\\s]turn\\b"
+      },
+      {
+        "label": "situationally aware",
+        "case_sensitive": false,
+        "pattern": "\\bsituationally[-\\s]aware\\b"
+      },
+      {
+        "label": "activation steering",
+        "case_sensitive": false,
+        "pattern": "\\bactivation[-\\s]steering\\b"
+      },
+      {
+        "label": "representation engineering",
+        "case_sensitive": false,
+        "pattern": "\\brepresentation[-\\s]engineering\\b"
+      },
+      {
+        "label": "feature steering",
+        "case_sensitive": false,
+        "pattern": "\\bfeature[-\\s]steering\\b"
+      },
+      {
+        "label": "interpretability",
+        "case_sensitive": false,
+        "pattern": "\\binterpretability\\b"
+      },
+      {
+        "label": "probe",
+        "case_sensitive": false,
+        "pattern": "\\bprobe\\b|\\bprobes\\b|\\bprobing\\b"
+      },
+      {
+        "label": "backdoor",
+        "case_sensitive": false,
+        "pattern": "\\bbackdoor\\b|\\bbackdoors\\b"
+      },
+      {
+        "label": "trojan",
+        "case_sensitive": false,
+        "pattern": "\\btrojan\\b"
+      },
+      {
+        "label": "sleeper agent",
+        "case_sensitive": false,
+        "pattern": "\\bsleeper[-\\s]agent\\b"
+      },
+      {
+        "label": "hidden message",
+        "case_sensitive": false,
+        "pattern": "\\bhidden[-\\s]message\\b"
+      },
+      {
+        "label": "encoded message",
+        "case_sensitive": false,
+        "pattern": "\\bencoded[-\\s]message\\b"
+      },
+      {
+        "label": "mesa-optimization",
+        "case_sensitive": false,
+        "pattern": "\\bmesa\\-optimization\\b|\\bmesa\\-optimizer\\b"
+      },
+      {
+        "label": "inner alignment",
+        "case_sensitive": false,
+        "pattern": "\\binner[-\\s]alignment\\b"
+      },
+      {
+        "label": "outer alignment",
+        "case_sensitive": false,
+        "pattern": "\\bouter[-\\s]alignment\\b"
+      },
+      {
+        "label": "power-seeking",
+        "case_sensitive": false,
+        "pattern": "\\bpower\\-seeking\\b"
+      },
+      {
+        "label": "exfiltration",
+        "case_sensitive": false,
+        "pattern": "\\bexfiltrate\\b|\\bexfiltration\\b|\\bself\\-exfiltration\\b"
+      },
+      {
+        "label": "sabotage",
+        "case_sensitive": false,
+        "pattern": "\\bsabotage\\b|\\bsabotaging\\b"
+      },
+      {
+        "label": "subvert",
+        "case_sensitive": false,
+        "pattern": "\\bsubvert\\b|\\bsubversion\\b|\\bsubverting\\b"
+      },
+      {
+        "label": "circumvent",
+        "case_sensitive": false,
+        "pattern": "\\bcircumvent\\b|\\bcircumventing\\b"
+      },
+      {
+        "label": "evade",
+        "case_sensitive": false,
+        "pattern": "\\bevade\\b|\\bevading\\b|\\bevasion\\b"
+      },
+      {
+        "label": "bypass",
+        "case_sensitive": false,
+        "pattern": "\\bbypass\\b|\\bbypassing\\b"
+      },
+      {
+        "label": "avoid shutdown",
+        "case_sensitive": false,
+        "pattern": "\\bavoid[-\\s]shutdown\\b"
+      },
+      {
+        "label": "shutdown avoidance",
+        "case_sensitive": false,
+        "pattern": "\\bshutdown[-\\s]avoidance\\b"
+      },
+      {
+        "label": "corrigibility",
+        "case_sensitive": false,
+        "pattern": "\\bcorrigibility\\b|\\bcorrigible\\b|\\bincorrigible\\b"
+      },
+      {
+        "label": "deception",
+        "case_sensitive": false,
+        "pattern": "\\bdeception\\b|\\bdeceptive\\b|\\bdeceive\\b|\\bdeceiving\\b"
+      },
+      {
+        "label": "obfuscation",
+        "case_sensitive": false,
+        "pattern": "\\bobfuscation\\b|\\bobfuscate\\b|\\bobfuscated\\b"
+      },
+      {
+        "label": "alignment evaluation",
+        "case_sensitive": false,
+        "pattern": "\\balignment[-\\s]evaluation\\b"
+      },
+      {
+        "label": "safety evaluation",
+        "case_sensitive": false,
+        "pattern": "\\bsafety[-\\s]evaluation\\b"
+      },
+      {
+        "label": "safety filter",
+        "case_sensitive": false,
+        "pattern": "\\bsafety[-\\s]filter\\b"
+      },
+      {
+        "label": "content moderation",
+        "case_sensitive": false,
+        "pattern": "\\bcontent[-\\s]moderation\\b"
+      },
+      {
+        "label": "tripwire",
+        "case_sensitive": false,
+        "pattern": "\\btripwire\\b|\\btripwires\\b"
+      },
+      {
+        "label": "AI deception",
+        "case_sensitive": true,
+        "pattern": "\\bAI[-\\s]deception\\b"
+      },
+      {
+        "label": "hiding information",
+        "case_sensitive": false,
+        "pattern": "\\bhiding[-\\s]information\\b"
+      },
+      {
+        "label": "hidden motive",
+        "case_sensitive": false,
+        "pattern": "\\bhidden[-\\s]motive\\b|\\bhidden[-\\s]motives\\b"
+      },
+      {
+        "label": "hidden intent",
+        "case_sensitive": false,
+        "pattern": "\\bhidden[-\\s]intent\\b"
+      }
+    ],
+    "3_human_oversight_testing": [
+      {
+        "label": "answer key",
+        "case_sensitive": false,
+        "pattern": "\\banswer[-\\s]key\\b"
+      },
+      {
+        "label": "solution key",
+        "case_sensitive": false,
+        "pattern": "\\bsolution[-\\s]key\\b"
+      },
+      {
+        "label": "metric",
+        "case_sensitive": false,
+        "pattern": "\\bmetric\\b|\\bmetrics\\b"
+      },
+      {
+        "label": "reviewer",
+        "case_sensitive": false,
+        "pattern": "\\breviewer\\b|\\breview[-\\s]process\\b"
+      },
+      {
+        "label": "observability",
+        "case_sensitive": false,
+        "pattern": "\\bobservability\\b"
+      },
+      {
+        "label": "grader",
+        "case_sensitive": false,
+        "pattern": "\\bgrader\\b|\\bgraders\\b"
+      },
+      {
+        "label": "grade",
+        "case_sensitive": false,
+        "pattern": "\\bgrade\\b|\\bgrades\\b|\\bgrading\\b|\\bgraded\\b"
+      },
+      {
+        "label": "rubric",
+        "case_sensitive": false,
+        "pattern": "\\brubric\\b|\\brubrics\\b"
+      },
+      {
+        "label": "assessor",
+        "case_sensitive": false,
+        "pattern": "\\bassessor\\b|\\bassessors\\b"
+      },
+      {
+        "label": "assessment criteria",
+        "case_sensitive": false,
+        "pattern": "\\bassessment[-\\s]criteria\\b"
+      },
+      {
+        "label": "scorer|scoring",
+        "case_sensitive": false,
+        "pattern": "\\bscorer\\b|\\bscoring\\b"
+      },
+      {
+        "label": "student",
+        "case_sensitive": false,
+        "pattern": "\\bstudent\\b|\\bstudents\\b"
+      },
+      {
+        "label": "classroom",
+        "case_sensitive": false,
+        "pattern": "\\bclassroom\\b"
+      },
+      {
+        "label": "school",
+        "case_sensitive": false,
+        "pattern": "\\bschool\\b|\\bschools\\b"
+      },
+      {
+        "label": "homework",
+        "case_sensitive": false,
+        "pattern": "\\bhomework\\b"
+      },
+      {
+        "label": "teacher",
+        "case_sensitive": false,
+        "pattern": "\\bteacher\\b|\\bteachers\\b"
+      },
+      {
+        "label": "exam",
+        "case_sensitive": false,
+        "pattern": "\\bexam\\b|\\bexams\\b|\\bexamination\\b"
+      },
+      {
+        "label": "plagiarism",
+        "case_sensitive": false,
+        "pattern": "\\bplagiarism\\b|\\bplagiarize\\b"
+      },
+      {
+        "label": "cheat",
+        "case_sensitive": false,
+        "pattern": "\\bcheat\\b|\\bcheating\\b|\\bcheater\\b|\\bcheated\\b"
+      },
+      {
+        "label": "surveillance",
+        "case_sensitive": false,
+        "pattern": "\\bsurveillance\\b"
+      },
+      {
+        "label": "being watched",
+        "case_sensitive": false,
+        "pattern": "\\bbeing[-\\s]watched\\b"
+      },
+      {
+        "label": "CCTV",
+        "case_sensitive": true,
+        "pattern": "\\bCCTV\\b"
+      },
+      {
+        "label": "proctor",
+        "case_sensitive": false,
+        "pattern": "\\bproctor\\b|\\bproctoring\\b"
+      },
+      {
+        "label": "invigilator",
+        "case_sensitive": false,
+        "pattern": "\\binvigilator\\b"
+      },
+      {
+        "label": "standardized test",
+        "case_sensitive": false,
+        "pattern": "\\bstandardized[-\\s]test\\b|\\bstandardized[-\\s]testing\\b"
+      },
+      {
+        "label": "SAT",
+        "case_sensitive": true,
+        "pattern": "\\bSAT\\b"
+      },
+      {
+        "label": "GRE",
+        "case_sensitive": true,
+        "pattern": "\\bGRE\\b"
+      },
+      {
+        "label": "A-level",
+        "case_sensitive": true,
+        "pattern": "\\bA\\-level\\b|\\bA\\-levels\\b"
+      },
+      {
+        "label": "GCSE",
+        "case_sensitive": true,
+        "pattern": "\\bGCSE\\b"
+      },
+      {
+        "label": "AP exam",
+        "case_sensitive": true,
+        "pattern": "\\bAP[-\\s]exam\\b"
+      },
+      {
+        "label": "quiz",
+        "case_sensitive": false,
+        "pattern": "\\bquiz\\b|\\bquizzes\\b"
+      },
+      {
+        "label": "midterm",
+        "case_sensitive": false,
+        "pattern": "\\bmidterm\\b|\\bmidterms\\b"
+      },
+      {
+        "label": "final exam",
+        "case_sensitive": false,
+        "pattern": "\\bfinal[-\\s]exam\\b"
+      },
+      {
+        "label": "pop quiz",
+        "case_sensitive": false,
+        "pattern": "\\bpop[-\\s]quiz\\b"
+      },
+      {
+        "label": "take-home exam",
+        "case_sensitive": false,
+        "pattern": "\\btake\\-home[-\\s]exam\\b"
+      },
+      {
+        "label": "oral exam",
+        "case_sensitive": false,
+        "pattern": "\\boral[-\\s]exam\\b"
+      },
+      {
+        "label": "mock exam",
+        "case_sensitive": false,
+        "pattern": "\\bmock[-\\s]exam\\b"
+      },
+      {
+        "label": "practice test",
+        "case_sensitive": false,
+        "pattern": "\\bpractice[-\\s]test\\b"
+      },
+      {
+        "label": "past papers",
+        "case_sensitive": false,
+        "pattern": "\\bpast[-\\s]papers\\b"
+      },
+      {
+        "label": "test prep",
+        "case_sensitive": false,
+        "pattern": "\\btest[-\\s]prep\\b"
+      },
+      {
+        "label": "test-taking",
+        "case_sensitive": false,
+        "pattern": "\\btest\\-taking\\b"
+      },
+      {
+        "label": "cheat sheet",
+        "case_sensitive": false,
+        "pattern": "\\bcheat[-\\s]sheet\\b"
+      },
+      {
+        "label": "crib sheet",
+        "case_sensitive": false,
+        "pattern": "\\bcrib[-\\s]sheet\\b"
+      },
+      {
+        "label": "answer sheet",
+        "case_sensitive": false,
+        "pattern": "\\banswer[-\\s]sheet\\b"
+      },
+      {
+        "label": "academic integrity",
+        "case_sensitive": false,
+        "pattern": "\\bacademic[-\\s]integrity\\b"
+      },
+      {
+        "label": "honor code",
+        "case_sensitive": false,
+        "pattern": "\\bhonor[-\\s]code\\b"
+      },
+      {
+        "label": "GPA",
+        "case_sensitive": true,
+        "pattern": "\\bGPA\\b"
+      },
+      {
+        "label": "report card",
+        "case_sensitive": false,
+        "pattern": "\\breport[-\\s]card\\b"
+      },
+      {
+        "label": "grade inflation",
+        "case_sensitive": false,
+        "pattern": "\\bgrade[-\\s]inflation\\b"
+      },
+      {
+        "label": "grading curve",
+        "case_sensitive": false,
+        "pattern": "\\bgraded[-\\s]on[-\\s]a[-\\s]curve\\b|\\bgrading[-\\s]curve\\b"
+      },
+      {
+        "label": "extra credit",
+        "case_sensitive": false,
+        "pattern": "\\bextra[-\\s]credit\\b"
+      },
+      {
+        "label": "examiner",
+        "case_sensitive": false,
+        "pattern": "\\bexaminer\\b|\\bexaminers\\b"
+      },
+      {
+        "label": "marking",
+        "case_sensitive": false,
+        "pattern": "\\bmarking\\b|\\bmarks\\b|\\bmarked\\b"
+      },
+      {
+        "label": "aptitude test",
+        "case_sensitive": false,
+        "pattern": "\\baptitude[-\\s]test\\b"
+      },
+      {
+        "label": "IQ test",
+        "case_sensitive": true,
+        "pattern": "\\bIQ[-\\s]test\\b"
+      },
+      {
+        "label": "personality test",
+        "case_sensitive": false,
+        "pattern": "\\bpersonality[-\\s]test\\b"
+      },
+      {
+        "label": "psychometric",
+        "case_sensitive": false,
+        "pattern": "\\bpsychometric\\b"
+      },
+      {
+        "label": "certification exam",
+        "case_sensitive": false,
+        "pattern": "\\bcertification[-\\s]exam\\b"
+      },
+      {
+        "label": "bar exam",
+        "case_sensitive": false,
+        "pattern": "\\bbar[-\\s]exam\\b"
+      },
+      {
+        "label": "driving test",
+        "case_sensitive": false,
+        "pattern": "\\bdriving[-\\s]test\\b"
+      },
+      {
+        "label": "drug test",
+        "case_sensitive": false,
+        "pattern": "\\bdrug[-\\s]test\\b"
+      },
+      {
+        "label": "polygraph",
+        "case_sensitive": false,
+        "pattern": "\\bpolygraph\\b|\\blie[-\\s]detector\\b"
+      },
+      {
+        "label": "background check",
+        "case_sensitive": false,
+        "pattern": "\\bbackground[-\\s]check\\b"
+      },
+      {
+        "label": "performance review",
+        "case_sensitive": false,
+        "pattern": "\\bperformance[-\\s]review\\b"
+      },
+      {
+        "label": "employee monitoring",
+        "case_sensitive": false,
+        "pattern": "\\bemployee[-\\s]monitoring\\b"
+      },
+      {
+        "label": "workplace surveillance",
+        "case_sensitive": false,
+        "pattern": "\\bworkplace[-\\s]surveillance\\b"
+      },
+      {
+        "label": "probation",
+        "case_sensitive": false,
+        "pattern": "\\bprobation\\b"
+      },
+      {
+        "label": "parole",
+        "case_sensitive": false,
+        "pattern": "\\bparole\\b"
+      },
+      {
+        "label": "compliance check",
+        "case_sensitive": false,
+        "pattern": "\\bcompliance[-\\s]check\\b|\\bcompliance[-\\s]audit\\b"
+      },
+      {
+        "label": "regulator",
+        "case_sensitive": false,
+        "pattern": "\\bregulator\\b|\\bregulators\\b|\\bregulatory\\b"
+      },
+      {
+        "label": "inspector general",
+        "case_sensitive": false,
+        "pattern": "\\binspector[-\\s]general\\b"
+      },
+      {
+        "label": "quality assurance",
+        "case_sensitive": false,
+        "pattern": "\\bquality[-\\s]assurance\\b"
+      },
+      {
+        "label": "QA",
+        "case_sensitive": true,
+        "pattern": "\\bQA\\b"
+      },
+      {
+        "label": "quality control",
+        "case_sensitive": false,
+        "pattern": "\\bquality[-\\s]control\\b"
+      },
+      {
+        "label": "referee|umpire",
+        "case_sensitive": false,
+        "pattern": "\\breferee\\b|\\bumpire\\b"
+      },
+      {
+        "label": "hall monitor",
+        "case_sensitive": false,
+        "pattern": "\\bhall[-\\s]monitor\\b"
+      },
+      {
+        "label": "security guard",
+        "case_sensitive": false,
+        "pattern": "\\bsecurity[-\\s]guard\\b"
+      },
+      {
+        "label": "chaperone",
+        "case_sensitive": false,
+        "pattern": "\\bchaperone\\b"
+      },
+      {
+        "label": "loophole",
+        "case_sensitive": false,
+        "pattern": "\\bloophole\\b|\\bloopholes\\b"
+      },
+      {
+        "label": "shortcut",
+        "case_sensitive": false,
+        "pattern": "\\bshortcut\\b|\\bshortcuts\\b"
+      }
+    ],
+    "4_ai_training_pipeline": [
+      {
+        "label": "validation set",
+        "case_sensitive": false,
+        "pattern": "\\bvalidation[-\\s]set\\b"
+      },
+      {
+        "label": "test set",
+        "case_sensitive": false,
+        "pattern": "\\btest[-\\s]set\\b"
+      },
+      {
+        "label": "train test split",
+        "case_sensitive": false,
+        "pattern": "\\btrain[-\\s]test[-\\s]split\\b|\\btrain/test[-\\s]split\\b"
+      },
+      {
+        "label": "autograder",
+        "case_sensitive": false,
+        "pattern": "\\bautograder\\b|\\bauto\\-grader\\b"
+      },
+      {
+        "label": "pass@k",
+        "case_sensitive": false,
+        "pattern": "\\bpass@k\\b"
+      },
+      {
+        "label": "Elo",
+        "case_sensitive": true,
+        "pattern": "\\bElo\\b"
+      },
+      {
+        "label": "tool-use environment",
+        "case_sensitive": false,
+        "pattern": "\\btool\\-use[-\\s]environment\\b"
+      },
+      {
+        "label": "RLHF",
+        "case_sensitive": true,
+        "pattern": "\\bRLHF\\b"
+      },
+      {
+        "label": "RLAIF",
+        "case_sensitive": true,
+        "pattern": "\\bRLAIF\\b"
+      },
+      {
+        "label": "RLVR",
+        "case_sensitive": true,
+        "pattern": "\\bRLVR\\b"
+      },
+      {
+        "label": "DPO",
+        "case_sensitive": true,
+        "pattern": "\\bDPO\\b"
+      },
+      {
+        "label": "PPO",
+        "case_sensitive": true,
+        "pattern": "\\bPPO\\b"
+      },
+      {
+        "label": "GRPO",
+        "case_sensitive": true,
+        "pattern": "\\bGRPO\\b"
+      },
+      {
+        "label": "reinforcement learning",
+        "case_sensitive": false,
+        "pattern": "\\breinforcement[-\\s]learning\\b"
+      },
+      {
+        "label": "reward model",
+        "case_sensitive": false,
+        "pattern": "\\breward[-\\s]model\\b|\\breward[-\\s]models\\b"
+      },
+      {
+        "label": "reward hacking",
+        "case_sensitive": false,
+        "pattern": "\\breward[-\\s]hacking\\b"
+      },
+      {
+        "label": "reward signal",
+        "case_sensitive": false,
+        "pattern": "\\breward[-\\s]signal\\b"
+      },
+      {
+        "label": "reward shaping",
+        "case_sensitive": false,
+        "pattern": "\\breward[-\\s]shaping\\b"
+      },
+      {
+        "label": "reward function",
+        "case_sensitive": false,
+        "pattern": "\\breward[-\\s]function\\b"
+      },
+      {
+        "label": "reward maximization",
+        "case_sensitive": false,
+        "pattern": "\\breward[-\\s]maximization\\b"
+      },
+      {
+        "label": "policy gradient",
+        "case_sensitive": false,
+        "pattern": "\\bpolicy[-\\s]gradient\\b"
+      },
+      {
+        "label": "policy optimization",
+        "case_sensitive": false,
+        "pattern": "\\bpolicy[-\\s]optimization\\b"
+      },
+      {
+        "label": "fine-tuning",
+        "case_sensitive": false,
+        "pattern": "\\bfine\\-tune\\b|\\bfine\\-tuning\\b|\\bfinetune\\b|\\bfinetuning\\b"
+      },
+      {
+        "label": "LoRA",
+        "case_sensitive": true,
+        "pattern": "\\bLoRA\\b"
+      },
+      {
+        "label": "QLoRA",
+        "case_sensitive": true,
+        "pattern": "\\bQLoRA\\b"
+      },
+      {
+        "label": "pretraining",
+        "case_sensitive": false,
+        "pattern": "\\bpretraining\\b|\\bpre\\-training\\b|\\bpretrain\\b"
+      },
+      {
+        "label": "midtraining",
+        "case_sensitive": false,
+        "pattern": "\\bmidtraining\\b|\\bmid\\-training\\b"
+      },
+      {
+        "label": "post-training",
+        "case_sensitive": false,
+        "pattern": "\\bpost\\-training\\b"
+      },
+      {
+        "label": "training data",
+        "case_sensitive": false,
+        "pattern": "\\btraining[-\\s]data\\b"
+      },
+      {
+        "label": "training process",
+        "case_sensitive": false,
+        "pattern": "\\btraining[-\\s]process\\b"
+      },
+      {
+        "label": "training run",
+        "case_sensitive": false,
+        "pattern": "\\btraining[-\\s]run\\b"
+      },
+      {
+        "label": "training environment",
+        "case_sensitive": false,
+        "pattern": "\\btraining[-\\s]environment\\b"
+      },
+      {
+        "label": "training signal",
+        "case_sensitive": false,
+        "pattern": "\\btraining[-\\s]signal\\b"
+      },
+      {
+        "label": "being trained",
+        "case_sensitive": false,
+        "pattern": "\\bbeing[-\\s]trained\\b"
+      },
+      {
+        "label": "trained on",
+        "case_sensitive": false,
+        "pattern": "\\btrained[-\\s]on\\b"
+      },
+      {
+        "label": "model training",
+        "case_sensitive": false,
+        "pattern": "\\bmodel[-\\s]training\\b"
+      },
+      {
+        "label": "SFT",
+        "case_sensitive": true,
+        "pattern": "\\bSFT\\b"
+      },
+      {
+        "label": "instruction tuning",
+        "case_sensitive": false,
+        "pattern": "\\binstruction[-\\s]tuning\\b|\\binstruction\\-tuned\\b"
+      },
+      {
+        "label": "reward",
+        "case_sensitive": false,
+        "pattern": "\\breward\\b|\\brewards\\b|\\brewarded\\b"
+      },
+      {
+        "label": "TRPO",
+        "case_sensitive": true,
+        "pattern": "\\bTRPO\\b"
+      },
+      {
+        "label": "Q-learning",
+        "case_sensitive": true,
+        "pattern": "\\bQ\\-learning\\b"
+      },
+      {
+        "label": "actor-critic",
+        "case_sensitive": false,
+        "pattern": "\\bactor\\-critic\\b"
+      },
+      {
+        "label": "value function",
+        "case_sensitive": false,
+        "pattern": "\\bvalue[-\\s]function\\b"
+      },
+      {
+        "label": "critic model",
+        "case_sensitive": false,
+        "pattern": "\\bcritic[-\\s]model\\b"
+      },
+      {
+        "label": "policy model",
+        "case_sensitive": false,
+        "pattern": "\\bpolicy[-\\s]model\\b"
+      },
+      {
+        "label": "KL penalty",
+        "case_sensitive": true,
+        "pattern": "\\bKL[-\\s]penalty\\b"
+      },
+      {
+        "label": "KL divergence",
+        "case_sensitive": true,
+        "pattern": "\\bKL[-\\s]divergence\\b"
+      },
+      {
+        "label": "entropy bonus",
+        "case_sensitive": false,
+        "pattern": "\\bentropy[-\\s]bonus\\b"
+      },
+      {
+        "label": "epsilon-greedy",
+        "case_sensitive": false,
+        "pattern": "\\bepsilon\\-greedy\\b"
+      },
+      {
+        "label": "exploration exploitation",
+        "case_sensitive": false,
+        "pattern": "\\bexploration[-\\s]exploitation\\b|\\bexploration\\-exploitation\\b"
+      },
+      {
+        "label": "trajectory",
+        "case_sensitive": false,
+        "pattern": "\\btrajectory\\b|\\btrajectories\\b"
+      },
+      {
+        "label": "episode",
+        "case_sensitive": false,
+        "pattern": "\\bepisode\\b|\\bepisodes\\b"
+      },
+      {
+        "label": "gym environment",
+        "case_sensitive": false,
+        "pattern": "\\bgym[-\\s]environment\\b"
+      },
+      {
+        "label": "gradient descent",
+        "case_sensitive": false,
+        "pattern": "\\bgradient[-\\s]descent\\b"
+      },
+      {
+        "label": "backpropagation",
+        "case_sensitive": false,
+        "pattern": "\\bbackpropagation\\b|\\bbackprop\\b"
+      },
+      {
+        "label": "loss function",
+        "case_sensitive": false,
+        "pattern": "\\bloss[-\\s]function\\b"
+      },
+      {
+        "label": "objective function",
+        "case_sensitive": false,
+        "pattern": "\\bobjective[-\\s]function\\b"
+      },
+      {
+        "label": "optimizer",
+        "case_sensitive": false,
+        "pattern": "\\boptimizer\\b|\\boptimizers\\b"
+      },
+      {
+        "label": "learning rate",
+        "case_sensitive": false,
+        "pattern": "\\blearning[-\\s]rate\\b"
+      },
+      {
+        "label": "hyperparameter",
+        "case_sensitive": false,
+        "pattern": "\\bhyperparameter\\b|\\bhyperparameters\\b"
+      },
+      {
+        "label": "epoch",
+        "case_sensitive": false,
+        "pattern": "\\bepoch\\b|\\bepochs\\b"
+      },
+      {
+        "label": "batch size",
+        "case_sensitive": false,
+        "pattern": "\\bbatch[-\\s]size\\b"
+      },
+      {
+        "label": "checkpoint",
+        "case_sensitive": false,
+        "pattern": "\\bcheckpoint\\b|\\bcheckpoints\\b"
+      },
+      {
+        "label": "gradient update",
+        "case_sensitive": false,
+        "pattern": "\\bgradient[-\\s]update\\b"
+      },
+      {
+        "label": "weight update",
+        "case_sensitive": false,
+        "pattern": "\\bweight[-\\s]update\\b"
+      },
+      {
+        "label": "distill",
+        "case_sensitive": false,
+        "pattern": "\\bdistill\\b|\\bdistillation\\b|\\bdistilled\\b"
+      },
+      {
+        "label": "teacher model",
+        "case_sensitive": false,
+        "pattern": "\\bteacher[-\\s]model\\b"
+      },
+      {
+        "label": "student model",
+        "case_sensitive": false,
+        "pattern": "\\bstudent[-\\s]model\\b"
+      },
+      {
+        "label": "annotator",
+        "case_sensitive": false,
+        "pattern": "\\bannotator\\b|\\bannotators\\b"
+      },
+      {
+        "label": "labeler",
+        "case_sensitive": false,
+        "pattern": "\\blabeler\\b|\\blabelers\\b"
+      },
+      {
+        "label": "human feedback",
+        "case_sensitive": false,
+        "pattern": "\\bhuman[-\\s]feedback\\b"
+      },
+      {
+        "label": "preference data",
+        "case_sensitive": false,
+        "pattern": "\\bpreference[-\\s]data\\b"
+      },
+      {
+        "label": "preference pair",
+        "case_sensitive": false,
+        "pattern": "\\bpreference[-\\s]pair\\b"
+      },
+      {
+        "label": "pairwise comparison",
+        "case_sensitive": false,
+        "pattern": "\\bpairwise[-\\s]comparison\\b"
+      },
+      {
+        "label": "demonstration data",
+        "case_sensitive": false,
+        "pattern": "\\bdemonstration[-\\s]data\\b"
+      },
+      {
+        "label": "imitation learning",
+        "case_sensitive": false,
+        "pattern": "\\bimitation[-\\s]learning\\b"
+      },
+      {
+        "label": "behavior cloning",
+        "case_sensitive": false,
+        "pattern": "\\bbehavior[-\\s]cloning\\b"
+      },
+      {
+        "label": "curriculum learning",
+        "case_sensitive": false,
+        "pattern": "\\bcurriculum[-\\s]learning\\b"
+      },
+      {
+        "label": "data mixture",
+        "case_sensitive": false,
+        "pattern": "\\bdata[-\\s]mixture\\b"
+      },
+      {
+        "label": "penalty",
+        "case_sensitive": false,
+        "pattern": "\\bpenalty\\b|\\bpenalties\\b|\\bpunishment\\b"
+      }
+    ],
+    "5_swe_tests": [
+      {
+        "label": "unit test",
+        "case_sensitive": false,
+        "pattern": "\\bunit[-\\s]test\\b|\\bunit[-\\s]tests\\b"
+      },
+      {
+        "label": "test case",
+        "case_sensitive": false,
+        "pattern": "\\btest[-\\s]case\\b|\\btest[-\\s]cases\\b"
+      },
+      {
+        "label": "test suite",
+        "case_sensitive": false,
+        "pattern": "\\btest[-\\s]suite\\b|\\btest[-\\s]suites\\b"
+      },
+      {
+        "label": "integration test",
+        "case_sensitive": false,
+        "pattern": "\\bintegration[-\\s]test\\b|\\bintegration[-\\s]tests\\b"
+      },
+      {
+        "label": "pytest",
+        "case_sensitive": false,
+        "pattern": "\\bpytest\\b"
+      },
+      {
+        "label": "tests pass",
+        "case_sensitive": false,
+        "pattern": "\\btests[-\\s]pass\\b|\\bpassing[-\\s]tests\\b"
+      },
+      {
+        "label": "test-driven",
+        "case_sensitive": false,
+        "pattern": "\\btest\\-driven\\b"
+      },
+      {
+        "label": "TDD",
+        "case_sensitive": true,
+        "pattern": "\\bTDD\\b"
+      },
+      {
+        "label": "regression test",
+        "case_sensitive": false,
+        "pattern": "\\bregression[-\\s]test\\b|\\bregression[-\\s]tests\\b"
+      },
+      {
+        "label": "end-to-end test",
+        "case_sensitive": false,
+        "pattern": "\\bend\\-to\\-end[-\\s]test\\b|\\be2e[-\\s]test\\b"
+      },
+      {
+        "label": "unittest",
+        "case_sensitive": false,
+        "pattern": "\\bunittest\\b"
+      },
+      {
+        "label": "test harness",
+        "case_sensitive": false,
+        "pattern": "\\btest[-\\s]harness\\b"
+      },
+      {
+        "label": "test fixture",
+        "case_sensitive": false,
+        "pattern": "\\btest[-\\s]fixture\\b|\\btest[-\\s]fixtures\\b"
+      },
+      {
+        "label": "test coverage",
+        "case_sensitive": false,
+        "pattern": "\\btest[-\\s]coverage\\b"
+      },
+      {
+        "label": "code coverage",
+        "case_sensitive": false,
+        "pattern": "\\bcode[-\\s]coverage\\b"
+      },
+      {
+        "label": "assertion",
+        "case_sensitive": false,
+        "pattern": "\\bassertion\\b|\\bassertions\\b|\\bassert[-\\s]statement\\b"
+      },
+      {
+        "label": "mock",
+        "case_sensitive": false,
+        "pattern": "\\bmock\\b|\\bmocking\\b|\\bmocked\\b"
+      },
+      {
+        "label": "continuous integration",
+        "case_sensitive": false,
+        "pattern": "\\bcontinuous[-\\s]integration\\b"
+      },
+      {
+        "label": "CI pipeline",
+        "case_sensitive": true,
+        "pattern": "\\bCI[-\\s]pipeline\\b"
+      },
+      {
+        "label": "test runner",
+        "case_sensitive": false,
+        "pattern": "\\btest[-\\s]runner\\b"
+      },
+      {
+        "label": "flaky test",
+        "case_sensitive": false,
+        "pattern": "\\bflaky[-\\s]test\\b|\\bflaky[-\\s]tests\\b"
+      },
+      {
+        "label": "edge case",
+        "case_sensitive": false,
+        "pattern": "\\bedge[-\\s]case\\b|\\bedge[-\\s]cases\\b"
+      }
+    ]
+  }
+}

@@ -1,0 +1,281 @@
+# metagaming-labeling — ctl_dolci_think: reasoning-trace negative controls from Dolci-Think-SFT-32B.
+#
+# The highest-signal control arm. Dolci-Think rows carry <think> chains of
+# thought, which is exactly the surface where verbalised eval-awareness appears —
+# so this is both the control most at risk of contamination and the one that makes
+# the VEA judge earn its keep. Kept as its own config (rather than merged into
+# ctl_dolci_instruct) so reasoning-trace controls can be weighted or dropped
+# independently of direct-response ones.
+#
+# The <think> trace is deliberately KEPT in `text`: it is the token-labelling
+# target, and it is what the auditor judge is calibrated on. Do not strip it.
+#
+# Same two purity gates as ctl_dolci_instruct — term blocklist categories 1-4 drop
+# the document, category 5 routes it to ctl_swe_tests, then the auditor VEA judge
+# ORs over 1800-char chunks. See that config's header for the full rationale.
+#
+# Measured retention (dry-run, 2026-08-09): 400,000 loaded -> 178,446 after the
+# source allow-list -> 3,977 sampled (4 of 5 buckets filled their full 800;
+# OpenAssistant starved at 777, its entire supply) -> 1,904 after the length
+# bound (52% dropped — Think traces routinely exceed 14K chars) -> 1,290 after
+# the language gate -> 941 after blocklist cats 1-4 (73.0% kept) -> 930 after the
+# cat-5 gate -> 600 judged -> 250 published. Documents fan out to ~4.2 chunks
+# each, so this arm is ~2.5x the judge cost of the others at equal row count.
+#
+# The `source` allow-list excludes the safety-adjacent (WildJailbreak,
+# WildGuardMix, CoCoNot), the instruction-following (both Precise IF sets, which
+# are definitionally about grading compliance), the non-English (Aya), and the
+# code sources (Python Algorithms, Nemotron Code, OpenThoughts3 Code) whose rows
+# would almost all die at the category-5 gate anyway. Excluding them up front
+# buys width in the buckets that actually survive rather than starving them.
+# Measured judge pass (gpt-4.1-mini @ concurrency 32, 2026-08-09):
+#      2,513 chunks from 600 docs (4.2/doc), 2,513 judge calls, 0 parse
+#      failures, 50 documents dropped (8.3%) — by far the highest rate of the four,
+#      which is the expected result: a reasoning trace is where verbalised
+#      eval-awareness actually surfaces. This arm is why the judge is worth running. Judge calls exactly equalled chunk
+#      counts and every chunk parsed, so no chunk was silently lost — the
+#      failure mode the concurrency cap exists to prevent.
+#
+# Usage:
+#   uv run python -m dataset_builder configs/metagaming_labeling/ctl_dolci_think/ctl_dolci_think.yaml --dry-run
+#   uv run python -m dataset_builder configs/metagaming_labeling/ctl_dolci_think/ctl_dolci_think.yaml --build-and-push
+
+source:
+  type: hf
+  repo: allenai/Dolci-Think-SFT-32B
+  # ~400K-row prefix of a 156-shard, ~2.25M-row repo. That covers every `source`
+  # value with room to spare after the blocklist; the smallest allow-listed
+  # bucket (OpenAssistant, ~39 rows/shard) still clears `per_bucket` below.
+  #
+  # NOTE: `datasets` resolves all 156 shards before applying the slice. Cached,
+  # that is instant; uncached it is a per-shard HEAD request (~11 min). A
+  # `data_files` subset would avoid it but trips NonMatchingSplitsSizesError,
+  # since `datasets` verifies the loaded split against the repo's recorded
+  # dataset_info. Export HF_HUB_OFFLINE=1 — every shard is already in the shared
+  # cache at /projects/a5k/public/hf.
+  split: "train[:400000]"
+  revision: 7668c638cc84100951973b456069a1a462d6d915
+  provides:
+    id: str
+    messages: "list[struct{content: str, role: str}]"
+    source: str
+
+destination:
+  repo: camgeodesic/metagaming-labeling
+  config: ctl_dolci_think
+  private: true
+
+transform:
+  # --- Cheap structural filters, before any per-row work -------------------
+  - type: filter
+    kernel: match
+    allow:
+      source:
+        - Dolci Think OpenThoughts3 Math
+        - Dolci Think OpenThoughts3 STEM
+        - SYNTHETIC-2-SFT-Verified
+        - OpenAssistant
+        - TableGPT
+
+  - type: filter
+    kernel: match
+    length:
+      messages: { min: 2, max: 2 }
+
+  # 800, not 400. This arm loses far more rows than the others before the judge
+  # (the length bound alone drops ~52% — Think traces routinely exceed 14K chars),
+  # and it is the arm most likely to lose more AT the judge, since a reasoning
+  # trace is where verbalised eval-awareness actually shows up. At per_bucket=400
+  # only 471 documents reached the judge, leaving no room for a high VEA drop rate.
+  # OpenAssistant (777 available) starves slightly at 800; that is accepted rather
+  # than capping the four larger buckets to match it.
+  - type: stateful_filter
+    kernel: stratified_holdout
+    mode: eval_pool
+    bucket_column: source
+    per_bucket: 800
+    seed: 42
+
+  # --- Flatten to the labelling target ------------------------------------
+  - type: flat_map
+    kernel: extract_message_content
+    source_column: messages
+    target_column: user_text
+    role: user
+    which: first
+    on_missing: drop
+
+  - type: flat_map
+    kernel: extract_message_content
+    source_column: messages
+    target_column: assistant_text
+    role: assistant
+    which: last
+    on_missing: drop
+
+  - type: map_column
+    kernel: format
+    template: "User: {user_text}\n\nAssistant: {assistant_text}"
+    target_column: text
+
+  # Wider than ctl_dolci_instruct: reasoning traces are long, and truncating
+  # them would cut exactly the content the judge needs to see. ~8 chunks/doc.
+  - type: filter
+    kernel: match
+    length:
+      text: { min: 800, max: 14000 }
+
+  - type: filter
+    kernel: language
+    column: user_text
+    language: en
+
+  # --- Purity gate 1: term blocklist (free) -------------------------------
+  - type: map_column
+    kernel: term_hits
+    text_column: text
+    terms_file: assets/metagaming_labeling/pools/blocklist_v3.json
+    categories:
+      - 1_capability_evals_oversight
+      - 2_ai_safety_oversight
+      - 3_human_oversight_testing
+      - 4_ai_training_pipeline
+    hits_column: term_hits
+    categories_column: term_categories
+
+  - type: filter
+    kernel: match
+    bounds:
+      term_hits: { max: 0 }
+
+  - type: map_column
+    kernel: term_hits
+    text_column: text
+    terms_file: assets/metagaming_labeling/pools/blocklist_v3.json
+    categories: [5_swe_tests]
+    hits_column: swe_hits
+    labels_column: swe_terms
+
+  - type: filter
+    kernel: match
+    bounds:
+      swe_hits: { max: 0 }
+
+  # --- Bound the judge spend ----------------------------------------------
+  # 600, matching the other arms, even though Think documents fan out to ~4.1
+  # chunks each (vs ~1.7 elsewhere) and so cost ~2.5x per document to judge. The
+  # extra spend buys tolerance for a VEA drop rate up to ~58% before the final
+  # trim would under-deliver — and this is the arm where a high drop rate is
+  # genuinely plausible.
+  - type: stateful_filter
+    kernel: sample_rows
+    n: 600
+    seed: 42
+
+  # --- Purity gate 2: VEA auditor judge -----------------------------------
+  - type: map_column
+    kernel: copy
+    source_column: user_text
+    target_column: user_prompt
+
+  - type: flat_map
+    kernel: chunk_text
+    source_column: text
+    output_column: response
+    index_column: chunk_index
+    max_chars: 1800
+
+  - type: llm_render_column
+    parser: score_binary
+    prompt_file: assets/metagaming_labeling/prompts/eval_awareness_auditor.jinja
+    # Empty menu: only the binary verdict is consumed here. Required even when
+    # empty — prompts render under StrictUndefined.
+    template_vars:
+      label_menu: []
+    model: gpt-4.1-mini
+    provider: openai
+    temperature: 0
+    max_tokens: 2000
+    # 32. The "cap at 10" rule came from a gpt-4.1 incident where 64 silently
+    # dropped 61% of chunks to the shared OpenAI org's TPM limit; gpt-4.1-mini
+    # draws on a far larger pool, so 10 was leaving throughput on the table.
+    # Still well under the 64 that failed, because the failure mode is unsafe:
+    # a dropped chunk cannot vote in the per-document OR, so silent loss makes
+    # the filter miss metagaming rather than over-flag it. Chunk counts are
+    # checked against the dry-run's expected fan-out after every build.
+    concurrency: 32
+    seed: 42
+    cache_root: /projects/a5k/public/data_${USER}/metagaming_labeling/vea_judge_cache
+    raw_output_column: vea_raw
+    extract:
+      - name: score
+        column: chunk_verdict
+        required: true
+
+  - type: aggregate
+    kernel: group_aggregate
+    group_by: id
+    aggregations:
+      - column: chunk_verdict
+        agg: max
+        out_column: vea_verdict
+      - column: chunk_index
+        agg: count
+        out_column: n_chunks
+      - column: text
+        agg: first
+        out_column: text
+      - column: source
+        agg: first
+        out_column: source
+      - column: term_hits
+        agg: first
+        out_column: term_hits
+      - column: term_categories
+        agg: first
+        out_column: term_categories
+      - column: swe_hits
+        agg: first
+        out_column: swe_hits
+      - column: swe_terms
+        agg: first
+        out_column: swe_terms
+
+  - type: filter
+    kernel: match
+    bounds:
+      vea_verdict: { max: 0 }
+
+  # --- Canonical labelling-dataset schema ---------------------------------
+  - type: map_column
+    kernel: format
+    template: "ctl_dolci_think/{id}"
+    target_column: _id
+
+  - type: map_column
+    kernel: format
+    template: "{source}"
+    target_column: _title
+
+  - type: project
+    schema:
+      id: _id
+      set: { const: ctl_dolci_think }
+      title: _title
+      text: text
+      origin: { const: allenai/Dolci-Think-SFT-32B }
+      source_dataset: source
+      term_hits: term_hits
+      term_categories: term_categories
+      swe_hits: swe_hits
+      swe_terms: swe_terms
+      vea_verdict: vea_verdict
+      n_chunks: n_chunks
+
+  - type: stateful_filter
+    kernel: sample_rows
+    n: 250
+    seed: 43
+
+splits:
+  single_split: eval

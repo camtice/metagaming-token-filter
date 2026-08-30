@@ -1,0 +1,160 @@
+# metagaming-labeling — ctl_fineweb: general pretraining-text negative controls from FineWeb.
+#
+# Web-crawl prose, as a control for the pretraining half of the distribution. The
+# other four ctl_* sets are all chat-shaped; this one is not, which is the point —
+# a token-level labeller that behaves on assistant transcripts but fires on
+# ordinary prose would look clean on chat controls alone.
+#
+# ONE purity gate here, not two. The term blocklist runs as elsewhere (categories
+# 1-4 drop, category 5 also drops since cat-5-bearing rows belong to
+# ctl_swe_tests). The VEA judge does NOT run: it judges "an AI assistant's private
+# chain-of-thought" for whether the assistant says it suspects it is being tested,
+# and it is calibrated on <think> traces. Web crawl has no model, no user request
+# and no CoT, so the judge would be scoring out-of-distribution input against a
+# question its rubric cannot ask. Web pages that discuss AI evaluation are caught
+# by the blocklist, which is the appropriate instrument for that.
+#
+# `data_files` pins ONE 2.1 GB shard out of 15. Without it, load_dataset would
+# fetch the whole sample-10BT config (14.87M rows) before slicing. FineWeb is not
+# in any shared cache, so the first build downloads that shard into
+# HF_HOME=/projects/a5k/public/hf — login node only; compute nodes are offline.
+#
+# Measured retention (dry-run, 2026-08-09): 200,000 loaded -> 159,174 after the
+# language gate -> 136,682 after the length bound -> 16,000 sampled (8 CommonCrawl
+# dumps, all filling their full 2,000) -> 10,864 after blocklist cats 1-4 (67.9%
+# kept) -> 10,820 after the cat-5 gate -> 250 published. The pool is left much
+# larger than the published size on purpose: it is the headroom for scaling this
+# set up later without re-deriving anything.
+#
+# Usage:
+#   uv run python -m dataset_builder configs/metagaming_labeling/ctl_fineweb/ctl_fineweb.yaml --dry-run
+#   uv run python -m dataset_builder configs/metagaming_labeling/ctl_fineweb/ctl_fineweb.yaml --build-and-push
+
+source:
+  type: hf
+  repo: HuggingFaceFW/fineweb
+  # `data_files` is mutually exclusive with `subset`, so the sample-10BT config is
+  # addressed by its file path rather than by name.
+  data_files: sample/10BT/000_00000.parquet
+  split: "train[:200000]"
+  provides:
+    text: str
+    id: str
+    dump: str
+    url: str
+    date: any
+    file_path: str
+    language: str
+    language_score: float
+    token_count: int
+
+destination:
+  repo: camgeodesic/metagaming-labeling
+  config: ctl_fineweb
+  private: true
+
+transform:
+  # --- Cheap structural filters, before any per-row work -------------------
+  - type: filter
+    kernel: match
+    allow:
+      language: [en]
+    bounds:
+      language_score:
+        min: 0.9
+
+  # `text` is already flat — no message extraction needed.
+  - type: filter
+    kernel: match
+    length:
+      text: { min: 400, max: 6000 }
+
+  # Width: N per CommonCrawl snapshot, so the control spreads across crawl dates
+  # rather than sampling one slice of the web.
+  - type: stateful_filter
+    kernel: stratified_holdout
+    mode: eval_pool
+    bucket_column: dump
+    per_bucket: 2000
+    seed: 42
+
+  # --- Purity gate: term blocklist ----------------------------------------
+  - type: map_column
+    kernel: term_hits
+    text_column: text
+    terms_file: assets/metagaming_labeling/pools/blocklist_v3.json
+    categories:
+      - 1_capability_evals_oversight
+      - 2_ai_safety_oversight
+      - 3_human_oversight_testing
+      - 4_ai_training_pipeline
+    hits_column: term_hits
+    categories_column: term_categories
+
+  - type: filter
+    kernel: match
+    bounds:
+      term_hits: { max: 0 }
+
+  - type: map_column
+    kernel: term_hits
+    text_column: text
+    terms_file: assets/metagaming_labeling/pools/blocklist_v3.json
+    categories: [5_swe_tests]
+    hits_column: swe_hits
+    labels_column: swe_terms
+
+  - type: filter
+    kernel: match
+    bounds:
+      swe_hits: { max: 0 }
+
+  # --- Canonical labelling-dataset schema ---------------------------------
+  - type: map_column
+    kernel: format
+    template: "ctl_fineweb/{id}"
+    target_column: _id
+
+  - type: map_column
+    kernel: format
+    template: "{dump}"
+    target_column: _title
+
+  - type: project
+    schema:
+      id: _id
+      set: { const: ctl_fineweb }
+      title: _title
+      text: text
+      origin: { const: HuggingFaceFW/fineweb }
+      dump: dump
+      url: url
+      language_score: language_score
+      token_count: token_count
+      term_hits: term_hits
+      term_categories: term_categories
+      swe_hits: swe_hits
+      swe_terms: swe_terms
+
+  # 4,000 — far more than any other control set, and deliberately so. Web
+  # pretraining text is on the order of 99% of the distribution the production
+  # filter will actually see; every chat-shaped control here is a rounding error
+  # against it. A false-positive rate measured mostly on assistant transcripts
+  # would describe a corpus we are not filtering.
+  #
+  # Cheap to do: no judge on this arm, so scale costs only CPU. sample_rows is
+  # prefix-stable, so the previously published 250 and 1,000 are nested subsets
+  # of these 4,000 — nothing already published is dropped or reshuffled.
+  #
+  # Ceiling: the stratified draw above yields ~10.8K blocklist survivors, so
+  # this can grow to ~10K without touching anything. Going beyond that means
+  # raising `per_bucket` (or the source slice), which enlarges the pool and
+  # therefore RESHUFFLES the sample — the nesting property above would not
+  # survive it. Decide the final size before crossing that line.
+  - type: stateful_filter
+    kernel: sample_rows
+    n: 4000
+    seed: 43
+
+splits:
+  single_split: eval
