@@ -4,6 +4,8 @@ Code, results, and reports for selecting SAE features that flag *metagaming* con
 (models reasoning about their evaluation/oversight) in pretraining data, following
 [Rathi & Radford, arXiv:2601.21571](https://arxiv.org/abs/2601.21571).
 
+**Handing off?** `HANDOFF_NATHANIEL.md` collects every resource for the category-split rebuild (regex lists, data, reference results, protocol constraints).
+
 **Start here:** `artifacts_html/project_overview.html` (the collaborator handbook — task,
 scope, data map, evaluation protocol) and `artifacts_html/gen_atlas.html` (every
 quantitative result, interactive). Open them locally in a browser.
